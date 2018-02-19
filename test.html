@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <script>
+        //Функция самой отправки данных
+        function test(data) {
+            // 1. Создаём новый объект XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+
+            // 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+            xhr.open('post', 'test', false);
+            // 3. Отсылаем запрос
+            xhr.send(data);
+            // 4. Если код ответа сервера не 200, то это ошибка
+            if (xhr.status != 200) {
+                // обработать ошибку
+                alert(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
+            } else {
+                // вывести результат
+                console.log(xhr);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    minimalism
+    <div>
+        <input type="file" id="test" onchange="handleFiles(this.files)" placeholder="Въеби сюда что бы загрузить файл">
+    </div>
+    <script>
+        let img;
+        const inputElement = document.getElementById("test");
+        inputElement.addEventListener("change", handleFiles, false);
+
+        function handleFiles() {
+            let fileList = this.files;
+            const reader = new FileReader();
+            reader.onload = function(data) {
+                //всё отправляем
+                test(data.target.result);
+
+            };
+            reader.readAsBinaryString(fileList[0]);
+        }
+    </script>
+</body>
+
+</html>
