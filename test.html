@@ -2,24 +2,30 @@
 <html>
 
 <head>
+
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
+    </script>
+    <script>
+        var ipfs = window.IpfsApi({
+            host: 'localhost',
+            port: '5001',
+            protocol: 'http'
+        })
+    </script>
     <script>
         //Функция самой отправки данных
         function test(data) {
-            // 1. Создаём новый объект XMLHttpRequest
-            const xhr = new XMLHttpRequest();
+            data = window.btoa(data);
+            //console.log(data);
+            const files = [{
+                path: 'huinia',
+                content: data
+            }]
 
-            // 2. Конфигурируем его: GET-запрос на URL 'phones.json'
-            xhr.open('post', 'test', false);
-            // 3. Отсылаем запрос
-            xhr.send(data);
-            // 4. Если код ответа сервера не 200, то это ошибка
-            if (xhr.status != 200) {
-                // обработать ошибку
-                alert(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found
-            } else {
-                // вывести результат
-                console.log(xhr);
-            }
+            ipfs.files.add(files, function(err, files) {
+                if (err) console.log(err);
+                else console.log(files);
+            })
         }
     </script>
 </head>
