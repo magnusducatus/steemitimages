@@ -2,7 +2,7 @@
 <html>
 
 <head>
-
+    <meta charset="utf-8">
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
     </script>
     <script>
@@ -13,8 +13,30 @@
         })
     </script>
     <script>
+        
+        function handle(e){
+            console.log(e.target.id);
+            fetch('http://localhost:5001/api/v0/cat?arg='+e.target.id).then(function(response) {
+              console.log(response);
+              return response.blob();
+            }).then(function(myBlob) {
+              console.log('my',myBlob);
+              let reader = new FileReader();
+              reader.onload = (data) => {
+                //console.log(data.target.result);
+                var img = document.createElement('img');
+                const div = document.getElementById('imageDiv');
+                img.src = 'data:image/jpeg;base64,' + data.target.result;
+                img.height = 200;
+                img.width = 300;
+                div.appendChild(img);
+              }
+              reader.readAsBinaryString(myBlob);
+            });
+        }
         //Функция самой отправки данных
         function test(data) {
+            const ul = document.getElementById('resultUl');
             data = window.btoa(data);
             //console.log(data);
             const files = [{
@@ -22,34 +44,93 @@
                 content: data
             }]
 
-            ipfs.files.add(files, function(err, files) {
+            ipfs.files.add(files, function(err, file) {
                 if (err) console.log(err);
-                else console.log(files);
+                else {
+                  console.log(file);
+                  for( let i = 0; i < file.length; i++) {
+                    let li = document.createElement('li');
+                    li.className = ' ' + file[i].hash + ' ';
+                    let a = document.createElement('a');
+                    a.id = file[i].hash;
+                    a.onclick = handle;
+                    a.innerHTML = 'Ссылка на изображение в IPFS: ' + file[i].hash + '';
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                  }
+                }
             })
+
         }
     </script>
+    <!-- here put script for download 
+    <script src="http://localhost:8080/ipfs/QmSN78QvZ3cxLeMEV1amCsX47cBBX1RLWPhiLQVf1hbhij"></script>
+    -->
 </head>
 
 <body>
     minimalism
     <div>
-        <input type="file" id="test" onchange="handleFiles(this.files)" placeholder="Въеби сюда что бы загрузить файл">
+        <input type="file" id="test" onchange="handleFiles(this.files)" multiple placeholder="Загрузить">
+    </div>
+    <div >
+        <ul id="resultUl">
+          Нажми на хэш
+        </ul>
+
+    </div>
+    <!--
+    <div>
+        <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+        <a href="#" id="fileSelect">Select some files</a> 
+        <div id="fileList">
+          <p>No files selected!</p>
+        </div>
+    </div>
+    -->
+    <div id="imageDiv">
+
     </div>
     <script>
-        let img;
+
         const inputElement = document.getElementById("test");
         inputElement.addEventListener("change", handleFiles, false);
-
         function handleFiles() {
             let fileList = this.files;
-            const reader = new FileReader();
-            reader.onload = function(data) {
+            
+            for( let i = 0; i < fileList.length; i++) {
+                const reader = new FileReader();
+                reader.onload = function(data) {
                 //всё отправляем
                 test(data.target.result);
-
-            };
-            reader.readAsBinaryString(fileList[0]);
+                };
+                reader.readAsBinaryString(fileList[i]);
+            }
         }
+        /*function handleFiles(files) {
+            if (!files.length) {
+                fileList.innerHTML = "<p>No files selected!</p>";
+            } else {
+                fileList.innerHTML = "";
+                var list = document.createElement("ul");
+                fileList.appendChild(list);
+                for (var i = 0; i < files.length; i++) {
+                  var li = document.createElement("li");
+                  list.appendChild(li);
+                  
+                  var img = document.createElement("img");
+                  img.src = window.URL.createObjectURL(files[i]);
+                  img.height = 60;
+                  img.onload = function() {
+                    window.URL.revokeObjectURL(this.src);
+                  }
+                  li.appendChild(img);
+                  var info = document.createElement("span");
+                  info.innerHTML = files[i].name + ": " + files[i].size + " bytes";
+                  li.appendChild(info);
+                }
+            }
+        }*/
     </script>
 </body>
 
