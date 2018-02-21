@@ -13,25 +13,24 @@
         })
     </script>
     <script>
-        
-        function handle(e){
+        function handle(e) {
             console.log(e.target.id);
-            fetch('http://localhost:5001/api/v0/cat?arg='+e.target.id).then(function(response) {
-              console.log(response);
-              return response.blob();
+            fetch('http://localhost:5001/api/v0/cat?arg=' + e.target.id).then(function(response) {
+                console.log(response);
+                return response.blob();
             }).then(function(myBlob) {
-              console.log('my',myBlob);
-              let reader = new FileReader();
-              reader.onload = (data) => {
-                //console.log(data.target.result);
-                var img = document.createElement('img');
-                const div = document.getElementById('imageDiv');
-                img.src = 'data:image/jpeg;base64,' + data.target.result;
-                img.height = 200;
-                img.width = 300;
-                div.appendChild(img);
-              }
-              reader.readAsBinaryString(myBlob);
+                console.log('my', myBlob);
+                let reader = new FileReader();
+                reader.onload = (data) => {
+                    //console.log(data.target.result);
+                    var img = document.createElement('img');
+                    const div = document.getElementById('imageDiv');
+                    img.src = 'data:image/jpeg;base64,' + data.target.result;
+                    img.height = 200;
+                    img.width = 300;
+                    div.appendChild(img);
+                }
+                reader.readAsBinaryString(myBlob);
             });
         }
         //Функция самой отправки данных
@@ -47,17 +46,17 @@
             ipfs.files.add(files, function(err, file) {
                 if (err) console.log(err);
                 else {
-                  console.log(file);
-                  for( let i = 0; i < file.length; i++) {
-                    let li = document.createElement('li');
-                    li.className = ' ' + file[i].hash + ' ';
-                    let a = document.createElement('a');
-                    a.id = file[i].hash;
-                    a.onclick = handle;
-                    a.innerHTML = 'Ссылка на изображение в IPFS: ' + file[i].hash + '';
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                  }
+                    console.log(file);
+                    for (let i = 0; i < file.length; i++) {
+                        let li = document.createElement('li');
+                        li.className = ' ' + file[i].hash + ' ';
+                        let a = document.createElement('a');
+                        a.id = file[i].hash;
+                        a.onclick = handle;
+                        a.innerHTML = 'Ссылка на изображение в IPFS: ' + file[i].hash + '';
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    }
                 }
             })
 
@@ -73,9 +72,9 @@
     <div>
         <input type="file" id="test" onchange="handleFiles(this.files)" multiple placeholder="Загрузить">
     </div>
-    <div >
+    <div>
         <ul id="resultUl">
-          Нажми на хэш
+            Нажми на хэш
         </ul>
 
     </div>
@@ -92,17 +91,17 @@
 
     </div>
     <script>
-
         const inputElement = document.getElementById("test");
         inputElement.addEventListener("change", handleFiles, false);
+
         function handleFiles() {
             let fileList = this.files;
-            
-            for( let i = 0; i < fileList.length; i++) {
+
+            for (let i = 0; i < fileList.length; i++) {
                 const reader = new FileReader();
                 reader.onload = function(data) {
-                //всё отправляем
-                test(data.target.result);
+                    //всё отправляем
+                    test(data.target.result);
                 };
                 reader.readAsBinaryString(fileList[i]);
             }
