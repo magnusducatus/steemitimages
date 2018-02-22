@@ -10,7 +10,7 @@ server.listen(port, () => {
 let i = 0;
 
 function go(req, res) {
-    //console.log(req.url, i++);
+    console.log(req.url, i++);
     if (req.url == '/') {
         let file = fs.createReadStream('./test.html');
         res.writeHead(200, {
@@ -42,6 +42,39 @@ function go(req, res) {
             res.end();
         });
     }
-
-
+    if(req.url.match(/css/gi)){
+        let file = fs.createReadStream('.'+req.url);
+        res.writeHead(200, {
+            'Content-Type': 'text/css'
+        });
+        file.pipe(res);
+    }
+    if(req.url.match(/js/gi)){
+        let file = fs.createReadStream('.'+req.url);
+        res.writeHead(200, {
+            'Content-Type': 'text/javascript'
+        });
+        file.pipe(res);
+    }
+    if(req.url.match(/gif/gi)){
+        let file = fs.createReadStream('.'+req.url);
+        res.writeHead(200, {
+            'Content-Type': 'image/gif'
+        });
+        file.pipe(res);
+    }
+    if(req.url.match(/png/gi)){
+        let file = fs.createReadStream('.'+req.url);
+        res.writeHead(200, {
+            'Content-Type': 'image/png'
+        });
+        file.pipe(res);
+    }
+    if(req.url.match(/jpg/gi)){
+        let file = fs.createReadStream('.'+req.url);
+        res.writeHead(200, {
+            'Content-Type': 'image/jpg'
+        });
+        file.pipe(res);
+    }
 }

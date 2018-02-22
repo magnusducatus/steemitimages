@@ -6,14 +6,14 @@
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
     </script>
     <!--here put script for download -->
-    <script src="http://localhost:8080/ipfs/QmYYgozRqMh9puKGTrANYrkAmXUfB2vjEiswGuUniQWYnE"></script>
+    <!--<script src="http://localhost:8080/ipfs/QmYYgozRqMh9puKGTrANYrkAmXUfB2vjEiswGuUniQWYnE"></script>
     <link rel="stylesheet" href="http://localhost:8080/ipfs/QmbxmLuNJ8WKzQ3ScCThwkn2vMsE9jqyULf9ij2gE6VKmJ">
-    <!--
-    <link rel="stylesheet" href="/dropzone.css">
     -->
+    <link rel="stylesheet" href="/dropzone.css">
+    <script src="/dropzone.js"></script>
     <script>
         var ipfs = window.IpfsApi({
-            host: 'localhost',
+            host: '127.0.0.1',
             port: '5001',
             protocol: 'http'
         })
@@ -96,7 +96,7 @@
     <div id="imageDiv">
 
     </div>
-    <form action="/file-upload"
+    <form 
       class="dropzone"
       id="my-awesome-dropzone"></form>
     <script>
@@ -139,6 +139,13 @@
                 }
             }
         }*/
+    </script>
+    <script>
+    let s = document.getElementById('my-awesome-dropzone');
+    s.onSubmit = function(e){
+        e.preventDefault();
+        console.log(e);
+    }
     </script>
 </body>
 
