@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
     </script>
+    <!--here put script for download -->
+    <script src="http://localhost:8080/ipfs/QmYYgozRqMh9puKGTrANYrkAmXUfB2vjEiswGuUniQWYnE"></script>
+    <link rel="stylesheet" href="http://localhost:8080/ipfs/QmbxmLuNJ8WKzQ3ScCThwkn2vMsE9jqyULf9ij2gE6VKmJ">
+    <!--
+    <link rel="stylesheet" href="/dropzone.css">
+    -->
     <script>
         var ipfs = window.IpfsApi({
             host: 'localhost',
@@ -62,9 +68,9 @@
 
         }
     </script>
-    <!-- here put script for download 
-    <script src="http://localhost:8080/ipfs/QmSN78QvZ3cxLeMEV1amCsX47cBBX1RLWPhiLQVf1hbhij"></script>
-    -->
+
+    
+   
 </head>
 
 <body>
@@ -90,6 +96,9 @@
     <div id="imageDiv">
 
     </div>
+    <form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form>
     <script>
         const inputElement = document.getElementById("test");
         inputElement.addEventListener("change", handleFiles, false);
