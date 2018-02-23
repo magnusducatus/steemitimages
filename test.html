@@ -98,7 +98,8 @@
     </div>
     <form 
       class="dropzone"
-      id="my-awesome-dropzone"></form>
+      id="my-awesome-dropzone">
+      </form>
     <script>
         const inputElement = document.getElementById("test");
         inputElement.addEventListener("change", handleFiles, false);
@@ -141,11 +142,34 @@
         }*/
     </script>
     <script>
-    let s = document.getElementById('my-awesome-dropzone');
-    s.onSubmit = function(e){
-        e.preventDefault();
-        console.log(e);
+  Dropzone.options.myAwesomeDropzone = {
+  init: function() {
+      this.on("addedfile", function(file) {
+        console.log(file);
+        // Create the remove button
+        var removeButton = Dropzone.createElement("<button>Remove file</button>");
+        
+
+        // Capture the Dropzone instance as closure.
+        var _this = this;
+
+        // Listen to the click event
+        removeButton.addEventListener("click", function(e) {
+          // Make sure the button click doesn't submit the form:
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Remove the file preview.
+          _this.removeFile(file);
+          // If you want to the delete the file on the server as well,
+          // you can do the AJAX request here.
+        });
+
+        // Add the button to the file preview element.
+        file.previewElement.appendChild(removeButton);
+      });
     }
+};
     </script>
 </body>
 

@@ -1141,6 +1141,7 @@ var Dropzone = function (_Emitter) {
   }, {
     key: "getFilesWithStatus",
     value: function getFilesWithStatus(status) {
+      console.log("getFilesWithStatus");
       return this.files.filter(function (file) {
         return file.status === status;
       }).map(function (file) {
@@ -1225,7 +1226,7 @@ var Dropzone = function (_Emitter) {
           document.querySelector(_this3.options.hiddenInputContainer).appendChild(_this3.hiddenFileInput);
           return _this3.hiddenFileInput.addEventListener("change", function () {
             var files = _this3.hiddenFileInput.files;
-
+            console.log('files',_this3);
             if (files.length) {
               for (var _iterator10 = files, _isArray10 = true, _i10 = 0, _iterator10 = _isArray10 ? _iterator10 : _iterator10[Symbol.iterator]();;) {
                 var _ref9;
@@ -1240,7 +1241,7 @@ var Dropzone = function (_Emitter) {
                 }
 
                 var file = _ref9;
-
+                console.log('init file',file);
                 _this3.addFile(file);
               }
             }
@@ -1669,7 +1670,7 @@ var Dropzone = function (_Emitter) {
         }
 
         var file = _ref13;
-
+        console.log('addFile');
         this.addFile(file);
       }
     }
@@ -1803,6 +1804,7 @@ var Dropzone = function (_Emitter) {
   }, {
     key: "addFile",
     value: function addFile(file) {
+   	console.log('addFile itself');
       var _this7 = this;
 
       file.upload = {
@@ -1892,6 +1894,7 @@ var Dropzone = function (_Emitter) {
   }, {
     key: "_processThumbnailQueue",
     value: function _processThumbnailQueue() {
+      console.log('thumbnail create');
       var _this10 = this;
 
       if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
@@ -1961,7 +1964,7 @@ var Dropzone = function (_Emitter) {
     key: "resizeImage",
     value: function resizeImage(file, width, height, resizeMethod, callback) {
       var _this11 = this;
-
+      console.log('resizeImage');
       return this.createThumbnail(file, width, height, resizeMethod, false, function (dataUrl, canvas) {
         if (canvas == null) {
           // The image has not been resized
@@ -1985,7 +1988,7 @@ var Dropzone = function (_Emitter) {
     key: "createThumbnail",
     value: function createThumbnail(file, width, height, resizeMethod, fixOrientation, callback) {
       var _this12 = this;
-
+      console.log('createThumbnail',file);
       var fileReader = new FileReader();
 
       fileReader.onload = function () {
@@ -2009,7 +2012,7 @@ var Dropzone = function (_Emitter) {
     key: "createThumbnailFromUrl",
     value: function createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
       var _this13 = this;
-
+      console.log('createThumbnailFromUrl',file);
       // Not using `new Image` here because of a bug in latest Chrome versions.
       // See https://github.com/enyo/dropzone/pull/226
       var img = document.createElement("img");
@@ -2165,7 +2168,7 @@ var Dropzone = function (_Emitter) {
         }
 
         var file = _ref18;
-
+        console.log('processFiles',files)
         file.processing = true; // Backwards compatibility
         file.status = Dropzone.UPLOADING;
 
@@ -2270,7 +2273,7 @@ var Dropzone = function (_Emitter) {
     key: "uploadFiles",
     value: function uploadFiles(files) {
       var _this14 = this;
-
+      console.log('uploadFiles',files);
       this._transformFiles(files, function (transformedFiles) {
         if (files[0].upload.chunked) {
           // This file should be sent in chunks!
@@ -2285,7 +2288,7 @@ var Dropzone = function (_Emitter) {
 
           var handleNextChunk = function handleNextChunk() {
             var chunkIndex = 0;
-
+            console.log('uploadFiles handleNextChunk',files);
             // Find the next item in file.upload.chunks that is not defined yet.
             while (file.upload.chunks[chunkIndex] !== undefined) {
               chunkIndex++;
@@ -2770,6 +2773,7 @@ var Dropzone = function (_Emitter) {
     key: "submitRequest",
     value: function submitRequest(xhr, formData, files) {
       xhr.send(formData);
+      console.log('1');
     }
 
     // Called internally when processing is finished.
@@ -3150,7 +3154,7 @@ Dropzone.isValidFile = function (file, acceptedFiles) {
     return true;
   } // If there are no accepted mime types, it's OK
   acceptedFiles = acceptedFiles.split(",");
-
+  consolelog('valid');
   var mimeType = file.type;
   var baseMimeType = mimeType.replace(/\/.*$/, "");
 
