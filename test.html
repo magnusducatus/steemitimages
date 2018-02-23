@@ -150,28 +150,33 @@
     <script>
         const arr1 = [];
   Dropzone.options.myAwesomeDropzone = {
+      //accept file mime-type
+      acceptedFiles: 'image/jpeg, image/jpg, image/png',
+      autoProcessQueue: false,
       init: function() {
           this.on("addedfile", function(file) {
-            
+            //second check for mime-type
+            if(file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
+                
+            } else this.removeFile(file);
+            //entity for send to IPFS
             const obj = {
                 name:'',
                 body:'',
                 hash:'',
             };
-            console.log(arr1);
-            //console.log(file);
+            //console.log(arr1);
             let fileList = file;
-                //console.log(fileList);
                 console.log('до получения',arr1.length);
                 const reader = new FileReader();
                 reader.onload = function(data) {
                     //всё отправляем
-                   // console.log(data.target.result);
-                     let base64 = window.btoa(data.target.result);
-                     obj.name = fileList.name;
-                     obj.body = base64;
-                     arr1.push(obj);
-                     console.log('после получения',arr1.length);
+                    // console.log(data.target.result);
+                    let base64 = window.btoa(data.target.result);
+                    obj.name = fileList.name;
+                    obj.body = base64;
+                    arr1.push(obj);
+                    //console.log('после получения',arr1.length);
                 };
                 reader.readAsBinaryString(fileList);
             // Create the remove button
@@ -196,11 +201,13 @@
               // you can do the AJAX request here.
             });
 
-
             // Add the button to the file preview element.
             file.previewElement.appendChild(removeButton);
+            file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview');
+            file.previewElement.setAttribute('align', 'center');
           });
         }
+
     };
     </script>
     <script>

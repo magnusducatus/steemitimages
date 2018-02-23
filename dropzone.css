@@ -298,7 +298,7 @@
         display: block;
         width: 54px;
         height: 54px; }
-    .dropzone .dz-preview.dz-processing .dz-progress {
+    /*.dropzone .dz-preview.dz-processing .dz-progress {
       opacity: 1;
       -webkit-transition: all 0.2s linear;
       -moz-transition: all 0.2s linear;
@@ -345,7 +345,7 @@
         -moz-transition: width 300ms ease-in-out;
         -ms-transition: width 300ms ease-in-out;
         -o-transition: width 300ms ease-in-out;
-        transition: width 300ms ease-in-out; }
+        transition: width 300ms ease-in-out; }*/
     .dropzone .dz-preview.dz-error .dz-error-message {
       display: block; }
     .dropzone .dz-preview.dz-error:hover .dz-error-message {
