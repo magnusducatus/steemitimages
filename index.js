@@ -12,7 +12,7 @@ let i = 0;
 function go(req, res) {
     console.log(req.url, i++);
     if (req.url == '/') {
-        let file = fs.createReadStream('./test.html');
+        let file = fs.createReadStream('./index.html');
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });

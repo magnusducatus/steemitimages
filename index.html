@@ -3,17 +3,14 @@
 
 <head>
     <meta charset="utf-8">
+    
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
     </script>
-    <!--here put script for download -->
-    <!--<script src="http://localhost:8080/ipfs/QmYYgozRqMh9puKGTrANYrkAmXUfB2vjEiswGuUniQWYnE"></script>
-    <link rel="stylesheet" href="http://localhost:8080/ipfs/QmbxmLuNJ8WKzQ3ScCThwkn2vMsE9jqyULf9ij2gE6VKmJ">
-    -->
     <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.9.36/js/mui.min.js"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.js" integrity="sha256-MYkm5duNIZ3hSUNlCZbGQziNmlfMcDXOrz9uM48LMQg=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
     
     <script>
         var ipfs = window.IpfsApi({
@@ -33,12 +30,10 @@
                 let reader = new FileReader();
                 reader.onload = (data) => {
                     //console.log(data.target.result);
-                    var img = document.createElement('img');
-                    const div = document.getElementById('imageDiv');
-                    img.src = 'data:image/jpeg;base64,' + data.target.result;
-                    img.height = 200;
-                    img.width = 300;
-                    div.appendChild(img);
+                    const imf = document.getElementById('imageFrame');
+                    imf.setAttribute('src','data:image/jpeg;base64,' + data.target.result);
+                    /*img.height = 200;
+                    img.width = 300;*/
                 }
                 reader.readAsBinaryString(myBlob);
             });
@@ -46,11 +41,10 @@
         //Функция самой отправки данных
         function test(data) {
             const tb = document.getElementById('tbody');
-            let img = window.btoa(data.body);
-            //console.log(data);
+
             const files = [{
                 path: data.name,
-                content: img
+                content: data.body
             }]
 
             ipfs.files.add(files, function(err, file) {
@@ -61,7 +55,7 @@
                         let tr = document.createElement('tr');
                         tr.className = ' ' + file[i].hash + ' ';
                         let td1 = document.createElement('td');
-                        td1.innerHTML = file.path;
+                        td1.innerHTML = file[i].path;
                         let td2 = document.createElement('td');
                         td2.id = file[i].hash;
                         td2.onclick = handle;
@@ -76,34 +70,32 @@
         }
     </script>
 
-    
+    <style>
+        #imageDiv{
+            display:flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+        #uploadDiv{
+            display:flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items:stretch;
+            
+        }
+    </style>
    
 </head>
 
 <body>
     minimalism
-    <div>
-        <input type="file" id="test" onchange="handleFiles(this.files)" multiple placeholder="Загрузить">
-    </div>
-    <div>
-        <ul id="resultUl">
-            Нажми на хэш
-        </ul>
-
-    </div>
-    <!--
-    <div>
-        <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
-        <a href="#" id="fileSelect">Select some files</a> 
-        <div id="fileList">
-          <p>No files selected!</p>
+   
+        <div id="imageDiv">
+            <img id="imageFrame" border="10" height="300" width="300">
         </div>
-    </div>
-    -->
-    <div id="imageDiv">
-
-    </div>
-    <button id = "uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
+        <div id = "uploadDiv">
+        <button id = "uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
+        </div>
     <form action='/'
       class="dropzone"
       id="my-awesome-dropzone">
@@ -151,7 +143,7 @@
     </script>
 
     <script>
-        const arr1 = [];
+        let arr1 = [];
   Dropzone.options.myAwesomeDropzone = {
       //accept file mime-type
       acceptedFiles: 'image/jpeg, image/jpg, image/png',
@@ -163,23 +155,21 @@
                 
             } else this.removeFile(file);
             //entity for send to IPFS
-            const obj = {
-                name:'',
-                body:'',
-                hash:'',
-            };
+            
             //console.log(arr1);
             let fileList = file;
                 console.log('до получения',arr1.length);
                 const reader = new FileReader();
                 reader.onload = function(data) {
-                    //всё отправляем
-                    // console.log(data.target.result);
+                    const obj = {
+                        name:'',
+                        body:'',
+                        hash:'',
+                    };
                     let base64 = window.btoa(data.target.result);
-                    obj.name = fileList.name;
                     obj.body = base64;
+                    obj.name = fileList.name;
                     arr1.push(obj);
-                    //console.log('после получения',arr1.length);
                 };
                 reader.readAsBinaryString(fileList);
             // Create the remove button
@@ -214,12 +204,17 @@
     };
     </script>
     <script>
-        const upload = document.getElementById('uploadBtn');
-        upload.onClick = (e) => {
+        function iter(){
+            console.log('length',arr1.length);
             for (let i = 0; i < arr1.length; i++) {
+                console.log('arr1',arr1[i]);
                 test(arr1[i]);
             }
+            arr1 = [];
         }
+        const upload = document.getElementById('uploadBtn');
+        console.log(upload);
+        upload.addEventListener("click", iter, false);
     </script>
     <table id = "table" class="mui-table">
   <thead>
@@ -229,16 +224,9 @@
     </tr>
   </thead>
   <tbody id="tbody">
-    <tr>
-      <td>Cell 1-1</td>
-      <td>Cell 1-2</td>
-    </tr>
-    <tr>
-      <td>Cell 2-1</td>
-      <td>Cell 2-2</td>
-    </tr>
   </tbody>
 </table>
+
 </body>
 
 </html>
