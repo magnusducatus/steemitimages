@@ -45,12 +45,12 @@
         }
         //Функция самой отправки данных
         function test(data) {
-            const ul = document.getElementById('resultUl');
-            data = window.btoa(data);
+            const tb = document.getElementById('tbody');
+            let img = window.btoa(data.body);
             //console.log(data);
             const files = [{
-                path: 'huinia',
-                content: data
+                path: data.name,
+                content: img
             }]
 
             ipfs.files.add(files, function(err, file) {
@@ -58,14 +58,17 @@
                 else {
                     console.log(file);
                     for (let i = 0; i < file.length; i++) {
-                        let li = document.createElement('li');
-                        li.className = ' ' + file[i].hash + ' ';
-                        let a = document.createElement('a');
-                        a.id = file[i].hash;
-                        a.onclick = handle;
-                        a.innerHTML = 'Ссылка на изображение в IPFS: ' + file[i].hash + '';
-                        li.appendChild(a);
-                        ul.appendChild(li);
+                        let tr = document.createElement('tr');
+                        tr.className = ' ' + file[i].hash + ' ';
+                        let td1 = document.createElement('td');
+                        td1.innerHTML = file.path;
+                        let td2 = document.createElement('td');
+                        td2.id = file[i].hash;
+                        td2.onclick = handle;
+                        td2.innerHTML = file[i].hash;
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tb.appendChild(tr);
                     }
                 }
             })
@@ -100,7 +103,7 @@
     <div id="imageDiv">
 
     </div>
-    <button class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
+    <button id = "uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
     <form action='/'
       class="dropzone"
       id="my-awesome-dropzone">
@@ -211,17 +214,21 @@
     };
     </script>
     <script>
-        const table = document.getElementById('table');
-        table.onClick = function 
+        const upload = document.getElementById('uploadBtn');
+        upload.onClick = (e) => {
+            for (let i = 0; i < arr1.length; i++) {
+                test(arr1[i]);
+            }
+        }
     </script>
     <table id = "table" class="mui-table">
   <thead>
     <tr>
-      <th>Column 1</th>
-      <th>Column 2</th>
+      <th>img</th>
+      <th>IPFS multihash</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody">
     <tr>
       <td>Cell 1-1</td>
       <td>Cell 1-2</td>
