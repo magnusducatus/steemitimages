@@ -9,8 +9,12 @@
     <!--<script src="http://localhost:8080/ipfs/QmYYgozRqMh9puKGTrANYrkAmXUfB2vjEiswGuUniQWYnE"></script>
     <link rel="stylesheet" href="http://localhost:8080/ipfs/QmbxmLuNJ8WKzQ3ScCThwkn2vMsE9jqyULf9ij2gE6VKmJ">
     -->
-    <link rel="stylesheet" href="/dropzone.css">
-    <script src="/dropzone.js"></script>
+    <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.9.36/js/mui.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.js" integrity="sha256-MYkm5duNIZ3hSUNlCZbGQziNmlfMcDXOrz9uM48LMQg=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/dropzone.css" integrity="sha256-0Z6mOrdLEtgqvj7tidYQnCYWG3G2GAIpatAWKhDx+VM=" crossorigin="anonymous" />
+    
     <script>
         var ipfs = window.IpfsApi({
             host: '127.0.0.1',
@@ -96,7 +100,8 @@
     <div id="imageDiv">
 
     </div>
-    <form 
+    <button class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
+    <form action='/'
       class="dropzone"
       id="my-awesome-dropzone">
       </form>
@@ -141,33 +146,36 @@
             }
         }*/
     </script>
+
     <script>
+        const arr1 = [];
   Dropzone.options.myAwesomeDropzone = {
-      
       init: function() {
           this.on("addedfile", function(file) {
+            
             const obj = {
                 name:'',
                 body:'',
                 hash:'',
             };
+            console.log(arr1);
             //console.log(file);
             let fileList = file;
-                console.log(fileList);
-                for (let i = 0; i < fileList.length; i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(data) {
-                        //всё отправляем
-                       // console.log(data.target.result);
-                         let base64 = window.btoa(data.target.result);
-
-                         //console.log(base64);
-                    };
-                    reader.readAsBinaryString(fileList[i]);
-                }
+                //console.log(fileList);
+                console.log('до получения',arr1.length);
+                const reader = new FileReader();
+                reader.onload = function(data) {
+                    //всё отправляем
+                   // console.log(data.target.result);
+                     let base64 = window.btoa(data.target.result);
+                     obj.name = fileList.name;
+                     obj.body = base64;
+                     arr1.push(obj);
+                     console.log('после получения',arr1.length);
+                };
+                reader.readAsBinaryString(fileList);
             // Create the remove button
-            var removeButton = Dropzone.createElement("<br><button>Remove file</button></br>");
-            var uploadButton = Dropzone.createElement("<br><button>Upload file</button></br>");
+            var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
             
 
             // Capture the Dropzone instance as closure.
@@ -181,16 +189,9 @@
 
               // Remove the file preview.
               _this.removeFile(file);
-              // If you want to the delete the file on the server as well,
-              // you can do the AJAX request here.
-            });
-              uploadButton.addEventListener("click", function(e) {
-              // Make sure the button click doesn't submit the form:
-              e.preventDefault();
-              e.stopPropagation();
-
-              // Remove the file preview.
-              _this.removeFile(file);
+              for(let i = 0; i < arr1.length; i++){
+                file.name == arr1[i].name? arr1.splice(i,1) : '';
+              }
               // If you want to the delete the file on the server as well,
               // you can do the AJAX request here.
             });
@@ -198,11 +199,32 @@
 
             // Add the button to the file preview element.
             file.previewElement.appendChild(removeButton);
-            file.previewElement.appendChild(uploadButton);
           });
         }
     };
     </script>
+    <script>
+        const table = document.getElementById('table');
+        table.onClick = function 
+    </script>
+    <table id = "table" class="mui-table">
+  <thead>
+    <tr>
+      <th>Column 1</th>
+      <th>Column 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cell 1-1</td>
+      <td>Cell 1-2</td>
+    </tr>
+    <tr>
+      <td>Cell 2-1</td>
+      <td>Cell 2-2</td>
+    </tr>
+  </tbody>
+</table>
 </body>
 
 </html>

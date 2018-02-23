@@ -1227,18 +1227,6 @@ var Dropzone = function (_Emitter) {
           return _this3.hiddenFileInput.addEventListener("change", function () {
             var files = _this3.hiddenFileInput.files;
             console.log('files',_this3);
-            let fileList = files;
-            console.log(fileList);
-            for (let i = 0; i < fileList.length; i++) {
-                const reader = new FileReader();
-                reader.onload = function(data) {
-                    //всё отправляем
-                    //console.log(data.target.result);
-                     let base64 = window.btoa(data.target.result);
-                     console.log(base64);
-                };
-                reader.readAsBinaryString(fileList[i]);
-            }
             if (files.length) {
               for (var _iterator10 = files, _isArray10 = true, _i10 = 0, _iterator10 = _isArray10 ? _iterator10 : _iterator10[Symbol.iterator]();;) {
                 var _ref9;
