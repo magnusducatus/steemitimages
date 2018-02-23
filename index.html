@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    
+
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
     </script>
     <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
@@ -11,7 +11,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
-    
+
     <script>
         var ipfs = window.IpfsApi({
             host: '127.0.0.1',
@@ -31,7 +31,7 @@
                 reader.onload = (data) => {
                     //console.log(data.target.result);
                     const imf = document.getElementById('imageFrame');
-                    imf.setAttribute('src','data:image/jpeg;base64,' + data.target.result);
+                    imf.setAttribute('src', 'data:image/jpeg;base64,' + data.target.result);
                     /*img.height = 200;
                     img.width = 300;*/
                 }
@@ -71,35 +71,34 @@
     </script>
 
     <style>
-        #imageDiv{
-            display:flex;
+        #imageDiv {
+            display: flex;
             flex-flow: row wrap;
             justify-content: center;
         }
-        #uploadDiv{
-            display:flex;
+
+        #uploadDiv {
+            display: flex;
             flex-flow: column wrap;
             justify-content: center;
-            align-items:stretch;
-            
+            align-items: stretch;
+
         }
     </style>
-   
+
 </head>
 
 <body>
     minimalism
-   
-        <div id="imageDiv">
-            <img id="imageFrame" border="10" height="300" width="300">
-        </div>
-        <div id = "uploadDiv">
-        <button id = "uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
-        </div>
-    <form action='/'
-      class="dropzone"
-      id="my-awesome-dropzone">
-      </form>
+
+    <div id="imageDiv">
+        <img id="imageFrame" border="10" height="300" width="300">
+    </div>
+    <div id="uploadDiv">
+        <button id="uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
+    </div>
+    <form action='/' class="dropzone" id="my-awesome-dropzone">
+    </form>
     <script>
         const inputElement = document.getElementById("test");
         inputElement.addEventListener("change", handleFiles, false);
@@ -144,70 +143,70 @@
 
     <script>
         let arr1 = [];
-  Dropzone.options.myAwesomeDropzone = {
-      //accept file mime-type
-      acceptedFiles: 'image/jpeg, image/jpg, image/png',
-      autoProcessQueue: false,
-      init: function() {
-          this.on("addedfile", function(file) {
-            //second check for mime-type
-            if(file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
-                
-            } else this.removeFile(file);
-            //entity for send to IPFS
-            
-            //console.log(arr1);
-            let fileList = file;
-                console.log('до получения',arr1.length);
-                const reader = new FileReader();
-                reader.onload = function(data) {
-                    const obj = {
-                        name:'',
-                        body:'',
-                        hash:'',
+        Dropzone.options.myAwesomeDropzone = {
+            //accept file mime-type
+            acceptedFiles: 'image/jpeg, image/jpg, image/png',
+            autoProcessQueue: false,
+            init: function() {
+                this.on("addedfile", function(file) {
+                    //second check for mime-type
+                    if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
+
+                    } else this.removeFile(file);
+                    //entity for send to IPFS
+
+                    //console.log(arr1);
+                    let fileList = file;
+                    console.log('до получения', arr1.length);
+                    const reader = new FileReader();
+                    reader.onload = function(data) {
+                        const obj = {
+                            name: '',
+                            body: '',
+                            hash: '',
+                        };
+                        let base64 = window.btoa(data.target.result);
+                        obj.body = base64;
+                        obj.name = fileList.name;
+                        arr1.push(obj);
                     };
-                    let base64 = window.btoa(data.target.result);
-                    obj.body = base64;
-                    obj.name = fileList.name;
-                    arr1.push(obj);
-                };
-                reader.readAsBinaryString(fileList);
-            // Create the remove button
-            var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
-            
+                    reader.readAsBinaryString(fileList);
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
 
-            // Capture the Dropzone instance as closure.
-            var _this = this;
 
-            // Listen to the click event
-            removeButton.addEventListener("click", function(e) {
-              // Make sure the button click doesn't submit the form:
-              e.preventDefault();
-              e.stopPropagation();
+                    // Capture the Dropzone instance as closure.
+                    var _this = this;
 
-              // Remove the file preview.
-              _this.removeFile(file);
-              for(let i = 0; i < arr1.length; i++){
-                file.name == arr1[i].name? arr1.splice(i,1) : '';
-              }
-              // If you want to the delete the file on the server as well,
-              // you can do the AJAX request here.
-            });
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function(e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
 
-            // Add the button to the file preview element.
-            file.previewElement.appendChild(removeButton);
-            file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview');
-            file.previewElement.setAttribute('align', 'center');
-          });
-        }
+                        // Remove the file preview.
+                        _this.removeFile(file);
+                        for (let i = 0; i < arr1.length; i++) {
+                            file.name == arr1[i].name ? arr1.splice(i, 1) : '';
+                        }
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
 
-    };
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                    file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview');
+                    file.previewElement.setAttribute('align', 'center');
+                });
+            }
+
+        };
     </script>
     <script>
-        function iter(){
-            console.log('length',arr1.length);
+        function iter() {
+            console.log('length', arr1.length);
             for (let i = 0; i < arr1.length; i++) {
-                console.log('arr1',arr1[i]);
+                console.log('arr1', arr1[i]);
                 test(arr1[i]);
             }
             arr1 = [];
@@ -216,16 +215,16 @@
         console.log(upload);
         upload.addEventListener("click", iter, false);
     </script>
-    <table id = "table" class="mui-table">
-  <thead>
-    <tr>
-      <th>img</th>
-      <th>IPFS multihash</th>
-    </tr>
-  </thead>
-  <tbody id="tbody">
-  </tbody>
-</table>
+    <table id="table" class="mui-table">
+        <thead>
+            <tr>
+                <th>img</th>
+                <th>IPFS multihash</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
 
 </body>
 
