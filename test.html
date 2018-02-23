@@ -106,7 +106,7 @@
 
         function handleFiles() {
             let fileList = this.files;
-
+            console.log(fileList);
             for (let i = 0; i < fileList.length; i++) {
                 const reader = new FileReader();
                 reader.onload = function(data) {
@@ -143,33 +143,65 @@
     </script>
     <script>
   Dropzone.options.myAwesomeDropzone = {
-  init: function() {
-      this.on("addedfile", function(file) {
-        console.log(file);
-        // Create the remove button
-        var removeButton = Dropzone.createElement("<button>Remove file</button>");
-        
+      
+      init: function() {
+          this.on("addedfile", function(file) {
+            const obj = {
+                name:'',
+                body:'',
+                hash:'',
+            };
+            //console.log(file);
+            let fileList = file;
+                console.log(fileList);
+                for (let i = 0; i < fileList.length; i++) {
+                    const reader = new FileReader();
+                    reader.onload = function(data) {
+                        //всё отправляем
+                       // console.log(data.target.result);
+                         let base64 = window.btoa(data.target.result);
 
-        // Capture the Dropzone instance as closure.
-        var _this = this;
+                         //console.log(base64);
+                    };
+                    reader.readAsBinaryString(fileList[i]);
+                }
+            // Create the remove button
+            var removeButton = Dropzone.createElement("<br><button>Remove file</button></br>");
+            var uploadButton = Dropzone.createElement("<br><button>Upload file</button></br>");
+            
 
-        // Listen to the click event
-        removeButton.addEventListener("click", function(e) {
-          // Make sure the button click doesn't submit the form:
-          e.preventDefault();
-          e.stopPropagation();
+            // Capture the Dropzone instance as closure.
+            var _this = this;
 
-          // Remove the file preview.
-          _this.removeFile(file);
-          // If you want to the delete the file on the server as well,
-          // you can do the AJAX request here.
-        });
+            // Listen to the click event
+            removeButton.addEventListener("click", function(e) {
+              // Make sure the button click doesn't submit the form:
+              e.preventDefault();
+              e.stopPropagation();
 
-        // Add the button to the file preview element.
-        file.previewElement.appendChild(removeButton);
-      });
-    }
-};
+              // Remove the file preview.
+              _this.removeFile(file);
+              // If you want to the delete the file on the server as well,
+              // you can do the AJAX request here.
+            });
+              uploadButton.addEventListener("click", function(e) {
+              // Make sure the button click doesn't submit the form:
+              e.preventDefault();
+              e.stopPropagation();
+
+              // Remove the file preview.
+              _this.removeFile(file);
+              // If you want to the delete the file on the server as well,
+              // you can do the AJAX request here.
+            });
+
+
+            // Add the button to the file preview element.
+            file.previewElement.appendChild(removeButton);
+            file.previewElement.appendChild(uploadButton);
+          });
+        }
+    };
     </script>
 </body>
 
