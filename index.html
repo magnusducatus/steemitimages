@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
 
     <script src="https://wzrd.in/standalone/buffer"></script>
-    
+    <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
+
     <script>
         var ipfs = window.IpfsApi({
             host: '127.0.0.1',
@@ -102,6 +103,7 @@
             autoProcessQueue: false,
             init: function() {
                 this.on("addedfile", function(file) {
+
                     //second check for mime-type
                     if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -165,9 +167,9 @@
                 test(arr1[i]);
             }
             arr1 = [];
+            if (arr1.length == 0) swal('Всё добавленно успешно!', 'Что бы просмотреть картинку в IPFS нажмите на hash в низу таблицы!')
         }
         const upload = document.getElementById('uploadBtn');
-        console.log(upload);
         upload.addEventListener("click", iter, false);
     </script>
     <table id="table" class="mui-table">
