@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
 
+    <script src="https://wzrd.in/standalone/buffer"></script>
+    
     <script>
         var ipfs = window.IpfsApi({
             host: '127.0.0.1',
@@ -22,21 +24,7 @@
     <script>
         function handle(e) {
             console.log(e.target.id);
-            fetch('http://localhost:5001/api/v0/cat?arg=' + e.target.id).then(function(response) {
-                console.log(response);
-                return response.blob();
-            }).then(function(myBlob) {
-                console.log('my', myBlob);
-                let reader = new FileReader();
-                reader.onload = (data) => {
-                    //console.log(data.target.result);
-                    const imf = document.getElementById('imageFrame');
-                    imf.setAttribute('src', 'data:image/jpeg;base64,' + data.target.result);
-                    /*img.height = 200;
-                    img.width = 300;*/
-                }
-                reader.readAsBinaryString(myBlob);
-            });
+            window.open('https://ipfs.io/ipfs/' + e.target.id);
         }
         //Функция самой отправки данных
         function test(data) {
@@ -71,12 +59,6 @@
     </script>
 
     <style>
-        #imageDiv {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: center;
-        }
-
         #uploadDiv {
             display: flex;
             flex-flow: column wrap;
@@ -89,11 +71,6 @@
 </head>
 
 <body>
-    minimalism
-
-    <div id="imageDiv">
-        <img id="imageFrame" border="10" height="300" width="300">
-    </div>
     <div id="uploadDiv">
         <button id="uploadBtn" class="mui-btn mui-btn--primary" type="button">Upload to IPFS</button>
     </div>
@@ -112,33 +89,9 @@
                     //всё отправляем
                     test(data.target.result);
                 };
-                reader.readAsBinaryString(fileList[i]);
+                reader.readAsArrayBuffer(fileList[i]);
             }
         }
-        /*function handleFiles(files) {
-            if (!files.length) {
-                fileList.innerHTML = "<p>No files selected!</p>";
-            } else {
-                fileList.innerHTML = "";
-                var list = document.createElement("ul");
-                fileList.appendChild(list);
-                for (var i = 0; i < files.length; i++) {
-                  var li = document.createElement("li");
-                  list.appendChild(li);
-                  
-                  var img = document.createElement("img");
-                  img.src = window.URL.createObjectURL(files[i]);
-                  img.height = 60;
-                  img.onload = function() {
-                    window.URL.revokeObjectURL(this.src);
-                  }
-                  li.appendChild(img);
-                  var info = document.createElement("span");
-                  info.innerHTML = files[i].name + ": " + files[i].size + " bytes";
-                  li.appendChild(info);
-                }
-            }
-        }*/
     </script>
 
     <script>
@@ -165,12 +118,14 @@
                             body: '',
                             hash: '',
                         };
-                        let base64 = window.btoa(data.target.result);
-                        obj.body = base64;
+                        //!!!!!This is for version without buffer
+                        /*let base64 = window.btoa(data.target.result);
+                        obj.body = base64;*/
+                        obj.body = buffer.Buffer(data.target.result);
                         obj.name = fileList.name;
                         arr1.push(obj);
                     };
-                    reader.readAsBinaryString(fileList);
+                    reader.readAsArrayBuffer(fileList);
                     // Create the remove button
                     var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
 
