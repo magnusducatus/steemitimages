@@ -29,6 +29,9 @@
     .container .form {
         margin-top: 2%;
     }
+    #forCopy {
+        display:block;
+    }
 
     #uploadDiv {
         margin-top: 5%;

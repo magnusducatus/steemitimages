@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-
-    <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <script src="//cdn.muicss.com/mui-0.9.36/js/mui.min.js"></script>
-
+    <!-- bootstrap 4.0.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Dropzone.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="dropzone.css" />
     <link rel="stylesheet" href="index.css" />
+    <!-- sweetAlert2 -->
     <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
-
-    <!--<script src="https://unpkg.com/ipfs/dist/index.min.js"></script>-->
+    <!-- buffer -->
     <script src="https://wzrd.in/standalone/buffer"></script>
+    <!-- js-ipfs-api -->
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
@@ -28,6 +28,7 @@
             port: '5001',
             protocol: 'http'
         });
+        const host = 'http://91.201.41.253:7777/ipfs/';
     </script>
 
 
@@ -35,21 +36,23 @@
 
 <body>
     <div class="container">
-        <div class="top mui-appbar mui--appbar-height mui--appbar-line-height">
-            <h1 class="mui--text-center">GOLOS IMAGES</h1>
+        <div class="navbar navbar-expand-lg navbar-light bg-light">
+            <h1 class="text-center">GOLOS IMAGES</h1>
         </div>
         <div class="main">
-            <h3 id="status" class="mui--text-center"></h3>
+            <h3 id="status" class="text-center"></h3>
             <div id="uploadDiv">
-                <button id="uploadBtn" class="mui-btn mui-btn--raised mui-btn--primary mui--bg-primary-dark mui--z3" type="button">Upload to IPFS</button>
+                <button id="uploadBtn" class="btn btn-primary btn-lg btn-block text-uppercase" type="button">Upload to IPFS</button>
             </div>
             <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
-            <table id="table" class="mui-table mui-table--bordered" hidden="true">
+            <input id="forCopy" type ="text" />
+            <table id="table" class="table" hidden="true">
                 <thead>
                     <tr>
-                        <th class="mui--text-center">Preview</th>
-                        <th class="mui--text-center">IPFS multihash</th>
+                        <th class="text-center">Preview</th>
+                        <th class="text-center">IPFS multihash</th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
@@ -64,7 +67,7 @@
             Dropzone.options.myAwesomeDropzone = {
                 //accept file mime-type
                 acceptedFiles: 'image/jpeg, image/jpg, image/png',
-                dictDefaultMessage: "Drag&Drop files here or Click to upload",
+                dictDefaultMessage: "Drag&Drop files here or click to select files",
                 autoProcessQueue: false,
                 init: function() {
                     this.on("addedfile", function(file) {
@@ -95,7 +98,7 @@
                         };
                         reader.readAsArrayBuffer(fileList);
                         // Create the remove button
-                        var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
+                        var removeButton = Dropzone.createElement('<button class="btn btn-warning">Remove file</button>');
                         // Capture the Dropzone instance as closure.
                         var _this = this;
                         //remove all files
@@ -135,7 +138,17 @@
         <script>
             function handle(e) {
                 console.log(e.target.id);
-                window.open('http://91.201.41.253:7777/ipfs/' + e.target.id);
+                window.open(host + e.target.id);
+            }
+            function copyLink(e){
+                document.getElementById('forCopy').value = host + e.target.id;
+                document.querySelector('#forCopy').select();
+                console.log(host);
+                try {
+                    document.execCommand('copy');
+                  } catch (err) {
+                    console.log('Links not correctly works',err);
+                  }
             }
 
             function _arrayBufferToBase64(buffer) {
@@ -169,17 +182,32 @@
                             let img = document.createElement('img');
                             img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
                             img.align = "middle";
-                            img.className = "mui--text-center";
-                            img.heigth = 70;
-                            img.width = 70;
+                            img.className = "text-center";
+                            img.heigth = 100;
+                            img.width = 100;
+                            let div1 = document.createElement('div');
+                            div1.innerHTML = 'size: ' + file[i].size;
                             let td2 = document.createElement('td');
-                            td2.id = file[i].hash;
-                            td2.className = "mui--text-center";
-                            td2.onclick = handle;
-                            td2.innerHTML = file[i].hash;
+                            //td2.id = file[i].hash;
+                            td2.className = "text-center";
+                            td2.onclick = handle; 
+                            let a2 = document.createElement('a');
+                            a2.id = file[i].hash;
+                            a2.innerHTML = file[i].hash;
+                            let td3 = document.createElement('td');
+                            td3.className = "text-center";
+                            let a3 = document.createElement('a');
+                            a3.id = file[i].hash;
+                            a3.onclick = copyLink;
+                            a3.innerHTML = 'Copy link';
+                            
                             td1.appendChild(img);
+                            td1.appendChild(div1);
+                            td2.appendChild(a2);
+                            td3.appendChild(a3);
                             tr.appendChild(td1);
                             tr.appendChild(td2);
+                            tr.appendChild(td3);
                             tb.appendChild(tr);
                         }
                         let tab = document.getElementById('table');
