@@ -48,7 +48,7 @@
             <table id="table" class="mui-table mui-table--bordered" hidden="true">
                 <thead>
                     <tr>
-                        <th class="mui--text-center">img</th>
+                        <th class="mui--text-center">Preview</th>
                         <th class="mui--text-center">IPFS multihash</th>
                     </tr>
                 </thead>
@@ -170,8 +170,8 @@
                             img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
                             img.align = "middle";
                             img.className = "mui--text-center";
-                            img.heigth = 40;
-                            img.width = 30;
+                            img.heigth = 70;
+                            img.width = 70;
                             let td2 = document.createElement('td');
                             td2.id = file[i].hash;
                             td2.className = "mui--text-center";
