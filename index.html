@@ -59,7 +59,6 @@
                 autoProcessQueue: false,
                 init: function() {
                     this.on("addedfile", function(file) {
-
                         //second check for mime-type
                         if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -82,6 +81,8 @@
                             obj.body = data.target.result;
                             obj.name = fileList.name;
                             arr1.push(obj);
+                            let uploadBtn = document.getElementById('uploadBtn');
+                            uploadBtn.style.display = "block";
                         };
                         reader.readAsArrayBuffer(fileList);
                         // Create the remove button
@@ -92,6 +93,8 @@
                         document.getElementById("uploadBtn").addEventListener("click", function() {
                             _this.removeAllFiles();
                             arr1 = [];
+                            let uploadBtn = document.getElementById('uploadBtn');
+                            uploadBtn.style.display = "none";
                           });
                         // Listen to the click event
                         removeButton.addEventListener("click", function(e) {
@@ -101,9 +104,12 @@
 
                             // Remove the file preview.
                             _this.removeFile(file);
+                            let uploadBtn = document.getElementById('uploadBtn');
+                            
                             for (let i = 0; i < arr1.length; i++) {
                                 file.name == arr1[i].name ? arr1.splice(i, 1) : '';
                             }
+                            arr1.length > 0 ? uploadBtn.style.display = "block" : uploadBtn.style.display = "none";
                             // If you want to the delete the file on the server as well,
                             // you can do the AJAX request here.
                         });
@@ -120,7 +126,7 @@
         <script>
              function handle(e) {
                 console.log(e.target.id);
-                window.open('https://ipfs.io/ipfs/' + e.target.id);
+                window.open('https://91.201.41.253:7777/ipfs/' + e.target.id);
             }
             function _arrayBufferToBase64( buffer ) {
     var binary = '';
