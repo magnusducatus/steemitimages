@@ -11,21 +11,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
     <link rel="stylesheet" href="index.css" />
     <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
+
     <!--<script src="https://unpkg.com/ipfs/dist/index.min.js"></script>-->
-    
     <script src="https://wzrd.in/standalone/buffer"></script>
-    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
-integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
-crossorigin="anonymous"></script>
-    
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
-       /* const node = new Ipfs({
-            repo: 'ipfs-' + Math.random()
-        })
-        node.once('ready', () => {
-           document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
-        })*/
-        var ipfs = window.IpfsApi({host: '91.201.41.253', port: '7777', protocol: 'http'});
+        /* const node = new Ipfs({
+                    repo: 'ipfs-' + Math.random()
+                })
+                node.once('ready', () => {
+                   document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
+                })*/
+        var ipfs = window.IpfsApi({
+            host: '91.201.41.253',
+            port: '5001',
+            protocol: 'http'
+        });
     </script>
 
 
@@ -43,7 +45,7 @@ crossorigin="anonymous"></script>
             </div>
             <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
-            <table id="table" class="mui-table mui-table--bordered" hidden = "true">
+            <table id="table" class="mui-table mui-table--bordered" hidden="true">
                 <thead>
                     <tr>
                         <th class="mui--text-center">img</th>
@@ -85,7 +87,7 @@ crossorigin="anonymous"></script>
                             /*let base64 = window.btoa(data.target.result);
                             obj.body = base64;*/
                             obj.body = buffer.Buffer(data.target.result);
-                            /*obj.body = data.target.result;*/
+                            /* obj.body = data.target.result;*/
                             obj.name = fileList.name;
                             arr1.push(obj);
                             let uploadBtn = document.getElementById('uploadBtn');
@@ -102,7 +104,7 @@ crossorigin="anonymous"></script>
                             arr1 = [];
                             let uploadBtn = document.getElementById('uploadBtn');
                             uploadBtn.style.display = "none";
-                          });
+                        });
                         // Listen to the click event
                         removeButton.addEventListener("click", function(e) {
                             // Make sure the button click doesn't submit the form:
@@ -112,7 +114,7 @@ crossorigin="anonymous"></script>
                             // Remove the file preview.
                             _this.removeFile(file);
                             let uploadBtn = document.getElementById('uploadBtn');
-                            
+
                             for (let i = 0; i < arr1.length; i++) {
                                 file.name == arr1[i].name ? arr1.splice(i, 1) : '';
                             }
@@ -131,19 +133,20 @@ crossorigin="anonymous"></script>
             };
         </script>
         <script>
-             function handle(e) {
+            function handle(e) {
                 console.log(e.target.id);
-                window.open('https://91.201.41.253:7777/ipfs/' + e.target.id);
+                window.open('http://91.201.41.253:7777/ipfs/' + e.target.id);
             }
-            function _arrayBufferToBase64( buffer ) {
-    var binary = '';
-    var bytes = new Uint8Array( buffer );
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode( bytes[ i ] );
-    }
-    return window.btoa( binary );
-}
+
+            function _arrayBufferToBase64(buffer) {
+                var binary = '';
+                var bytes = new Uint8Array(buffer);
+                var len = bytes.byteLength;
+                for (var i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return window.btoa(binary);
+            }
             //Функция самой отправки данных
             function test(data) {
                 const tb = document.getElementById('tbody');
@@ -153,7 +156,8 @@ crossorigin="anonymous"></script>
                     content: data.body
                 }];
 
-                node.files.add(new node.types.Buffer(data.body), function(err, file) {
+                /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
+                ipfs.files.add(files, function(err, file) {
                     if (err) console.log(err);
                     else {
                         console.log(file);
@@ -188,6 +192,7 @@ crossorigin="anonymous"></script>
                 })
 
             }
+
             function iter() {
                 console.log('length', arr1.length);
                 for (let i = 0; i < arr1.length; i++) {
