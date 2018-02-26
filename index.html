@@ -4,103 +4,23 @@
 <head>
     <meta charset="utf-8">
 
-    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous">
-    </script>
     <link href="//cdn.muicss.com/mui-0.9.36/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.9.36/js/mui.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" integrity="sha256-e47xOkXs1JXFbjjpoRr1/LhVcqSzRmGmPqsrUQeVs+g=" crossorigin="anonymous" />
-
-    <script src="https://wzrd.in/standalone/buffer"></script>
+    <link rel="stylesheet" href="index.css" />
     <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
-
-    <script>
-        var ipfs = window.IpfsApi({
-            host: '127.0.0.1',
-            port: '5001',
-            protocol: 'http'
+    <script src="https://unpkg.com/ipfs/dist/index.min.js"></script>
+    <script type="text/javascript">
+        const node = new Ipfs({
+            repo: 'ipfs-' + Math.random()
+        })
+        node.once('ready', () => {
+           document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
         })
     </script>
-    <script>
-        function handle(e) {
-            console.log(e.target.id);
-            window.open('https://ipfs.io/ipfs/' + e.target.id);
-        }
-        //Функция самой отправки данных
-        function test(data) {
-            const tb = document.getElementById('tbody');
 
-            const files = [{
-                path: data.name,
-                content: data.body
-            }]
-
-            ipfs.files.add(files, function(err, file) {
-                if (err) console.log(err);
-                else {
-                    console.log(file);
-                    for (let i = 0; i < file.length; i++) {
-                        let tr = document.createElement('tr');
-                        tr.className = ' ' + file[i].hash + ' ';
-                        let td1 = document.createElement('td');
-                        td1.innerHTML = file[i].path;
-                        let td2 = document.createElement('td');
-                        td2.id = file[i].hash;
-                        td2.onclick = handle;
-                        td2.innerHTML = file[i].hash;
-                        tr.appendChild(td1);
-                        tr.appendChild(td2);
-                        tb.appendChild(tr);
-                    }
-                }
-            })
-
-        }
-    </script>
-
-    <style>
-        body {
-            font-size: 1.25em;
-            font-family: 'Nunito', sans-serif;
-            color: #000000;
-            overflow: auto;
-        }
-
-        .container {
-            display: flex;
-            flex-flow: column nowrap;
-
-
-        }
-
-        .container .top {
-            height: 100px;
-
-        }
-
-        .container .main {
-            padding-left: 5%;
-            padding-right: 5%;
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: space-around;
-        }
-
-        .container .form {
-            margin-top: 2%;
-        }
-
-        .container .bot {}
-
-        #uploadDiv {
-            margin-top: 5%;
-            display: flex;
-            justify-content: center;
-
-
-        }
-    </style>
 
 </head>
 
@@ -110,12 +30,13 @@
             <h1 class="mui--text-center">GOLOS IMAGES</h1>
         </div>
         <div class="main">
+            <h3 id="status" class="mui--text-center"></h3>
             <div id="uploadDiv">
-                <button id="uploadBtn" class="mui-btn mui-btn--raised mui-btn--primary mui--bg-primary-dark mui--z3" type="button">Upload to IPFS</button>
+                <button id="uploadBtn" class="mui-btn mui-btn--raised mui-btn--primary mui--bg-primary-dark mui--z3" type="button" hidden = "true">Upload to IPFS</button>
             </div>
             <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
-            <table id="table" class="mui-table mui-table--bordered">
+            <table id="table" class="mui-table mui-table--bordered" hidden = "true">
                 <thead>
                     <tr>
                         <th class="mui--text-center">img</th>
@@ -127,32 +48,17 @@
             </table>
         </div>
         <script>
-            const inputElement = document.getElementById("test");
-            inputElement.addEventListener("change", handleFiles, false);
-
-            function handleFiles() {
-                let fileList = this.files;
-                console.log(fileList);
-                for (let i = 0; i < fileList.length; i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(data) {
-                        //всё отправляем
-                        test(data.target.result);
-                    };
-                    reader.readAsArrayBuffer(fileList[i]);
-                }
-            }
-        </script>
-
-        <script>
+            //for add to IPFS
             let arr1 = [];
+            //for check table
+            let arr2 = [];
             Dropzone.options.myAwesomeDropzone = {
                 //accept file mime-type
                 acceptedFiles: 'image/jpeg, image/jpg, image/png',
                 autoProcessQueue: false,
                 init: function() {
                     this.on("addedfile", function(file) {
-
+                        
                         //second check for mime-type
                         if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -172,9 +78,12 @@
                             //!!!!!This is for version without buffer
                             /*let base64 = window.btoa(data.target.result);
                             obj.body = base64;*/
-                            obj.body = buffer.Buffer(data.target.result);
+                            /*obj.body = buffer.Buffer(data.target.result);*/
+                            obj.body = data.target.result;
                             obj.name = fileList.name;
                             arr1.push(obj);
+                            let uplBtn = document.getElementById('uploadBtn');
+                            arr1.length > 0 ? uplBtn.removeAttribute('hidden') : uplBtn.setAttribute('hidden','true')
                         };
                         reader.readAsArrayBuffer(fileList);
                         // Create the remove button
@@ -209,6 +118,60 @@
             };
         </script>
         <script>
+             function handle(e) {
+                console.log(e.target.id);
+                window.open('https://ipfs.io/ipfs/' + e.target.id);
+            }
+            function _arrayBufferToBase64( buffer ) {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+}
+            //Функция самой отправки данных
+            function test(data) {
+                const tb = document.getElementById('tbody');
+
+                const files = [{
+                    path: data.name,
+                    content: data.body
+                }]
+
+                node.files.add(new node.types.Buffer(data.body), function(err, file) {
+                    if (err) console.log(err);
+                    else {
+                        console.log(file);
+                        for (let i = 0; i < file.length; i++) {
+                            arr2.push(file);
+                            let tr = document.createElement('tr');
+                            tr.className = ' ' + file[i].hash + ' ';
+                            let td1 = document.createElement('td');
+                            let img = document.createElement('img');
+                            img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
+                            img.align = "middle";
+                            img.className = "mui--text-center";
+                            img.heigth = 30;
+                            img.width = 30;
+                            let td2 = document.createElement('td');
+                            td2.id = file[i].hash;
+                            td2.className = "mui--text-center";
+                            td2.onclick = handle;
+                            td2.innerHTML = file[i].hash;
+                            td1.appendChild(img);
+                            tr.appendChild(td1);
+                            tr.appendChild(td2);
+                            tb.appendChild(tr);
+                        }
+                        let tab = document.getElementById('table');
+                        //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
+                        arr2.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
+                    }
+                })
+
+            }
             function iter() {
                 console.log('length', arr1.length);
                 for (let i = 0; i < arr1.length; i++) {
@@ -220,6 +183,7 @@
             const upload = document.getElementById('uploadBtn');
             upload.addEventListener("click", iter, false);
         </script>
+
 
 </body>
 

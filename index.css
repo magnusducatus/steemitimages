@@ -1,0 +1,38 @@
+<style>
+    body {
+        font-size: 1.25em;
+        font-family: 'Nunito', sans-serif;
+        color: #000000;
+        overflow: auto;
+    }
+
+    .container {
+        display: flex;
+        flex-flow: column nowrap;
+
+
+    }
+
+    .container .top {
+        height: 100px;
+
+    }
+
+    .container .main {
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+    }
+
+    .container .form {
+        margin-top: 2%;
+    }
+
+    #uploadDiv {
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+    }
+</style>
