@@ -32,7 +32,7 @@
         <div class="main">
             <h3 id="status" class="mui--text-center"></h3>
             <div id="uploadDiv">
-                <button id="uploadBtn" class="mui-btn mui-btn--raised mui-btn--primary mui--bg-primary-dark mui--z3" type="button" hidden = "true">Upload to IPFS</button>
+                <button id="uploadBtn" class="mui-btn mui-btn--raised mui-btn--primary mui--bg-primary-dark mui--z3" type="button">Upload to IPFS</button>
             </div>
             <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
@@ -55,10 +55,11 @@
             Dropzone.options.myAwesomeDropzone = {
                 //accept file mime-type
                 acceptedFiles: 'image/jpeg, image/jpg, image/png',
+                dictDefaultMessage: "Drag&Drop files here or Click to upload",
                 autoProcessQueue: false,
                 init: function() {
                     this.on("addedfile", function(file) {
-                        
+
                         //second check for mime-type
                         if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -67,7 +68,6 @@
 
                         //console.log(arr1);
                         let fileList = file;
-                        console.log('до получения', arr1.length);
                         const reader = new FileReader();
                         reader.onload = function(data) {
                             const obj = {
@@ -82,14 +82,10 @@
                             obj.body = data.target.result;
                             obj.name = fileList.name;
                             arr1.push(obj);
-                            let uplBtn = document.getElementById('uploadBtn');
-                            arr1.length > 0 ? uplBtn.removeAttribute('hidden') : uplBtn.setAttribute('hidden','true')
                         };
                         reader.readAsArrayBuffer(fileList);
                         // Create the remove button
                         var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
-
-
                         // Capture the Dropzone instance as closure.
                         var _this = this;
 
@@ -110,7 +106,7 @@
 
                         // Add the button to the file preview element.
                         file.previewElement.appendChild(removeButton);
-                        file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview');
+                        file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview elementIpfs');
                         file.previewElement.setAttribute('align', 'center');
                     });
                 }
@@ -138,7 +134,7 @@
                 const files = [{
                     path: data.name,
                     content: data.body
-                }]
+                }];
 
                 node.files.add(new node.types.Buffer(data.body), function(err, file) {
                     if (err) console.log(err);
@@ -153,7 +149,7 @@
                             img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
                             img.align = "middle";
                             img.className = "mui--text-center";
-                            img.heigth = 30;
+                            img.heigth = 40;
                             img.width = 30;
                             let td2 = document.createElement('td');
                             td2.id = file[i].hash;
@@ -168,6 +164,9 @@
                         let tab = document.getElementById('table');
                         //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
                         arr2.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
+                        let elemIpfs = document.getElementsByClassName('elementIpfs');
+                        //for (let s = 0; s < elemIpfs.length; s++) elemIpfs[s].remove();
+
                     }
                 })
 
