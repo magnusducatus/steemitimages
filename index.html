@@ -88,7 +88,11 @@
                         var removeButton = Dropzone.createElement('<button class="mui-btn mui-btn--raised mui-btn--danger">Remove file</button>');
                         // Capture the Dropzone instance as closure.
                         var _this = this;
-
+                        //remove all files
+                        document.getElementById("uploadBtn").addEventListener("click", function() {
+                            _this.removeAllFiles();
+                            arr1 = [];
+                          });
                         // Listen to the click event
                         removeButton.addEventListener("click", function(e) {
                             // Make sure the button click doesn't submit the form:
