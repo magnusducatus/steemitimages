@@ -1,5 +1,6 @@
-
-
+golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
+golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+const wif = '';
 swal({
   title: 'Input username && password or private posting key',
   html: '<p><div class="input-group mb-3">'+
@@ -34,14 +35,13 @@ async function checker(username, pass){
 	this.pass = pass; // мастер-пароль
 	this.pass[0] == 5 ? console.log('приватный ключ',this.pass) :
 		golos.api.getAccounts([this.user], function(err, response) {
-			if ( ! err) {
-				// получение публичного ключа
-				var roles = ['posting']; // параметр необязательный, если не указаывать, то вернутся все ключи
-				var keys = golos.auth.getPrivateKeys(this.user, this.pass, roles);
-				// проверка публичного ключа аккаунта и с полученым публичным ключом
-        console.info(response[0].posting.key_auths[0][0]);
-        console.info(keys);
-				if (response[0].posting.key_auths[0][0] == keys.postingPubkey) console.log('правильный логин и мастер-пароль!');
+			if ( !err ) {
+				let roles = ['posting'];
+				let keys = golos.auth.getPrivateKeys(this.user, this.pass);
+				if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
+            wif = keys.posting;
+            console.log('всё в норме');
+        };
 				else console.log('не правильный логин и\или мастер-пароль!');
 			}
 		});
