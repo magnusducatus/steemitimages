@@ -39,6 +39,8 @@ async function checker(username, pass){
 				var roles = ['posting']; // параметр необязательный, если не указаывать, то вернутся все ключи
 				var keys = golos.auth.getPrivateKeys(this.user, this.pass, roles);
 				// проверка публичного ключа аккаунта и с полученым публичным ключом
+        console.info(response[0].posting.key_auths[0][0]);
+        console.info(keys);
 				if (response[0].posting.key_auths[0][0] == keys.postingPubkey) console.log('правильный логин и мастер-пароль!');
 				else console.log('не правильный логин и\или мастер-пароль!');
 			}
