@@ -46,7 +46,6 @@
             </div>
             <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
-            <input id="forCopy" type ="text" />
             <table id="table" class="table table-striped" hidden="true">
                 <thead>
                     <tr>
@@ -141,9 +140,9 @@
                 window.open(host + e.target.id);
             }
             function copyLink(e){
-                document.getElementById('forCopy').value = host + e.target.id;
-                document.querySelector('#forCopy').select();
-                console.log(host);
+                this.id = e.target.id;
+                document.getElementById(this.id).value = host + this.id;
+                document.querySelector('#'+this.id).select();
                 try {
                     document.execCommand('copy');
                   } catch (err) {
@@ -202,7 +201,7 @@
                             button3.type = 'button';
                             button3.onclick = copyLink;
                             button3.innerHTML = 'Copy link';
-                            button3.className = 'btn btn-light';
+                            button3.className = 'btn btn-link';
                             
                             td1.appendChild(img);
                             td1.appendChild(div1);
