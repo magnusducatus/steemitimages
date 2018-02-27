@@ -193,8 +193,8 @@
                             td2.onclick = handle; 
                             let input2 = document.createElement('input');
                             input2.id = file[i].hash;
-                            input2.innerHTML = file[i].hash;
-                            input2.readonly;
+                            input2.value = host + file[i].hash;
+                            input2.readonly = "true";
                             let td3 = document.createElement('td');
                             td3.className = "text-center";
                             let a3 = document.createElement('a');
