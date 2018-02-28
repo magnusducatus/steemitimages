@@ -3,7 +3,7 @@ golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099
 var wif;
 async function go(){
     swal({
-    title: 'Input username && password or private posting key',
+    title: 'Input Username && Master password or Private posting key',
     html:'<p><div class="input-group mb-3">' +
         '<div class="input-group-prepend">' +
         '<span class="input-group-text" id="username" required>@</span>' +
@@ -11,18 +11,18 @@ async function go(){
         '<input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>' +
         '</div>' +
         '<p><div class="input-group mb-3">' +
-        '<input id="input-pass" type="password" class="form-control" placeholder="password" aria-label="password or posting key" aria-describedby="password" required>' +
+        '<input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>' +
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>'+
         '<p>OR'+
         '<p><div class="input-group mb-3">' +
-        '<input id="input-private" type="password" class="form-control" placeholder="private key" aria-label="password or posting key" aria-describedby="password" required>' +
+        '<input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>' +
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>',
     showCancelButton: true,
-    closeOnConfirm: false,
+    closeOnConfirm: true,
     preConfirm: async () => {
         const { username, pass, priv } = await getInputsVal();
         if( username.length <= 0 && pass.length <= 0 && priv.length <= 0) {
