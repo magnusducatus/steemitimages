@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <!-- bootstrap 4.0.0 -->
     
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.21/bootstrap-native-v4.min.js" integrity="sha256-NZzruTlTqj1lzF2YS5Djc/M8mk464nFUGtQ3QWxBEsU=" crossorigin="anonymous"></script>
     <!-- Dropzone.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
     
@@ -39,7 +39,21 @@
 <body>
     <div class="container">
         <div class="div-top">
-            <h1 class="text-center">GOLOS IMAGES</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a class="navbar-brand" href="#">Golos</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">  
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/epexa/golosimages">
+                        <img src="public/git.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Git repository
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
         </div>
         <div class="div-upload">
             <h3 id="status" class="text-center"></h3>
@@ -51,8 +65,8 @@
            <form action='/' class="dropzone form" id="my-awesome-dropzone">
             </form>
         </div>
-        <div class="div-table">
-            <table id="table" class="table table-striped" hidden="true">
+        <div class="div-table">hidden="true"
+            <table id="table" class="table table-striped" >
                 <thead>
                     <tr>
                         <th class="text-center">Preview</th>
@@ -60,6 +74,22 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
+                    <tr>
+                        <td class="text-center">Pr</td>
+                        <td class="text-center">IP</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Pr</td>
+                        <td class="text-center">IP</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Pr</td>
+                        <td class="text-center">IP</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Pr</td>
+                        <td class="text-center">IP</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

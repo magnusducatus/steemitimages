@@ -77,4 +77,11 @@ function go(req, res) {
         });
         file.pipe(res);
     }
+     if (req.url.match(/svg/gi)) {
+        let file = fs.createReadStream('.' + req.url);
+        res.writeHead(200, {
+            'Content-Type': 'image/svg+xml'
+        });
+        file.pipe(res);
+    }
 }
