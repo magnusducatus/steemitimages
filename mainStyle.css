@@ -1,0 +1,57 @@
+<style>
+    body{
+        font-size: 1.25em;
+        font-family: 'Nunito', sans-serif;
+        color: #000000;
+        overflow: auto;
+        height:1000px;
+        background: grey;
+    }
+
+    .container {
+        display: flex;
+        flex-flow: column nowrap;
+        min-height: 100%;
+        justify-content: space-between;
+        background: BurlyWood;
+
+
+    }
+
+    .container .div-top {
+       /*height: 100px;*/
+       background:green;
+
+    }
+
+    .container .div-upload {
+        /*padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;*/
+        background:yellow;
+    }
+
+    .container .div-form {
+        /*margin-top: 2%;*/
+        background:red;
+    }
+    .container .div-table {
+        /*margin-top: 2%;*/
+        background:pink;
+    }
+    footer {
+        background: blue;
+    }
+    #uploadDiv {
+       /* margin-top: 5%;
+        display: flex;
+        justify-content: center;*/
+    }
+    #uploadBtn {
+        /*display:none;*/
+    }
+
+
+</style>
