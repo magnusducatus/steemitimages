@@ -3,8 +3,9 @@ golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099
 var wif;
 async function go(){
     swal({
-    title: 'Input Username && Master password or Private posting key',
-    html:'<p><div class="input-group mb-3">' +
+    title: '<h1>To continue, you need to login!</h1>',
+    html:'<p><h5>Please enter your login and master password</h5>'+
+        '<p><div class="input-group mb-3">' +
         '<div class="input-group-prepend">' +
         '<span class="input-group-text" id="username" required>@</span>' +
         '</div>' +
@@ -15,7 +16,8 @@ async function go(){
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>'+
-        '<p>OR'+
+        '<p>-------OR------'+
+        '<p><h5>Please enter only your private posting key</h5>'+
         '<p><div class="input-group mb-3">' +
         '<input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>' +
         '<div class="input-group-prepend">' +
@@ -23,6 +25,9 @@ async function go(){
         '</div>',
     showCancelButton: true,
     closeOnConfirm: true,
+    showCloseButton: true,
+    confirmButtonColor: "#5cb85c",
+    confirmButtonText: "Yes",
     preConfirm: async () => {
         const { username, pass, priv } = await getInputsVal();
         if( username.length <= 0 && pass.length <= 0 && priv.length <= 0) {
