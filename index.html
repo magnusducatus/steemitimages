@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column justify-content-between">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand">GolosImages</a>
@@ -31,19 +30,21 @@
         <article>
             <main role="main" class="container">
                 <br>
-                <div class="div-form">
-                    <form action='/' class="dropzone form" id="my-awesome-dropzone">
+                <div class="div-form row">
+                    <form action='/' class="dropzone form col" id="my-awesome-dropzone">
                     </form>
                 </div>
                 <br>
-                <div id="uploadDiv">
-                    <button id="uploadBtn" class="btn btn-success btn-lg btn-block text-uppercase" type="button" style="display:none">Upload to IPFS</button>
+                <div id="uploadDiv" class="row">
+                    <button id="uploadBtn" class="btn btn-success btn-lg btn-block text-uppercase col" type="button" style="display:none">Upload to IPFS</button>
                 </div>
-                <div class="div-table">
-                    <table id="table" class="table table-striped table-bordered " hidden="true">
+                <br>
+                <div class="div-table row">
+                    <table id="table" class="table table-striped table-bordered col" hidden="true">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th class="text-center">Preview</th>
+                                <th class="text-center">Size</th>
                                 <th class="text-center">IPFS multihash</th>
                             </tr>
                         </thead>
@@ -52,10 +53,9 @@
                     </table>
             </main>
         </article>
-        <footer class="text-center bg-secondary text-white fixed-bottom" style="height: 50px">
+        <footer class="text-center bg-secondary text-white fixed-bottom">
             Golos Images @ 2018
         </footer>
-        </div>
 
         <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
 
