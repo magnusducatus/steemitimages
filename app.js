@@ -54,15 +54,17 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  tr.className = ' ' + file[i].hash + ' ';
                  let td1 = document.createElement('td');
                  let img = document.createElement('img');
+                 let a1 = document.createElement('a');
+                 a1.href = host + file[i].hash;
                  img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
-                 img.align = "middle";
-                 img.className = "text-center";
                  img.heigth = 100;
                  img.width = 100;
+                 a1.appendChild(img);
+                 //img.onclick = handle;
                  let td2 = document.createElement('td');
                  td2.className = "text-center"
                  const result = file[i].size/1000000;
-                 td2.innerHTML = 'size MB: ' + result.toFixed(2);
+                 td2.innerHTML = result.toFixed(2);
                  let td3 = document.createElement('td');
                  //td2.id = file[i].hash;
                  td3.className = "text-center";
@@ -101,7 +103,7 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  input3div1.appendChild(input3div2);
                  input3div2.appendChild(input3but);
 
-                 td1.appendChild(img);
+                 td1.appendChild(a1);
                  //td2.appendChild(input2);
                  //td3.appendChild(button3);
                  tr.appendChild(td1);
@@ -126,7 +128,7 @@ const host = 'http://91.201.41.253:7777/ipfs/';
      for (let i = 0; i < arr1.length; i++) {
          test(arr1[i]);
      }
-     if (arr1.length != 0) swal('Всё добавленно успешно!')
+     if (arr1.length != 0) swal('Added successfully!','Check the table!')
      arr1 = [];
  }
  const upload = document.getElementById('uploadBtn');

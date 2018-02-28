@@ -31,30 +31,39 @@
             <main role="main" class="container">
                 <br>
                 <div class="div-form row">
-                    <form action='/' class="dropzone form col" id="my-awesome-dropzone">
-                    </form>
+                    <div class="col-12">
+                        <form action='/' class="dropzone form" id="my-awesome-dropzone">
+                        </form>
+                    </div>
                 </div>
                 <br>
                 <div id="uploadDiv" class="row">
-                    <button id="uploadBtn" class="btn btn-success btn-lg btn-block text-uppercase col" type="button" style="display:none">Upload to IPFS</button>
+                    <div class="col-12">
+                        <button id="uploadBtn" class="btn btn-success btn-lg btn-block text-uppercase " type="button" style="display:none">Upload to IPFS</button>
+                    </div>
                 </div>
                 <br>
                 <div class="div-table row">
-                    <table id="table" class="table table-striped table-bordered col" hidden="true">
-                        <thead class="bg-primary text-white">
-                            <tr>
-                                <th class="text-center">Preview</th>
-                                <th class="text-center">Size</th>
-                                <th class="text-center">IPFS multihash</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                    </table>
+                    <div class="col-12">
+                        <table id="table" class="table table-striped table-bordered" hidden="true">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th class="text-center">Preview</th>
+                                    <th class="text-center">Size(MB)</th>
+                                    <th class="text-center">IPFS multihash</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </main>
         </article>
-        <footer class="text-center bg-secondary text-white fixed-bottom">
-            Golos Images @ 2018
+        <footer class="text-center bg-ligth text-white fixed-bottom">
+            <div class="card-footer text-muted">
+               Golos Images @ 2018 
+            </div>
         </footer>
 
         <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
