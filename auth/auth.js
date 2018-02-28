@@ -15,6 +15,7 @@ async function go(){
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>'+
+        '<p>OR'+
         '<p><div class="input-group mb-3">' +
         '<input id="input-private" type="password" class="form-control" placeholder="private key" aria-label="password or posting key" aria-describedby="password" required>' +
         '<div class="input-group-prepend">' +
