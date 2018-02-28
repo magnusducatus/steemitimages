@@ -1,3 +1,9 @@
+var ipfs = window.IpfsApi({
+    host: '91.201.41.253',
+    port: '5001',
+    protocol: 'http'
+});
+const host = 'http://91.201.41.253:7777/ipfs/';
  //for add to IPFS
  var arr1 = [];
  //for check table

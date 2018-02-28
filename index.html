@@ -3,46 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <!-- bootstrap 4.0.0 -->
-
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.21/bootstrap-native-v4.min.js" integrity="sha256-NZzruTlTqj1lzF2YS5Djc/M8mk464nFUGtQ3QWxBEsU=" crossorigin="anonymous"></script>
-    <!-- Dropzone.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
-
+    
     <link rel="stylesheet" href="dropzone.css" />
-    <!-- 
-    <link rel="stylesheet" href="mainStyle.css" /> -->
-    <!-- sweetAlert2 -->
-    <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
-    <!-- buffer -->
-    <script src="https://wzrd.in/standalone/buffer"></script>
-    <!-- js-ipfs-api -->
-    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous"></script>
-    <!-- golos api -->
-    <script src="https://cdn.jsdelivr.net/npm/golos-js@0.5.30/dist/golos.min.js"></script>
-
-    <script type="text/javascript">
-        /* const node = new Ipfs({
-                            repo: 'ipfs-' + Math.random()
-                        })
-                        node.once('ready', () => {
-                           document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
-                        })*/
-        var ipfs = window.IpfsApi({
-            host: '91.201.41.253',
-            port: '5001',
-            protocol: 'http'
-        });
-        const host = 'http://91.201.41.253:7777/ipfs/';
-    </script>
 </head>
 
 <body>
     <div class="d-flex flex-column justify-content-between">
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-                <a class="navbar-brand mb-0 h1 text-white">GolosImages</a>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand">GolosImages</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -57,18 +28,17 @@
             </nav>
         </header>
         <br>
-        <br>
         <article>
             <main role="main" class="container">
-                <div id="uploadDiv">
-                    <button id="uploadBtn" class="btn btn-primary btn-lg btn-block text-uppercase" type="button" style="display:none">Upload to IPFS</button>
-                </div>
                 <br>
                 <div class="div-form">
                     <form action='/' class="dropzone form" id="my-awesome-dropzone">
                     </form>
                 </div>
                 <br>
+                <div id="uploadDiv">
+                    <button id="uploadBtn" class="btn btn-success btn-lg btn-block text-uppercase" type="button" style="display:none">Upload to IPFS</button>
+                </div>
                 <div class="div-table">
                     <table id="table" class="table table-striped table-bordered " hidden="true">
                         <thead class="bg-primary text-white">
@@ -83,18 +53,23 @@
             </main>
         </article>
         <footer class="text-center bg-secondary text-white fixed-bottom" style="height: 50px">
-            Golos Images @ <span id="date"></span>
-            <script>
-                const now = new Date();
-                let span = document.getElementById('date');
-                console.log(span);
-                span.innerHTML = now.getFullYear();
-            </script>
+            Golos Images @ 2018
         </footer>
         </div>
+
+        <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
+
+        <script src="https://wzrd.in/standalone/buffer"></script>
+
+        <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/golos-js@0.5.30/dist/golos.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
+        
         <script type="text/javascript" src="auth.js"></script>
         <script type="text/javascript" src="app.js"></script>
         <script type="text/javascript" src="initZone.js"></script>
-</body>
+    </body>
 
 </html>
