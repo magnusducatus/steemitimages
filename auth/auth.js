@@ -10,19 +10,23 @@ swal({
         '<input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>' +
         '</div>' +
         '<p><div class="input-group mb-3">' +
-        '<input id="input-pass" type="password" class="form-control" placeholder="password or private posting key" aria-label="password or posting key" aria-describedby="password" required>' +
+        '<input id="input-pass" type="password" class="form-control" placeholder="password" aria-label="password or posting key" aria-describedby="password" required>' +
         '<div class="input-group-prepend">' +
-        '<span class="input-group-text" id="password"></span>' +
+        '</div>' +
+        '</div>'+
+        '<p><div class="input-group mb-3">' +
+        '<input id="input-private" type="password" class="form-control" placeholder="private key" aria-label="password or posting key" aria-describedby="password" required>' +
+        '<div class="input-group-prepend">' +
         '</div>' +
         '</div>',
     showCancelButton: true,
     closeOnConfirm: false,
     preConfirm: async () => {
-        const { username, pass } = await getInputsVal();
-        if( username.length<=0 || pass.length<=0) {
-
+        const { username, pass, priv } = await getInputsVal();
+        if( username.length <= 0 && pass.length <= 0 && priv.length <= 0) {
+            console.log('Введите какоенибудь значение');
         }
-        else await checker(username, pass);
+        else await checker(username, pass, priv);
 
     }
 })
@@ -30,16 +34,19 @@ swal({
 async function getInputsVal() {
     let username = document.getElementById('input-user').value;
     let pass = document.getElementById('input-pass').value;
+    let priv = document.getElementById('input-private').value;
     return {
         username,
-        pass
+        pass,
+        priv
     };
 }
 
-async function checker(username, pass) {
+async function checker(username, pass, priv) {
     this.user = username;
-    this.pass = pass; // мастер-пароль
-    this.pass.length == 51 && this.pass.match(/5[A-Z]/) ? console.log('приватный ключ', this.pass) :
+    this.pass = pass;
+    this.private = priv;
+    this.private.length == 51 && this.private.match(/5[A-Z]/) ? console.log('приватный ключ', this.private) :
         golos.api.getAccounts([this.user], function(err, response) {
             if (!err) {
                 const roles = ['posting'];
