@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <!-- bootstrap 4.0.0 -->
-    
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.21/bootstrap-native-v4.min.js" integrity="sha256-NZzruTlTqj1lzF2YS5Djc/M8mk464nFUGtQ3QWxBEsU=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.21/bootstrap-native-v4.min.js" integrity="sha256-NZzruTlTqj1lzF2YS5Djc/M8mk464nFUGtQ3QWxBEsU=" crossorigin="anonymous"></script>
     <!-- Dropzone.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="dropzone.css" /> 
-<!-- 
+
+    <link rel="stylesheet" href="dropzone.css" />
+    <!-- 
     <link rel="stylesheet" href="mainStyle.css" /> -->
     <!-- sweetAlert2 -->
     <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
@@ -21,14 +21,14 @@
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js" integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB" crossorigin="anonymous"></script>
     <!-- golos api -->
     <script src="https://cdn.jsdelivr.net/npm/golos-js@0.5.30/dist/golos.min.js"></script>
-    
+
     <script type="text/javascript">
         /* const node = new Ipfs({
-                    repo: 'ipfs-' + Math.random()
-                })
-                node.once('ready', () => {
-                   document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
-                })*/
+                            repo: 'ipfs-' + Math.random()
+                        })
+                        node.once('ready', () => {
+                           document.getElementById("status").innerHTML= 'Node status: ' + (node.isOnline() ? 'online' : 'offline');
+                        })*/
         var ipfs = window.IpfsApi({
             host: '91.201.41.253',
             port: '5001',
@@ -39,262 +39,62 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="div-top">
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary d-flex justify-content-between">
-              <a class="navbar-brand text-white" href="#">Golos</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Menu
-                    </a>
-                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="nav-link d-flex align-items-center" href="https://github.com/epexa/golosimages">
-                            <img src="public/git.svg" width="30" height="30" class="d-inline-block align-top" alt=""> Git repository
-                        </a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+    <div class="d-flex flex-column justify-content-between">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <a class="navbar-brand text-white" href="#">GolosImages</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="https://github.com/epexa/golosimages">
+                    <img src="git.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
-        </div>
-        <div class="div-upload">
-            <h3 id="status" class="text-center"></h3>
-            <div id="uploadDiv">
-                <button id="uploadBtn" class="btn btn-primary btn-lg btn-block text-uppercase" type="button" style="display:none">Upload to IPFS</button>
-            </div> 
-        </div>
-        <div class="div-form">
-           <form action='/' class="dropzone form" id="my-awesome-dropzone">
-            </form>
-        </div>
-        <div class="div-table">
-            <table id="table" class="table table-striped table-bordered " hidden="true">
-                <thead class="bg-primary text-white">
-                    <tr>
-                        <th class="text-center">Preview</th>
-                        <th class="text-center">IPFS multihash</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                </tbody>
-            </table>
-        </div>
-        <footer class="text-center bg-secondary text-white" style="height: 50px">
-            Golos Images @ <span id ="date"></span>
-            <script> 
+        </header>
+        <br>
+        <br>
+        <article>
+            <main role="main" class="container">
+                <div id="uploadDiv">
+                    <button id="uploadBtn" class="btn btn-primary btn-lg btn-block text-uppercase" type="button" style="display:none">Upload to IPFS</button>
+                </div>
+                <br>
+                <div class="div-form">
+                    <form action='/' class="dropzone form" id="my-awesome-dropzone">
+                    </form>
+                </div>
+                <br>
+                <div class="div-table">
+                    <table id="table" class="table table-striped table-bordered " hidden="true">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="text-center">Preview</th>
+                                <th class="text-center">IPFS multihash</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+            </main>
+        </article>
+        <footer class="text-center bg-secondary text-white fixed-bottom" style="height: 50px">
+            Golos Images @ <span id="date"></span>
+            <script>
                 const now = new Date();
                 let span = document.getElementById('date');
                 console.log(span);
                 span.innerHTML = now.getFullYear();
             </script>
-        </footer> 
-    </div>
-        <script src="auth.js"></script>
-        <script>
-            //for add to IPFS
-            let arr1 = [];
-            //for check table
-            let arr2 = [];
-            Dropzone.options.myAwesomeDropzone = {
-                //accept file mime-type
-                acceptedFiles: 'image/jpeg, image/jpg, image/png',
-                dictDefaultMessage: "Drag&Drop files here or click to select files",
-                autoProcessQueue: false,
-                init: function() {
-                    this.on("addedfile", function(file) {
-                        //second check for mime-type
-                        if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
-
-                        } else this.removeFile(file);
-                        //entity for send to IPFS
-
-                        //console.log(arr1);
-                        let fileList = file;
-                        const reader = new FileReader();
-                        reader.onload = function(data) {
-                            const obj = {
-                                name: '',
-                                body: '',
-                                hash: '',
-                            };
-                            //!!!!!This is for version without buffer
-                            /*let base64 = window.btoa(data.target.result);
-                            obj.body = base64;*/
-                            obj.body = buffer.Buffer(data.target.result);
-                            /* obj.body = data.target.result;*/
-                            obj.name = fileList.name;
-                            arr1.push(obj);
-                            let uploadBtn = document.getElementById('uploadBtn');
-                            uploadBtn.style.display = "block";
-                        };
-                        reader.readAsArrayBuffer(fileList);
-                        // Create the remove button
-                        var removeButton = Dropzone.createElement('<button class="btn btn-warning">Remove file</button>');
-                        // Capture the Dropzone instance as closure.
-                        var _this = this;
-                        //remove all files
-                        document.getElementById("uploadBtn").addEventListener("click", function() {
-                            _this.removeAllFiles();
-                            arr1 = [];
-                            let uploadBtn = document.getElementById('uploadBtn');
-                            uploadBtn.style.display = "none";
-                        });
-                        // Listen to the click event
-                        removeButton.addEventListener("click", function(e) {
-                            // Make sure the button click doesn't submit the form:
-                            e.preventDefault();
-                            e.stopPropagation();
-
-                            // Remove the file preview.
-                            _this.removeFile(file);
-                            let uploadBtn = document.getElementById('uploadBtn');
-
-                            for (let i = 0; i < arr1.length; i++) {
-                                file.name == arr1[i].name ? arr1.splice(i, 1) : '';
-                            }
-                            arr1.length > 0 ? uploadBtn.style.display = "block" : uploadBtn.style.display = "none";
-                            // If you want to the delete the file on the server as well,
-                            // you can do the AJAX request here.
-                        });
-
-                        // Add the button to the file preview element.
-                        file.previewElement.appendChild(removeButton);
-                        file.previewElement.setAttribute('class', 'dz-preview dz-processing dz-success dz-complete dz-image-preview elementIpfs');
-                        file.previewElement.setAttribute('align', 'center');
-                    });
-                }
-
-            };
-        </script>
-    
-        <script>
-            function handle(e) {
-                console.log(e.target.id);
-                window.open(host + e.target.id);
-            }
-            function copyLink(e){
-                this.id = e.target.id;
-                document.getElementById(this.id).value = host + this.id;
-                document.querySelector('#'+this.id).select();
-                try {
-                    document.execCommand('copy');
-                  } catch (err) {
-                    console.log('Links not correctly works',err);
-                  }
-            }
-
-            function _arrayBufferToBase64(buffer) {
-                var binary = '';
-                var bytes = new Uint8Array(buffer);
-                var len = bytes.byteLength;
-                for (var i = 0; i < len; i++) {
-                    binary += String.fromCharCode(bytes[i]);
-                }
-                return window.btoa(binary);
-            }
-            //Функция самой отправки данных
-            function test(data) {
-                const tb = document.getElementById('tbody');
-
-                const files = [{
-                    path: data.name,
-                    content: data.body
-                }];
-
-                /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
-                ipfs.files.add(files, function(err, file) {
-                    if (err) console.log(err);
-                    else {
-                        console.log(file);
-                        for (let i = 0; i < file.length; i++) {
-                            arr2.push(file);
-                            let tr = document.createElement('tr');
-                            tr.className = ' ' + file[i].hash + ' ';
-                            let td1 = document.createElement('td');
-                            let img = document.createElement('img');
-                            img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
-                            img.align = "middle";
-                            img.className = "text-center";
-                            img.heigth = 100;
-                            img.width = 100;
-                            let div1 = document.createElement('div');
-                            div1.innerHTML = 'size: ' + file[i].size;
-                            let td2 = document.createElement('td');
-                            //td2.id = file[i].hash;
-                            td2.className = "text-center";
-                            //td2.onclick = handle; 
-
-                            let input2div1 = document.createElement('div');
-                            input2div1.className = 'input-group mb-3';
-                            let input2input1 = document.createElement('input');
-                            input2input1.className = 'form-control';
-                            input2input1.value = host + file[i].hash;
-                            input2input1.type = 'text';
-                            input2input1.id = file[i].hash;
-                            let input2div2 = document.createElement('div');
-                            input2div2.className = 'input-group-append';
-                            let input2but = document.createElement('button');
-                            input2but.className = 'btn btn-outline-secondary';
-                            input2but.type = 'button';
-                            input2but.innerHTML = 'Copy link';
-                            input2but.onclick = copyLink;
-                            input2but.id = file[i].hash;
-                           /* let input2 = document.createElement('input');
-                            input2.id = file[i].hash;
-                            input2.value = host + file[i].hash;
-                            input2.readonly = "true";*/
-                          /*  let td3 = document.createElement('td');
-                            td3.className = "text-center";
-                            let button3 = document.createElement('button');
-                            button3.id = file[i].hash;
-                            button3.type = 'button';
-                            button3.onclick = copyLink;
-                            button3.innerHTML = 'Copy link';
-                            button3.className = 'btn btn-link';*/
-                            
-                            td2.appendChild(input2div1);
-                            input2div1.appendChild(input2input1);
-                            input2div1.appendChild(input2div2);
-                            input2div2.appendChild(input2but);
-
-                            td1.appendChild(img);
-                            td1.appendChild(div1);
-                            //td2.appendChild(input2);
-                            //td3.appendChild(button3);
-                            tr.appendChild(td1);
-                            tr.appendChild(td2);
-                            //tr.appendChild(td3);
-                            tb.appendChild(tr);
-                        }
-                        let tab = document.getElementById('table');
-                        //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
-                        arr2.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
-                        let elemIpfs = document.getElementsByClassName('elementIpfs');
-                        //for (let s = 0; s < elemIpfs.length; s++) elemIpfs[s].remove();
-
-                    }
-                })
-
-            }
-
-            function iter() {
-                console.log('length', arr1.length);
-                for (let i = 0; i < arr1.length; i++) {
-                    test(arr1[i]);
-                }
-                if (arr1.length != 0) swal('Всё добавленно успешно!')
-                arr1 = [];
-            }
-            const upload = document.getElementById('uploadBtn');
-            upload.addEventListener("click", iter, false);
-        </script>
-
-
+        </footer>
+        </div>
+        <script type="text/javascript" src="auth.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="initZone.js"></script>
 </body>
 
 </html>
