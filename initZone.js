@@ -1,5 +1,5 @@
 //init Dropzone
-Dropzone.options.myAwesomeDropzone = {
+Dropzone.options.dropzone = {
  //accept file mime-type
  acceptedFiles: 'image/jpeg, image/jpg, image/png',
  dictDefaultMessage: "Drag&Drop files here or click to select files",
