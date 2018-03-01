@@ -22,10 +22,7 @@ Dropzone.options.dropzone = {
                  hash: '',
              };
              //!!!!!This is for version without buffer
-             /*let base64 = window.btoa(data.target.result);
-             obj.body = base64;*/
-             obj.body = buffer.Buffer(data.target.result);
-             /* obj.body = data.target.result;*/
+             obj.body = ipfs.Buffer(data.target.result);
              obj.name = fileList.name;
              arr1.push(obj);
              let uploadBtn = document.getElementById('uploadBtn');

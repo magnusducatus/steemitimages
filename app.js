@@ -39,6 +39,12 @@ const host = 'http://91.201.41.253:7777/ipfs/';
      }
      return window.btoa(binary);
  }
+ function _arrayBuffer(buffer) {
+     var binary = '';
+     var bytes = new Uint8Array(buffer);
+     var blob = new Blob( [ bytes ], { type: "image/jpeg" } );
+     return binary;
+ }
  //Функция самой отправки данных
  function test(data) {
      const tb = document.getElementById('tbody');
