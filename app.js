@@ -56,6 +56,7 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  let img = document.createElement('img');
                  let a1 = document.createElement('a');
                  a1.href = host + file[i].hash;
+                 a1.target = '_blank';
                  img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
                  img.heigth = 100;
                  img.width = 100;
