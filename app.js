@@ -29,7 +29,6 @@ const host = 'http://91.201.41.253:7777/ipfs/';
          console.log('Links not correctly works', err);
      }
  }
-
  function _arrayBufferToBase64(buffer) {
      var binary = '';
      var bytes = new Uint8Array(buffer);
@@ -39,15 +38,6 @@ const host = 'http://91.201.41.253:7777/ipfs/';
          binary += String.fromCharCode(bytes[i]);
      }
      return window.btoa(binary);
- }
- function _arrayBuffer(buffer) {
-     var binary = '';
-     var bytes = new Uint8Array(buffer);
-     var len = bytes.byteLength;
-     for (var i = 0; i < len; i++) {
-         binary += String.fromCharCode(bytes[i]);
-     }
-     return binary;
  }
  //Функция самой отправки данных
  function test(data) {
@@ -84,22 +74,34 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  //td2.id = file[i].hash;
                  td3.className = "text-center";
                  //td2.onclick = handle; 
-
                  let input3div1 = document.createElement('div');
                  input3div1.className = 'input-group mb-3';
                  let input3input1 = document.createElement('input');
+                 input3input1.onclick = copyLink;
                  input3input1.className = 'form-control';
                  input3input1.value = host + file[i].hash;
                  input3input1.type = 'text';
                  input3input1.id = file[i].hash;
-                 let input3div2 = document.createElement('div');
-                 input3div2.className = 'input-group-append';
-                 let input3but = document.createElement('button');
-                 input3but.className = 'btn btn-outline-secondary';
-                 input3but.type = 'button';
-                 input3but.innerHTML = 'Copy link';
-                 input3but.onclick = copyLink;
-                 input3but.id = file[i].hash;
+                 td3.appendChild(input3div1);
+                 input3div1.appendChild(input3input1);
+                 
+                 let td4 = document.createElement('td');
+                 let td4div1 = document.createElement('div');
+                 td4div1.className = 'input-group-append';
+                 let td4but1 = document.createElement('button');
+                 td4but1.className = 'btn btn-outline-secondary';
+                 td4but1.type = 'button';
+                 td4but1.innerHTML = 'Copy link';
+                 td4but1.id = file[i].hash;
+                 let td4but2 = document.createElement('button');
+                 td4but2.className = 'btn btn-outline-secondary';
+                 td4but2.type = 'button';
+                 td4but2.innerHTML = 'Select to save';
+                 td4but2.id = file[i].hash;
+
+                 td4.appendChild(td4div1);
+                 td4div1.appendChild(td4but1);
+                 td4div1.appendChild(td4but2);
                  /* let input2 = document.createElement('input');
                   input2.id = file[i].hash;
                   input2.value = host + file[i].hash;
@@ -113,10 +115,9 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                    button3.innerHTML = 'Copy link';
                    button3.className = 'btn btn-link';*/
 
-                 td3.appendChild(input3div1);
-                 input3div1.appendChild(input3input1);
-                 input3div1.appendChild(input3div2);
-                 input3div2.appendChild(input3but);
+                 
+                 
+                 //input3div2.appendChild(input3but);
 
                  td1.appendChild(a1);
                  //td2.appendChild(input2);
@@ -124,6 +125,8 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  tr.appendChild(td1);
                  tr.appendChild(td2);
                  tr.appendChild(td3);
+                 tr.appendChild(td4);
+
                  //tr.appendChild(td3);
                  tb.appendChild(tr);
              }
