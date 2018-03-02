@@ -13,12 +13,17 @@ const host = 'http://91.201.41.253:7777/ipfs/';
  var arr1 = [];
  //for check table
  var arr2 = [];
+ //for send to Golos
+ var arrGolos = new Set();
 
  function handle(e) {
      console.log(e.target.id);
      window.open(host + e.target.id);
  }
-
+ function copyToGolos(e){
+    arrGolos.add(e.target.id);
+    console.log('arrGolos',arrGolos.size);
+ }
  function copyLink(e) {
      this.id = e.target.id;
      document.getElementById(this.id).value = host + this.id;
@@ -93,12 +98,13 @@ const host = 'http://91.201.41.253:7777/ipfs/';
                  td4but1.type = 'button';
                  td4but1.innerHTML = 'Copy link';
                  td4but1.id = file[i].hash;
+
                  let td4but2 = document.createElement('button');
                  td4but2.className = 'btn btn-outline-secondary';
                  td4but2.type = 'button';
                  td4but2.innerHTML = 'Select to save';
                  td4but2.id = file[i].hash;
-
+                 td4but2.onclick = copyToGolos;
                  td4.appendChild(td4div1);
                  td4div1.appendChild(td4but1);
                  td4div1.appendChild(td4but2);
@@ -219,3 +225,31 @@ Dropzone.options.dropzone = {
  }
 
 };
+function send_request(permlink, title, jsonMetadata) {
+    // switching to TESTNET
+    golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
+    golos.config.set('address_prefix', 'GLS');
+    golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
+    var parentAuthor = ''; // for post creating, empty field
+    var parentPermlink = 'test'; // main tag
+    var author = 'golos'; // post author
+    var wif = '5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; // private posting key
+    var permlink = 'permlink'; // post url-adress
+    var title = 'testtitle'; // post title
+    var jsonMetadata = {"app1":"app1","app2":"app2"}; // jsonMetadata - post metadata (pictures etc.)
+    var body = 'test golos image'; // post text
+    golos.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) {
+        //console.log(err, result);
+        if (!err) {
+            console.log('comment', result);
+        } else console.error(err);
+    }); // add post
+}
+function uploadToGolos() {
+    //arrGolos.forEach( (value,set) => console.log('value',value) )
+    console.log('send to golos',arrGolos.size);
+    send_request(1,1,1);
+
+}
+let uploadGolos = document.getElementById('uploadGolos');
+uploadGolos.addEventListener('click', uploadToGolos, false);

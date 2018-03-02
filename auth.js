@@ -58,6 +58,7 @@ async function checker(username, pass, priv) {
             if (!err) {
                 const roles = ['posting'];
                 let keys = golos.auth.getPrivateKeys(this.user, this.pass, roles);
+                console.log(keys.posting);
                 if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
                     wif = keys.posting;
                     console.log('всё правильно');
