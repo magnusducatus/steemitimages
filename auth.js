@@ -58,7 +58,7 @@ async function checker(username, pass, priv) {
     
     if(wif!=''){
         console.log('приватный ключ', wif);
-        uploadToGolos();
+        getPublicKey(wif);
 
     } else {
         const roles = ['posting'];
@@ -66,8 +66,26 @@ async function checker(username, pass, priv) {
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
             console.log('всё правильно');
             wif = keys.posting;
-            uploadToGolos();
+            getPublicKey(wif);
             
         } else console.log('не правильный логин и\или мастер-пароль!');  
+    }
+}
+
+async function getPublicKey(wifPar){
+    this.wif = wifPar;
+    try{
+        let resultWifToPublic = await golos.auth.wifToPublic(this.wif);
+        console.log('wifToPublic', resultWifToPublic);
+        golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+        //console.log(err, result);
+            if (!err) {
+                result.forEach(function(item) {
+                    console.log('getKeyReferences', 'username: [', item[0], ']');
+                });
+            } else console.error(err);
+        });
+    } catch(e){
+        console.log(e);
     }
 }

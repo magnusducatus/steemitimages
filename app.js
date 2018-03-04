@@ -356,7 +356,7 @@ async function get_content() {
            send_request(1,1,1);
        }*/
     this.author = 'golos';
-    this.permlink = 'photo';
+    this.permlink = 'test';
     golos.api.getContent(author, permlink, function(err, result) {
         console.log(err, result);
         if (!err) {
