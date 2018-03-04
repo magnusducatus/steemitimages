@@ -229,86 +229,33 @@ Dropzone.options.dropzone = {
     }
 
 };
-let golos_save_url_test = '';
+let const_permlik = 'golos-save-url-test';
 // if permlink NOW be equal to BEFORE, before will change 
-function send_comment(permlink, title, jsonMetadata) {
-    this.parentAuthor = 'golos'; // for post creating, empty field
-    this.parentPermlink = 'photo'; // main tag
-    this.author = 'golos'; // post author
-    this.wif = '5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; // private posting key
-    this.permlink = '12345678'; // post url-adress
-    this.title = 'titletag'; // post title
-    this.jsonMetadata = {
-        "qwer": "1234",
-        "app2": "app2",
-        'app3': 'app3',
-        "qwer": "1234"
-    }; // jsonMetadata - post metadata (pictures etc.)
-    this.body = '45'; // post text
-    golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        //console.log(err, result);
-        if (!err) {
-            console.log('comment', result);
-            arrGolos.clear();
-            console.log('size after + send', arrGolos.size);
-        } else console.error(err);
-    }); // add post
-}
 // if parentPerm == perm - ok
-function send_post(wifPar) {
+function send_request(wifPar, authorPar, status) {
     this.jsonMetadata = {};
     arrGolos.forEach((value) => {
         this.jsonMetadata[value] = value;
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
-
-    this.parentAuthor = ''; // for post creating, empty field
-    this.parentPermlink = 'photo'; // main tag
-    this.author = 'golos'; // post author
+    this.author = authorPar; // post author
     this.wif = wifPar; //'5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; // private posting key
-    this.permlink = 'testphotook'; // post url-adress
-    this.title = 'titlePhotoMeta'; // post title
-    this.jsonMetadata = JSON.stringify(this.jsonMetadata); // jsonMetadata - post metadata (pictures etc.)
-    this.body = this.jsonMetadata; // post text
-
-    golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        //console.log(err, result);
-        if (!err) {
-            console.log('comment', result);
-            arrGolos.clear();
-            console.log('size after + send', arrGolos.size);
-        } else console.error(err);
-    }); // add post
-}
-let i = 0;
-
-function inc() {
-    i++;
-}
-
-function send_request(wifPar) {
-    this.jsonMetadata = {};
-    arrGolos.forEach((value) => {
-        this.jsonMetadata[value] = value;
-    });
-    this.jsonMetadata = JSON.stringify(this.jsonMetadata);
-    this.author = 'golos'; // post author
-    this.wif = '5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; //'5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; // private posting key
-    this.permlink = 'testphotook'; // post url-adress
-    this.parentPermlink = 'photo'; // main tag
-    golos_save_url_test != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
-    golos_save_url_test != this.permlink ? this.parentPermlink = 'post' : this.parentPermlink = this.permlink;
-    if (golos_save_url_test == this.permlink) {
-        console.log('comment', i);
-        this.parentAuthor = 'golos';
-        this.parentPermlink = golos_save_url_test;
-        this.permlink = this.parentPermlink + i++;
+    //this.permlink = 'testphotook'; // post url-adress
+    //this.parentPermlink = 'photo'; // main tag
+    const_permlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
+    const_permlik != this.permlink ? this.parentPermlink = 'post' : this.parentPermlink = this.permlink;
+    if (status == 'comment') {
+        console.log('comment');
+        this.parentAuthor = this.author;
+        this.parentPermlink = const_permlik;
+        this.permlink = String(Math.floor(Math.random() * (10000 - 1 + 1)) + 1);
     } else {
-        console.log('post', i);
+        console.log('post');
         this.parentAuthor = '';
-        this.parentPermlink = 'post';
+        this.parentPermlink = 'ipfsimage';
+        this.permlink = const_permlik;
     }
-    this.title = 'titlePhotoMeta'; // post title
+    this.title = 'IPFS images'; // post title
     this.body = this.jsonMetadata; // post text
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
@@ -316,14 +263,12 @@ function send_request(wifPar) {
         if (!err) {
             console.log('comment', result);
             arrGolos.clear();
-            golos_save_url_test = this.permlink;
-            inc();
             
             let uploadGolos = document.getElementById('uploadGolos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
             
             console.log('size after + send', arrGolos.size);
-            console.log('golos_save_url_test + send', golos_save_url_test);
+            console.log('permlink + send', const_permlik, status);
         } else console.error(err);
     }); // add post
 }
@@ -334,7 +279,8 @@ async function uploadToGolos() {
         console.log('no wif');
     } else {
         console.log('wif ', wif);
-        send_request(wif);
+        get_content(wif, author);
+        //send_request(wif);
     }
 
 
@@ -346,19 +292,13 @@ function get_comments() {
     });
 }
 // if input parent of comment return comment
-async function get_content() {
-    /*   if(wif=='') {
-         await auth();
-         console.log('no wif');  
-       }
-       else {
-           console.log('wif ', wif);
-           send_request(1,1,1);
-       }*/
-    this.author = 'golos';
-    this.permlink = 'test';
-    golos.api.getContent(author, permlink, function(err, result) {
+function get_content(wifPar, authorPar) {
+    this.wif = wifPar;
+    this.author = authorPar;
+    this.permlink = const_permlik;
+    golos.api.getContent(this.author, this.permlink, function(err, result) {
         console.log(err, result);
+        result.id == 0 ? send_request(this.wif, this.author, 'post') : send_request(this.wif, this.author, 'comment');
         if (!err) {
             console.log('getContent', result.title);
         } else console.error(err);
