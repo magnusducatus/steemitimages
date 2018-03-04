@@ -1,4 +1,4 @@
-var wif;
+window.wif = '';
 async function auth(){
     swal({
     title: '<h3>To continue, you need to login!</h3>',
@@ -30,10 +30,8 @@ async function auth(){
         const { username, pass, priv } = await getInputsVal();
         if( username.length <= 0 && pass.length <= 0 && priv.length <= 0) {
             console.log('Введите какоенибудь значение');
+        } else await checker(username, pass, priv);  
         }
-        else await checker(username, pass, priv);
-
-    }
     })
 }
 
@@ -50,19 +48,26 @@ async function getInputsVal() {
 }
 
 async function checker(username, pass, priv) {
+    this.check;
     this.user = username;
     this.pass = pass;
     this.private = priv;
-    this.private.length == 51 && this.private.match(/5[A-Z]/) ? console.log('приватный ключ', this.private) :
-        golos.api.getAccounts([this.user], function(err, response) {
-            if (!err) {
-                const roles = ['posting'];
-                let keys = golos.auth.getPrivateKeys(this.user, this.pass, roles);
-                console.log(keys.posting);
-                if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
-                    wif = keys.posting;
-                    console.log('всё правильно');
-                } else console.log('не правильный логин и\или мастер-пароль!');
-            }
-        });
+    
+    this.private.length == 51 && this.private.match(/5[A-Z]/) ? wif = this.private 
+                                                              : this.response = await golos.api.getAccounts([this.user]);
+    
+    if(wif!=''){
+        console.log('приватный ключ', wif);
+        uploadToGolos();
+
+    } else {
+        const roles = ['posting'];
+        let keys = await golos.auth.getPrivateKeys(this.user, this.pass, roles);
+        if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
+            console.log('всё правильно');
+            wif = keys.posting;
+            uploadToGolos();
+            
+        } else console.log('не правильный логин и\или мастер-пароль!');  
+    }
 }
