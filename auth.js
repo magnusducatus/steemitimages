@@ -1,4 +1,5 @@
 window.wif = '';
+window.username ='';
 async function auth(){
     swal({
     title: '<h3>To continue, you need to login!</h3>',
@@ -82,6 +83,8 @@ async function getPublicKey(wifPar){
             if (!err) {
                 result.forEach(function(item) {
                     console.log('getKeyReferences', 'username: [', item[0], ']');
+                    username = item[0];
+
                 });
             } else console.error(err);
         });
