@@ -106,6 +106,7 @@ function test(data) {
                 td4but1.type = 'button';
                 td4but1.innerHTML = 'Copy link';
                 td4but1.id = file[i].hash;
+                td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-outline-secondary';
@@ -237,9 +238,12 @@ let const_permlik = 'golos-save-url-test';
 // if parentPerm == perm - ok
 function send_request(wifPar, authorPar, status) {
     this.body = ''; // post text
-    this.jsonMetadata = {};
+    this.jsonMetadata = {
+        image:[]
+    };
     arrGolos.forEach((value) => {
-        this.jsonMetadata[value] = value;
+        console.log('arrGolos',value);
+        this.jsonMetadata.image.push(host+value);
         this.body += '<p><img src="'+host + value+'"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
@@ -302,18 +306,16 @@ function renderTableFromJson() {
     const tab = document.getElementById('table');
     arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
-        console.log(arrJson[i]);
         let tr = document.createElement('tr');
         tr.className = ' ' + arrJson[i] + ' ';
         let td1 = document.createElement('td');
         let img = document.createElement('img');
         let a1 = document.createElement('a');
-        a1.href = host + arrJson[i];
+        a1.href = arrJson[i];
         a1.target = '_blank';
         a1.className = "d-flex align-items-center flex-column";
-        img.src = host+arrJson[i];
+        img.src = arrJson[i];
         /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
-        console.log(img.src);
         img.heigth = 100;
         img.width = 100;
         
@@ -333,7 +335,7 @@ function renderTableFromJson() {
         let input3input1 = document.createElement('input');
         input3input1.onclick = copyLink;
         input3input1.className = 'form-control';
-        input3input1.value = host + arrJson[i];
+        input3input1.value = arrJson[i];
         input3input1.type = 'text';
         input3input1.id = arrJson[i];
 
@@ -377,7 +379,7 @@ function renderTableFromJson() {
 function get_post_json(authorPar, permlinkPar, result) {
 
     this.postJ = JSON.parse(result.json_metadata);
-    for (let i in this.postJ) arrJson.push(this.postJ[i]);
+    for (let i in this.postJ.image) arrJson.push(this.postJ.image[i]);
     console.log('arrJson.length', arrJson.length);
     if (result.children == 0) {
         swal('Это пока Ваша первая запись в IPFS');
@@ -388,7 +390,7 @@ function get_post_json(authorPar, permlinkPar, result) {
             for (let s in result) {
                 if (result[s].author == authorPar) {
                     let arr = JSON.parse(result[s].json_metadata);
-                    for (let i in arr) arrJson.push(arr[i]);
+                    for (let i in arr.image) arrJson.push(arr.image[i]);
                 } else continue;
             }
             console.log('arrJson.length repllies', arrJson.length);
