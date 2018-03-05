@@ -235,9 +235,11 @@ let const_permlik = 'golos-save-url-test';
 // if permlink NOW be equal to BEFORE, before will change 
 // if parentPerm == perm - ok
 function send_request(wifPar, authorPar, status) {
+    this.body = ''; // post text
     this.jsonMetadata = {};
     arrGolos.forEach((value) => {
         this.jsonMetadata[value] = value;
+        this.body += '<p><img src="'+host + value+'"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
@@ -258,7 +260,6 @@ function send_request(wifPar, authorPar, status) {
         this.permlink = const_permlik;
     }
     this.title = 'IPFS images'; // post title
-    this.body = this.jsonMetadata; // post text
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
         //console.log(err, result);
@@ -271,6 +272,7 @@ function send_request(wifPar, authorPar, status) {
 
             console.log('size after + send', arrGolos.size);
             console.log('permlink + send', const_permlik, status);
+            swal('Изображения добавлены')
         } else console.error(err);
     }); // add post
 }
@@ -307,8 +309,8 @@ function renderTableFromJson() {
         let a1 = document.createElement('a');
         a1.href = host + arrJson[i];
         a1.target = '_blank';
-        //img.src = host+arrJson[i];
-        img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';
+        img.src = host+arrJson[i];
+        /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         console.log(img.src);
         img.heigth = 100;
         img.width = 100;
