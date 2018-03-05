@@ -15,6 +15,8 @@ var arr1 = [];
 var arr2 = [];
 //for send to Golos
 var arrGolos = new Set();
+//for add to table from json golos
+var arrJson = [];
 
 function handle(e) {
     console.log(e.target.id);
@@ -143,7 +145,7 @@ function test(data) {
             }
             let tab = document.getElementById('table');
             //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
-            arr2.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
+            arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
             let elemIpfs = document.getElementsByClassName('elementIpfs');
             let uploadGolos = document.getElementById('uploadGolos');
         }
@@ -263,10 +265,10 @@ function send_request(wifPar, authorPar, status) {
         if (!err) {
             console.log('comment', result);
             arrGolos.clear();
-            
+
             let uploadGolos = document.getElementById('uploadGolos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
-            
+
             console.log('size after + send', arrGolos.size);
             console.log('permlink + send', const_permlik, status);
         } else console.error(err);
@@ -287,9 +289,134 @@ async function uploadToGolos() {
 }
 //get comments
 function get_comments() {
-    golos.api.getContentReplies('golos', 'photo', function(err, result) {
+    golos.api.getContentReplies('golos', const_permlik, function(err, result) {
         console.log(err, result);
     });
+}
+
+function renderTableFromJson() {
+    const tb = document.getElementById('tbody');
+    const tab = document.getElementById('table');
+    arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
+    for (let i = 0; i < arrJson.length; i++) {
+        console.log(arrJson[i]);
+        let tr = document.createElement('tr');
+        tr.className = ' ' + arrJson[i] + ' ';
+        let td1 = document.createElement('td');
+        let img = document.createElement('img');
+        let a1 = document.createElement('a');
+        a1.href = host + arrJson[i];
+        a1.target = '_blank';
+        //img.src = host+arrJson[i];
+        img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';
+        console.log(img.src);
+        img.heigth = 100;
+        img.width = 100;
+
+        a1.appendChild(img);
+        //img.onclick = handle;
+        let td2 = document.createElement('td');
+        td2.className = "text-center"
+        const result = arrJson[i] / 1000000;
+        td2.innerHTML = result.toFixed(2);
+        let td3 = document.createElement('td');
+        //td2.id = file[i].hash;
+        td3.className = "text-center";
+        //td2.onclick = handle; 
+        let input3div1 = document.createElement('div');
+        input3div1.className = 'input-group mb-3';
+        let input3input1 = document.createElement('input');
+        input3input1.onclick = copyLink;
+        input3input1.className = 'form-control';
+        input3input1.value = host + arrJson[i];
+        input3input1.type = 'text';
+        input3input1.id = arrJson[i];
+
+        td3.appendChild(input3div1);
+        input3div1.appendChild(input3input1);
+
+        let td4 = document.createElement('td');
+        let td4div1 = document.createElement('div');
+        td4div1.className = 'input-group-append';
+        let td4but1 = document.createElement('button');
+        td4but1.className = 'btn btn-outline-secondary';
+        td4but1.type = 'button';
+        td4but1.innerHTML = 'Copy link';
+        td4but1.id = arrJson[i];
+
+        /*let td4but2 = document.createElement('button');
+        td4but2.className = 'btn btn-outline-secondary';
+        td4but2.type = 'button';
+        td4but2.innerHTML = 'Select to save';
+        td4but2.id = file[i];
+        td4but2.onclick = copyToGolos;
+        */
+        td4.appendChild(td4div1);
+        td4div1.appendChild(td4but1);
+        /* td4div1.appendChild(td4but2);
+         */
+        td1.appendChild(a1);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+
+        //tr.appendChild(td3);
+        tb.appendChild(tr);
+    }
+    arrJson = [];
+
+}
+
+function get_post_json(authorPar, permlinkPar, result) {
+
+    this.postJ = JSON.parse(result.json_metadata);
+    for (let i in this.postJ) arrJson.push(this.postJ[i]);
+    console.log('arrJson.length', arrJson.length);
+    if (result.children == 0) {
+        swal('Это пока Ваша первая запись в IPFS');
+        renderTableFromJson();
+    } else {
+        golos.api.getContentReplies(authorPar, permlinkPar, function(err, result) {
+            console.log(err, result);
+            for (let s in result) {
+                if (result[s].author == authorPar) {
+                    let arr = JSON.parse(result[s].json_metadata);
+                    for (let i in arr) arrJson.push(arr[i]);
+                } else continue;
+            }
+            console.log('arrJson.length repllies', arrJson.length);
+            renderTableFromJson();
+        });
+    }
+
+
+
+
+}
+
+function get_post(authorPar) {
+    this.author = authorPar;
+    this.permlink = const_permlik;
+    golos.api.getContent(this.author, this.permlink, function(err, result) {
+        console.log(err, result);
+        result.id == 0 ? swal('У Вас пока нет сохраннёных записей в IPFS') : get_post_json(this.author, this.permlink, result);
+        if (!err) {
+            console.log('getContent', result.title);
+        } else console.error(err);
+    });
+}
+
+function get_urls(authorPar) {
+    if (wif == '') {
+        auth();
+        console.log('no wif');
+    } else {
+        console.log('wif ', wif);
+        get_post(author);
+        //send_request(wif);
+    }
 }
 // if input parent of comment return comment
 function get_content(wifPar, authorPar) {
@@ -305,6 +432,6 @@ function get_content(wifPar, authorPar) {
     });
 }
 let golosUrls = document.getElementById('golosUrls');
-golosUrls.onclick = get_content;
+golosUrls.onclick = get_urls;
 let uploadGolos = document.getElementById('uploadGolos');
 uploadGolos.addEventListener('click', uploadToGolos, false);
