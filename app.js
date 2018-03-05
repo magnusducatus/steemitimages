@@ -317,8 +317,8 @@ function renderTableFromJson() {
         //img.onclick = handle;
         let td2 = document.createElement('td');
         td2.className = "text-center"
-        const result = arrJson[i] / 1000000;
-        td2.innerHTML = result.toFixed(2);
+        /*const result = arrJson[i] / 1000000;
+        td2.innerHTML = result.toFixed(2);*/
         let td3 = document.createElement('td');
         //td2.id = file[i].hash;
         td3.className = "text-center";
