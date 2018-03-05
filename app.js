@@ -24,7 +24,24 @@ function handle(e) {
 }
 
 function copyToGolos(e) {
-    arrGolos.add(e.target.id);
+    let tr = document.getElementById('tr'+e.target.id);
+    let but = document.getElementsByClassName(e.target.id);
+    console.log(this);
+    let elem;
+    if (arrGolos.delete(e.target.id)) {
+        console.log('срезал',e.target.id);
+        tr.setAttribute('class', '');
+        this.innerHTML = 'Select to save';
+        elem = true;
+
+    } else {
+        console.log(arrGolos);
+    }
+    if (!elem){
+        arrGolos.add(e.target.id);
+        tr.setAttribute('class', 'table-success');
+        this.innerHTML = 'Select to unsave';
+    }
     console.log('arrGolos', arrGolos.size);
     let uploadGolos = document.getElementById('uploadGolos');
     arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
@@ -34,6 +51,17 @@ function copyLink(e) {
     this.id = e.target.id;
     document.getElementById(this.id).value = host + this.id;
     document.querySelector('#' + this.id).select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.log('Links not correctly works', err);
+    }
+}
+function copyLinkGolos(e) {
+    this.id = e.target.id;
+    console.log(e.target);
+    document.getElementById(this.id).value = this.id;
+    document.getElementById(this.id).select();
     try {
         document.execCommand('copy');
     } catch (err) {
@@ -67,7 +95,7 @@ function test(data) {
             for (let i = 0; i < file.length; i++) {
                 arr2.push(file);
                 let tr = document.createElement('tr');
-                tr.className = ' ' + file[i].hash + ' ';
+                tr.id = 'tr' + file[i].hash + '';
                 let td1 = document.createElement('td');
                 let img = document.createElement('img');
                 let a1 = document.createElement('a');
@@ -109,7 +137,7 @@ function test(data) {
                 td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-outline-secondary';
+                td4but2.className = 'btn btn-outline-secondary',file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = 'Select to save';
                 td4but2.id = file[i].hash;
@@ -333,7 +361,6 @@ function renderTableFromJson() {
         let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
         let input3input1 = document.createElement('input');
-        input3input1.onclick = copyLink;
         input3input1.className = 'form-control';
         input3input1.value = arrJson[i];
         input3input1.type = 'text';
@@ -350,6 +377,7 @@ function renderTableFromJson() {
         td4but1.type = 'button';
         td4but1.innerHTML = 'Copy link';
         td4but1.id = arrJson[i];
+        td4but1.onclick = copyLinkGolos;
 
         /*let td4but2 = document.createElement('button');
         td4but2.className = 'btn btn-outline-secondary';
