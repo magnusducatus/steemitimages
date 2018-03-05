@@ -73,6 +73,7 @@ function test(data) {
                 let a1 = document.createElement('a');
                 a1.href = host + file[i].hash;
                 a1.target = '_blank';
+                a1.className = "d-flex align-items-center flex-column";
                 img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
                 img.heigth = 100;
                 img.width = 100;
@@ -99,7 +100,7 @@ function test(data) {
 
                 let td4 = document.createElement('td');
                 let td4div1 = document.createElement('div');
-                td4div1.className = 'input-group-append';
+                td4div1.className = 'd-flex justify-content-around';
                 let td4but1 = document.createElement('button');
                 td4but1.className = 'btn btn-outline-secondary';
                 td4but1.type = 'button';
@@ -197,7 +198,7 @@ Dropzone.options.dropzone = {
             };
             reader.readAsArrayBuffer(fileList);
             // Create the remove button
-            var removeButton = Dropzone.createElement('<button class="btn btn-warning">Remove file</button>');
+            var removeButton = Dropzone.createElement('<button class="btn btn-danger">Remove file</button>');
             // Capture the Dropzone instance as closure.
             var _this = this;
             //remove all files
@@ -243,7 +244,7 @@ function send_request(wifPar, authorPar, status) {
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
-    this.wif = wifPar; //'5KYak1h6tjxgePymowyaY9LsdLLQWqKxTtsDYjQ9sPecUVyFBMn'; // private posting key
+    this.wif = wifPar; // // private posting key
     //this.permlink = 'testphotook'; // post url-adress
     //this.parentPermlink = 'photo'; // main tag
     const_permlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
@@ -309,11 +310,13 @@ function renderTableFromJson() {
         let a1 = document.createElement('a');
         a1.href = host + arrJson[i];
         a1.target = '_blank';
+        a1.className = "d-flex align-items-center flex-column";
         img.src = host+arrJson[i];
         /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         console.log(img.src);
         img.heigth = 100;
         img.width = 100;
+        
 
         a1.appendChild(img);
         //img.onclick = handle;
@@ -339,7 +342,7 @@ function renderTableFromJson() {
 
         let td4 = document.createElement('td');
         let td4div1 = document.createElement('div');
-        td4div1.className = 'input-group-append';
+        td4div1.className = 'd-flex justify-content-around';
         let td4but1 = document.createElement('button');
         td4but1.className = 'btn btn-outline-secondary';
         td4but1.type = 'button';
