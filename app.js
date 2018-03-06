@@ -6,10 +6,10 @@ var ipfs = window.IpfsApi({
 
 swal.setDefaults({
     buttonsStyling: true,
-   confirmButtonText: '<span class="icon-checkmark"></span> OK',
-  confirmButtonColor: '#5cb85c',
-  cancelButtonText: '<span class="icon-cross"></span> Cancel',
-  cancelButtonColor: '#d9534f',
+    confirmButtonText: '<span class="icon-checkmark"></span> OK',
+    confirmButtonColor: '#5cb85c',
+    cancelButtonText: '<span class="icon-cross"></span> Cancel',
+    cancelButtonColor: '#d9534f',
 });
 
 
@@ -27,29 +27,30 @@ var arrGolos = new Set();
 //for add to table from json golos
 var arrJson = [];
 
-setInterval(()=>{
-    checkOnline();    
+setInterval(() => {
+    checkOnline();
 }, 10000);
 
 
 function handle(e) {
     console.log(e.target.id);
-    window.open(host+ e.target.id);
+    window.open(host + e.target.id);
 }
 
-function checkOnline(){
+function checkOnline() {
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
-    fetch(host+hash)
-      .then(res => {
-        let span = document.getElementById('node-status');
-        span.className = 'text-success';
-        span.innerHTML = 'online';
-      }).catch((err) => {
-        let span = document.getElementById('node-status');
-        span.className = 'text-danger';
-        span.innerHTML = 'offline';
-      })
-  }
+    fetch(host + hash)
+        .then(res => {
+            let span = document.getElementById('node-status');
+            span.className = 'text-success';
+            span.innerHTML = 'online';
+        }).catch((err) => {
+            let span = document.getElementById('node-status');
+            span.className = 'text-danger';
+            span.innerHTML = 'offline';
+        })
+}
+
 function copyToGolos(e) {
     let tr = document.getElementById('tr' + this.id);
     let but = document.getElementsByClassName(this.id);
@@ -75,7 +76,7 @@ function copyToGolos(e) {
 }
 
 function copyLink(e) {
-    document.getElementsByClassName('td3-input'+e.target.id)[0].select();
+    document.getElementsByClassName('td3-input' + e.target.id)[0].select();
     try {
         document.execCommand('copy');
     } catch (err) {
@@ -83,16 +84,17 @@ function copyLink(e) {
     }
 }
 
-function handleChange(e){
+function handleChange(e) {
     let map = new Map([
-        ['viewer-links',host+this.id],
-        ['html-embed-medium','<a href="'+host+this.id+'"><img src="'+host+this.id+'" alt="'+this.id+'" border="0"></a><br /><a target="_blank" href="'+host+this.id+'">загрузить</a><br />'],
-        ['bbcode-embed-medium','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url][url='+host+this.id+']загрузить[/url]'],
-        ['github-embed-medium','[!'+host+this.id+']('+host+this.id+')'],
-        ]);
+        ['viewer-links', host + this.id],
+        ['html-embed-medium', '<a href="' + host + this.id + '"><img src="' + host + this.id + '" alt="' + this.id + '" border="0"></a><br /><a target="_blank" href="' + host + this.id + '">загрузить</a><br />'],
+        ['bbcode-embed-medium', '[url=' + host + this.id + '][img]' + host + this.id + '[/img][/url][url=' + host + this.id + ']загрузить[/url]'],
+        ['github-embed-medium', '[!' + host + this.id + '](' + host + this.id + ')'],
+    ]);
     let link = map.get(e.target.value);
-   document.getElementsByClassName('td3-input'+this.id)[0].value = link;
+    document.getElementsByClassName('td3-input' + this.id)[0].value = link;
 }
+
 function _arrayBufferToBase64(buffer) {
     var binary = '';
     var bytes = new Uint8Array(buffer);
@@ -103,6 +105,7 @@ function _arrayBufferToBase64(buffer) {
     }
     return window.btoa(binary);
 }
+
 function copyLinkGolos(e) {
     this.id = e.target.id;
     console.log(e.target);
@@ -161,9 +164,9 @@ function test(data) {
 
                 td3.className = "text-center";
 
-                
-               
-                
+
+
+
                 let td3div2 = document.createElement('div');
                 td3div2.className = 'form-group';
                 let td3p1 = document.createElement('p');
@@ -178,22 +181,22 @@ function test(data) {
                 let td3opg1 = document.createElement('optgroup');
                 td3opg1.label = 'Links';
                 let td3opt1 = document.createElement('option');
-                td3opt1.value='viewer-links';
+                td3opt1.value = 'viewer-links';
                 td3opt1.innerHTML = 'Links for view'
                 let td3opg2 = document.createElement('optgroup');
                 td3opg2.label = 'HTML-code';
                 let td3opt2 = document.createElement('option');
-                td3opt2.value='html-embed-medium';
+                td3opt2.value = 'html-embed-medium';
                 td3opt2.innerHTML = 'HTML-code fullsize with link';
                 let td3opg3 = document.createElement('optgroup');
                 td3opg3.label = 'BB-code';
                 let td3opt3 = document.createElement('option');
-                td3opt3.value='bbcode-embed-medium';
+                td3opt3.value = 'bbcode-embed-medium';
                 td3opt3.innerHTML = 'BB-code fullsize with link';
                 let td3opg4 = document.createElement('optgroup');
                 td3opg4.label = 'GitHub-code';
                 let td3opt4 = document.createElement('option');
-                td3opt4.value='github-embed-medium';
+                td3opt4.value = 'github-embed-medium';
                 td3opt4.innerHTML = 'GitHub fullsize with link'
 
                 td3p1.appendChild(td3select);
@@ -201,28 +204,26 @@ function test(data) {
                 td3select.appendChild(td3opg2);
                 td3select.appendChild(td3opg3);
                 td3select.appendChild(td3opg4);
-                
+
                 td3opg1.appendChild(td3opt1);
                 td3opg2.appendChild(td3opt2);
                 td3opg3.appendChild(td3opt3);
                 td3opg4.appendChild(td3opt4);
-                
-                
 
-                
+
+
 
                 let input3div1 = document.createElement('div');
                 input3div1.className = 'input-group mb-3';
                 let input3input1 = document.createElement('input');
                 input3input1.onclick = copyLink;
-                input3input1.className = 'form-control td3-input'+file[i].hash;
+                input3input1.className = 'form-control td3-input' + file[i].hash;
                 input3input1.value = host + file[i].hash;
                 input3input1.type = 'text';
                 input3input1.id = file[i].hash;
                 td3.appendChild(input3div1);
                 input3div1.appendChild(input3input1);
 
-            
 
 
 
@@ -443,59 +444,59 @@ function renderTableFromJson() {
         td3.className = "text-center";
         //td2.onclick = handle; 
         let td3div2 = document.createElement('div');
-                td3div2.className = 'form-group';
-                let td3p1 = document.createElement('p');
-                td3.appendChild(td3div2);
-                td3div2.appendChild(td3p1);
+        td3div2.className = 'form-group';
+        let td3p1 = document.createElement('p');
+        td3.appendChild(td3div2);
+        td3div2.appendChild(td3p1);
 
-                let td3select = document.createElement('select');
-                td3select.className = "form-control";
-                td3select.id = arrJson[i];
-                td3select.onchange = handleChange;
+        let td3select = document.createElement('select');
+        td3select.className = "form-control";
+        td3select.id = arrJson[i];
+        td3select.onchange = handleChange;
 
-                let td3opg1 = document.createElement('optgroup');
-                td3opg1.label = 'Links';
-                let td3opt1 = document.createElement('option');
-                td3opt1.value='viewer-links';
-                td3opt1.innerHTML = 'Links for view'
-                let td3opg2 = document.createElement('optgroup');
-                td3opg2.label = 'HTML-code';
-                let td3opt2 = document.createElement('option');
-                td3opt2.value='html-embed-medium';
-                td3opt2.innerHTML = 'HTML-code fullsize with link';
-                let td3opg3 = document.createElement('optgroup');
-                td3opg3.label = 'BB-code';
-                let td3opt3 = document.createElement('option');
-                td3opt3.value='bbcode-embed-medium';
-                td3opt3.innerHTML = 'BB-code fullsize with link';
-                let td3opg4 = document.createElement('optgroup');
-                td3opg4.label = 'GitHub-code';
-                let td3opt4 = document.createElement('option');
-                td3opt4.value='github-embed-medium';
-                td3opt4.innerHTML = 'GitHub fullsize with link'
+        let td3opg1 = document.createElement('optgroup');
+        td3opg1.label = 'Links';
+        let td3opt1 = document.createElement('option');
+        td3opt1.value = 'viewer-links';
+        td3opt1.innerHTML = 'Links for view'
+        let td3opg2 = document.createElement('optgroup');
+        td3opg2.label = 'HTML-code';
+        let td3opt2 = document.createElement('option');
+        td3opt2.value = 'html-embed-medium';
+        td3opt2.innerHTML = 'HTML-code fullsize with link';
+        let td3opg3 = document.createElement('optgroup');
+        td3opg3.label = 'BB-code';
+        let td3opt3 = document.createElement('option');
+        td3opt3.value = 'bbcode-embed-medium';
+        td3opt3.innerHTML = 'BB-code fullsize with link';
+        let td3opg4 = document.createElement('optgroup');
+        td3opg4.label = 'GitHub-code';
+        let td3opt4 = document.createElement('option');
+        td3opt4.value = 'github-embed-medium';
+        td3opt4.innerHTML = 'GitHub fullsize with link'
 
-                td3p1.appendChild(td3select);
-                td3select.appendChild(td3opg1);
-                td3select.appendChild(td3opg2);
-                td3select.appendChild(td3opg3);
-                td3select.appendChild(td3opg4);
-                
-                td3opg1.appendChild(td3opt1);
-                td3opg2.appendChild(td3opt2);
-                td3opg3.appendChild(td3opt3);
-                td3opg4.appendChild(td3opt4);
-                
-               let input3div1 = document.createElement('div');
+        td3p1.appendChild(td3select);
+        td3select.appendChild(td3opg1);
+        td3select.appendChild(td3opg2);
+        td3select.appendChild(td3opg3);
+        td3select.appendChild(td3opg4);
+
+        td3opg1.appendChild(td3opt1);
+        td3opg2.appendChild(td3opt2);
+        td3opg3.appendChild(td3opt3);
+        td3opg4.appendChild(td3opt4);
+
+        let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
         let input3input1 = document.createElement('input');
-        input3input1.className = 'form-control td3-input'+arrJson[i];
+        input3input1.className = 'form-control td3-input' + arrJson[i];
         input3input1.value = arrJson[i];
         input3input1.type = 'text';
         input3input1.id = arrJson[i];
 
         td3.appendChild(input3div1);
         input3div1.appendChild(input3input1);
-   
+
 
         let td4 = document.createElement('td');
         let td4div1 = document.createElement('div');
