@@ -24,12 +24,12 @@ function handle(e) {
 }
 
 function copyToGolos(e) {
-    let tr = document.getElementById('tr'+e.target.id);
+    let tr = document.getElementById('tr' + e.target.id);
     let but = document.getElementsByClassName(e.target.id);
     console.log(this);
     let elem;
     if (arrGolos.delete(e.target.id)) {
-        console.log('срезал',e.target.id);
+        console.log('срезал', e.target.id);
         tr.setAttribute('class', '');
         this.innerHTML = 'Select to save';
         elem = true;
@@ -37,7 +37,7 @@ function copyToGolos(e) {
     } else {
         console.log(arrGolos);
     }
-    if (!elem){
+    if (!elem) {
         arrGolos.add(e.target.id);
         tr.setAttribute('class', 'table-success');
         this.innerHTML = 'Select to unsave';
@@ -57,6 +57,7 @@ function copyLink(e) {
         console.log('Links not correctly works', err);
     }
 }
+
 function copyLinkGolos(e) {
     this.id = e.target.id;
     console.log(e.target);
@@ -137,7 +138,7 @@ function test(data) {
                 td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-outline-secondary',file[i].hash;
+                td4but2.className = 'btn btn-outline-secondary', file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = 'Select to save';
                 td4but2.id = file[i].hash;
@@ -267,12 +268,12 @@ let const_permlik = 'golos-save-url-test';
 function send_request(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        image:[]
+        image: []
     };
     arrGolos.forEach((value) => {
-        console.log('arrGolos',value);
-        this.jsonMetadata.image.push(host+value);
-        this.body += '<p><img src="'+host + value+'"></img>';
+        console.log('arrGolos', value);
+        this.jsonMetadata.image.push(host + value);
+        this.body += '<p><img src="' + host + value + '"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
@@ -346,7 +347,7 @@ function renderTableFromJson() {
         /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         img.heigth = 100;
         img.width = 100;
-        
+
 
         a1.appendChild(img);
         //img.onclick = handle;
@@ -466,7 +467,35 @@ function get_content(wifPar, authorPar) {
         } else console.error(err);
     });
 }
+
+function about_gi() {
+    swal({
+        title: 'About this project!',
+        html: '<div>' +
+            '<p class="float-left text-left">' +
+            'golosICO - platform for holding ICO companies on the blockchain <a target="_blank" href="https://golos.io">Golos</a>! This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).' +
+            '</p>' +
+            '<ul class="float-left text-left">' +
+            'We use:' +
+            '<li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>' +
+            '<li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>' +
+            '<li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>' +
+            '<li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - A client library for the IPFS HTTP API, implemented in JavaScript;</li>' +
+            '<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript\'s popup boxes.</li>' +
+            '</ul>' +
+            '</div>',
+        type: 'info',
+        buttonsStyling: false,
+        confirmButtonClass: 'btn btn-success btn-lg',
+        confirmButtonText: 'Cool!',
+        position: 'top'
+    });
+}
 let golosUrls = document.getElementById('golos-urls');
 golosUrls.onclick = get_urls;
+
 let uploadGolos = document.getElementById('upload-golos');
 uploadGolos.addEventListener('click', uploadToGolos, false);
+
+let about_golosimages_call_btn = document.getElementById('about_golosimages_call_btn');
+about_golosimages_call_btn.addEventListener('click', about_gi, false);
