@@ -43,7 +43,6 @@ async function auth(){
                      resolve('hel');
                     });
             } else {
-                console.log();
                 return {login, pass, priv}; 
             } 
         }
