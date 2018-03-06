@@ -229,7 +229,7 @@ function test(data) {
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-success', file[i].hash;
                 td4but2.type = 'button';
-                td4but2.innerHTML = '<span class="icon-checkmark"> Select to save';
+                td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
                 td4but2.id = file[i].hash;
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
