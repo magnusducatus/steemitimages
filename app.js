@@ -234,14 +234,14 @@ function test(data) {
                 let td4but1 = document.createElement('button');
                 td4but1.className = 'btn btn-info icon-new-tab';
                 td4but1.type = 'button';
-                td4but1.innerHTML = 'Copy link';
+                td4but1.innerHTML = ' Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
                 let td4br = document.createElement('br');
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-success icon-checkmark', file[i].hash;
                 td4but2.type = 'button';
-                td4but2.innerHTML = 'Select to save';
+                td4but2.innerHTML = ' Select to save';
                 td4but2.id = file[i].hash;
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
