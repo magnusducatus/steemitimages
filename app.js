@@ -60,6 +60,15 @@ function copyLinkGolos(e) {
         console.log('Links not correctly works', err);
     }
 }
+function copyLink(e) {
+    document.getElementsByClassName('td3-input')[0].select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.log('Links not correctly works', err);
+    }
+}
+
 function handleChange(e){
     let map = new Map([
         ['viewer-links',host+this.id],
