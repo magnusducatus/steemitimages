@@ -8,7 +8,8 @@ golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
-const host = 'http://91.201.41.253:7777/ipfs/';
+const mid = '/ipfs/';
+const host = 'http://91.201.41.253:7777';
 //for add to IPFS
 var arr1 = [];
 //for check table
@@ -20,7 +21,7 @@ var arrJson = [];
 
 function handle(e) {
     console.log(e.target.id);
-    window.open(host + e.target.id);
+    window.open(host+mid+ e.target.id);
 }
 
 function copyToGolos(e) {
@@ -47,17 +48,39 @@ function copyToGolos(e) {
     arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 }
 
-function copyLink(e) {
+
+function copyLinkGolos(e) {
     this.id = e.target.id;
-    document.getElementById(this.id).value = host + this.id;
-    document.querySelector('#' + this.id).select();
+    console.log(e.target);
+    document.getElementById(this.id).value = this.id;
+    document.getElementById(this.id).select();
     try {
         document.execCommand('copy');
     } catch (err) {
         console.log('Links not correctly works', err);
     }
 }
-
+function handleChange(e){
+    let map = new Map([
+        ['viewer-links',host+this.id],
+        ['html-embed-medium','<a href="'+host+this.id+'"><img src="'+host+this.id+'" alt="'+this.id+'" border="0"></a><br /><a target="_blank" href="'+host+this.id+'">загрузить</a><br />'],
+        ['html-embed-thumbnail','<a href="'+host+this.id+'"><img src="'+host+this.id+'" alt="'+this.id+'" border="0"></a>'],
+        ['bbcode-embed-medium','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url][url='+host+this.id+']загрузить[/url]'],
+        ['bbcode-embed-thumbnail','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url]'],
+        ]);
+    let link = map.get(e.target.value);
+   document.getElementsByClassName('td3-input')[0].value = link;
+}
+function _arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    console.log(typeof bytes);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
 function copyLinkGolos(e) {
     this.id = e.target.id;
     console.log(e.target);
@@ -100,7 +123,7 @@ function test(data) {
                 let td1 = document.createElement('td');
                 let img = document.createElement('img');
                 let a1 = document.createElement('a');
-                a1.href = host + file[i].hash;
+                a1.href = host +mid+ file[i].hash;
                 a1.target = '_blank';
                 a1.className = "d-flex align-items-center flex-column";
                 img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
@@ -116,20 +139,70 @@ function test(data) {
 
                 td3.className = "text-center";
 
+                
+                let td3div2 = document.createElement('div');
+                td3div2.className = 'input-group mb-3';
+                let td3p1 = document.createElement('p');
+                td3.appendChild(td3div2);
+                td3div2.appendChild(td3p1);
+
+                let td3select = document.createElement('select');
+                td3select.id = file[i].hash;
+                td3select.onchange = handleChange;
+
+                let td3opg1 = document.createElement('optgroup');
+                td3opg1.label = 'Ссылки';
+                let td3opt1 = document.createElement('option');
+                td3opt1.value='viewer-links';
+                td3opt1.innerHTML = 'Ссылка на просмотр'
+                let td3opg2 = document.createElement('optgroup');
+                td3opg2.label = 'HTML-коды';
+                let td3opt2 = document.createElement('option');
+                td3opt2.value='html-embed-medium';
+                td3opt2.innerHTML = 'HTML-код полноразмерного со ссылкой';
+                let td3opt3 = document.createElement('option');
+                td3opt3.value='html-embed-thumbnail';
+                td3opt3.innerHTML = 'HTML-код миниатюры со ссылкой'
+                let td3opg3 = document.createElement('optgroup');
+                td3opg3.label = 'BB-коды';
+                let td3opt4 = document.createElement('option');
+                td3opt4.value='bbcode-embed-medium';
+                td3opt4.innerHTML = 'HTML-код миниатюры со ссылкой'
+                let td3opt5 = document.createElement('option');
+                td3opt5.value='bbcode-embed-thumbnail';
+                td3opt5.innerHTML = 'HTML-код миниатюры со ссылкой'
+
+                td3p1.appendChild(td3select);
+                td3select.appendChild(td3opg1);
+                td3select.appendChild(td3opg2);
+                td3select.appendChild(td3opg3);
+                
+                td3opg1.appendChild(td3opt1);
+                td3opg2.appendChild(td3opt2);
+                td3opg2.appendChild(td3opt3);
+                td3opg3.appendChild(td3opt4);
+                td3opg3.appendChild(td3opt5);
+                
+                
+
                 let input3div1 = document.createElement('div');
                 input3div1.className = 'input-group mb-3';
                 let input3input1 = document.createElement('input');
                 input3input1.onclick = copyLink;
-                input3input1.className = 'form-control';
+                input3input1.className = 'form-control td3-input';
                 input3input1.value = host + file[i].hash;
                 input3input1.type = 'text';
                 input3input1.id = file[i].hash;
                 td3.appendChild(input3div1);
                 input3div1.appendChild(input3input1);
 
+            
+
+
+
                 let td4 = document.createElement('td');
                 let td4div1 = document.createElement('div');
-                td4div1.className = 'd-flex justify-content-around';
+                td4div1.className = 'd-flex d-flex flex-column-reverse';
                 let td4but1 = document.createElement('button');
                 td4but1.className = 'btn btn-info icon-new-tab';
                 td4but1.type = 'button';
@@ -255,8 +328,8 @@ function send_request(wifPar, authorPar, status) {
     };
     arrGolos.forEach((value) => {
         console.log('arrGolos', value);
-        this.jsonMetadata.image.push(host + value);
-        this.body += '<p><img src="' + host + value + '"></img>';
+        this.jsonMetadata.image.push(host +mid+ value);
+        this.body += '<p><img src="' + host +mid+ value + '"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
