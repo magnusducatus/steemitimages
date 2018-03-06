@@ -6,12 +6,10 @@ var ipfs = window.IpfsApi({
 
 swal.setDefaults({
     buttonsStyling: true,
-   confirmButtonText: 'OK',
+   confirmButtonText: '<span class="icon-checkmark"></span> OK',
   confirmButtonColor: '#5cb85c',
-  confirmButtonClass: 'icon-checkmark',
-  cancelButtonText: 'Cancel',
+  cancelButtonText: '<span class="icon-cross"></span> Cancel',
   cancelButtonColor: '#d9534f',
-  cancelButtonClass: 'icon-cross',
 });
 
 

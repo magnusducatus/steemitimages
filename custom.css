@@ -77,6 +77,10 @@ footer {
 	display: none;
 }
 
+#node-status{
+  padding-left: 0.28em;
+}
+
 .navbar li {
   margin: 0 20px;
 }
