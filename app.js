@@ -90,9 +90,8 @@ function handleChange(e){
     let map = new Map([
         ['viewer-links',host+this.id],
         ['html-embed-medium','<a href="'+host+this.id+'"><img src="'+host+this.id+'" alt="'+this.id+'" border="0"></a><br /><a target="_blank" href="'+host+this.id+'">загрузить</a><br />'],
-        ['html-embed-thumbnail','<a href="'+host+this.id+'"><img src="'+host+this.id+'" alt="'+this.id+'" border="0"></a>'],
         ['bbcode-embed-medium','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url][url='+host+this.id+']загрузить[/url]'],
-        ['bbcode-embed-thumbnail','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url]'],
+        ['github-embed-medium','[!'+host+this.id+']('+host+this.id+')'],
         ]);
     let link = map.get(e.target.value);
    document.getElementsByClassName('td3-input'+this.id)[0].value = link;
@@ -166,6 +165,8 @@ function test(data) {
                 td3.className = "text-center";
 
                 
+               
+                
                 let td3div2 = document.createElement('div');
                 td3div2.className = 'input-group mb-3';
                 let td3p1 = document.createElement('p');
@@ -177,38 +178,39 @@ function test(data) {
                 td3select.onchange = handleChange;
 
                 let td3opg1 = document.createElement('optgroup');
-                td3opg1.label = 'Ссылки';
+                td3opg1.label = 'Links';
                 let td3opt1 = document.createElement('option');
                 td3opt1.value='viewer-links';
-                td3opt1.innerHTML = 'Ссылка на просмотр'
+                td3opt1.innerHTML = 'Links for view'
                 let td3opg2 = document.createElement('optgroup');
-                td3opg2.label = 'HTML-коды';
+                td3opg2.label = 'HTML-code';
                 let td3opt2 = document.createElement('option');
                 td3opt2.value='html-embed-medium';
-                td3opt2.innerHTML = 'HTML-код полноразмерного со ссылкой';
-                let td3opt3 = document.createElement('option');
-                td3opt3.value='html-embed-thumbnail';
-                td3opt3.innerHTML = 'HTML-код миниатюры со ссылкой'
+                td3opt2.innerHTML = 'HTML-code fullsize with link';
                 let td3opg3 = document.createElement('optgroup');
-                td3opg3.label = 'BB-коды';
+                td3opg3.label = 'BB-code';
+                let td3opt3 = document.createElement('option');
+                td3opt3.value='bbcode-embed-medium';
+                td3opt3.innerHTML = 'BB-code fullsize with link';
+                let td3opg4 = document.createElement('optgroup');
+                td3opg4.label = 'GitHub-code';
                 let td3opt4 = document.createElement('option');
-                td3opt4.value='bbcode-embed-medium';
-                td3opt4.innerHTML = 'HTML-код миниатюры со ссылкой'
-                let td3opt5 = document.createElement('option');
-                td3opt5.value='bbcode-embed-thumbnail';
-                td3opt5.innerHTML = 'HTML-код миниатюры со ссылкой'
+                td3opt4.value='github-embed-medium';
+                td3opt4.innerHTML = 'GitHub fullsize with link'
 
                 td3p1.appendChild(td3select);
                 td3select.appendChild(td3opg1);
                 td3select.appendChild(td3opg2);
                 td3select.appendChild(td3opg3);
+                td3select.appendChild(td3opg4);
                 
                 td3opg1.appendChild(td3opt1);
                 td3opg2.appendChild(td3opt2);
-                td3opg2.appendChild(td3opt3);
-                td3opg3.appendChild(td3opt4);
-                td3opg3.appendChild(td3opt5);
+                td3opg3.appendChild(td3opt3);
+                td3opg4.appendChild(td3opt4);
                 
+                
+
                 
 
                 let input3div1 = document.createElement('div');
