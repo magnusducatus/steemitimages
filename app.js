@@ -51,23 +51,23 @@ function checkOnline(){
       })
   }
 function copyToGolos(e) {
-    let tr = document.getElementById('tr' + e.target.id);
-    let but = document.getElementsByClassName(e.target.id);
-    console.log(this);
+    let tr = document.getElementById('tr' + this.id);
+    let but = document.getElementsByClassName(this.id);
+    console.log(this.id);
     let elem;
-    if (arrGolos.delete(e.target.id)) {
-        console.log('срезал', e.target.id);
+    if (arrGolos.delete(this.id)) {
+        console.log('срезал', this.id);
         tr.setAttribute('class', '');
-        this.innerHTML = 'Select to save';
+        this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
     } else {
         console.log(arrGolos);
     }
     if (!elem) {
-        arrGolos.add(e.target.id);
+        arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
-        this.innerHTML = 'Select to unsave';
+        this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
     }
     console.log('arrGolos', arrGolos.size);
     let uploadGolos = document.getElementById('upload-golos');
