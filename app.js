@@ -29,7 +29,7 @@ var arrJson = [];
 
 setInterval(() => {
     checkOnline();
-}, 10000);
+}, 3000);
 
 
 function handle(e) {
@@ -178,37 +178,26 @@ function test(data) {
                 td3select.id = file[i].hash;
                 td3select.onchange = handleChange;
 
-                let td3opg1 = document.createElement('optgroup');
-                td3opg1.label = 'Links';
+
                 let td3opt1 = document.createElement('option');
                 td3opt1.value = 'viewer-links';
                 td3opt1.innerHTML = 'Links for view'
-                let td3opg2 = document.createElement('optgroup');
-                td3opg2.label = 'HTML-code';
                 let td3opt2 = document.createElement('option');
                 td3opt2.value = 'html-embed-medium';
                 td3opt2.innerHTML = 'HTML-code fullsize with link';
-                let td3opg3 = document.createElement('optgroup');
-                td3opg3.label = 'BB-code';
                 let td3opt3 = document.createElement('option');
                 td3opt3.value = 'bbcode-embed-medium';
                 td3opt3.innerHTML = 'BB-code fullsize with link';
-                let td3opg4 = document.createElement('optgroup');
-                td3opg4.label = 'GitHub-code';
                 let td3opt4 = document.createElement('option');
                 td3opt4.value = 'github-embed-medium';
                 td3opt4.innerHTML = 'GitHub fullsize with link'
 
                 td3p1.appendChild(td3select);
-                td3select.appendChild(td3opg1);
-                td3select.appendChild(td3opg2);
-                td3select.appendChild(td3opg3);
-                td3select.appendChild(td3opg4);
 
-                td3opg1.appendChild(td3opt1);
-                td3opg2.appendChild(td3opt2);
-                td3opg3.appendChild(td3opt3);
-                td3opg4.appendChild(td3opt4);
+                td3select.appendChild(td3opt1);
+                td3select.appendChild(td3opt2);
+                td3select.appendChild(td3opt3);
+                td3select.appendChild(td3opt4);
 
 
 
@@ -454,37 +443,25 @@ function renderTableFromJson() {
         td3select.id = arrJson[i];
         td3select.onchange = handleChange;
 
-        let td3opg1 = document.createElement('optgroup');
-        td3opg1.label = 'Links';
         let td3opt1 = document.createElement('option');
         td3opt1.value = 'viewer-links';
         td3opt1.innerHTML = 'Links for view'
-        let td3opg2 = document.createElement('optgroup');
-        td3opg2.label = 'HTML-code';
         let td3opt2 = document.createElement('option');
         td3opt2.value = 'html-embed-medium';
         td3opt2.innerHTML = 'HTML-code fullsize with link';
-        let td3opg3 = document.createElement('optgroup');
-        td3opg3.label = 'BB-code';
         let td3opt3 = document.createElement('option');
         td3opt3.value = 'bbcode-embed-medium';
         td3opt3.innerHTML = 'BB-code fullsize with link';
-        let td3opg4 = document.createElement('optgroup');
-        td3opg4.label = 'GitHub-code';
         let td3opt4 = document.createElement('option');
         td3opt4.value = 'github-embed-medium';
         td3opt4.innerHTML = 'GitHub fullsize with link'
 
         td3p1.appendChild(td3select);
-        td3select.appendChild(td3opg1);
-        td3select.appendChild(td3opg2);
-        td3select.appendChild(td3opg3);
-        td3select.appendChild(td3opg4);
 
-        td3opg1.appendChild(td3opt1);
-        td3opg2.appendChild(td3opt2);
-        td3opg3.appendChild(td3opt3);
-        td3opg4.appendChild(td3opt4);
+        td3select.appendChild(td3opt1);
+        td3select.appendChild(td3opt2);
+        td3select.appendChild(td3opt3);
+        td3select.appendChild(td3opt4);
 
         let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
