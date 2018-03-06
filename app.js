@@ -32,12 +32,10 @@ function checkOnline(){
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
     fetch(host+hash)
       .then(res => {
-        console.log(res);
         let span = document.getElementById('node-status');
         span.className = 'text-success';
         span.innerHTML = 'online';
       }).catch((err) => {
-        console.log(err);
         let span = document.getElementById('node-status');
         span.className = 'text-danger';
         span.innerHTML = 'offline';
@@ -558,7 +556,7 @@ function about_gi() {
         title: 'About this project!',
         html: '<div>' +
             '<p class="float-left text-left">' +
-            'golosICO - platform for holding ICO companies on the blockchain <a target="_blank" href="https://golos.io">Golos</a>! This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).' +
+            'GolosImages - this microservice for storing images on the  blockchain <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).' +
             '</p>' +
             '<ul class="float-left text-left">' +
             'We use:' +
