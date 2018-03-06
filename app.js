@@ -131,14 +131,14 @@ function test(data) {
                 let td4div1 = document.createElement('div');
                 td4div1.className = 'd-flex justify-content-around';
                 let td4but1 = document.createElement('button');
-                td4but1.className = 'btn btn-outline-secondary';
+                td4but1.className = 'btn btn-info icon-new-tab';
                 td4but1.type = 'button';
                 td4but1.innerHTML = 'Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-outline-secondary', file[i].hash;
+                td4but2.className = 'btn btn-success icon-checkmark', file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = 'Select to save';
                 td4but2.id = file[i].hash;
@@ -228,7 +228,7 @@ Dropzone.options.dropzone = {
             };
             reader.readAsArrayBuffer(fileList);
             // Create the remove button
-            var removeButton = Dropzone.createElement('<button class="btn btn-danger">Remove file</button>');
+            var removeButton = Dropzone.createElement('<button class="btn btn-danger icon-cancel-circle"></button>');
             // Capture the Dropzone instance as closure.
             var _this = this;
             //remove all files
@@ -374,7 +374,7 @@ function renderTableFromJson() {
         let td4div1 = document.createElement('div');
         td4div1.className = 'd-flex justify-content-around';
         let td4but1 = document.createElement('button');
-        td4but1.className = 'btn btn-outline-secondary';
+        td4but1.className = 'btn btn-success icon-checkmark';
         td4but1.type = 'button';
         td4but1.innerHTML = 'Copy link';
         td4but1.id = arrJson[i];

@@ -26,7 +26,7 @@ async function auth(){
     closeOnConfirm: true,
     showCloseButton: true,
     confirmButtonColor: "#5cb85c",
-    confirmButtonText: "Ok",
+    confirmButtonText: "<button type=\"button\" class=\"btn btn-primary icon-checkmark\">Ok</button>",
     preConfirm: async () => {
             const { login, pass, priv } = await getInputsVal();
             if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
