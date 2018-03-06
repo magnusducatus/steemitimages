@@ -24,12 +24,12 @@ function handle(e) {
 }
 
 function copyToGolos(e) {
-    let tr = document.getElementById('tr' + e.target.id);
+    let tr = document.getElementById('tr'+e.target.id);
     let but = document.getElementsByClassName(e.target.id);
     console.log(this);
     let elem;
     if (arrGolos.delete(e.target.id)) {
-        console.log('срезал', e.target.id);
+        console.log('срезал',e.target.id);
         tr.setAttribute('class', '');
         this.innerHTML = 'Select to save';
         elem = true;
@@ -37,7 +37,7 @@ function copyToGolos(e) {
     } else {
         console.log(arrGolos);
     }
-    if (!elem) {
+    if (!elem){
         arrGolos.add(e.target.id);
         tr.setAttribute('class', 'table-success');
         this.innerHTML = 'Select to unsave';
@@ -57,7 +57,6 @@ function copyLink(e) {
         console.log('Links not correctly works', err);
     }
 }
-
 function copyLinkGolos(e) {
     this.id = e.target.id;
     console.log(e.target);
@@ -138,7 +137,7 @@ function test(data) {
                 td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-outline-secondary', file[i].hash;
+                td4but2.className = 'btn btn-outline-secondary',file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = 'Select to save';
                 td4but2.id = file[i].hash;
@@ -268,12 +267,12 @@ let const_permlik = 'golos-save-url-test';
 function send_request(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        image: []
+        image:[]
     };
     arrGolos.forEach((value) => {
-        console.log('arrGolos', value);
-        this.jsonMetadata.image.push(host + value);
-        this.body += '<p><img src="' + host + value + '"></img>';
+        console.log('arrGolos',value);
+        this.jsonMetadata.image.push(host+value);
+        this.body += '<p><img src="'+host + value+'"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
@@ -347,7 +346,7 @@ function renderTableFromJson() {
         /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         img.heigth = 100;
         img.width = 100;
-
+        
 
         a1.appendChild(img);
         //img.onclick = handle;
