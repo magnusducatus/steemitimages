@@ -61,7 +61,7 @@ function copyLinkGolos(e) {
     }
 }
 function copyLink(e) {
-    document.getElementsByClassName('td3-input')[0].select();
+    document.getElementsByClassName('td3-input'+e.target.id)[0].select();
     try {
         document.execCommand('copy');
     } catch (err) {
@@ -78,7 +78,7 @@ function handleChange(e){
         ['bbcode-embed-thumbnail','[url='+host+this.id+'][img]'+host+this.id+'[/img][/url]'],
         ]);
     let link = map.get(e.target.value);
-   document.getElementsByClassName('td3-input')[0].value = link;
+   document.getElementsByClassName('td3-input'+this.id)[0].value = link;
 }
 function _arrayBufferToBase64(buffer) {
     var binary = '';
@@ -198,7 +198,7 @@ function test(data) {
                 input3div1.className = 'input-group mb-3';
                 let input3input1 = document.createElement('input');
                 input3input1.onclick = copyLink;
-                input3input1.className = 'form-control td3-input';
+                input3input1.className = 'form-control td3-input'+file[i].hash;
                 input3input1.value = host + file[i].hash;
                 input3input1.type = 'text';
                 input3input1.id = file[i].hash;
@@ -218,7 +218,7 @@ function test(data) {
                 td4but1.innerHTML = 'Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
-
+                let td4br = document.createElement('br');
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-success icon-checkmark', file[i].hash;
                 td4but2.type = 'button';
@@ -227,6 +227,7 @@ function test(data) {
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
                 td4div1.appendChild(td4but1);
+                td4div1.appendChild(td4br);
                 td4div1.appendChild(td4but2);
 
                 td1.appendChild(a1);
@@ -427,7 +428,7 @@ function renderTableFromJson() {
         let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
         let input3input1 = document.createElement('input');
-        input3input1.className = 'form-control';
+        input3input1.className = 'form-control td3-input';
         input3input1.value = arrJson[i];
         input3input1.type = 'text';
         input3input1.id = arrJson[i];
