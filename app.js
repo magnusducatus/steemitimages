@@ -450,7 +450,7 @@ function renderTableFromJson() {
 
                 let td3select = document.createElement('select');
                 td3select.className = "form-control";
-                td3select.id = file[i].hash;
+                td3select.id = arrJson[i];
                 td3select.onchange = handleChange;
 
                 let td3opg1 = document.createElement('optgroup');
