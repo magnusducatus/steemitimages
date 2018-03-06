@@ -107,15 +107,15 @@ function test(data) {
                 img.heigth = 100;
                 img.width = 100;
                 a1.appendChild(img);
-                //img.onclick = handle;
+
                 let td2 = document.createElement('td');
                 td2.className = "text-center"
                 const result = file[i].size / 1000000;
                 td2.innerHTML = result.toFixed(2);
                 let td3 = document.createElement('td');
-                //td2.id = file[i].hash;
+
                 td3.className = "text-center";
-                //td2.onclick = handle; 
+
                 let input3div1 = document.createElement('div');
                 input3div1.className = 'input-group mb-3';
                 let input3input1 = document.createElement('input');
@@ -146,26 +146,9 @@ function test(data) {
                 td4.appendChild(td4div1);
                 td4div1.appendChild(td4but1);
                 td4div1.appendChild(td4but2);
-                /* let input2 = document.createElement('input');
-                 input2.id = file[i].hash;
-                 input2.value = host + file[i].hash;
-                 input2.readonly = "true";*/
-                /*  let td3 = document.createElement('td');
-                  td3.className = "text-center";
-                  let button3 = document.createElement('button');
-                  button3.id = file[i].hash;
-                  button3.type = 'button';
-                  button3.onclick = copyLink;
-                  button3.innerHTML = 'Copy link';
-                  button3.className = 'btn btn-link';*/
-
-
-
-                //input3div2.appendChild(input3but);
 
                 td1.appendChild(a1);
-                //td2.appendChild(input2);
-                //td3.appendChild(button3);
+
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
