@@ -1,12 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en" class="">
+
 <head>
+    <title>GolosImages</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="dropzone.css"/>
-    <link rel="stylesheet" href="custom.css"/>
-    <!--Yandex.Metrika counter --><script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47877407 = new Ya.Metrika2({ id:47877407, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!--Yandex.Metrika counter -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="dropzone.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <!--Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter47877407 = new Ya.Metrika2({
+                        id: 47877407,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true,
+                        trackHash: true
+                    });
+                } catch (e) {}
+            });
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function() {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/tag.js";
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks2");
+    </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!--Yandex.Metrika counter -->
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,15 +49,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center" href="https://github.com/epexa/golosimages">
-                        <img src="git.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                            <button class="btn btn-light my-2 my-sm-0" id="golos-urls"><span class="icon-link"></span> Get URL to my files</button>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" id="golosUrls" href="#">Get URL to my files</a>
-                         </li>
+                        <li class="nav-item">
+                            <button class="btn btn-light my-2 my-sm-0" id="about_golosico_call_btn"><span class="icon-info"></span> About</button>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://github.com/epexa/golosimages"><span class="icon-github"></span> GitHub</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -35,14 +73,14 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <form action='/' class="dropzone form" id="dropzone">
+                    <form action="/" class="dropzone form" id="dropzone">
                     </form>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
-                    <button id="uploadBtn" class="btn btn-success btn-lg btn-block " type="button">Upload to IPFS</button>
+                    <button id="upload-btn" class="btn btn-success btn-lg btn-block " type="button">Upload to IPFS</button>
                 </div>
             </div>
             <br>
@@ -64,21 +102,21 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="uploadGolos" class="btn btn-warning btn-lg btn-block " type="button" hidden ="true";">Save selected links to blockchain Golos</button>
+                    <button id="upload-golos" class="btn btn-warning btn-lg btn-block " type="button" hidden="true" ; ">Save selected links to blockchain Golos</button>
                 </div>
             </div>
         </main>
     </article>
-    <footer class="footer">
-        <div class="container">
-            <span class="text-muted">Golos Images @ 2018</span>
+    <footer class="footer ">
+        <div class="container ">
+            <span class="text-muted ">Golos Images @ 2018</span>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
-    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/golos-js@0.5.30/dist/golos.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" integrity="sha256-eO9VTVeZLaplH86Iwt8l39+l7GZpLOTsVWYziS5oY0Q=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js "></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/golos-js@0.5.30/dist/golos.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js " crossorigin="anonymous "></script>
+    <script src="auth.js "></script>
+    <script src="app.js "></script>
 </body>
 </html>

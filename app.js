@@ -24,12 +24,12 @@ function handle(e) {
 }
 
 function copyToGolos(e) {
-    let tr = document.getElementById('tr'+e.target.id);
+    let tr = document.getElementById('tr' + e.target.id);
     let but = document.getElementsByClassName(e.target.id);
     console.log(this);
     let elem;
     if (arrGolos.delete(e.target.id)) {
-        console.log('срезал',e.target.id);
+        console.log('срезал', e.target.id);
         tr.setAttribute('class', '');
         this.innerHTML = 'Select to save';
         elem = true;
@@ -37,13 +37,13 @@ function copyToGolos(e) {
     } else {
         console.log(arrGolos);
     }
-    if (!elem){
+    if (!elem) {
         arrGolos.add(e.target.id);
         tr.setAttribute('class', 'table-success');
         this.innerHTML = 'Select to unsave';
     }
     console.log('arrGolos', arrGolos.size);
-    let uploadGolos = document.getElementById('uploadGolos');
+    let uploadGolos = document.getElementById('upload-golos');
     arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 }
 
@@ -57,6 +57,7 @@ function copyLink(e) {
         console.log('Links not correctly works', err);
     }
 }
+
 function copyLinkGolos(e) {
     this.id = e.target.id;
     console.log(e.target);
@@ -137,7 +138,7 @@ function test(data) {
                 td4but1.onclick = copyLink;
 
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-outline-secondary',file[i].hash;
+                td4but2.className = 'btn btn-outline-secondary', file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = 'Select to save';
                 td4but2.id = file[i].hash;
@@ -177,7 +178,7 @@ function test(data) {
             //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
             arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
             let elemIpfs = document.getElementsByClassName('elementIpfs');
-            let uploadGolos = document.getElementById('uploadGolos');
+            let uploadGolos = document.getElementById('upload-golos');
         }
     })
 
@@ -191,7 +192,7 @@ function iter() {
     if (arr1.length != 0) swal('Added successfully!', 'Check the table!')
     arr1 = [];
 }
-const upload = document.getElementById('uploadBtn');
+const upload = document.getElementById('upload-btn');
 upload.addEventListener("click", iter, false);
 
 //init Dropzone
@@ -222,7 +223,7 @@ Dropzone.options.dropzone = {
                 //obj.body = data.target.result;
                 obj.name = fileList.name;
                 arr1.push(obj);
-                let uploadBtn = document.getElementById('uploadBtn');
+                let uploadBtn = document.getElementById('upload-btn');
                 uploadBtn.style.display = "block";
             };
             reader.readAsArrayBuffer(fileList);
@@ -231,10 +232,10 @@ Dropzone.options.dropzone = {
             // Capture the Dropzone instance as closure.
             var _this = this;
             //remove all files
-            document.getElementById("uploadBtn").addEventListener("click", function() {
+            document.getElementById("upload-btn").addEventListener("click", function() {
                 _this.removeAllFiles();
                 arr1 = [];
-                let uploadBtn = document.getElementById('uploadBtn');
+                let uploadBtn = document.getElementById('upload-btn');
                 uploadBtn.style.display = "none";
             });
             // Listen to the click event
@@ -245,7 +246,7 @@ Dropzone.options.dropzone = {
 
                 // Remove the file preview.
                 _this.removeFile(file);
-                let uploadBtn = document.getElementById('uploadBtn');
+                let uploadBtn = document.getElementById('upload-btn');
 
                 for (let i = 0; i < arr1.length; i++) {
                     file.name == arr1[i].name ? arr1.splice(i, 1) : '';
@@ -267,12 +268,12 @@ let const_permlik = 'golos-save-url-test';
 function send_request(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        image:[]
+        image: []
     };
     arrGolos.forEach((value) => {
-        console.log('arrGolos',value);
-        this.jsonMetadata.image.push(host+value);
-        this.body += '<p><img src="'+host + value+'"></img>';
+        console.log('arrGolos', value);
+        this.jsonMetadata.image.push(host + value);
+        this.body += '<p><img src="' + host + value + '"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
@@ -300,7 +301,7 @@ function send_request(wifPar, authorPar, status) {
             console.log('comment', result);
             arrGolos.clear();
 
-            let uploadGolos = document.getElementById('uploadGolos');
+            let uploadGolos = document.getElementById('upload-golos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
             console.log('size after + send', arrGolos.size);
@@ -316,7 +317,7 @@ async function uploadToGolos() {
         console.log('no wif');
     } else {
         console.log('wif ', wif);
-        get_content(wif, author);
+        get_content(wif, username);
         //send_request(wif);
     }
 
@@ -346,7 +347,7 @@ function renderTableFromJson() {
         /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         img.heigth = 100;
         img.width = 100;
-        
+
 
         a1.appendChild(img);
         //img.onclick = handle;
@@ -443,13 +444,13 @@ function get_post(authorPar) {
     });
 }
 
-function get_urls(authorPar) {
+async function get_urls(authorPar) {
     if (wif == '') {
-        auth();
+        await auth();
         console.log('no wif');
     } else {
         console.log('wif ', wif);
-        get_post(author);
+        get_post(username);
         //send_request(wif);
     }
 }
@@ -466,7 +467,7 @@ function get_content(wifPar, authorPar) {
         } else console.error(err);
     });
 }
-let golosUrls = document.getElementById('golosUrls');
+let golosUrls = document.getElementById('golos-urls');
 golosUrls.onclick = get_urls;
-let uploadGolos = document.getElementById('uploadGolos');
+let uploadGolos = document.getElementById('upload-golos');
 uploadGolos.addEventListener('click', uploadToGolos, false);
