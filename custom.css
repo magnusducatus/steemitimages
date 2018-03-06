@@ -54,3 +54,7 @@ footer {
 #upload-btn{
 	display:none;
 }
+
+.navbar li {
+  margin: 0 20px;
+}
