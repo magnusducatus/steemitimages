@@ -501,9 +501,9 @@ function renderTableFromJson() {
         let td4div1 = document.createElement('div');
         td4div1.className = 'd-flex justify-content-around';
         let td4but1 = document.createElement('button');
-        td4but1.className = 'btn btn-success icon-checkmark';
+        td4but1.className = 'btn btn-success';
         td4but1.type = 'button';
-        td4but1.innerHTML = 'Copy link';
+        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
         td4but1.id = arrJson[i];
         td4but1.onclick = copyLink;
 
