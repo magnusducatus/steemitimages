@@ -582,7 +582,7 @@ function about_gi() {
         type: 'info',
         buttonsStyling: false,
         confirmButtonClass: 'btn btn-success btn-lg',
-        confirmButtonText: 'Cool!',
+        confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
         position: 'top'
     });
 }
