@@ -488,7 +488,7 @@ function renderTableFromJson() {
                let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
         let input3input1 = document.createElement('input');
-        input3input1.className = 'form-control td3-input';
+        input3input1.className = 'form-control td3-input'+arrJson[i];
         input3input1.value = arrJson[i];
         input3input1.type = 'text';
         input3input1.id = arrJson[i];
