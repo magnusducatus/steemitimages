@@ -37,7 +37,7 @@ function checkOnline(){
         span.className = 'text-success';
         span.innerHTML = 'online';
       }).catch((err) => {
-        console.log(res);
+        console.log(err);
         let span = document.getElementById('node-status');
         span.className = 'text-danger';
         span.innerHTML = 'offline';
