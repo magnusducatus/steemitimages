@@ -4,6 +4,17 @@ var ipfs = window.IpfsApi({
     protocol: 'http'
 });
 
+swal.setDefaults({
+    buttonsStyling: true,
+   confirmButtonText: 'OK',
+  confirmButtonColor: '#5cb85c',
+  confirmButtonClass: 'icon-checkmark',
+  cancelButtonText: 'Cancel',
+  cancelButtonColor: '#d9534f',
+  cancelButtonClass: 'icon-cross',
+});
+
+
 golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
@@ -168,12 +179,13 @@ function test(data) {
                
                 
                 let td3div2 = document.createElement('div');
-                td3div2.className = 'input-group mb-3';
+                td3div2.className = 'form-group';
                 let td3p1 = document.createElement('p');
                 td3.appendChild(td3div2);
                 td3div2.appendChild(td3p1);
 
                 let td3select = document.createElement('select');
+                td3select.className = "form-control";
                 td3select.id = file[i].hash;
                 td3select.onchange = handleChange;
 
@@ -232,16 +244,16 @@ function test(data) {
                 let td4div1 = document.createElement('div');
                 td4div1.className = 'd-flex d-flex flex-column-reverse';
                 let td4but1 = document.createElement('button');
-                td4but1.className = 'btn btn-info icon-new-tab';
+                td4but1.className = 'btn btn-info';
                 td4but1.type = 'button';
-                td4but1.innerHTML = ' Copy link';
+                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
                 let td4br = document.createElement('br');
                 let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-success icon-checkmark', file[i].hash;
+                td4but2.className = 'btn btn-success', file[i].hash;
                 td4but2.type = 'button';
-                td4but2.innerHTML = ' Select to save';
+                td4but2.innerHTML = '<span class="icon-checkmark"> Select to save';
                 td4but2.id = file[i].hash;
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);

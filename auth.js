@@ -1,14 +1,5 @@
 window.wif = '';
 window.username = '';
-swal.setDefaults({
-    buttonsStyling: true,
-   confirmButtonText: 'OK',
-  confirmButtonColor: '#32CD32',
-  confirmButtonClass: 'icon-checkmark',
-  cancelButtonText: 'Cancel',
-  cancelButtonColor: '#A9A9A9',
-  cancelButtonClass: 'icon-cross',
-});
 async function auth(){
     const {value} = await swal({
     title: '<h3>To continue, you need to login!</h3>',
