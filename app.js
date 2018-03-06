@@ -32,6 +32,7 @@ function checkOnline(){
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
     fetch(host+hash)
       .then(res => {
+        console.log(res);
         let span = document.getElementById('node-status');
         span.className = 'text-success';
         span.innerHTML = 'online';
