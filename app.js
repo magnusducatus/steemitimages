@@ -8,7 +8,6 @@ golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
 
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
-const mid = '/ipfs/';
 const host = 'http://91.201.41.253:7777';
 //for add to IPFS
 var arr1 = [];
@@ -19,11 +18,29 @@ var arrGolos = new Set();
 //for add to table from json golos
 var arrJson = [];
 
+setInterval(()=>{
+    checkOnline();    
+}, 10000);
+
+
 function handle(e) {
     console.log(e.target.id);
-    window.open(host+mid+ e.target.id);
+    window.open(host+ e.target.id);
 }
 
+function checkOnline(){
+    const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
+    fetch(host+hash)
+      .then(res => {
+        let span = document.getElementById('node-status');
+        span.className = 'text-success';
+        span.innerHTML = 'online';
+      }).catch((err) => {
+        let span = document.getElementById('node-status');
+        span.className = 'text-danger';
+        span.innerHTML = 'offline';
+      })
+  }
 function copyToGolos(e) {
     let tr = document.getElementById('tr' + e.target.id);
     let but = document.getElementsByClassName(e.target.id);
@@ -132,7 +149,7 @@ function test(data) {
                 let td1 = document.createElement('td');
                 let img = document.createElement('img');
                 let a1 = document.createElement('a');
-                a1.href = host +mid+ file[i].hash;
+                a1.href = host + file[i].hash;
                 a1.target = '_blank';
                 a1.className = "d-flex align-items-center flex-column";
                 img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
@@ -338,8 +355,8 @@ function send_request(wifPar, authorPar, status) {
     };
     arrGolos.forEach((value) => {
         console.log('arrGolos', value);
-        this.jsonMetadata.image.push(host +mid+ value);
-        this.body += '<p><img src="' + host +mid+ value + '"></img>';
+        this.jsonMetadata.image.push(host + value);
+        this.body += '<p><img src="' + host + value + '"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
     this.author = authorPar; // post author
