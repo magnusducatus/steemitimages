@@ -1,0 +1,10 @@
+{
+	"save": " Save selected links to blockchain Golos",
+	"multihash":" IPFS multihash",
+	"size":" Size (MB)",
+	"preview":" Preview",
+	"upload":" Upload to IPFS",
+	"node":" IPFS node is:",
+	"get":" Get URL to my files",
+	"about":" About"
+}
