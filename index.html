@@ -20,18 +20,18 @@
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                     <ul class="navbar-nav">
                          <li class="nav-item">
-                            <button class="btn btn-success my-2 my-sm-0" id="golos-urls"><span class="icon-link"></span> Get URL to my files</button>
+                            <button class="btn btn-success my-2 my-sm-0" id="golos-urls"><span class="icon-link"></span><span class="translate" id="get"> Get URL to my files</span></button>
                          </li>
                     </ul>
                      <ul class="navbar-nav">
                          <li class="nav-item">
-                            <button class="btn btn-primary my-2 my-sm-0" id="about_golosimages_call_btn"><span class="icon-info"></span> About</button>
+                            <button class="btn btn-primary my-2 my-sm-0" id="about_golosimages_call_btn"><span class="icon-info"></span> <span class="translate" id="about"> About</span></button>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            IPFS node is: <span id="node-status"></span>
+                            <span class="translate" id="node">IPFS node is:</span> <span id="node-status"></span>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="https://github.com/epexa/golosimages"><span class="icon-github"></span> GitHub</a>
+                            <a class="nav-link" target="_blank" href="https://github.com/epexa/golosimages"><span class="icon-github"></span>  GitHub</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <button id="upload-btn" class="btn btn-success btn-lg btn-block" type="button"><span class="icon-upload"></span> Upload to IPFS</button>
+                    <button id="upload-btn" class="btn btn-success btn-lg btn-block" type="button"><span class="icon-upload"></span><span class="translate" id="save"> Upload to IPFS</span></button>
                 </div>
             </div>
             <br>
@@ -60,9 +60,9 @@
                     <table id="table" class="table table-striped table-bordered" hidden="true">
                         <thead class="bg-primary text-white">
                             <tr>
-                                <th class="text-center">Preview</th>
-                                <th class="text-center">Size (MB)</th>
-                                <th class="text-center">IPFS multihash</th>
+                                <th class="text-center translate" id="preview">Preview</th>
+                                <th class="text-center translate" id="size">Size (MB)</th>
+                                <th class="text-center translate" id="multihash">IPFS multihash</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
@@ -73,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="upload-golos" class="btn btn-warning btn-lg btn-block" type="button" hidden ="true";"><span class="icon-download"></span> Save selected links to blockchain Golos</button>
+                    <button id="upload-golos" class="btn btn-warning btn-lg btn-block translate" type="button" hidden ="true"><span class="icon-download"></span> <span class="translate" id="save"> Save selected links to blockchain Golos</span></button>
                 </div>
             </div>
             <br> 
@@ -93,6 +93,5 @@
     <script src="auth.js"></script>
     <script src="app.js"></script>
     <script src="lang.js"></script>
-    
 </body>
 </html>

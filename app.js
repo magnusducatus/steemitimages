@@ -6,9 +6,9 @@ var ipfs = window.IpfsApi({
 
 swal.setDefaults({
     buttonsStyling: true,
-    confirmButtonText: '<span class="icon-checkmark"></span> OK',
+    confirmButtonText: '<span class="icon-checkmark"></span><span class="translate" id="ok"> Ok</span>',
     confirmButtonColor: '#5cb85c',
-    cancelButtonText: '<span class="icon-cross"></span> Cancel',
+    cancelButtonText: '<span class="icon-cross"></span><span class="translate" id="cancel"> Cancel</span>',
     cancelButtonColor: '#d9534f',
 });
 
@@ -59,7 +59,7 @@ function copyToGolos(e) {
     if (arrGolos.delete(this.id)) {
         console.log('срезал', this.id);
         tr.setAttribute('class', '');
-        this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
+        this.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="selectsave"> Select to save</span>';
         elem = true;
 
     } else {
@@ -68,7 +68,7 @@ function copyToGolos(e) {
     if (!elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
-        this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
+        this.innerHTML = '<span class="icon-cross"></span><span class="translate" id="selectunsave"> Select to unsave</span>';
     }
     console.log('arrGolos', arrGolos.size);
     let uploadGolos = document.getElementById('upload-golos');
@@ -222,14 +222,14 @@ function test(data) {
                 let td4but1 = document.createElement('button');
                 td4but1.className = 'btn btn-info';
                 td4but1.type = 'button';
-                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link';
+                td4but1.innerHTML = '<span class="icon-new-tab"></span><span class="translate" id="copy"> Copy link</span>';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
                 let td4br = document.createElement('br');
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-success', file[i].hash;
                 td4but2.type = 'button';
-                td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
+                td4but2.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="selectsave"> Select to save</span>';
                 td4but2.id = file[i].hash;
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
@@ -262,7 +262,7 @@ function iter() {
     for (let i = 0; i < arr1.length; i++) {
         test(arr1[i]);
     }
-    if (arr1.length != 0) swal('Added successfully!', 'Check the table!')
+    if (arr1.length != 0) swal({html:'<span class="translate" id="added1">Added successfully!</span><span class="translate" id="added2">Check the table!</span>'})
     arr1 = [];
 }
 const upload = document.getElementById('upload-btn');
@@ -272,7 +272,7 @@ upload.addEventListener("click", iter, false);
 Dropzone.options.dropzone = {
     //accept file mime-type
     acceptedFiles: 'image/jpeg, image/jpg, image/png',
-    dictDefaultMessage: "Drag&Drop files here or click to select files",
+    dictDefaultMessage: '<span class="translate" id="drag&drop">Drag&Drop files here or click to select files</span>',
     autoProcessQueue: false,
     init: function() {
         this.on("addedfile", function(file) {
@@ -379,7 +379,7 @@ function send_request(wifPar, authorPar, status) {
 
             console.log('size after + send', arrGolos.size);
             console.log('permlink + send', const_permlik, status);
-            swal('Изображения добавлены')
+            swal({html:'<span class="translate" id="golosadd">Images added</span>'})
         } else console.error(err);
     }); // add post
 }
@@ -481,7 +481,7 @@ function renderTableFromJson() {
         let td4but1 = document.createElement('button');
         td4but1.className = 'btn btn-success';
         td4but1.type = 'button';
-        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
+        td4but1.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="copy"> Copy link</span>';
         td4but1.id = arrJson[i];
         td4but1.onclick = copyLink;
 
@@ -516,7 +516,7 @@ function get_post_json(authorPar, permlinkPar, result) {
     for (let i in this.postJ.image) arrJson.push(this.postJ.image[i]);
     console.log('arrJson.length', arrJson.length);
     if (result.children == 0) {
-        swal('Это пока Ваша первая запись в IPFS');
+        swal({html:'<span class="translate" id="recordscheck">Check table for records</span>'});
         renderTableFromJson();
     } else {
         golos.api.getContentReplies(authorPar, permlinkPar, function(err, result) {
@@ -542,7 +542,7 @@ function get_post(authorPar) {
     this.permlink = const_permlik;
     golos.api.getContent(this.author, this.permlink, function(err, result) {
         console.log(err, result);
-        result.id == 0 ? swal('У Вас пока нет сохраннёных записей в IPFS') : get_post_json(this.author, this.permlink, result);
+        result.id == 0 ? swal({html:'<span class="translate" id="recordsno">You have\'t got records in IPFS</span>'}) : get_post_json(this.author, this.permlink, result);
         if (!err) {
             console.log('getContent', result.title);
         } else console.error(err);
