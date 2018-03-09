@@ -1,4 +1,5 @@
-var ipfs = window.IpfsApi({
+initLang('ru');
+let ipfs = window.IpfsApi({
     host: '91.201.41.253',
     port: '5001',
     protocol: 'http'
@@ -14,28 +15,19 @@ swal.setDefaults({
 
 
 golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
-
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
 const host = 'http://91.201.41.253:7777/ipfs/';
-//for add to IPFS
-var arr1 = [];
-//for check table
-var arr2 = [];
-//for send to Golos
-var arrGolos = new Set();
-//for add to table from json golos
-var arrJson = [];
 
-setInterval(() => {
-    checkOnline();
-}, 3000);
+let arrIpfs = [];
 
+let arrTablTd = [];
 
-function handle(e) {
-    console.log(e.target.id);
-    window.open(host + e.target.id);
-}
+let arrGolos = new Set();
+
+let arrJson = [];
+
+setInterval(checkOnline, 3000);
 
 function checkOnline() {
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
@@ -54,23 +46,19 @@ function checkOnline() {
 function copyToGolos(e) {
     let tr = document.getElementById('tr' + this.id);
     let but = document.getElementsByClassName(this.id);
-    console.log(this.id);
     let elem;
     if (arrGolos.delete(this.id)) {
-        console.log('срезал', this.id);
         tr.setAttribute('class', '');
         this.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="selectsave"> Select to save</span>';
         elem = true;
 
     } else {
-        console.log(arrGolos);
     }
-    if (!elem) {
+    if ( ! elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
         this.innerHTML = '<span class="icon-cross"></span><span class="translate" id="selectunsave"> Select to unsave</span>';
     }
-    console.log('arrGolos', arrGolos.size);
     let uploadGolos = document.getElementById('upload-golos');
     arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 }
@@ -80,7 +68,7 @@ function copyLink(e) {
     try {
         document.execCommand('copy');
     } catch (err) {
-        console.log('Links not correctly works', err);
+        swal('Links not correctly works', err);
     }
 }
 
@@ -95,12 +83,11 @@ function handleChange(e) {
     document.getElementsByClassName('td3-input' + this.id)[0].value = link;
 }
 
-function _arrayBufferToBase64(buffer) {
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    console.log(typeof bytes);
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
+function arrayBufToB64(buffer) {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
         binary += String.fromCharCode(bytes[i]);
     }
     return window.btoa(binary);
@@ -108,27 +95,16 @@ function _arrayBufferToBase64(buffer) {
 
 function copyLinkGolos(e) {
     this.id = e.target.id;
-    console.log(e.target);
     document.getElementById(this.id).value = this.id;
     document.getElementById(this.id).select();
     try {
         document.execCommand('copy');
     } catch (err) {
-        console.log('Links not correctly works', err);
+        swal('Links not correctly works', err);
     }
 }
 
-function _arrayBufferToBase64(buffer) {
-    var binary = '';
-    var bytes = new Uint8Array(buffer);
-    console.log(typeof bytes);
-    var len = bytes.byteLength;
-    for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-}
-//Функция самой отправки данных
+//data sending to ipfs
 function test(data) {
     const tb = document.getElementById('tbody');
 
@@ -138,11 +114,10 @@ function test(data) {
     }];
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
     ipfs.files.add(files, function(err, file) {
-        if (err) console.log(err);
+        if (err) swal(err);
         else {
-            console.log(file);
             for (let i = 0; i < file.length; i++) {
-                arr2.push(file);
+                arrTablTd.push(file);
                 let tr = document.createElement('tr');
                 tr.id = 'tr' + file[i].hash + '';
                 let td1 = document.createElement('td');
@@ -151,7 +126,7 @@ function test(data) {
                 a1.href = host + file[i].hash;
                 a1.target = '_blank';
                 a1.className = "d-flex align-items-center flex-column";
-                img.src = 'data:image/jpeg;base64,' + _arrayBufferToBase64(data.body);
+                img.src = 'data:image/jpeg;base64,' + arrayBufToB64(data.body);
                 img.heigth = 100;
                 img.width = 100;
                 a1.appendChild(img);
@@ -248,8 +223,8 @@ function test(data) {
                 tb.appendChild(tr);
             }
             let tab = document.getElementById('table');
-            //arr2.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
-            arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
+            //arrTablTd.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
+            arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
             let elemIpfs = document.getElementsByClassName('elementIpfs');
             let uploadGolos = document.getElementById('upload-golos');
         }
@@ -258,12 +233,11 @@ function test(data) {
 }
 
 function iter() {
-    console.log('length', arr1.length);
-    for (let i = 0; i < arr1.length; i++) {
-        test(arr1[i]);
+    for (let i = 0; i < arrIpfs.length; i++) {
+        test(arrIpfs[i]);
     }
-    if (arr1.length != 0) swal({html:'<span class="translate" id="added1">Added successfully!</span><span class="translate" id="added2">Check the table!</span>'})
-    arr1 = [];
+    if (arrIpfs.length != 0) swal({html:'<span class="translate" id="added1">Added successfully!</span><span class="translate" id="added2">Check the table!</span>'})
+    arrIpfs = [];
 }
 const upload = document.getElementById('upload-btn');
 upload.addEventListener("click", iter, false);
@@ -281,8 +255,6 @@ Dropzone.options.dropzone = {
 
             } else this.removeFile(file);
             //entity for send to IPFS
-
-            //console.log(arr1);
             let fileList = file;
             const reader = new FileReader();
             reader.onload = function(data) {
@@ -295,19 +267,19 @@ Dropzone.options.dropzone = {
                 obj.body = ipfs.Buffer(data.target.result);
                 //obj.body = data.target.result;
                 obj.name = fileList.name;
-                arr1.push(obj);
+                arrIpfs.push(obj);
                 let uploadBtn = document.getElementById('upload-btn');
                 uploadBtn.style.display = "block";
             };
             reader.readAsArrayBuffer(fileList);
             // Create the remove button
-            var removeButton = Dropzone.createElement('<button class="btn btn-danger icon-cancel-circle"></button>');
+            let removeButton = Dropzone.createElement('<button class="btn btn-danger icon-cancel-circle"></button>');
             // Capture the Dropzone instance as closure.
-            var _this = this;
+            let _this = this;
             //remove all files
             document.getElementById("upload-btn").addEventListener("click", function() {
                 _this.removeAllFiles();
-                arr1 = [];
+                arrIpfs = [];
                 let uploadBtn = document.getElementById('upload-btn');
                 uploadBtn.style.display = "none";
             });
@@ -321,10 +293,10 @@ Dropzone.options.dropzone = {
                 _this.removeFile(file);
                 let uploadBtn = document.getElementById('upload-btn');
 
-                for (let i = 0; i < arr1.length; i++) {
-                    file.name == arr1[i].name ? arr1.splice(i, 1) : '';
+                for (let i = 0; i < arrIpfs.length; i++) {
+                    file.name == arrIpfs[i].name ? arrIpfs.splice(i, 1) : '';
                 }
-                arr1.length > 0 ? uploadBtn.style.display = "block" : uploadBtn.style.display = "none";
+                arrIpfs.length > 0 ? uploadBtn.style.display = "block" : uploadBtn.style.display = "none";
             });
 
             // Add the button to the file preview element.
@@ -335,16 +307,15 @@ Dropzone.options.dropzone = {
     }
 
 };
-let const_permlik = 'golos-save-url-test';
+let constPermlik = 'golos-save-url-test';
 // if permlink NOW be equal to BEFORE, before will change 
 // if parentPerm == perm - ok
-function send_request(wifPar, authorPar, status) {
+function sendRequest(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
         image: []
     };
     arrGolos.forEach((value) => {
-        console.log('arrGolos', value);
         this.jsonMetadata.image.push(host + value);
         this.body += '<p><img src="' + host + value + '"></img>';
     });
@@ -353,60 +324,49 @@ function send_request(wifPar, authorPar, status) {
     this.wif = wifPar; // // private posting key
     //this.permlink = 'testphotook'; // post url-adress
     //this.parentPermlink = 'photo'; // main tag
-    const_permlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
-    const_permlik != this.permlink ? this.parentPermlink = 'post' : this.parentPermlink = this.permlink;
+    constPermlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
+    constPermlik != this.permlink ? this.parentPermlink = 'post' : this.parentPermlink = this.permlink;
     if (status == 'comment') {
-        console.log('comment');
         this.parentAuthor = this.author;
-        this.parentPermlink = const_permlik;
+        this.parentPermlink = constPermlik;
         this.permlink = String(Math.floor(Math.random() * (10000 - 1 + 1)) + 1);
     } else {
-        console.log('post');
         this.parentAuthor = '';
         this.parentPermlink = 'ipfsimage';
-        this.permlink = const_permlik;
+        this.permlink = constPermlik;
     }
     this.title = 'IPFS images'; // post title
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        //console.log(err, result);
         if (!err) {
-            console.log('comment', result);
             arrGolos.clear();
 
             let uploadGolos = document.getElementById('upload-golos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
-            console.log('size after + send', arrGolos.size);
-            console.log('permlink + send', const_permlik, status);
             swal({html:'<span class="translate" id="golosadd">Images added</span>'})
         } else console.error(err);
     }); // add post
 }
 async function uploadToGolos() {
-    //arrGolos.forEach( (value,set) => console.log('value',value) )
     if (wif == '') {
         await auth();
-        console.log('no wif');
     } else {
-        console.log('wif ', wif);
-        get_content(wif, username);
-        //send_request(wif);
+        getContent(wif, username);
     }
 
 
 }
 //get comments
-function get_comments() {
-    golos.api.getContentReplies('golos', const_permlik, function(err, result) {
-        console.log(err, result);
+function getComments() {
+    golos.api.getContentReplies('golos', constPermlik, function(err, result) {
     });
 }
 
 function renderTableFromJson() {
     const tb = document.getElementById('tbody');
     const tab = document.getElementById('table');
-    arr2.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
+    arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
         let tr = document.createElement('tr');
         tr.className = ' ' + arrJson[i] + ' ';
@@ -510,24 +470,21 @@ function renderTableFromJson() {
 
 }
 
-function get_post_json(authorPar, permlinkPar, result) {
+function getPostJson(authorPar, permlinkPar, result) {
 
     this.postJ = JSON.parse(result.json_metadata);
     for (let i in this.postJ.image) arrJson.push(this.postJ.image[i]);
-    console.log('arrJson.length', arrJson.length);
     if (result.children == 0) {
         swal({html:'<span class="translate" id="recordscheck">Check table for records</span>'});
         renderTableFromJson();
     } else {
         golos.api.getContentReplies(authorPar, permlinkPar, function(err, result) {
-            console.log(err, result);
             for (let s in result) {
                 if (result[s].author == authorPar) {
                     let arr = JSON.parse(result[s].json_metadata);
                     for (let i in arr.image) arrJson.push(arr.image[i]);
                 } else continue;
             }
-            console.log('arrJson.length repllies', arrJson.length);
             renderTableFromJson();
         });
     }
@@ -537,70 +494,63 @@ function get_post_json(authorPar, permlinkPar, result) {
 
 }
 
-function get_post(authorPar) {
+function getPost(authorPar) {
     this.author = authorPar;
-    this.permlink = const_permlik;
+    this.permlink = constPermlik;
     golos.api.getContent(this.author, this.permlink, function(err, result) {
-        console.log(err, result);
-        result.id == 0 ? swal({html:'<span class="translate" id="recordsno">You have\'t got records in IPFS</span>'}) : get_post_json(this.author, this.permlink, result);
-        if (!err) {
-            console.log('getContent', result.title);
-        } else console.error(err);
+        result.id == 0 ? swal({html:'<span class="translate" id="recordsno">You have\'t got records in IPFS</span>'}) : getPostJson(this.author, this.permlink, result);
+        if ( ! err) {
+        } else swal(err);
     });
 }
 
-async function get_urls(authorPar) {
+async function getUrls(authorPar) {
     if (wif == '') {
         await auth();
-        console.log('no wif');
     } else {
-        console.log('wif ', wif);
-        get_post(username);
-        //send_request(wif);
+        getPost(username);
+        //sendRequest(wif);
     }
 }
 // if input parent of comment return comment
-function get_content(wifPar, authorPar) {
+function getContent(wifPar, authorPar) {
     this.wif = wifPar;
     this.author = authorPar;
-    this.permlink = const_permlik;
+    this.permlink = constPermlik;
     golos.api.getContent(this.author, this.permlink, function(err, result) {
-        console.log(err, result);
-        result.id == 0 ? send_request(this.wif, this.author, 'post') : send_request(this.wif, this.author, 'comment');
+        result.id == 0 ? sendRequest(this.wif, this.author, 'post') : sendRequest(this.wif, this.author, 'comment');
         if (!err) {
-            console.log('getContent', result.title);
-        } else console.error(err);
+        } else swal(err);
     });
 }
 
-function about_gi() {
+let golosUrls = document.getElementById('golos-urls');
+golosUrls.onclick = getUrls;
+
+let uploadGolos = document.getElementById('upload-golos');
+uploadGolos.addEventListener('click', uploadToGolos, false);
+
+let aboutGolosImagesCallBtn = document.getElementById('aboutGolosImagesCallBtn');
+aboutGolosImagesCallBtn.addEventListener('click', ()=>{
     swal({
         title: 'About this project!',
-        html: '<div>' +
-            '<p class="float-left text-left">' +
-            'GolosImages - this microservice for storing images on the  blockchain <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).' +
-            '</p>' +
-            '<ul class="float-left text-left">' +
-            'We use:' +
-            '<li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>' +
-            '<li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>' +
-            '<li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>' +
-            '<li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - A client library for the IPFS HTTP API, implemented in JavaScript;</li>' +
-            '<li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript\'s popup boxes.</li>' +
-            '</ul>' +
-            '</div>',
+        html: `<div>
+            <p class="float-left text-left">
+            GolosImages - this microservice for storing images on the  blockchain <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
+            </p>
+            <ul class="float-left text-left">
+            We use:
+            <li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
+            <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
+            <li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>
+            <li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - A client library for the IPFS HTTP API, implemented in JavaScript;</li>
+            <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
+            </ul>
+            </div>`,
         type: 'info',
         buttonsStyling: false,
         confirmButtonClass: 'btn btn-success btn-lg',
         confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
         position: 'top'
     });
-}
-let golosUrls = document.getElementById('golos-urls');
-golosUrls.onclick = get_urls;
-
-let uploadGolos = document.getElementById('upload-golos');
-uploadGolos.addEventListener('click', uploadToGolos, false);
-
-let about_golosimages_call_btn = document.getElementById('about_golosimages_call_btn');
-about_golosimages_call_btn.addEventListener('click', about_gi, false);
+}, false);
