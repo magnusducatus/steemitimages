@@ -2,8 +2,8 @@ window.wif = '';
 window.username = '';
 async function auth(){
     const {value} = await swal({
-    title: '<h3><span class="translate" id="authtitle">To continue, you need to login!</h3>',
-    html:'<p><h5><span class="translate" id="authlogpass">Please enter your login and master password</span></h5>'+
+    title: '<h3>To continue, you need to login!</h3>',
+    html:'<p><h5>Please enter your login and master password</h5>'+
         '<p><div class="input-group mb-3">' +
         '<div class="input-group-prepend">' +
         '<span class="input-group-text" id="username" required>@</span>' +
@@ -15,8 +15,8 @@ async function auth(){
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>'+
-        '<p><hr class="bg-secondary"><span class="translate" id="author">OR</span><hr class="bg-secondary">'+
-        '<p><h5><span class="translate" id="authwif">Please enter only your private posting key</span></h5>'+
+        '<p><hr class="bg-secondary">OR<hr class="bg-secondary">'+
+        '<p><h5>Please enter only your private posting key</h5>'+
         '<p><div class="input-group mb-3">' +
         '<input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>' +
         '<div class="input-group-prepend">' +
@@ -33,7 +33,7 @@ async function auth(){
                         let pass = document.getElementById('input-pass');
                         let priv = document.getElementById('input-private'); 
                      swal.showValidationError(
-                            '<span class="translate" id="autherr">Please enter your login and master password or only your private posting key</span>'
+                            'Please enter your login and master password or only your private posting key'
                         );
                      login.setAttribute('class','form-control is-invalid');
                      pass.setAttribute('class','form-control is-invalid');
@@ -70,8 +70,8 @@ async function checker(username, pass, priv) {
                                                           } catch(e){
                                                             swal({
                                                               type: 'error',
-                                                              title: '<span class="translate" id="authcheckerlogin">Login</span>',
-                                                              html: '<span class="translate" id="authcheckertext">Your login is incorrect!</span>',
+                                                              title: 'Login',
+                                                              html: 'Your login is incorrect!',
                                                             })
                                                           }
     
@@ -90,8 +90,8 @@ async function checker(username, pass, priv) {
         } catch(e){
             swal({
               type: 'error',
-              title: '<span class="translate" id="authprivatetitle">Error</span>',
-              html: '<span class="translate" id="authprivatetext">Master Key or password is incorrect!</span>'
+              title: 'Error',
+              html: 'Master Key or password is incorrect!'
             })
 
         }
@@ -108,8 +108,8 @@ async function getPublicKey(wifPar){
                     username = item[0];
                     swal({
                       type: 'success',
-                      title: '<span class="translate" id="authpublictitle">Success</span>',
-                      html: '<span class="translate" id="authpublictext">Authorization was successful!</span>'
+                      title: 'Success',
+                      html: 'Authorization was successful!'
                     })
                 });
             } else swal(err);
@@ -117,8 +117,8 @@ async function getPublicKey(wifPar){
     } catch(e){
         swal({
               type: 'error',
-              title: '<span class="translate" id="authpublicerrtitle">Error</span>',
-              htmlhtml: '<span class="translate" id="authpublicerrtext">Private key is incorrect!</span>'
+              title: 'Error',
+              htmlhtml: 'Private key is incorrect!'
             })
     }
 }

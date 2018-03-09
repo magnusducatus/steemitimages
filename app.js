@@ -1,4 +1,4 @@
-initLang('ru');
+initLang('en');
 let ipfs = window.IpfsApi({
     host: '91.201.41.253',
     port: '5001',
@@ -7,9 +7,9 @@ let ipfs = window.IpfsApi({
 
 swal.setDefaults({
     buttonsStyling: true,
-    confirmButtonText: '<span class="icon-checkmark"></span><span class="translate" id="ok"> Ok</span>',
+    confirmButtonText: '<span class="icon-checkmark"></span> Ok',
     confirmButtonColor: '#5cb85c',
-    cancelButtonText: '<span class="icon-cross"></span><span class="translate" id="cancel"> Cancel</span>',
+    cancelButtonText: '<span class="icon-cross"></span> Cancel',
     cancelButtonColor: '#d9534f',
 });
 
@@ -49,7 +49,7 @@ function copyToGolos(e) {
     let elem;
     if (arrGolos.delete(this.id)) {
         tr.setAttribute('class', '');
-        this.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="selectsave"> Select to save</span>';
+        this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
     } else {
@@ -57,7 +57,7 @@ function copyToGolos(e) {
     if ( ! elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
-        this.innerHTML = '<span class="icon-cross"></span><span class="translate" id="selectunsave"> Select to unsave</span>';
+        this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
     }
     let uploadGolos = document.getElementById('upload-golos');
     arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
@@ -197,14 +197,14 @@ function test(data) {
                 let td4but1 = document.createElement('button');
                 td4but1.className = 'btn btn-info';
                 td4but1.type = 'button';
-                td4but1.innerHTML = '<span class="icon-new-tab"></span><span class="translate" id="copy"> Copy link</span>';
+                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
                 let td4br = document.createElement('br');
                 let td4but2 = document.createElement('button');
                 td4but2.className = 'btn btn-success', file[i].hash;
                 td4but2.type = 'button';
-                td4but2.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="selectsave"> Select to save</span>';
+                td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
                 td4but2.id = file[i].hash;
                 td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
@@ -236,7 +236,7 @@ function iter() {
     for (let i = 0; i < arrIpfs.length; i++) {
         test(arrIpfs[i]);
     }
-    if (arrIpfs.length != 0) swal({html:'<span class="translate" id="added1">Added successfully!</span><span class="translate" id="added2">Check the table!</span>'})
+    if (arrIpfs.length != 0) swal({html:'Added successfully! Check the table!'})
     arrIpfs = [];
 }
 const upload = document.getElementById('upload-btn');
@@ -246,7 +246,7 @@ upload.addEventListener("click", iter, false);
 Dropzone.options.dropzone = {
     //accept file mime-type
     acceptedFiles: 'image/jpeg, image/jpg, image/png',
-    dictDefaultMessage: '<span class="translate" id="drag&drop">Drag&Drop files here or click to select files</span>',
+    dictDefaultMessage: 'Drag&Drop files here or click to select files',
     autoProcessQueue: false,
     init: function() {
         this.on("addedfile", function(file) {
@@ -338,24 +338,28 @@ function sendRequest(wifPar, authorPar, status) {
     this.title = 'IPFS images'; // post title
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        if (!err) {
+        if ( ! err) {
             arrGolos.clear();
 
             let uploadGolos = document.getElementById('upload-golos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
-            swal({html:'<span class="translate" id="golosadd">Images added</span>'})
+            swal({html:'Images added'})
         } else console.error(err);
     }); // add post
 }
 async function uploadToGolos() {
-    if (wif == '') {
+    if ( wif == '' ) {
         await auth();
     } else {
-        getContent(wif, username);
-    }
-
-
+        this.wif = wifPar;
+        this.author = authorPar;
+        this.permlink = constPermlik;
+        golos.api.getContent(this.author, this.permlink, function(err, result) {
+            result.id == 0 ? sendRequest(this.wif, this.author, 'post') : sendRequest(this.wif, this.author, 'comment');
+            if ( err ) swal(err);
+        });
+    }   
 }
 //get comments
 function getComments() {
@@ -441,7 +445,7 @@ function renderTableFromJson() {
         let td4but1 = document.createElement('button');
         td4but1.className = 'btn btn-success';
         td4but1.type = 'button';
-        td4but1.innerHTML = '<span class="icon-checkmark"></span><span class="translate" id="copy"> Copy link</span>';
+        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
         td4but1.id = arrJson[i];
         td4but1.onclick = copyLink;
 
@@ -475,7 +479,7 @@ function getPostJson(authorPar, permlinkPar, result) {
     this.postJ = JSON.parse(result.json_metadata);
     for (let i in this.postJ.image) arrJson.push(this.postJ.image[i]);
     if (result.children == 0) {
-        swal({html:'<span class="translate" id="recordscheck">Check table for records</span>'});
+        swal({html:'Check table for records'});
         renderTableFromJson();
     } else {
         golos.api.getContentReplies(authorPar, permlinkPar, function(err, result) {
@@ -494,44 +498,25 @@ function getPostJson(authorPar, permlinkPar, result) {
 
 }
 
-function getPost(authorPar) {
-    this.author = authorPar;
-    this.permlink = constPermlik;
-    golos.api.getContent(this.author, this.permlink, function(err, result) {
-        result.id == 0 ? swal({html:'<span class="translate" id="recordsno">You have\'t got records in IPFS</span>'}) : getPostJson(this.author, this.permlink, result);
-        if ( ! err) {
-        } else swal(err);
-    });
-}
 
 async function getUrls(authorPar) {
     if (wif == '') {
         await auth();
     } else {
-        getPost(username);
-        //sendRequest(wif);
+        this.author = authorPar;
+        this.permlink = constPermlik;
+        golos.api.getContent(this.author, this.permlink, function(err, result) {
+            result.id == 0 ? swal({html:'You have\'t got records in IPFS'}) : getPostJson(this.author, this.permlink, result);
+            if ( err )swal(err);
+        });
     }
 }
-// if input parent of comment return comment
-function getContent(wifPar, authorPar) {
-    this.wif = wifPar;
-    this.author = authorPar;
-    this.permlink = constPermlik;
-    golos.api.getContent(this.author, this.permlink, function(err, result) {
-        result.id == 0 ? sendRequest(this.wif, this.author, 'post') : sendRequest(this.wif, this.author, 'comment');
-        if (!err) {
-        } else swal(err);
-    });
-}
 
-let golosUrls = document.getElementById('golos-urls');
-golosUrls.onclick = getUrls;
+let golosUrls = document.getElementById('golos-urls').onclick = getUrls;
 
-let uploadGolos = document.getElementById('upload-golos');
-uploadGolos.addEventListener('click', uploadToGolos, false);
+let uploadGolos = document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
-let aboutGolosImagesCallBtn = document.getElementById('aboutGolosImagesCallBtn');
-aboutGolosImagesCallBtn.addEventListener('click', ()=>{
+let aboutGolosImagesCallBtn = document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=>{
     swal({
         title: 'About this project!',
         html: `<div>
