@@ -512,11 +512,11 @@ async function getUrls(authorPar) {
     }
 }
 
-let golosUrls = document.getElementById('golos-urls').onclick = getUrls;
+document.getElementById('golos-urls').onclick = getUrls;
 
-let uploadGolos = document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
+document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
-let aboutGolosImagesCallBtn = document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=>{
+document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=>{
     swal({
         title: 'About this project!',
         html: `<div>
