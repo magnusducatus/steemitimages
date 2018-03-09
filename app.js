@@ -34,12 +34,12 @@ function checkOnline() {
     fetch(host + hash)
         .then(res => {
             let span = document.getElementById('node-status');
-            span.className = 'text-success';
-            span.innerHTML = 'online';
+            span.className = 'badge badge-success';
+            span.innerHTML = ' online';
         }).catch((err) => {
             let span = document.getElementById('node-status');
-            span.className = 'text-danger';
-            span.innerHTML = 'offline';
+            span.className = 'badge badge-danger';
+            span.innerHTML = ' offline';
         })
 }
 

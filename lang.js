@@ -18,14 +18,14 @@ function initLang(lang) {
             navbar.appendChild(li);
             if (!document.getElementById('language')) {
                 let button = document.createElement('button');
-                button.className = `btn btn-primary my-2 my-sm-0`;
+                button.className = `btn btn-info my-2 my-sm-0`;
                 button.id = `language`;
-                button.innerHTML = `Language`;
+                button.innerHTML = `<span id="node" class="icon-earth"></span> Language`;
                 button.addEventListener('click', async () => {
                     var inputOptions = new Promise((resolve) => {
                         resolve({
-                            'ru': '<img src="svg/ru.svg" height="40" width="40"> Russian',
-                            'en': '<img src="svg/en.svg" height="40" width="40"> English'
+                            'ru': '<img src="svg/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский',
+                            'en': '<img src="svg/en.svg" height="30" width="40" style="border-radius: 0.25em"> English'
                         })
                     })
                     const {
