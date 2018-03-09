@@ -53,7 +53,6 @@ function initLang(lang) {
 function updateContent() {
     let array = i18next.services.resourceStore.data[choosen].translation
     for (let i in array) {
-        console.log('i', i, 'arr', array[i]);
         findAndReplaceDOMText(document.body, {
             find: i,
             replace: array[i]
