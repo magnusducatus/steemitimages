@@ -34,11 +34,11 @@ function checkOnline() {
     fetch(host + hash)
         .then(res => {
             let span = document.getElementById('node-status');
-            span.className = 'badge badge-success';
+            span.className = 'badge badge-success  mx-1';
             span.innerHTML = ' online';
         }).catch((err) => {
             let span = document.getElementById('node-status');
-            span.className = 'badge badge-danger';
+            span.className = 'badge badge-danger  mx-1';
             span.innerHTML = ' offline';
         })
 }
@@ -307,16 +307,19 @@ Dropzone.options.dropzone = {
     }
 
 };
-let constPermlik = 'golos-save-url-test';
+let constPermlik = 'golos-save-url-test1';
 // if permlink NOW be equal to BEFORE, before will change 
 // if parentPerm == perm - ok
 function sendRequest(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        image: []
+        app : 'golosimages/0.1',
+        canonical : `https://golosimages.com#${username}/${constPermlik}`, 
+        app_account : 'golosapps',
+        data: []
     };
     arrGolos.forEach((value) => {
-        this.jsonMetadata.image.push(host + value);
+        this.jsonMetadata.data.push(host + value);
         this.body += '<p><img src="' + host + value + '"></img>';
     });
     this.jsonMetadata = JSON.stringify(this.jsonMetadata);
@@ -352,11 +355,8 @@ async function uploadToGolos() {
     if ( wif == '' ) {
         await auth();
     } else {
-        this.wif = wifPar;
-        this.author = authorPar;
-        this.permlink = constPermlik;
-        golos.api.getContent(this.author, this.permlink, function(err, result) {
-            result.id == 0 ? sendRequest(this.wif, this.author, 'post') : sendRequest(this.wif, this.author, 'comment');
+        golos.api.getContent(username, constPermlik, function(err, result) {
+            result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
             if ( err ) swal(err);
         });
     }   
@@ -477,7 +477,7 @@ function renderTableFromJson() {
 function getPostJson(authorPar, permlinkPar, result) {
 
     this.postJ = JSON.parse(result.json_metadata);
-    for (let i in this.postJ.image) arrJson.push(this.postJ.image[i]);
+    for (let i in this.postJ.data) arrJson.push(this.postJ.data[i]);
     if (result.children == 0) {
         swal({html:'Check table for records'});
         renderTableFromJson();
@@ -486,7 +486,7 @@ function getPostJson(authorPar, permlinkPar, result) {
             for (let s in result) {
                 if (result[s].author == authorPar) {
                     let arr = JSON.parse(result[s].json_metadata);
-                    for (let i in arr.image) arrJson.push(arr.image[i]);
+                    for (let i in arr.data) arrJson.push(arr.data[i]);
                 } else continue;
             }
             renderTableFromJson();
@@ -499,14 +499,12 @@ function getPostJson(authorPar, permlinkPar, result) {
 }
 
 
-async function getUrls(authorPar) {
+async function getUrls() {
     if (wif == '') {
         await auth();
     } else {
-        this.author = authorPar;
-        this.permlink = constPermlik;
-        golos.api.getContent(this.author, this.permlink, function(err, result) {
-            result.id == 0 ? swal({html:'You have\'t got records in IPFS'}) : getPostJson(this.author, this.permlink, result);
+        golos.api.getContent(username, constPermlik, function(err, result) {
+            result.id == 0 ? swal({html:'You have\'t got records in IPFS'}) : getPostJson(username, constPermlik, result);
             if ( err )swal(err);
         });
     }
