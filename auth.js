@@ -10,14 +10,14 @@ async function auth(){
         '</div>' +
         '<input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>' +
         '</div>' +
-        '<p><div class="input-group mb-3">' +
+        '<p><div>' +
         '<input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>' +
         '<div class="input-group-prepend">' +
         '</div>' +
         '</div>'+
         '<p><hr class="bg-secondary">OR<hr class="bg-secondary">'+
         '<p><h5>Please enter only your private posting key</h5>'+
-        '<p><div class="input-group mb-3">' +
+        '<p><div>' +
         '<input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>' +
         '<div class="input-group-prepend">' +
         '</div>' +
