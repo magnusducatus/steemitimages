@@ -2,26 +2,26 @@ window.wif = '';
 window.username = '';
 async function auth(){
     const {value} = await swal({
-    title: '<h3>To continue, you need to login!</h3>',
-    html:'<p><h5>Please enter your login and master password</h5>'+
-        '<p><div class="input-group mb-3">' +
-        '<div class="input-group-prepend">' +
-        '<span class="input-group-text" id="username" required>@</span>' +
-        '</div>' +
-        '<input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>' +
-        '</div>' +
-        '<p><div>' +
-        '<input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>' +
-        '<div class="input-group-prepend">' +
-        '</div>' +
-        '</div>'+
-        '<p><hr class="bg-secondary">OR<hr class="bg-secondary">'+
-        '<p><h5>Please enter only your private posting key</h5>'+
-        '<p><div>' +
-        '<input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>' +
-        '<div class="input-group-prepend">' +
-        '</div>' +
-        '</div>',
+    title: `<h3>To continue, you need to login!</h3>`,
+    html:`<p><h5>Please enter your login and master password</h5>
+        <p><div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="username" required>@</span>
+        </div>
+        <input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+        </div>
+        <p><div>
+        <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
+        <div class="input-group-prepend">
+        </div>
+        </div>
+        <p><hr class="bg-secondary">OR<hr class="bg-secondary">
+        <p><h5>Please enter only your private posting key</h5>
+        <p><div>
+        <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
+        <div class="input-group-prepend">
+        </div>
+        </div>`,
     showCancelButton: true,
     closeOnConfirm: true,
     showCloseButton: true,
@@ -48,10 +48,9 @@ async function auth(){
     await checker(value.login, value.pass, value.priv);
 }
 async function getInputsVal() {
-    let login = '',  pass = '', priv ='';
-     login = document.getElementById('input-user').value;
-     pass = document.getElementById('input-pass').value;
-     priv = document.getElementById('input-private').value;
+    let login = document.getElementById('input-user').value,  
+        pass = document.getElementById('input-pass').value, 
+        priv = document.getElementById('input-private').value;
     return {
         login,
         pass,
@@ -64,7 +63,7 @@ async function checker(username, pass, priv) {
     this.user = username;
     this.pass = pass;
     this.private = priv;
-    try{
+    try {
         this.private.length == 51 && this.private.match(/5[A-Z]/) ? wif = this.private 
                                                               : this.response = await golos.api.getAccounts([this.user]);
                                                           } catch(e){
@@ -80,7 +79,7 @@ async function checker(username, pass, priv) {
         getPublicKey(wif);
     } else {
         const roles = ['posting'];
-        try{
+        try {
             let keys = await golos.auth.getPrivateKeys(this.user, this.pass, roles);
             if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
                 wif = keys.posting;
@@ -100,7 +99,7 @@ async function checker(username, pass, priv) {
 
 async function getPublicKey(wifPar){
     this.wif = wifPar;
-    try{
+    try {
         let resultWifToPublic = await golos.auth.wifToPublic(this.wif);
         golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {

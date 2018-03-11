@@ -538,6 +538,7 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=
         buttonsStyling: false,
         confirmButtonClass: 'btn btn-success btn-lg',
         confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
-        position: 'top'
+        position: 'top',
+        showCloseButton: true
     });
 }, false);
