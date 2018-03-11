@@ -49,6 +49,7 @@ function copyToGolos(e) {
     let elem;
     if (arrGolos.delete(this.id)) {
         tr.setAttribute('class', '');
+        this.className = 'btn btn-success';
         this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
@@ -57,6 +58,7 @@ function copyToGolos(e) {
     if ( ! elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
+        this.className = 'btn btn-danger';
         this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
     }
     let uploadGolos = document.getElementById('upload-golos');
