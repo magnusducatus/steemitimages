@@ -114,9 +114,11 @@ function test(data) {
         content: data.body
     }];
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
+    document.getElementById('loader').style.display = 'block';
     ipfs.files.add(files, function(err, file) {
         if (err) swal('Error');
         else {
+            document.getElementById('loader').style.display = 'none';
             for (let i = 0; i < file.length; i++) {
                 arrTablTd.push(file);
                 let tr = document.createElement('tr');
@@ -229,7 +231,7 @@ function test(data) {
             let elemIpfs = document.getElementsByClassName('elementIpfs');
             let uploadGolos = document.getElementById('upload-golos');
         }
-    })
+    });
 
 }
 
