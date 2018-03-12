@@ -104,7 +104,12 @@ function copyLinkGolos(e) {
         swal('Links not correctly works', err);
     }
 }
-
+function progressCalc(){
+    let result = arrProgress.length * 100 / progressLength;
+    document.getElementById('progressBar').innerHTML = `<div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: ${result}%;" aria-valuenow="${arrProgress.length}" aria-valuemin="0" aria-valuemax="${progressLength}">${result.toFixed(0)}%</div>
+    </div>`;
+}
 //data sending to ipfs
 function test(data) {
     const tb = document.getElementById('tbody');
@@ -113,12 +118,15 @@ function test(data) {
         path: data.name,
         content: data.body
     }];
+    progressCalc();
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
     document.getElementById('loader').style.display = 'block';
     ipfs.files.add(files, function(err, file) {
         if (err) swal('Error');
         else {
-            document.getElementById('loader').style.display = 'none';
+            
+            arrProgress.push(file);
+            progressCalc();
             for (let i = 0; i < file.length; i++) {
                 arrTablTd.push(file);
                 let tr = document.createElement('tr');
@@ -228,14 +236,19 @@ function test(data) {
             let tab = document.getElementById('table');
             //arrTablTd.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
             arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
-            let elemIpfs = document.getElementsByClassName('elementIpfs');
-            let uploadGolos = document.getElementById('upload-golos');
+            if (arrProgress.length == progressLength) {
+                document.getElementById('progressBar').removeChild(document.getElementsByClassName('progress')[0]);
+                document.getElementById('loader').style.display = 'none';
+                arrProgress = [];
+            }
         }
     });
 
 }
-
+let arrProgress = [];
+let progressLength = '';
 function iter() {
+    progressLength = arrIpfs.length;
     for (let i = 0; i < arrIpfs.length; i++) {
         test(arrIpfs[i]);
     }
@@ -341,7 +354,6 @@ Dropzone.options.dropzone = {
     autoProcessQueue: false,
     init: function() {
         window.addEventListener("paste", (pasteEvent) => {
-            console.log(pasteEvent);
             //var items = pasteEvent.clipboardData.items;
             retrieveImageFromClipboardAsBlob(pasteEvent, (file) => {
                 //let myD = new Dropzone('#dropzone');
@@ -360,7 +372,6 @@ Dropzone.options.dropzone = {
         }, false);
 
         this.on("addedfile", function(file) {
-            console.log(file)
             //second check for mime-type
             if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
