@@ -53,8 +53,7 @@ function copyToGolos(e) {
         this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
-    } else {
-    }
+    } else {}
     if ( ! elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
@@ -239,15 +238,95 @@ function iter() {
         test(arrIpfs[i]);
     }
     if (arrIpfs.length != 0) swal({
-                                    html:'Added successfully! Check the table!',
-                                    position: 'bottom-start',
-                                    timer: 1500
-                                })
+        html: 'Added successfully! Check the table!',
+        position: 'bottom-start',
+        timer: 1500
+    })
     arrIpfs = [];
 }
 const upload = document.getElementById('upload-btn');
 upload.addEventListener("click", iter, false);
 
+function retrieveImageFromClipboardAsBase64(pasteEvent, callback, imageFormat) {
+    if (pasteEvent.clipboardData == false) {
+        if (typeof(callback) == "function") {
+            callback(undefined);
+        }
+    };
+
+    let items = pasteEvent.clipboardData.items;
+
+    if (items == undefined) {
+        if (typeof(callback) == "function") {
+            callback(undefined);
+        }
+    };
+
+    for (let i = 0; i < items.length; i++) {
+        // Skip content if not image
+        if (items[i].type.indexOf("image") == -1) continue;
+        // Retrieve image on clipboard as blob
+        let blob = items[i].getAsFile();
+
+        // Create an abstract canvas and get context
+        let mycanvas = document.createElement("canvas");
+        let ctx = mycanvas.getContext('2d');
+
+        // Create an image
+        let img = new Image();
+
+        // Once the image loads, render the img on the canvas
+        img.onload = function() {
+            // Update dimensions of the canvas with the dimensions of the image
+            mycanvas.width = this.width;
+            mycanvas.height = this.height;
+
+            // Draw the image
+            ctx.drawImage(img, 0, 0);
+
+            // Execute callback with the base64 URI of the image
+            if (typeof(callback) == "function") {
+                callback(mycanvas.toDataURL(
+                    (imageFormat || "image/png")
+                ));
+            }
+        };
+
+        // Crossbrowser support for URL
+        let URLObj = window.URL || window.webkitURL;
+
+        // Creates a DOMString containing a URL representing the object given in the parameter
+        // namely the original Blob
+        img.src = URLObj.createObjectURL(blob);
+    }
+}
+
+function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
+    if (pasteEvent.clipboardData == false) {
+        if (typeof(callback) == "function") {
+            callback(undefined);
+        }
+    };
+
+    let items = pasteEvent.clipboardData.items;
+
+    if (items == undefined) {
+        if (typeof(callback) == "function") {
+            callback(undefined);
+        }
+    };
+
+    for (let i = 0; i < items.length; i++) {
+        // Skip content if not image
+        if (items[i].type.indexOf("image") == -1) continue;
+        // Retrieve image on clipboard as blob
+        let blob = items[i].getAsFile();
+
+        if (typeof(callback) == "function") {
+            callback(blob);
+        }
+    }
+}
 //init Dropzone
 Dropzone.options.dropzone = {
     //accept file mime-type
@@ -255,7 +334,27 @@ Dropzone.options.dropzone = {
     dictDefaultMessage: 'Drag&Drop files here or click to select files',
     autoProcessQueue: false,
     init: function() {
+        window.addEventListener("paste", (pasteEvent) => {
+            console.log(pasteEvent);
+            //var items = pasteEvent.clipboardData.items;
+            retrieveImageFromClipboardAsBlob(pasteEvent, (file) => {
+                //let myD = new Dropzone('#dropzone');
+                retrieveImageFromClipboardAsBase64(pasteEvent, (imageDataBase64) => {
+                    // If there's an image, open it in the browser as a new window :)
+                    if (imageDataBase64) {
+                        // data:image/png;base64,iVBORw0KGgoAAAAN......
+                        //window.open(imageDataBase64);
+                        file.status = "added";
+                        this.emit('addedfile', file);
+                        this.emit("thumbnail", file, imageDataBase64);
+                    }
+                });
+            }, false);
+
+        }, false);
+
         this.on("addedfile", function(file) {
+            console.log(file)
             //second check for mime-type
             if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -281,7 +380,7 @@ Dropzone.options.dropzone = {
             // Create the remove button
             let removeButton = Dropzone.createElement('<button class="btn btn-danger icon-cancel-circle"></button>');
             // Capture the Dropzone instance as closure.
-            let _this = this;
+            var _this = this;
             //remove all files
             document.getElementById("upload-btn").addEventListener("click", function() {
                 _this.removeAllFiles();
@@ -319,9 +418,9 @@ let constPermlik = 'golos-save-url-test1';
 function sendRequest(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        app : 'golosimages/0.1',
-        canonical : `https://golosimages.com#${username}/${constPermlik}`, 
-        app_account : 'golosapps',
+        app: 'golosimages/0.1',
+        canonical: `https://golosimages.com#${username}/${constPermlik}`,
+        app_account: 'golosapps',
         data: []
     };
     arrGolos.forEach((value) => {
@@ -347,30 +446,31 @@ function sendRequest(wifPar, authorPar, status) {
     this.title = 'IPFS images'; // post title
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        if ( ! err) {
+        if (!err) {
             arrGolos.clear();
 
             let uploadGolos = document.getElementById('upload-golos');
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
-            swal({html:'Images added'})
+            swal({
+                html: 'Images added'
+            })
         } else console.error(err);
     }); // add post
 }
 async function uploadToGolos() {
-    if ( wif == '' ) {
+    if (wif == '') {
         await auth();
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
             result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
-            if ( err ) swal(err);
+            if (err) swal(err);
         });
-    }   
+    }
 }
 //get comments
 function getComments() {
-    golos.api.getContentReplies('golos', constPermlik, function(err, result) {
-    });
+    golos.api.getContentReplies('golos', constPermlik, function(err, result) {});
 }
 
 function renderTableFromJson() {
@@ -485,7 +585,9 @@ function getPostJson(authorPar, permlinkPar, result) {
     this.postJ = JSON.parse(result.json_metadata);
     for (let i in this.postJ.data) arrJson.push(this.postJ.data[i]);
     if (result.children == 0) {
-        swal({html:'Check table for records'});
+        swal({
+            html: 'Check table for records'
+        });
         renderTableFromJson();
     } else {
         golos.api.getContentReplies(authorPar, permlinkPar, function(err, result) {
@@ -510,8 +612,10 @@ async function getUrls() {
         await auth();
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? swal({html:'You have\'t got records in IPFS'}) : getPostJson(username, constPermlik, result);
-            if ( err )swal(err);
+            result.id == 0 ? swal({
+                html: 'You have\'t got records in IPFS'
+            }) : getPostJson(username, constPermlik, result);
+            if (err) swal(err);
         });
     }
 }
@@ -520,7 +624,7 @@ document.getElementById('golos-urls').onclick = getUrls;
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
-document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=>{
+document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () => {
     swal({
         title: 'About this project!',
         html: `<div>
@@ -547,7 +651,19 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=
     });
 }, false);
 var body = document.getElementsByTagName('body')[0];
-document.getElementById('dropzone').addEventListener('dragenter', function(e){ this.style.border = '5px solid #80A6FF'; body.style.background = '#696969'})
-document.getElementById('dropzone').addEventListener('dragover', function(e){ this.style.border = '5px solid #80A6FF';body.style.background = '#696969'})
-document.getElementById('dropzone').addEventListener('drop', function(e){ this.style.border = '2px dashed #80A6FF';body.style.background = ' #FFFFFF'});
-document.getElementById('dropzone').addEventListener('dragleave', function(e){ this.style.border = '2px dashed #80A6FF';body.style.background = ' #FFFFFF'});
+document.getElementById('dropzone').addEventListener('dragenter', function(e) {
+    this.style.border = '5px solid #80A6FF';
+    body.style.background = '#696969'
+})
+document.getElementById('dropzone').addEventListener('dragover', function(e) {
+    this.style.border = '5px solid #80A6FF';
+    body.style.background = '#696969'
+})
+document.getElementById('dropzone').addEventListener('drop', function(e) {
+    this.style.border = '2px dashed #80A6FF';
+    body.style.background = ' #FFFFFF'
+});
+document.getElementById('dropzone').addEventListener('dragleave', function(e) {
+    this.style.border = '2px dashed #80A6FF';
+    body.style.background = ' #FFFFFF'
+});
