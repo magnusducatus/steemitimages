@@ -116,7 +116,7 @@ function test(data) {
     }];
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
     ipfs.files.add(files, function(err, file) {
-        if (err) swal(err);
+        if (err) swal('Error');
         else {
             for (let i = 0; i < file.length; i++) {
                 arrTablTd.push(file);
@@ -238,7 +238,11 @@ function iter() {
     for (let i = 0; i < arrIpfs.length; i++) {
         test(arrIpfs[i]);
     }
-    if (arrIpfs.length != 0) swal({html:'Added successfully! Check the table!'})
+    if (arrIpfs.length != 0) swal({
+                                    html:'Added successfully! Check the table!',
+                                    position: 'bottom-start',
+                                    timer: 1500
+                                })
     arrIpfs = [];
 }
 const upload = document.getElementById('upload-btn');
@@ -542,3 +546,8 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', ()=
         showCloseButton: true
     });
 }, false);
+var body = document.getElementsByTagName('body')[0];
+document.getElementById('dropzone').addEventListener('dragenter', function(e){ this.style.border = '5px solid #80A6FF'; body.style.background = '#696969'})
+document.getElementById('dropzone').addEventListener('dragover', function(e){ this.style.border = '5px solid #80A6FF';body.style.background = '#696969'})
+document.getElementById('dropzone').addEventListener('drop', function(e){ this.style.border = '2px dashed #80A6FF';body.style.background = ' #FFFFFF'});
+document.getElementById('dropzone').addEventListener('dragleave', function(e){ this.style.border = '2px dashed #80A6FF';body.style.background = ' #FFFFFF'});

@@ -34,6 +34,8 @@ function initLang(lang) {
                         title: 'Select language',
                         input: 'radio',
                         inputOptions: inputOptions,
+                        showCancelButton: true,
+                        showCloseButton: true,
                         inputValidator: (value) => {
                             return !value && 'You need to choose something!'
                         }
