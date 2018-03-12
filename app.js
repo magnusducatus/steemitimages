@@ -238,10 +238,14 @@ function iter() {
         test(arrIpfs[i]);
     }
     if (arrIpfs.length != 0) swal({
-        html: 'Added successfully! Check the table!',
-        position: 'bottom-start',
-        timer: 1500
-    })
+        title: 'Added successfully! Check the table!', 
+        type: 'success', 
+        showConfirmButton: false, 
+        position: 'bottom-left', 
+        timer: 3000, 
+        toast: true, 
+        animation: 'slide-from-top'
+    });
     arrIpfs = [];
 }
 const upload = document.getElementById('upload-btn');
@@ -335,17 +339,18 @@ Dropzone.options.dropzone = {
     autoProcessQueue: false,
     init: function() {
         window.addEventListener("paste", (pasteEvent) => {
+            console.log(pasteEvent);
             //var items = pasteEvent.clipboardData.items;
             retrieveImageFromClipboardAsBlob(pasteEvent, (file) => {
                 //let myD = new Dropzone('#dropzone');
                 retrieveImageFromClipboardAsBase64(pasteEvent, (imageDataBase64) => {
-                    // If there's an image, open it in the browser as a new window
+                    // If there's an image, open it in the browser as a new window :)
                     if (imageDataBase64) {
                         // data:image/png;base64,iVBORw0KGgoAAAAN......
                         //window.open(imageDataBase64);
                         file.status = "added";
                         this.emit('addedfile', file);
-                        this.emit("thumbnail", file, imageDataBase64);
+                        this.emit("thumbnail", file, imageDataBase64); 
                     }
                 });
             }, false);
@@ -353,6 +358,7 @@ Dropzone.options.dropzone = {
         }, false);
 
         this.on("addedfile", function(file) {
+            console.log(file)
             //second check for mime-type
             if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
@@ -653,20 +659,24 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
         showCloseButton: true
     });
 }, false);
-var body = document.getElementsByTagName('body')[0];
+let dropzone = document.getElementById('dropzone');
 document.getElementById('dropzone').addEventListener('dragenter', function(e) {
-    this.style.border = '5px solid #80A6FF';
-    body.style.background = '#696969'
+    this.style.border = '5px dashed #80A6FF';
+    dropzone.style.background = '#696969'
+    dropzone.style.color = 'white';
 })
 document.getElementById('dropzone').addEventListener('dragover', function(e) {
-    this.style.border = '5px solid #80A6FF';
-    body.style.background = '#696969'
+    this.style.border = '5px dashed #80A6FF';
+    dropzone.style.background = '#696969';
+    dropzone.style.color = 'white';
 })
 document.getElementById('dropzone').addEventListener('drop', function(e) {
     this.style.border = '2px dashed #80A6FF';
-    body.style.background = ' #FFFFFF'
+    dropzone.style.background = ' #FFFFFF';
+    dropzone.style.color = 'black';
 });
 document.getElementById('dropzone').addEventListener('dragleave', function(e) {
     this.style.border = '2px dashed #80A6FF';
-    body.style.background = ' #FFFFFF'
+    dropzone.style.background = ' #FFFFFF';
+    dropzone.style.color = 'black';
 });

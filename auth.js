@@ -3,36 +3,38 @@ window.username = '';
 async function auth(){
     const {value} = await swal({
     title: `<h3>To continue, you need to login!</h3>`,
-    html:`<p><h5>Please enter your login and master password</h5>
+    html:`
+        <p><h5>Please enter your login and master password</h5>
         <p><div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="username" required>@</span>
-        </div>
-        <input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="username" required>@</span>
+            </div>
+            <input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
         </div>
         <p><div>
-        <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
-        <div class="input-group-prepend">
-        </div>
-        </div>
+                <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
+           </div>
         <p><hr class="bg-secondary">OR<hr class="bg-secondary">
         <p><h5>Please enter only your private posting key</h5>
         <p><div>
-        <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
-        <div class="input-group-prepend">
-        </div>
-        </div>
-        <p><hr class="bg-secondary">OR<hr class="bg-secondary">
-        <a class="btn btn-info" target="_blank" href="https://golos.io/create_account">Sign Up</a>
-        <div class="form-check">
-        <label class="form-check-label">
-          <input id="logged" class="form-check-input" type="checkbox" value="">
-          Keep me logged
-        </label>
+            <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
         </div>`,
     showCancelButton: true,
     closeOnConfirm: true,
     showCloseButton: true,
+    footer: `
+        <div class="d-flex flex-column  align-items-center">
+            <div>
+                <h5>OR</h5>
+            </div>
+            <a class="btn btn-info swal2-styled" target="_blank" href="https://golos.io/create_account"><span class="icon-info"> Sign Up</a>
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input id="logged" class="form-check-input" type="checkbox" value="">
+                  Keep me logged
+                </label>
+            </div>
+        </div>`,
     preConfirm: async () => {
             const { login, pass, priv, log } = await getInputsVal();
             if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
