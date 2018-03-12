@@ -381,6 +381,10 @@ Dropzone.options.dropzone = {
             var _this = this;
             //remove all files
             document.getElementById("upload-btn").addEventListener("click", function() {
+                let elem = document.getElementsByClassName('elementIpfs');
+                for(let i = 0; i < elem.length; i++) {
+                    document.getElementById('dropzone').removeChild(elem[i]);
+                }
                 _this.removeAllFiles();
                 arrIpfs = [];
                 let uploadBtn = document.getElementById('upload-btn');
