@@ -335,12 +335,11 @@ Dropzone.options.dropzone = {
     autoProcessQueue: false,
     init: function() {
         window.addEventListener("paste", (pasteEvent) => {
-            console.log(pasteEvent);
             //var items = pasteEvent.clipboardData.items;
             retrieveImageFromClipboardAsBlob(pasteEvent, (file) => {
                 //let myD = new Dropzone('#dropzone');
                 retrieveImageFromClipboardAsBase64(pasteEvent, (imageDataBase64) => {
-                    // If there's an image, open it in the browser as a new window :)
+                    // If there's an image, open it in the browser as a new window
                     if (imageDataBase64) {
                         // data:image/png;base64,iVBORw0KGgoAAAAN......
                         //window.open(imageDataBase64);
@@ -354,7 +353,6 @@ Dropzone.options.dropzone = {
         }, false);
 
         this.on("addedfile", function(file) {
-            console.log(file)
             //second check for mime-type
             if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
 
