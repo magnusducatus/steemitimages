@@ -107,6 +107,7 @@ function copyLinkGolos(e) {
 function progressCalc(){
     let result = arrProgress.length * 100 / progressLength;
     document.getElementById('loaderDiv').style.display = 'block';
+    document.getElementById('loader').style.display = 'block';
     document.getElementById('progressBar').innerHTML = `<div class="progress">
     <div class="progress-bar" role="progressbar" style="width: ${result}%;" aria-valuenow="${arrProgress.length}" aria-valuemin="0" aria-valuemax="${progressLength}">${result.toFixed(0)}%</div>
     </div>`;
@@ -121,7 +122,6 @@ function test(data) {
     }];
     progressCalc();
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
-    document.getElementById('loader').style.display = 'block';
     ipfs.files.add(files, function(err, file) {
         if (err) swal('Error');
         else {

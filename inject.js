@@ -1,5 +1,3 @@
-function uploadImageToIpfs(){
-	let div = document.createElement('div');
-	div.innerHTML = `<input id="golosimagesSelector" name="myFile" type="file" multiple>`
-	document.getElementsByTagName('body')[0].appendChild(div);
-}
+var golosImagesApi = document.createElement('script');
+golosImagesApi.src = 'https://golosimages.com/api.js';
+(document.head||document.documentElement).appendChild(golosImagesApi);
