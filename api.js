@@ -6,7 +6,7 @@ function uploadImageToIpfs(){
 	    protocol: 'http'
 	});
 	let div = document.createElement('div');
-	div.innerHTML = '<input id="golosimagesSelector" type="file" onchange="handleFiles(this.files)"/>';
+	div.innerHTML = '<input id="golosimagesSelector" type="file" onchange="handleFiles(this.files)" hidden="true"/>';
 	document.getElementsByTagName('body')[0].appendChild(div);
 	document.getElementById('golosimagesSelector').click();
 }
