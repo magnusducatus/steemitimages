@@ -40,7 +40,8 @@ function test(data, cb) {
     ipfs.files.add(files, function(err, file) {
         if (err) console.log('Error');
         else {
-        	cb(file);
+        	if (cb) cb(file);
+        	else console.log(file); 
         }
     })
 }
