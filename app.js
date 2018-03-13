@@ -106,6 +106,7 @@ function copyLinkGolos(e) {
 }
 function progressCalc(){
     let result = arrProgress.length * 100 / progressLength;
+    document.getElementById('loaderDiv').style.display = 'block';
     document.getElementById('progressBar').innerHTML = `<div class="progress">
     <div class="progress-bar" role="progressbar" style="width: ${result}%;" aria-valuenow="${arrProgress.length}" aria-valuemin="0" aria-valuemax="${progressLength}">${result.toFixed(0)}%</div>
     </div>`;
@@ -239,7 +240,9 @@ function test(data) {
             if (arrProgress.length == progressLength) {
                 document.getElementById('progressBar').removeChild(document.getElementsByClassName('progress')[0]);
                 document.getElementById('loader').style.display = 'none';
+                document.getElementById('loaderDiv').style.display = 'none';
                 arrProgress = [];
+                document.getElementsByTagName('body').style=`margin-bottom: 60px;`;
             }
         }
     });
@@ -248,6 +251,7 @@ function test(data) {
 let arrProgress = [];
 let progressLength = '';
 function iter() {
+    document.getElementsByTagName('body').style=`background: #fff;width: 100%;height: 100%;position: fixed;display: block;top: 0;opacity: 0.8;`
     progressLength = arrIpfs.length;
     for (let i = 0; i < arrIpfs.length; i++) {
         test(arrIpfs[i]);
