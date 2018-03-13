@@ -389,7 +389,6 @@ Dropzone.options.dropzone = {
                     body: '',
                     hash: '',
                 };
-                //!!!!!This is for version without buffer
                 obj.body = ipfs.Buffer(data.target.result);
                 //obj.body = data.target.result;
                 obj.name = fileList.name;
