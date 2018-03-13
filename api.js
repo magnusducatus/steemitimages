@@ -1,9 +1,10 @@
-function uploadImageToIpfs(){
-	let ipfs = window.IpfsApi({
+let ipfs = window.IpfsApi({
 	    host: '91.201.41.253',
 	    port: '5001',
 	    protocol: 'http'
 	});
+function uploadImageToIpfs(){
+	
 	let div = document.createElement('div');
 	div.innerHTML = '<input id="golosimagesSelector" type="file" onchange="handleFiles(this.files)"/>';
 	document.getElementsByTagName('body')[0].appendChild(div);
