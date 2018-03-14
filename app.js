@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
                 swal({
-                    html: 'Images added'
+                    html: document.getElementById('imageAdded').innerHTML
                 })
             } else console.error(err);
         }); // add post
@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i in this.postJ.data) arrJson.push(this.postJ.data[i]);
         if (result.children == 0) {
             swal({
-                html: 'Check table for records'
+                html: document.getElementById('check-table-for-records').innerHTML
             });
             renderTableFromJson();
         } else {
@@ -638,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
                 result.id == 0 ? swal({
-                    html: 'You have\'t got records in IPFS'
+                    html: document.getElementById('no-records-IPFS').innerHTML
                 }) : getPostJson(username, constPermlik, result);
                 if (err) swal(err);
             });
@@ -652,22 +652,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () => {
         swal({
             title: 'About this project!',
-            html: `<div>
-                <p class="float-left text-left">
-                GolosImages - this microservice for storing images on the  blockchain <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
-                </p>
-                <ul class="float-left text-left">
-                We use:
-                <li><a target="_blank"  href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
-                <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
-                <li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>
-                <li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - A collection of all country flags in SVG;</li>
-                <li><a target="_blank" href="https://github.com/padolsey/findAndReplaceDOMText">FindAndReplaceDOMText</a> - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;</li>
-                <li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
-                <li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - A client library for the IPFS HTTP API, implemented in JavaScript;</li>
-                <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
-                </ul>
-                </div>`,
+            html: document.getElementById('about-html').innerHTML,
             type: 'info',
             buttonsStyling: false,
             confirmButtonClass: 'btn btn-success btn-lg',
@@ -700,12 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('integration').addEventListener('click', function(e) {
         swal({
                 title: 'About integration!',
-                html: `
-                    <div>
-                        <p>
-                            <a target="_blank" href="https://rawgit.com/epexa/golosimages/master/integration_example.html">https://rawgit.com/epexa/golosimages/master/integration_example.html</a>
-                        </p>
-                    </div>`,
+                html: document.getElementById('integration-html').innerHTML,
                 type: 'info',
                 buttonsStyling: false,
                 confirmButtonClass: 'btn btn-success btn-lg',
@@ -714,4 +694,4 @@ document.addEventListener('DOMContentLoaded', function() {
                 showCloseButton: true
         })
     })
-}
+});

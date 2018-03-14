@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
     let choosen = '';
 
     function initLang(lang) {
@@ -59,4 +59,3 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-}

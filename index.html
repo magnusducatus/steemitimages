@@ -129,4 +129,60 @@
     <script src="lang.js"></script>
     <script src="app.js"></script>
 </body>
+    <div id="image-added" hidden="true">
+    	Images added
+    </div>
+    <div id="check-table-for-records" hidden="true">
+    	Check table for records
+    </div>
+    <div id="no-records-IPFS" hidden="true">
+    	You have not got records in IPFS
+    </div>
+    <div id="about-html" hidden="true">
+	    <p class="float-left text-left">
+	    GolosImages - this microservice for storing images on the  blockchain <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
+	    </p>
+	    <ul class="float-left text-left">
+	    We use:
+	    <li><a target="_blank"  href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
+	    <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
+	    <li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>
+	    <li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - A collection of all country flags in SVG;</li>
+	    <li><a target="_blank" href="https://github.com/padolsey/findAndReplaceDOMText">FindAndReplaceDOMText</a> - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;</li>
+	    <li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
+	    <li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - A client library for the IPFS HTTP API, implemented in JavaScript;</li>
+	    <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
+	    </ul>
+	</div>
+    <div id="integration-html" hidden="true">
+    	<div>
+            <p>
+                <a target="_blank" href="https://rawgit.com/epexa/golosimages/master/integration_example.html">https://rawgit.com/epexa/golosimages/master/integration_example.html</a>
+            </p>
+        </div>
+	</div>
+	<div id="auth-html" hidden=true>
+		<p><h5>Please enter your login and master password</h5>
+            <p><div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="username" required>@</span>
+                </div>
+                <input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+            </div>
+            <p><div>
+                    <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
+               </div>
+            <p><hr class="bg-secondary">OR<hr class="bg-secondary">
+            <p><h5>Please enter only your private posting key</h5>
+            <p><div>
+                <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
+            </div>
+            <br>
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input id="logged" class="form-check-input" type="checkbox" value="">
+                  Keep me logged
+                </label>
+            </div>
+	</div>
 </html>

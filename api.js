@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
 	function uploadImageToIpfs(cb){
 		window.cb = cb;
 		window.ipfs = window.IpfsApi({
@@ -43,4 +43,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	        }
 	    })
 	}
-}
