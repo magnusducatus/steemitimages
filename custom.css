@@ -8,11 +8,11 @@ html {
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('icons/icomoon.eot?39uhkm');
-  src:  url('icons/icomoon.eot?39uhkm#iefix') format('embedded-opentype'),
-    url('icons/icomoon.ttf?39uhkm') format('truetype'),
-    url('icons/icomoon.woff?39uhkm') format('woff'),
-    url('icons/icomoon.svg?39uhkm#icomoon') format('svg');
+  src:  url('graphics/icons/icomoon.eot?39uhkm');
+  src:  url('graphics/icons/icomoon.eot?39uhkm#iefix') format('embedded-opentype'),
+    url('graphics/icons/icomoon.ttf?39uhkm') format('truetype'),
+    url('graphics/icons/icomoon.woff?39uhkm') format('woff'),
+    url('graphics/icons/icomoon.svg?39uhkm#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }

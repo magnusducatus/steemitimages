@@ -21,8 +21,8 @@ function initLang(lang) {
                 button.addEventListener('click', async () => {
                     var inputOptions = new Promise((resolve) => {
                         resolve({
-                            'ru': '<img src="flags/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский',
-                            'en': '<img src="flags/en.svg" height="30" width="40" style="border-radius: 0.25em"> English'
+                            'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский',
+                            'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em"> English'
                         })
                     })
                     const {
