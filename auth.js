@@ -18,6 +18,13 @@ async function auth(){
         <p><h5>Please enter only your private posting key</h5>
         <p><div>
             <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
+        </div>
+        <br>
+        <div class="form-check">
+            <label class="form-check-label">
+              <input id="logged" class="form-check-input" type="checkbox" value="">
+              Keep me logged
+            </label>
         </div>`,
     showCancelButton: true,
     closeOnConfirm: true,
@@ -28,12 +35,6 @@ async function auth(){
                 <h5>OR</h5>
             </div>
             <a class="btn btn-info swal2-styled" target="_blank" href="https://golos.io/create_account"><span class="icon-info"> Sign Up</a>
-            <div class="form-check">
-                <label class="form-check-label">
-                  <input id="logged" class="form-check-input" type="checkbox" value="">
-                  Keep me logged
-                </label>
-            </div>
         </div>`,
     preConfirm: async () => {
             const { login, pass, priv, log } = await getInputsVal();
