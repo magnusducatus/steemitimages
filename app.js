@@ -634,6 +634,8 @@ function getPostJson(authorPar, permlinkPar, result) {
 async function getUrls() {
     if (wif == '') {
         await auth();
+        console.log('ssss');
+        await auth();
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
             result.id == 0 ? swal({
