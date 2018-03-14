@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
     initLang('en');
     let ipfs = window.IpfsApi({
         host: '91.201.41.253',
@@ -694,4 +694,3 @@ document.addEventListener('DOMContentLoaded', function() {
                 showCloseButton: true
         })
     })
-});
