@@ -1,5 +1,6 @@
 
-function uploadImageToIpfs(){
+function uploadImageToIpfs(cb){
+	window.cb = cb;
 	window.ipfs = window.IpfsApi({
 	    host: '91.201.41.253',
 	    port: '5001',
@@ -24,15 +25,13 @@ function handleFiles(files){
 		    obj.body = ipfs.Buffer(data.target.result);
 		    //obj.body = data.target.result;
 		    obj.name = fileList.name;
-		    test(obj, (file) => {
-		    	console.log(file);
-		    })
+		    test(obj)
 		};
 		reader.readAsArrayBuffer(fileList[i]);
 	}
 }
 
-function test(data, cb) {
+function test(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error');
         else {
