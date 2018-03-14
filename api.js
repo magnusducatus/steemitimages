@@ -28,12 +28,12 @@ function handleFiles(files){
 		    obj.body = ipfs.Buffer(data.target.result);
 		    //obj.body = data.target.result;
 		    obj.name = fileList.name;
-		    test(obj)
+		    sendToIpfs(obj)
 		};
 		reader.readAsArrayBuffer(fileList[i]);
 	}
 }
-function test(data) {
+function sendToIpfs(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error');
         else {
