@@ -8,7 +8,7 @@ function uploadImageToIpfs(cb){
 	});
 	let div = document.createElement('div');
 	div.innerHTML = '<input id="golosimagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onchange="handleFiles(this.files)" hidden="true"/>';
-	document.getElementsByTagName('body')[0].appendChild(div);
+	(document.head||document.documentElement).appendChild(div);
 	document.getElementById('golosimagesSelector').click();
 }
 let len;
