@@ -657,7 +657,7 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
             </p>
             <ul class="float-left text-left">
             We use:
-            <li><a target="_blank" href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
+            <li><a target="_blank"  href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
             <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
             <li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>
             <li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - A collection of all country flags in SVG;</li>
@@ -699,9 +699,11 @@ document.getElementById('dropzone').addEventListener('dragleave', function(e) {
 document.getElementById('integration').addEventListener('click', function(e) {
     swal({
             title: 'About integration!',
-            html: `<div>
-                <p class="float-left text-left">
-                https://rawgit.com/epexa/golosimages/master/integration_example.html
+            html: `
+                <div>
+                    <p>
+                        <a target="_blank" href="https://rawgit.com/epexa/golosimages/master/integration_example.html">https://rawgit.com/epexa/golosimages/master/integration_example.html</a>
+                    </p>
                 </div>`,
             type: 'info',
             buttonsStyling: false,
