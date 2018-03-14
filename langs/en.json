@@ -30,5 +30,7 @@
 	"Успех":"Success",
 	"Авторизация прошла успешно!":"Authorization was successful!",
 	"Ошибка":"Error",
-	"Вы ввели неправельный приватный ключ!":"Private key is incorrect!"
+	"Вы ввели неправельный приватный ключ!":"Private key is incorrect!",
+	"Круто!":"Cool!",
+	"Интеграция":"Integration"
 }

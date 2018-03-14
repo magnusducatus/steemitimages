@@ -30,5 +30,22 @@
 	"Success":"Успех",
 	"Authorization was successful!":"Авторизация прошла успешно!",
 	"Error":"Ошибка",
-	"Private key is incorrect!":"Вы ввели неправельный приватный ключ!"
+	"Private key is incorrect!":"Вы ввели неправельный приватный ключ!",
+	"Integration":"Интеграция",
+	"GolosImages - this microservice for storing images on the  blockchain":"GolosImages - это микросервис для хранения изображений на блокчейне",
+	"Golos":"Golos",
+	"and":"и",
+	"This platform":" Эта платформа",
+	"is a thin":"является тонким",
+	"client":"клиент",
+	"that works without a backend (only frontend и blockchain) directly on the GitHub Pages (through CloudFlare).":"которая работает без бекенда (только фронтенд и блокчейн) напрямую с GitHub Pages (через CloudFlare).",
+	"We use:":"Мы используем:",
+	"the JavaScript API for Golos blockchain;":" JavaScript API для блокчейна Голос;",
+	"the most popular HTML, CSS, и JavaScript framework for developing responsive, mobile first projects on the web;":" популярный HTML, CSS, и JavaScript фреймворк для разработки респонсивных, мобильных проектов на Веб;",
+	"is an open source library that provides drag’n’drop file uploads with image previews;":"является библиотекой с открытым исходным кодом, которая обеспечивает загрузку файлов drag'n'Drop с предварительным просмотром изображений;",
+	"a collection of all country flags in SVG;":"коллекция флагов всех стран в SVG;",
+	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify;":"поиск совпадений регулярных выражений в данном узле DOM заменяет или обертывает каждое совпадение узлом или фрагментом текста, который можно указать;",
+	"is an internationalization-framework written in и for JavaScript;":"является ли интернационализация-фреймворк написан на JavaScript;",
+	"a client library for the IPFS HTTP API, implemented in JavaScript;":"клиентская библиотека для IPFS HTTP API, реализованная в JavaScript;",
+	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"красивая, отзывчивая, настраиваемая, доступная замена для всплывающих окон Javascript."
 }

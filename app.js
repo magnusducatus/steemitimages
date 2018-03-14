@@ -651,12 +651,12 @@
 
     document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () => {
         swal({
-            title: 'About this project!',
+            title: document.getElementById('about-html-title').innerHTML,
             html: document.getElementById('about-html').innerHTML,
             type: 'info',
             buttonsStyling: false,
             confirmButtonClass: 'btn btn-success btn-lg',
-            confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
+            confirmButtonText: document.getElementById('button-cool').innerHTML,
             position: 'top',
             showCloseButton: true
         });
