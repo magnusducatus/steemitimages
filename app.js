@@ -485,7 +485,7 @@
     }
     async function uploadToGolos() {
         if (wif == '') {
-            await auth();
+            auth();
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
                 result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
