@@ -696,3 +696,18 @@ document.getElementById('dropzone').addEventListener('dragleave', function(e) {
     dropzone.style.background = ' #FFFFFF';
     dropzone.style.color = 'black';
 });
+document.getElementById('integration').addEventListener('click', function(e) {
+    swal({
+            title: 'About integration!',
+            html: `<div>
+                <p class="float-left text-left">
+                https://rawgit.com/epexa/golosimages/master/integration_example.html
+                </div>`,
+            type: 'info',
+            buttonsStyling: false,
+            confirmButtonClass: 'btn btn-success btn-lg',
+            confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
+            position: 'top',
+            showCloseButton: true
+    })
+})
