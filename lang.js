@@ -13,9 +13,9 @@ function initLang(lang) {
             allowMultiLoading: false,
         }, function(err, t) {
             let navbar = document.getElementById('rigth');
-            let li = document.createElement('li');
+/*            let li = document.createElement('li');
             li.className = "nav-item";
-            navbar.appendChild(li);
+            navbar.appendChild(li);*/
             if (!document.getElementById('language')) {
                 let button = document.createElement('button');
                 button.className = `btn btn-info my-2 my-sm-0`;
@@ -44,7 +44,7 @@ function initLang(lang) {
                         initLang(language);
                     }
                 }, false);
-                li.appendChild(button);
+                navbar.appendChild(button);
             }
             updateContent(choosen);
         });
