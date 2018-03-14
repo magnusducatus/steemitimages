@@ -11,12 +11,12 @@ function uploadImageToIpfs(cb){
 	document.getElementsByTagName('body')[0].appendChild(div);
 	document.getElementById('golosimagesSelector').click();
 }
-let length;
+let len;
 let arrIpfs;
 function handleFiles(files){
 	arrIpfs = [];
 	let fileList = files;
-	length = fileList.length;
+	len = fileList.length;
 	for (var i = 0; i < fileList.length; i++) {
 		const reader = new FileReader();
 		reader.onload = function(data) {
@@ -37,7 +37,8 @@ function test(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error');
         else {
-        	arrIpfs.length == length ? cb(arrIpfs) : arrIpfs.push(file);
+        	arrIpfs.push(file);
+        	if(arrIpfs.length == len) cb(arrIpfs);
         }
     })
 }
