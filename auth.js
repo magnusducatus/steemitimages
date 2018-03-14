@@ -3,18 +3,12 @@
     window.username = '';
     async function auth(){
         const {value} = await swal({
-        title: `<h3>To continue, you need to login!</h3>`,
+        title: document.getElementById('auth-header').innerHTML,
         html:document.getElementById('auth-html').innerHTML,
         showCancelButton: true,
         closeOnConfirm: true,
         showCloseButton: true,
-        footer: `
-            <div class="d-flex flex-column  align-items-center">
-                <div>
-                    <h5>OR</h5>
-                </div>
-                <a class="btn btn-info swal2-styled" target="_blank" href="https://golos.io/create_account"><span class="icon-info"> Sign Up</a>
-            </div>`,
+        footer:document.getElementById('auth-footer').innerHTML,
         preConfirm: async () => {
                 const { login, pass, priv, log } = await getInputsVal();
                 if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
@@ -23,7 +17,7 @@
                             let pass = document.getElementById('input-pass');
                             let priv = document.getElementById('input-private'); 
                          swal.showValidationError(
-                                'Please enter your login and master password or only your private posting key'
+                                document.getElementById('auth-enter').innerHTML
                             );
                          login.setAttribute('class','form-control is-invalid');
                          pass.setAttribute('class','form-control is-invalid');
@@ -62,7 +56,7 @@
                                                                 swal({
                                                                   type: 'error',
                                                                   title: 'Login',
-                                                                  html: document.getElementById('log-incorrect'),
+                                                                  html: document.getElementById('log-incorrect').innerHTML,
                                                                 })
                                                               }
         
@@ -81,7 +75,7 @@
                 swal({
                   type: 'error',
                   title: 'Error',
-                  html: 'Master Key or password is incorrect!'
+                  html: document.getElementById('key-pass-incorrect').innerHTML
                 })
 
             }
@@ -100,7 +94,7 @@
                         swal({
                           type: 'success',
                           title: 'Success',
-                          html: 'Authorization was successful!'
+                          html: document.getElementById('auth-good').innerHTML
                         })
                     });
                 } else swal(err);
@@ -109,7 +103,7 @@
             swal({
                   type: 'error',
                   title: 'Error',
-                  html: 'Private key is incorrect!'
+                  html: document.getElementById('private-key-good').innerHTML
                 })
         }
     }
