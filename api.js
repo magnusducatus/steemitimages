@@ -37,6 +37,7 @@ function test(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error');
         else {
+        	file[0].path = `https://ipfs.io/ipfs/${file[0].hash}`
         	arrIpfs.push(file);
         	if(arrIpfs.length == len) cb(arrIpfs);
         }
