@@ -7,13 +7,16 @@ function uploadImageToIpfs(cb){
 	    protocol: 'http'
 	});
 	let div = document.createElement('div');
-	div.innerHTML = '<input id="golosimagesSelector" type="file" onchange="handleFiles(this.files)" hidden="true"/>';
+	div.innerHTML = '<input id="golosimagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onchange="handleFiles(this.files)" hidden="true"/>';
 	document.getElementsByTagName('body')[0].appendChild(div);
 	document.getElementById('golosimagesSelector').click();
 }
-
+let length;
+let arrIpfs;
 function handleFiles(files){
+	arrIpfs = [];
 	let fileList = files;
+	length = fileList.length;
 	for (var i = 0; i < fileList.length; i++) {
 		const reader = new FileReader();
 		reader.onload = function(data) {
@@ -30,13 +33,11 @@ function handleFiles(files){
 		reader.readAsArrayBuffer(fileList[i]);
 	}
 }
-
 function test(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error');
         else {
-        	if (cb) cb(file);
-        	else console.log(file); 
+        	arrIpfs.length == length ? cb(arrIpfs) : arrIpfs.push(file);
         }
     })
 }

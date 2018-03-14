@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Integration_example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-<body>
-    <article>
-        <main>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </main>
-    </article>
-    <script src="inject.js"></script>
-    <script>
-        uploadImageToIpfs();
-    </script>
-</body>
-</html>
+<button id="test" type="button" style="margin-left:50%;"> Upload to IPFS</button>
+<script src="inject.js"></script>
+<script>
+    document.getElementById('test').addEventListener('click', function(e){
+        uploadImageToIpfs(files=>{
+            console.log(files);
+        })
+    });
+</script>
