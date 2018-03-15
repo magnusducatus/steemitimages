@@ -1,6 +1,6 @@
 
     localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
-    window.username = '';
+    localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
     async function auth(){
         const {value} = await swal({
         title:  `<h3>To continue, you need to login!</h3>`,
@@ -113,6 +113,7 @@
         try {
             let resultWifToPublic = await golos.auth.wifToPublic(this.wif);
             log ? localStorage.wif = wif : '';
+            log ? localStorage.username = username : '';
             golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
                 if (!err) {
                     result.forEach(function(item) {
