@@ -82,7 +82,7 @@
                                                                 swal({
                                                                   type: 'error',
                                                                   title: 'Login',
-                                                                  html: document.getElementById('log-incorrect').innerHTML,
+                                                                  html: `Your login is incorrect!`,
                                                                 })
                                                               }
         
@@ -101,7 +101,7 @@
                 swal({
                   type: 'error',
                   title: 'Error',
-                  html: document.getElementById('key-pass-incorrect').innerHTML
+                  html: `Master Key or password is incorrect!`
                 })
 
             }
@@ -121,7 +121,7 @@
                         swal({
                             type: 'success',
                             title: 'Success',
-                            html: document.getElementById('auth-good').innerHTML
+                            html: `Authorization was successful!`
                         });
                     });
                 } else swal(err);
@@ -130,7 +130,7 @@
             swal({
                   type: 'error',
                   title: 'Error',
-                  html: document.getElementById('private-key-good').innerHTML
+                  html: `Private key is incorrect!`
                 })
         }
     }
