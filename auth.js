@@ -113,11 +113,11 @@
         try {
             let resultWifToPublic = await golos.auth.wifToPublic(this.wif);
             log ? localStorage.wif = wif : '';
-            log ? localStorage.username = username : '';
             golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
                 if (!err) {
                     result.forEach(function(item) {
                         username = item[0];
+                        log ? localStorage.username = username : '';
                         swal({
                             type: 'success',
                             title: 'Success',
