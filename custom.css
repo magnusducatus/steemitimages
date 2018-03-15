@@ -121,15 +121,20 @@ footer {
   top: 0;
   right: 0; }
 
-.github-corner:hover .octo-arm{
+.github-corner:hover .octo-arm {
   animation:octocat-wave 560ms ease-in-out
 }
+.octo-arm {
+  transform-origin: 40px;
+  position:absolute
+}
+
 @keyframes octocat-wave{
   0%,100%{
       transform:rotate(0)
   }
   20%,60%{
-      transform:rotate(-25deg)
+      transform:rotate(-1deg)
   }
   40%,80%{
       transform:rotate(10deg)
