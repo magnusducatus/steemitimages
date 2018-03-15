@@ -114,7 +114,7 @@
         </div>`;
     }
     //data sending to ipfs
-    function test(data) {
+    function sendToIpfs(data) {
         const tb = document.getElementById('tbody');
 
         const files = [{
@@ -255,7 +255,7 @@
         document.getElementsByTagName('body').style=`background: #fff;width: 100%;height: 100%;position: fixed;display: block;top: 0;opacity: 0.8;`
         progressLength = arrIpfs.length;
         for (let i = 0; i < arrIpfs.length; i++) {
-            test(arrIpfs[i]);
+            sendToIpfs(arrIpfs[i]);
         }
         if (arrIpfs.length != 0) swal({
             title: 'Added successfully! Check the table!', 
