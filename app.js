@@ -634,7 +634,22 @@
 
     async function getUrls() {
         if (wif == '') {
-            await auth();
+            await auth( () => { 
+                swal({
+                    type: 'success',
+                    title: 'Success',
+                    html: `Authorization was successful!`,
+                    preConfirm: async () => {
+                         golos.api.getContent(username, constPermlik, function(err, result) {
+                            result.id == 0 ? swal({
+                                html: document.getElementById('no-records-IPFS').innerHTML
+                            }) : getPostJson(username, constPermlik, result);
+                            if (err) swal(err);
+                        });
+                    }
+                });
+               
+            });
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
                 result.id == 0 ? swal({

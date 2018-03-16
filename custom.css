@@ -126,7 +126,7 @@ footer {
 }
 .octo-arm {
   transform-origin: 40px;
-  position:absolute
+  position:absolute;
 }
 
 @keyframes octocat-wave{
