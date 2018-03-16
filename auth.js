@@ -1,7 +1,7 @@
 
     localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
     localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
-    async function auth(){
+    async function auth(cb){
         const {value} = await swal({
         title:  `<h3>To continue, you need to login!</h3>`,
         html:`<p><h5>Please enter your login and master password</h5></p>
@@ -55,7 +55,7 @@
                 } 
             }
         })
-        await checker(value.login, value.pass, value.priv, value.log);
+        await checker(value.login, value.pass, value.priv, value.log, cb);
     }
     async function getInputsVal() {
         let login = document.getElementById('input-user').value,  
@@ -70,7 +70,7 @@
         };
     }
 
-    async function checker(username, pass, priv, log) {
+    async function checker(username, pass, priv, log, cb) {
         this.check;
         this.user = username;
         this.pass = pass;
@@ -88,14 +88,14 @@
         
         
         if(wif!=''){
-            getPublicKey(wif, log);
+            getPublicKey(log, cb);
         } else {
             const roles = ['posting'];
             try {
                 let keys = await golos.auth.getPrivateKeys(this.user, this.pass, roles);
                 if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
                     wif = keys.posting;
-                    getPublicKey(wif, log);
+                    getPublicKey(log, cb);
                 } else throw Error();;  
             } catch(e){
                 swal({
@@ -108,22 +108,17 @@
         }
     }
 
-    async function getPublicKey(wifPar, log){
-        this.wif = wifPar;
+    async function getPublicKey(log, cb){
         try {
-            let resultWifToPublic = await golos.auth.wifToPublic(this.wif);
+            let resultWifToPublic = await golos.auth.wifToPublic(wif);
             log ? localStorage.wif = wif : '';
-            golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+            let result = golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
                 if (!err) {
                     result.forEach(function(item) {
                         username = item[0];
                         log ? localStorage.username = username : '';
-                        swal({
-                            type: 'success',
-                            title: 'Success',
-                            html: `Authorization was successful!`
-                        });
                     });
+                    cb();
                 } else swal(err);
             });
         } catch(e){

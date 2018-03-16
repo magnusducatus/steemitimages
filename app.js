@@ -478,14 +478,26 @@
                 arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
                 swal({
-                    html: document.getElementById('imageAdded').innerHTML
+                    html: document.getElementById('image-added').innerHTML
                 })
             } else console.error(err);
         }); // add post
     }
     async function uploadToGolos() {
         if (wif == '') {
-            auth();
+            await auth( () => { 
+                swal({
+                    type: 'success',
+                    title: 'Success',
+                    html: `Authorization was successful!`,
+                    preConfirm: async () => {
+                        golos.api.getContent(username, constPermlik, function(err, result) {
+                            result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
+                            if (err) swal(err);
+                        });
+                    }
+                });
+            });
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
                 result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
@@ -647,8 +659,7 @@
                             if (err) swal(err);
                         });
                     }
-                });
-               
+                });  
             });
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
