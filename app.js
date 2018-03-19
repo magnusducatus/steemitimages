@@ -722,13 +722,5 @@
                 showCloseButton: true
         })
     })
-    function logOutProcc(){
-        document.getElementById('li-log').style.display = 'block';
-        document.getElementById('li-log').innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
-        document.getElementById('logout').addEventListener('click', function(e){
-            document.getElementById('li-log').style.display ='none';
-            localStorage.clear();
-            location.reload();
-        })
-    }
+    
     
