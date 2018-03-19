@@ -483,9 +483,9 @@
             } else console.error(err);
         }); // add post
     }
-    async function uploadToGolos() {
+    function uploadToGolos() {
         if (wif == '') {
-            await auth( () => { 
+            auth( () => { 
                 swal({
                     type: 'success',
                     title: 'Success',
@@ -638,16 +638,12 @@
                 renderTableFromJson();
             });
         }
-
-
-
-
     }
 
 
-    async function getUrls() {
+    function getUrls() {
         if (wif == '') {
-            await auth( () => { 
+            auth( () => { 
                 swal({
                     type: 'success',
                     title: 'Success',
