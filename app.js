@@ -1,4 +1,4 @@
-
+    localStorage.wif && localStorage.username ? logOutProcc() : '';
     initLang('en');
     let ipfs = window.IpfsApi({
         host: '91.201.41.253',
@@ -497,6 +497,7 @@
                         });
                     }
                 });
+                logOutProcc();
             });
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
@@ -659,7 +660,8 @@
                             if (err) swal(err);
                         });
                     }
-                });  
+                });
+                logOutProcc();
             });
         } else {
             golos.api.getContent(username, constPermlik, function(err, result) {
@@ -720,7 +722,13 @@
                 showCloseButton: true
         })
     })
-    function logOut(){
-        localStorage.clear();
-        location.reload();
+    function logOutProcc(){
+        document.getElementById('li-log').style.display = 'block';
+        document.getElementById('li-log').innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
+        document.getElementById('logout').addEventListener('click', function(e){
+            document.getElementById('li-log').style.display ='none';
+            localStorage.clear();
+            location.reload();
+        })
     }
+    

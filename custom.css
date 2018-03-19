@@ -114,6 +114,9 @@ footer {
   top: 25%;
   z-index: 1;
 }
+#li-lang {
+  display:none;
+}
 
 .github-corner {
   position: fixed;

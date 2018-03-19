@@ -13,7 +13,8 @@
                 },
                 allowMultiLoading: false,
             }, function(err, t) {
-                let navbar = document.getElementById('rigth');
+                let navbar = document.getElementById('li-lang');
+                navbar.style.display="block";
                 if (!document.getElementById('language')) {
                     let button = document.createElement('button');
                     button.className = `btn btn-info my-2 my-sm-0`;
