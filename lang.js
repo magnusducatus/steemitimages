@@ -33,6 +33,7 @@
                             title: 'Select language',
                             input: 'radio',
                             inputOptions: inputOptions,
+                            showConfirmButton: true,
                             showCancelButton: true,
                             showCloseButton: true,
                             inputValidator: (value) => {
