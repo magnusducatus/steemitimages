@@ -33,9 +33,9 @@
                             title: 'Select language',
                             input: 'radio',
                             inputOptions: inputOptions,
-                            showConfirmButton: true,
                             showCancelButton: true,
                             showCloseButton: true,
+                            confirmButtonText: `<div> <span class="icon-checkmark"></span> Ok </div>`,
                             inputValidator: (value) => {
                                 return !value && 'You need to choose something!'
                             }
