@@ -375,7 +375,29 @@
                 }, false);
 
             }, false);
+            this.on('dragenter', function(event){
+                console.log('enter');
+                document.getElementById('dropzone').style.border = '5px dashed #80A6FF';
+                document.getElementById('dropzone').style.background = '#696969'
+                document.getElementById('dropzone').style.color = 'white';
 
+            });
+            this.on('dragover', function(event){
+                console.log('over');
+                document.getElementById('dropzone').style.border = '5px dashed #80A6FF';
+                document.getElementById('dropzone').style.background = '#696969';
+                document.getElementById('dropzone').style.color = 'white';
+            });
+            this.on('drop', function(){
+                document.getElementById('dropzone').style.border = '2px dashed #80A6FF';
+        document.getElementById('dropzone').style.background = ' #FFFFFF';
+        document.getElementById('dropzone').style.color = 'black';
+            });
+            this.on('dragleave', function(){
+                document.getElementById('dropzone').style.border = '2px dashed #80A6FF';
+        document.getElementById('dropzone').style.background = ' #FFFFFF';
+        document.getElementById('dropzone').style.color = 'black';
+            });
             this.on("addedfile", function(file) {
                 //second check for mime-type
                 if (file.type != 'image/jpeg' || file.type != 'image/jpg' || file.type != 'image/png') {
@@ -686,15 +708,16 @@
         });
     }, false);
     let dropzone = document.getElementById('dropzone');
-    document.getElementById('dropzone').addEventListener('dragenter', function(e) {
+   /* document.getElementById('dropzone').addEventListener('dragenter', function(e) {
         this.style.border = '5px dashed #80A6FF';
         dropzone.style.background = '#696969'
         dropzone.style.color = 'white';
-    })
-    document.getElementById('dropzone').addEventListener('dragover', function(e) {
+    })*/
+    /*document.getElementById('dropzone').addEventListener('dragover', function(e) {
         this.style.border = '5px dashed #80A6FF';
         dropzone.style.background = '#696969';
         dropzone.style.color = 'white';
+
     })
     document.getElementById('dropzone').addEventListener('drop', function(e) {
         this.style.border = '2px dashed #80A6FF';
@@ -705,7 +728,31 @@
         this.style.border = '2px dashed #80A6FF';
         dropzone.style.background = ' #FFFFFF';
         dropzone.style.color = 'black';
+    });*/
+/*    document.getElementsByClassName('ss')[0].addEventListener('dragenter', function(e) {
+        console.log('dragenter')
+        this.style.border = '5px dashed #80A6FF';
+        dropzone.style.background = '#696969'
+        dropzone.style.color = 'white';
+    })
+    document.getElementsByClassName('ss')[0].addEventListener('dragover', function(e) {
+        console.log('dragover');
+        this.style.border = '5px dashed #80A6FF';
+        dropzone.style.background = '#696969';
+        dropzone.style.color = 'white';
+    })
+    document.getElementsByClassName('ss')[0].addEventListener('drop', function(e) {
+       console.log('drop')
+        this.style.border = '2px dashed #80A6FF';
+        dropzone.style.background = ' #FFFFFF';
+        dropzone.style.color = 'black';
     });
+    document.getElementsByClassName('ss')[0].addEventListener('dragleave', function(e) {
+        console.log('dragleave')
+        this.style.border = '2px dashed #80A6FF';
+        dropzone.style.background = ' #FFFFFF';
+        dropzone.style.color = 'black';
+    });*/
     document.getElementById('integration').addEventListener('click', function(e) {
         swal({
                 title: 'About integration!',

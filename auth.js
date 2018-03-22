@@ -33,7 +33,9 @@
                     <div>
                         <h5>OR</h5>
                     </div>
-                    <a class="btn btn-info swal2-styled" target="_blank" href="https://golos.io/create_account"><span class="icon-info"> Sign Up</a>
+                    <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
+                        <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>
+                    </a>
                 </div>`,
         preConfirm: async () => {
                 const { login, pass, priv, log } = await getInputsVal();

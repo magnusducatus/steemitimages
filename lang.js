@@ -19,7 +19,7 @@
                     let button = document.createElement('button');
                     button.className = `btn btn-info my-2 my-sm-0`;
                     button.id = `language`;
-                    button.innerHTML = `<span id="node" class="icon-earth"></span> Language`;
+                    button.innerHTML = `<span class="icon-earth"></span> Language`;
                     button.addEventListener('click', async () => {
                         var inputOptions = new Promise((resolve) => {
                             resolve({
