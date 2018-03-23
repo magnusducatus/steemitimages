@@ -1,7 +1,7 @@
 
     localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
     localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
-    async function auth(cb){
+    async function auth(cb = function(){}){
         const {value} = await swal({
         title:  `<h3>To continue, you need to login!</h3>`,
         html:`<p><h5>Please enter your login and master password</h5></p>
