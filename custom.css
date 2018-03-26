@@ -7,11 +7,11 @@ html {
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?2o0d8y');
-  src:  url('fonts/icomoon.eot?2o0d8y#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?2o0d8y') format('truetype'),
-    url('fonts/icomoon.woff?2o0d8y') format('woff'),
-    url('fonts/icomoon.svg?2o0d8y#icomoon') format('svg');
+  src:  url('graphics/icons/icomoon.eot?2o0d8y');
+  src:  url('graphics/icons/icomoon.eot?2o0d8y#iefix') format('embedded-opentype'),
+    url('graphics/icons/icomoon.ttf?2o0d8y') format('truetype'),
+    url('graphics/icons/icomoon.woff?2o0d8y') format('woff'),
+    url('graphics/icons/icomoon.svg?2o0d8y#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
