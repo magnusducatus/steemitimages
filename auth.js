@@ -133,12 +133,17 @@
     }
 
 function logOutProcc(){
-        document.getElementById('li-log').style.display = 'block';
-        document.getElementById('li-log').innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
+        let li = document.createElement('li');
+        li.className = `nav-item d-flex align-items-center`;
+        li.id = `li-log`;
+        li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
+        document.getElementById('navbar-right').appendChild(li);
         document.getElementById('logout').addEventListener('click', function(e){
-            document.getElementById('li-log').style.display ='none';
+            document.getElementById('navbar-right').removeChild(document.getElementById('li-log'));
             localStorage.removeItem('wif');
             localStorage.removeItem('username');
+            window.username = '';
+            window.wif = '';
             //location.reload();
         })
     }
