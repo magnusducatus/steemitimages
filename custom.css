@@ -7,11 +7,11 @@ html {
 }
 @font-face {
   font-family: 'icomoon';
-  src:  url('graphics/icons/icomoon.eot?l3stsu');
-  src:  url('graphics/icons/icomoon.eot?l3stsu#iefix') format('embedded-opentype'),
-    url('graphics/icons/icomoon.ttf?l3stsu') format('truetype'),
-    url('graphics/icons/icomoon.woff?l3stsu') format('woff'),
-    url('graphics/icons/icomoon.svg?l3stsu#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?2o0d8y');
+  src:  url('fonts/icomoon.eot?2o0d8y#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?2o0d8y') format('truetype'),
+    url('fonts/icomoon.woff?2o0d8y') format('woff'),
+    url('fonts/icomoon.svg?2o0d8y#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,6 +31,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-tab:before {
+  content: "\ea45";
+}
 .icon-download:before {
   content: "\e960";
 }
@@ -67,6 +70,7 @@ html {
 .icon-new-tab:before {
   content: "\ea7e";
 }
+
 
 footer {
 	position: absolute;
