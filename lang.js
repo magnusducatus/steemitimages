@@ -13,13 +13,16 @@
                 },
                 allowMultiLoading: false,
             }, function(err, t) {
-                let navbar = document.getElementById('li-lang');
-                navbar.style.display="block";
+                let navbar = document.getElementById('navbar-right');
+                let li = document.createElement('li');
+                li.className = `nav-item d-flex align-items-center`;
+                li.id = `li-lang`;
                 if (!document.getElementById('language')) {
                     let button = document.createElement('button');
                     button.className = `btn btn-info my-2 my-sm-0`;
                     button.id = `language`;
                     button.innerHTML = `<span class="icon-earth"></span> Language`;
+                    li.appendChild(button);
                     button.addEventListener('click', async () => {
                         var inputOptions = new Promise((resolve) => {
                             resolve({
@@ -44,7 +47,7 @@
                             initLang(language);
                         }
                     }, false);
-                    navbar.appendChild(button);
+                    navbar.appendChild(li);
                 }
                 updateContent(choosen);
             });
