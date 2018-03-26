@@ -18,7 +18,9 @@
     golos.config.set('websocket', 'wss://ws.testnet3.golos.io');
     golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
-    const host = 'http://91.201.41.253:7777/ipfs/';
+    const hosts = new Array('http://91.201.41.253:5001/ipfs/','http://91.201.41.253:7777/ipfs/');
+
+    let host = 'http://91.201.41.253:7777/ipfs/';
 
     let arrIpfs = [];
 
@@ -757,6 +759,23 @@
         swal({
                 title: 'About integration!',
                 html: document.getElementById('integration-html').innerHTML,
+                type: 'info',
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-success btn-lg',
+                confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
+                position: 'top',
+                showCloseButton: true
+        })
+    })
+    document.getElementById('change-port').addEventListener('click', function(e) {
+        hosts.forEach((item) =>{
+            let li = document.createElement('li');
+            li.innerHTML = `${item}`
+            document.getElementById('ul-change-port').appendChild(li);
+        })
+        swal({
+                title: 'Hosts',
+                html: document.getElementById('change-port-html').innerHTML,
                 type: 'info',
                 buttonsStyling: false,
                 confirmButtonClass: 'btn btn-success btn-lg',
