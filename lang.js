@@ -1,18 +1,37 @@
 
-    let choosen = '';
+    let choosen = '', lngOption = {
+                                  // order and from where user language should be detected
+                                  order: ['localStorage', 'navigator'],
 
+                                  // keys or params to lookup language from
+                                  lookupLocalStorage: 'i18nextLng',
+
+                                  // cache user language on
+                                  caches: ['localStorage'],
+
+                                  // optional expire and domain for set cookie
+                                  cookieMinutes: 10,
+                                  cookieDomain: 'myDomain',
+                                };
+    const lngDetector = new i18nextBrowserLanguageDetector(null, lngOption);
+    function detectLang(){
+        if(localStorage.lang) return localStorage.lang;
+        if(!localStorage.i18nextLng) return navigator.language.split('-')[0];
+        else return localStorage.i18nextLng.split('-')[0];
+    }
     function initLang(lang) {
-        choosen = lang;
         i18next
             .use(i18nextXHRBackend)
+            .use(lngDetector)
             .init({
-                lng: lang,
+                lng: detectLang(),
                 debug: false,
                 backend: {
-                    loadPath: '/langs/' + lang + '.json'
+                    loadPath: '/langs/' + detectLang() + '.json'
                 },
                 allowMultiLoading: false,
             }, function(err, t) {
+                choosen = detectLang();
                 let navbar = document.getElementById('navbar-right');
                 let li = document.createElement('li');
                 li.className = `nav-item d-flex align-items-center`;
@@ -44,6 +63,7 @@
                             }
                         })
                         if (language) {
+                            localStorage.lang = language;
                             initLang(language);
                         }
                     }, false);
