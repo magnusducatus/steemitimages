@@ -833,7 +833,7 @@ document.getElementById('change-port').addEventListener('click', async function(
                             }
                             console.log(full,result)
                         for (let i in result) {
-                            result[i].length != 3 && result[i].length >= 0 ? good[i] = false : good[i] = true;
+                            result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
                         }
                         for (let i in full){
                             console.log(i)
@@ -848,10 +848,25 @@ document.getElementById('change-port').addEventListener('click', async function(
                                     resolve();
                                 })
                             } else {
-                                full[i].forEach((item) => {
-                                    let arr = item.id.split('-'), conn = connectionNew[arr[1]];
-                                    conn[arr[2]] = item.value;
-                                });
+                                if(result[i].length==3&&result[i].length==0) {
+                                    full[i].forEach((item) => {
+                                        if ( item.value != 0) {
+                                            console.log('true',full[i]);
+                                            let arr = item.id.split('-'), conn = connectionNew[arr[1]];
+                                            conn[arr[2]] = item.value;
+                                        } else {
+                                            item.setAttribute('class', 'form-control is-invalid');  
+                                            console.log('true',full[i]); 
+                                        }
+                                    });
+                                } else {
+                                    console.log('false',full[i]);
+                                    full[i].forEach((item) => {
+                                        if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
+                                        else item.setAttribute('class', 'form-control');
+                                    });
+                                }
+
                             }
                         }
                         return true;
