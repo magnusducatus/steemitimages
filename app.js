@@ -1,14 +1,41 @@
 localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
-const apiProtocol = `http`,
-    apiPort = `5001`,
-    apiAddress = `91.201.41.253`;
-let ipfs = window.IpfsApi({
-    host: apiAddress,
-    port: apiPort,
-    protocol: apiProtocol
-});
+let ipfs;
+let host;
+function initConnection(connection){
+    ipfs = window.IpfsApi({
+        host: connection.api.address,
+        port: connection.api.port,
+        protocol: connection.api.protocol
+    });
+    console.log(connection)
+    host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
+};
+const connectionDefault = {
+    api :{
+        protocol:`http`,
+        port:`5001`,
+        address:`91.201.41.253`
+    },
+    gateway: {
+        protocol:`http`,
+        port:`7777`,
+        address:`91.201.41.253`
+    }
+}, connectionNew = {
+    api :{
+        protocol:`http`,
+        port:`5001`,
+        address:`91.201.41.253`
+    },
+    gateway: {
+        protocol:`http`,
+        port:`7777`,
+        address:`91.201.41.253`
+    }
+}
 
+initConnection(connectionDefault)
 swal.setDefaults({
     buttonsStyling: true,
     confirmButtonText: '<span class="icon-checkmark"></span> Ok',
@@ -23,11 +50,8 @@ golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099
 
 
 const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253:7777/ipfs/');
-const hostProtocol = `http`,
-    hostAddress = `91.201.41.253`,
-    hostPort = `7777`;
 
-let host = `${hostProtocol}://${hostAddress}:${hostPort}/ipfs/`;
+
 
 let arrIpfs = [];
 
@@ -807,38 +831,34 @@ document.getElementById('change-port').addEventListener('click', async function(
                                 api : '',
                                 gateway : ''
                             }
+                            console.log(full,result)
                         for (let i in result) {
-                            result[i].length != 3 && result[i].length !=0 ? good[i] = false : good[i] = true;
+                            result[i].length != 3 && result[i].length >= 0 ? good[i] = false : good[i] = true;
+                        }
+                        for (let i in full){
+                            console.log(i)
                             if( good[i] == false ){
+                                console.log('false',full[i]);
+                                full[i].forEach((item) => {
+                                    if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
+                                    else item.setAttribute('class', 'form-control');
+                                });
                                 return new Promise(resolve => {
-                                    console.log(result[i]);
-                                    full[i].forEach((item) => {
-                                        console.log(item);
-                                        if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
-                                        else item.setAttribute('class', 'form-control');
-                                    });
                                     swal.showValidationError(`Please enter full gateway or&and api inputs`);
                                     resolve();
                                 })
-                            } else result[i].forEach((item) =>{
-                                result[i]
-                            });
+                            } else {
+                                full[i].forEach((item) => {
+                                    let arr = item.id.split('-'), conn = connectionNew[arr[1]];
+                                    conn[arr[2]] = item.value;
+                                });
+                            }
                         }
-                        /*return new Promise(resolve => {
-                        for(let q in resultError) {
-                        if (resultError[q].length < 3) {
-                        console.log(resultError[q])
-                        resultError[q].forEach((item) => {
-                        item.setAttribute('class', 'form-control is-invalid');
-                        });
-                        }
-                        if(resultError.api.length > 0|| resultError.gateway.length > 0) swal.showValidationError(`Please enter full gateway or&and api inputs`);
-                        }
-                        resolve('hel');
-                        });*/
+                        return true;
                     }
                 });
-                console.log(ss)
+                console.log('111',ss);
+                initConnection(connectionNew)
             })
 
 
