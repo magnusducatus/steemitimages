@@ -819,6 +819,7 @@ document.getElementById('change-port').addEventListener('click', async function(
                         </div>
                         </p>
                         </div>`,
+                    footer: document.getElementById('default-div-node').innerHTML,    
                     type: 'info',
                     buttonsStyling: true,
                     position: 'top',
@@ -833,54 +834,34 @@ document.getElementById('change-port').addEventListener('click', async function(
                         for (let i in result) {
                             result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
                         }
+                        console.log(full);
                         for (let i in full) {
-                            if(good[i] == false) {
-                                console.log(i, full[i].id, false);
+                            if(full[i].some((item) => {return item.value == '' && !good[i]})) {
+                                console.log(i, full[i], false);
                                 full[i].forEach((item) => {
                                     if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
                                     else item.setAttribute('class', 'form-control');
                                 });
                             }
-                            else console.log(i, good[i], true)
                         }
-                        /*for (let i in full){
-                            console.log(i)
-                            if( good[i] == false ){
-                                console.log('false',full[i]);
+                        if ( good.api && good.gateway) {
+                            for(let i in full) {
                                 full[i].forEach((item) => {
-                                    if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
-                                    else item.setAttribute('class', 'form-control');
+                                    console.log('true',full[i]);
+                                    let arr = item.id.split('-'), conn = connectionNew[arr[1]];
+                                    if(item.value!='') conn[arr[2]] = item.value;
                                 });
-                                return new Promise(resolve => {
-                                    swal.showValidationError(`Please enter full gateway or&and api inputs`);
-                                    resolve();
-                                })
-                            } else {
-                                if(result[i].length==3&&result[i].length==0) {
-                                    full[i].forEach((item) => {
-                                        if ( item.value != 0) {
-                                            console.log('true',full[i]);
-                                            let arr = item.id.split('-'), conn = connectionNew[arr[1]];
-                                            conn[arr[2]] = item.value;
-                                        } else {
-                                            item.setAttribute('class', 'form-control is-invalid');  
-                                            console.log('true',full[i]); 
-                                        }
-                                    });
-                                } else {
-                                    console.log('false',full[i]);
-                                    full[i].forEach((item) => {
-                                        if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
-                                        else item.setAttribute('class', 'form-control');
-                                    });
-                                }
-
                             }
-                        }*/
-                        return true;
+                            return true;
+                        } else {
+                            console.log(false);
+                            return new Promise(resolve => {
+                                swal.showValidationError(`Please enter full gateway or&and api inputs`);
+                                resolve();
+                            })
+                        }  
                     }
                 });
-                console.log('111',ss);
                 initConnection(connectionNew)
             })
 
@@ -901,12 +882,6 @@ document.getElementById('change-port').addEventListener('click', async function(
                 obj[ss[i].id.split('-')[1]].push(ss[i]);
 
             }
-
-            /*for (let s in obj) {
-            for (let i = 0; i < obj[s].length; i++) {
-            obj[s][i].value == '' ? sendObj[s].push(obj[s][i]) : '';
-            }
-            }*/
             for (let i in sendObj) {
                 sendObj[i] = obj[i].filter((item) => {
                     if (item.value != '') return item;
@@ -914,3 +889,7 @@ document.getElementById('change-port').addEventListener('click', async function(
             }
             return {sendObj, obj};
         }
+document.getElementById('default-node').addEventListener('click', () => {
+    console.log(11111111);
+    initConnection(connectionDefault);
+})
