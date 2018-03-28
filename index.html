@@ -46,13 +46,13 @@
 
                     </ul>
                     <div class="form-inline my-2 my-lg-0" id="navbar-right">
-                        <li class="nav-item d-flex align-items-center">
+                       <!--  <li class="nav-item d-flex align-items-center">
                             <button class="btn btn-primary my-2 my-sm-0" id="change-port"><span class="icon-tab"></span> Change</button>
                             <span id="node" class="icon-sphere mx-1"></span> IPFS<span id="node-status" class="badge badge-danger  mx-1"> offline</span>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
+                        </li> -->
+                        <!-- <li class="nav-item d-flex align-items-center">
                             <button class="btn btn-primary my-2 my-sm-0" id="integration"><span class="icon-new-tab"></span> Integration</button>
-                        </li>
+                        </li> -->
                         <a class="github-corner" target="_blank" href="https://github.com/epexa/golosimages" tabindex="-1">
                             <img src="graphics/github-arm.svg" xmlns="http://www.w3.org/2000/svg" class="octo-arm" type="image/svg+xml">
                             </img>
@@ -106,8 +106,17 @@
         </main>
     </article>
     <footer class="footer">
-        <div class="container">
-            <span class="text-muted">GolosImages @ 2018</span>
+        <div class="container d-flex justify-content-between">
+        	<div>
+	        	<button class="btn btn-primary my-2 my-sm-0" id="change-port"><span class="icon-tab"></span> Change</button>
+	            <span id="node" class="icon-sphere mx-1"></span> IPFS<span id="node-status" class="badge badge-danger  mx-1"> offline</span>
+            </div>
+            <div>
+            	<span class="text-muted">GolosImages @ 2018</span>
+        	</div>
+            <div>
+            	<button class="btn btn-primary my-2 my-sm-0" id="integration"><span class="icon-new-tab"></span> Integration</button>
+            </div>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>

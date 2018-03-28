@@ -94,11 +94,12 @@ footer {
 }
 .dropzone {
   border: 2px dashed #80A6FF;
+  padding:0px 0px
 }
 .dropzone .dz-message {
   text-align: center;
   margin: 2em 0;
-  font-size: 250%;
+  font-size: 150%;
   color:black;
 }
 
