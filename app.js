@@ -8,7 +8,6 @@ function initConnection(connection){
         port: connection.api.port,
         protocol: connection.api.protocol
     });
-    console.log(connection)
     host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
 };
 const connectionDefault = {
@@ -826,16 +825,25 @@ document.getElementById('change-port').addEventListener('click', async function(
                     showCloseButton: true,
                     showCancelButton: true,
                     preConfirm: async () => {
-                        let {obj:full, sendObj:result} = await getInputsFromChange(),
+                        let { obj:full, sendObj:result } = await getInputsFromChange(),
                             good = {
                                 api : '',
                                 gateway : ''
                             }
-                            console.log(full,result)
                         for (let i in result) {
                             result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
                         }
-                        for (let i in full){
+                        for (let i in full) {
+                            if(good[i] == false) {
+                                console.log(i, full[i].id, false);
+                                full[i].forEach((item) => {
+                                    if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
+                                    else item.setAttribute('class', 'form-control');
+                                });
+                            }
+                            else console.log(i, good[i], true)
+                        }
+                        /*for (let i in full){
                             console.log(i)
                             if( good[i] == false ){
                                 console.log('false',full[i]);
@@ -868,7 +876,7 @@ document.getElementById('change-port').addEventListener('click', async function(
                                 }
 
                             }
-                        }
+                        }*/
                         return true;
                     }
                 });
