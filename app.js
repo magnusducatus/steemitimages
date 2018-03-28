@@ -801,6 +801,7 @@ document.getElementById('integration').addEventListener('click', function(e) {
     })
 })
 document.getElementById('change-port').addEventListener('click', async function(e) {
+            
             let ss = await swal({
                     title: 'Hosts',
                     html: `<div id="change-port-html">
@@ -889,7 +890,4 @@ document.getElementById('change-port').addEventListener('click', async function(
             }
             return {sendObj, obj};
         }
-document.getElementById('default-node').addEventListener('click', () => {
-    console.log(11111111);
-    initConnection(connectionDefault);
-})
+
