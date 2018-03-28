@@ -808,17 +808,17 @@ document.getElementById('change-port').addEventListener('click', async function(
                         <p><h5>Please enter remote address for ipfs-api</h5></p>
                         <p>
                         <div class="input-group mb-3">
-                        <input id="input-api-protocol" type="text" class="form-control" placeholder="protocol">
-                        <input id="input-api-address" type="text" class="form-control" placeholder="address">
-                        <input id="input-api-port" type="text" class="form-control" placeholder="port">
+                        <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                        <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
+                        <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
                         </div>
                         </p>
                         <p>
                         <p><h5>Please enter your node remote address</h5></p>
                         <div class="input-group mb-3">
-                        <input id="input-gateway-protocol" type="text" class="form-control" placeholder="protocol">
-                        <input id="input-gateway-address" type="text" class="form-control" placeholder="address">
-                        <input id="input-gateway-port" type="text" class="form-control" placeholder="port">
+                        <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                        <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
+                        <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
                         </div>
                         </p>
                         </div>`,
