@@ -803,8 +803,9 @@ document.getElementById('integration').addEventListener('click', function(e) {
 document.getElementById('change-port').addEventListener('click', async function(e) {
             
             let ss = await swal({
-                    title: 'Hosts',
+                    title: `<h3>Input node address!</h3>`,
                     html: `<div id="change-port-html">
+                        <p><h5>Please enter remote address for ipfs-api</h5></p>
                         <p>
                         <div class="input-group mb-3">
                         <input id="input-api-protocol" type="text" class="form-control" placeholder="protocol">
@@ -813,6 +814,7 @@ document.getElementById('change-port').addEventListener('click', async function(
                         </div>
                         </p>
                         <p>
+                        <p><h5>Please enter your node remote address</h5></p>
                         <div class="input-group mb-3">
                         <input id="input-gateway-protocol" type="text" class="form-control" placeholder="protocol">
                         <input id="input-gateway-address" type="text" class="form-control" placeholder="address">
