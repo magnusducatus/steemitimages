@@ -742,52 +742,6 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
         showCloseButton: true
     });
 }, false);
-let dropzone = document.getElementById('dropzone');
-/* document.getElementById('dropzone').addEventListener('dragenter', function(e) {
-this.style.border = '5px dashed #80A6FF';
-dropzone.style.background = '#696969'
-dropzone.style.color = 'white';
-})*/
-/*document.getElementById('dropzone').addEventListener('dragover', function(e) {
-this.style.border = '5px dashed #80A6FF';
-dropzone.style.background = '#696969';
-dropzone.style.color = 'white';
-
-})
-document.getElementById('dropzone').addEventListener('drop', function(e) {
-this.style.border = '2px dashed #80A6FF';
-dropzone.style.background = ' #FFFFFF';
-dropzone.style.color = 'black';
-});
-document.getElementById('dropzone').addEventListener('dragleave', function(e) {
-this.style.border = '2px dashed #80A6FF';
-dropzone.style.background = ' #FFFFFF';
-dropzone.style.color = 'black';
-});*/
-/*    document.getElementsByClassName('ss')[0].addEventListener('dragenter', function(e) {
-console.log('dragenter')
-this.style.border = '5px dashed #80A6FF';
-dropzone.style.background = '#696969'
-dropzone.style.color = 'white';
-})
-document.getElementsByClassName('ss')[0].addEventListener('dragover', function(e) {
-console.log('dragover');
-this.style.border = '5px dashed #80A6FF';
-dropzone.style.background = '#696969';
-dropzone.style.color = 'white';
-})
-document.getElementsByClassName('ss')[0].addEventListener('drop', function(e) {
-console.log('drop')
-this.style.border = '2px dashed #80A6FF';
-dropzone.style.background = ' #FFFFFF';
-dropzone.style.color = 'black';
-});
-document.getElementsByClassName('ss')[0].addEventListener('dragleave', function(e) {
-console.log('dragleave')
-this.style.border = '2px dashed #80A6FF';
-dropzone.style.background = ' #FFFFFF';
-dropzone.style.color = 'black';
-});*/
 document.getElementById('integration').addEventListener('click', function(e) {
     swal({
         title: 'About integration!',
