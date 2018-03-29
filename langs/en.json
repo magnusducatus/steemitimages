@@ -1,6 +1,12 @@
 {
 	"Сохранить выбранные ссылки в блокчейн Golos": " Save selected links to blockchain Golos",
 	"IPFS мультихэш":" IPFS multihash",
+	"Изменить":"Change",
+	"Выберете окно которое хотите сохранить":"Click on the window you want to capture",
+	"Вернитесь обратно на эту страницу":"Click back on this webpage",
+	"чтобы загрузить изображение":"to upload the image",
+	"инструкции для":"instractions for",
+	"Нажмите":"Press",
 	"Размер (MB)":" Size (MB)",
 	"Предпросмотр":" Preview",
 	"Загрузить в IPFS":" Upload to IPFS",
