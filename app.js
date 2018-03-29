@@ -810,7 +810,6 @@ document.getElementById('change-port').addEventListener('click', async function(
                         for (let i in result) {
                             result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
                         }
-                        console.log(full);
                         for (let i in full) {
                             if(full[i].some((item) => {return item.value == '' && !good[i]})) {
                                 console.log(i, full[i], false);
@@ -823,14 +822,12 @@ document.getElementById('change-port').addEventListener('click', async function(
                         if ( good.api && good.gateway) {
                             for(let i in full) {
                                 full[i].forEach((item) => {
-                                    console.log('true',full[i]);
                                     let arr = item.id.split('-'), conn = connectionNew[arr[1]];
                                     if(item.value!='') conn[arr[2]] = item.value;
                                 });
                             }
                             return true;
                         } else {
-                            console.log(false);
                             return new Promise(resolve => {
                                 swal.showValidationError(`Please enter full gateway or&and api inputs`);
                                 resolve();
