@@ -1,5 +1,4 @@
 <button id="test" type="button">Upload to IPFS</button>
-<button id="change-port" type="button">Change node</button>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
 <script src="inject.js"></script>
 <script>
@@ -10,8 +9,18 @@
     });
 </script>
 <script>
-    document.getElementById('change-port').addEventListener('click', function(e) {
-    	handleChangeAddress()
-    })
-
+function initCustomConnection(){
+	localStorage.connectionCustom = {
+	    api :{
+	        protocol:`http`,
+	        port:`5001`,
+	        address:`91.201.41.253`
+	    },
+	    gateway: {
+	        protocol:`http`,
+	        port:`7777`,
+	        address:`91.201.41.253`
+	    }
+	}
+}
 </script>
