@@ -392,10 +392,10 @@ Dropzone.options.dropzone = {
     dictDefaultMessage: `<div class="text-center"><br>Drag&Drop files here or click to select files.
                             <br>OR
     <br>1. Click on the window you want to capture.
-    <br>2. Press <span id="step0">Alt + Print Screen</span>.
+    <br>2. Press <kbd><span id="step0">Alt + Print Screen</span></kbd>.
     <br>3. Click back on this webpage.
-    <br>4. Press <span id="step1">Ctrl + V to upload the image</span>.
-    <br><button id="instruction-for"type="button" class="btn btn-link">instractions for <span id="step2">Mac</span></button></div>`,
+    <br>4. Press <kbd><span id="step1">Ctrl + V</span></kbd> to upload the image.
+    <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2">Mac</span></button></div>`,
     autoProcessQueue: false,
     init: function() {
         window.addEventListener("paste", (pasteEvent) => {
@@ -443,8 +443,8 @@ Dropzone.options.dropzone = {
             e.stopPropagation();
             mark = !mark;
             let steps = {
-                true:['Alt + Print Screen','Ctrl + V','Windows'],
-                false:['Shift + Ctrl + Cmd + 3','Cmd + V','Mac']
+                true:['Alt + Print Screen','Ctrl + V','Mac'],
+                false:['Shift + Ctrl + Cmd + 3','Cmd + V','Windows']
             }
             for(let i = 0; i < 3; i++){
                 document.getElementById('step'+i).innerHTML = steps[mark][i];
