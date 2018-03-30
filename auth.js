@@ -31,7 +31,7 @@
         showCloseButton: true,
         footer:`<div class="d-flex flex-column  align-items-center">
                     <div>
-                        <h5>OR</h5>
+                        OR<hr class="bg-secondary">
                     </div>
                     <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
                         <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>

@@ -779,25 +779,8 @@ document.getElementById('integration').addEventListener('click', function(e) {
 document.getElementById('change-port').addEventListener('click', async function(e) {
             
             let ss = await swal({
-                    title: `<h3>Input node address!</h3>`,
-                    html: `<div id="change-port-html">
-                        <p><h5>Please enter remote address for ipfs-api</h5></p>
-                        <p>
-                        <div class="input-group mb-3">
-                        <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                        <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
-                        <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
-                        </div>
-                        </p>
-                        <p>
-                        <p><h5>Please enter your node remote address</h5></p>
-                        <div class="input-group mb-3">
-                        <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                        <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
-                        <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
-                        </div>
-                        </p>
-                        </div>`,
+                    title: document.getElementById('change-port-html-title').innerHTML,
+                    html: document.getElementById('change-port-html').innerHTML,
                     footer: document.getElementById('default-div-node').innerHTML,    
                     type: 'info',
                     buttonsStyling: true,
