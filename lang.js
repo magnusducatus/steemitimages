@@ -153,9 +153,11 @@ function initCustomConnection(){
                     button.addEventListener('click', async () => {
                         var inputOptions = new Promise((resolve) => {
                             resolve({
-                                'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский',
+                                'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский</span>',
                                 'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em"> English',
-                                'cn': '<img src="graphics/flags/cn.svg" height="30" width="40" style="border-radius: 0.25em"> Chinese'
+                                'by': '<img src="graphics/flags/by.svg" height="30" width="40" style="border-radius: 0.25em"> Беларускі',
+                                'ua': '<img src="graphics/flags/ua.svg" height="30" width="40" style="border-radius: 0.25em"> Український',
+                                'cn': '<img src="graphics/flags/cn.svg" height="30" width="40" style="border-radius: 0.25em"> 中国'
                             })
                         })
                         const {
