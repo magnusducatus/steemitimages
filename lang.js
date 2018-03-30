@@ -21,7 +21,7 @@ Please enter only your private posting key
 <div id="auth-title" hidden="true">
     <h3>To continue, you need to login!</h3>
 </div>
-<div id="auth-html-logorpass" hideen="true">
+<div id="auth-html-logorpass" hidden="true">
     <p><h5>Please enter your login and master password</h5></p>
 </div>
 <div id="change-port-html-title" hidden="true">
