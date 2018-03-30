@@ -154,7 +154,8 @@ function initCustomConnection(){
                         var inputOptions = new Promise((resolve) => {
                             resolve({
                                 'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em"> Русский',
-                                'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em"> English'
+                                'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em"> English',
+                                'cn': '<img src="graphics/flags/cn.svg" height="30" width="40" style="border-radius: 0.25em"> Chinese'
                             })
                         })
                         const {
