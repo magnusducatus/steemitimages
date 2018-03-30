@@ -1,4 +1,8 @@
 {
+	"Add JavaScript in your HTML-page ":"Добавьте JavaScript на вашу HTML-страницу",
+	"Add button in your HTML-page":"Добавьте кнопку на вашу HTML-страницу",
+	"Add eventListener for upload button":"Добавьте eventListener для кнопки upload",
+	"You can set remote addresses to your IPFS node":" Вы можете установить подключение на вашу IPFS ноду",
 	"Save selected links to blockchain Golos": " Сохранить выбранные ссылки в блокчейн Golos",
 	"IPFS multihash":" IPFS мультихэш",
 	"Change":"Изменить",

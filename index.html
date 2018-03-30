@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
     <link rel="stylesheet" href="custom.css" />
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
     <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
     <!--Yandex.Metrika counter --><script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47877407 = new Ya.Metrika2({ id:47877407, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!--Yandex.Metrika counter -->
 </head>
@@ -117,6 +119,7 @@
         	</div>
         </div>
     </footer>
+   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/golos-js@0.6.1/dist/golos.min.js"></script>
@@ -129,11 +132,13 @@
     <script src="auth.js"></script>
     <script src="lang.js"></script>
     <script src="app.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     	function changeTheme() {
-	var themes = [ 'slate', 'spacelab'];
-	var exceptionsThemes = [ 'litera','sketchy','cerulean','minty', 'cosmo', 'journal', 'sandstone' , 'lux', 'pulse', 'united', 'cyborg', 'darkly', 'materia', 'solar', 'superhero', 'yeti', 'lumen', 'simplex', 'flatly'];
+	var themes = [ 'sandstone' , 'united','cosmo','yeti',];
+	var exceptionsThemes = [ 'litera','sketchy','cerulean','minty',  'journal',  'lux', 'pulse',  'cyborg', 'darkly', 'materia', 'solar', 'superhero',  'lumen', 'simplex', 'flatly'];
 	var menus = ['bg-light', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'bg-dark'];
 	var menus2 = ['navbar-light', 'navbar-dark'];
 	/*$.getJSON('https://bootswatch.com/api/4.json', function(data) {

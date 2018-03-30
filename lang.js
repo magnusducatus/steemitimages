@@ -83,9 +83,27 @@ Please enter only your private posting key
     </div>
     <div id="integration-html" hidden="true">
         <div>
-            <p>
-                <a target="_blank" href="https://golosimages.com/epexa/golosimages/master/integration_example.html">https://golosimages.com/epexa/golosimages/master/integration_example.html</a>
-            </p>
+                1. Add JavaScript in your HTML-page 
+                <pre><code>&lt;script src=&quot;https://golosimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
+                2. Add button in your HTML-page
+                <pre><code>&lt;button id=&quot;upload&quot; type=&quot;button&quot;&gt;Upload to IPFS&lt;/button&gt;</code></pre>
+                3. Add eventListener for upload button
+<div class="text-left"><pre><code>&lt;script&gt;
+document.getElementById('upload').addEventListener('click', function() {
+    uploadImageToIpfs(function(files) {
+        console.log(files);
+    })
+});
+&lt;/script&gt;</code></pre></div>
+                4. You can set remote addresses to your IPFS node
+                <div class="text-left"><pre><code>&lt;script&gt;
+function initCustomConnection(){
+    localStorage.connectionCustom = {
+        api :{ protocol:'http',port:'5001',address:'91.201.41.253' },
+        gateway: { protocol:'http', port:'7777', address:'91.201.41.253'}
+    }
+}
+&lt;/script&gt;</code></pre></div>
         </div>
     </div>`
     document.body.appendChild(div);

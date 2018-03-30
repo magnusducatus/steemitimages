@@ -1,8 +1,7 @@
-<button id="test" type="button">Upload to IPFS</button>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
+<button id="upload" type="button">Upload to IPFS</button>
 <script src="inject.js"></script>
 <script>
-    document.getElementById('test').addEventListener('click', function() {
+    document.getElementById('upload').addEventListener('click', function() {
         uploadImageToIpfs(function(files) {
             console.log(files);
         })
