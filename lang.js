@@ -175,6 +175,7 @@ function initCustomConnection(){
                         })
                         if (language) {
                             localStorage.lang = language;
+                            location.reload();
                             initLang(language);
                         }
                     }, false);
