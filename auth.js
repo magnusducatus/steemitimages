@@ -83,8 +83,8 @@
                                                               } catch(e){
                                                                 swal({
                                                                   type: 'error',
-                                                                  title: 'Login',
-                                                                  html: `Your login is incorrect!`,
+                                                                  title: `${document.getElementById('auth-swal-log-title').innerHTML}`,
+                                                                  html: `${document.getElementById('auth-swal-log-html').innerHTML}`,
                                                                 })
                                                               }
         
@@ -102,8 +102,7 @@
             } catch(e){
                 swal({
                   type: 'error',
-                  title: 'Error',
-                  html: `Master Key or password is incorrect!`
+                  html: `${document.getElementById('auth-masterorlogin-error').innerHTML}`
                 })
 
             }
@@ -126,8 +125,7 @@
         } catch(e){
             swal({
                   type: 'error',
-                  title: 'Error',
-                  html: `Private key is incorrect!`
+                  html: document.getElementById('privKey-incorrect').innerHTML
                 })
         }
     }
