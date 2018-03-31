@@ -30,8 +30,8 @@
         closeOnConfirm: true,
         showCloseButton: true,
         footer:`<div class="d-flex flex-column  align-items-center">
-                    <div>
-                        ${document.getElementById('auth-html-or').innerHTML}<hr class="bg-secondary">
+                    <div style="width:293%" class="text-center">
+                        ${document.getElementById('auth-html-or').innerHTML}<hr class="bg-light">
                     </div>
                     <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
                         <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>
