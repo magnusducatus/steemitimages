@@ -38,7 +38,10 @@
                     </a>
                 </div>`,
         preConfirm: async () => {
-                const { login, pass, priv, log } = await getInputsVal();
+                let login = document.getElementById('input-user').value,  
+                pass = document.getElementById('input-pass').value, 
+                priv = document.getElementById('input-private').value,
+                log = document.getElementById('logged').checked;
                 if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
                      return new Promise( resolve => {
                             let login = document.getElementById('input-user');
@@ -58,18 +61,6 @@
             }
         })
         await checker(value.login, value.pass, value.priv, value.log, cb);
-    }
-    async function getInputsVal() {
-        let login = document.getElementById('input-user').value,  
-            pass = document.getElementById('input-pass').value, 
-            priv = document.getElementById('input-private').value,
-            log = document.getElementById('logged').checked;
-        return {
-            login,
-            pass,
-            priv,
-            log
-        };
     }
 
     async function checker(username, pass, priv, log, cb) {
