@@ -766,7 +766,7 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
 }, false);
 document.getElementById('integration').addEventListener('click', function(e) {
     swal({
-        title: 'About integration!',
+        title: '',
         html: document.getElementById('integration-html').innerHTML,
         type: 'info',
         buttonsStyling: false,

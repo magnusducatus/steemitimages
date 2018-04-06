@@ -1,4 +1,5 @@
 {
+"About integration!":"Про інтеграцію!",
 "Add JavaScript in your HTML-page ":"Додайте JavaScript на вашу HTML-сторінку",
 "Add button in your HTML-page":"Додайте кнопку на вашу HTML-сторінку",
 "Add eventListener for upload button":"Додайте eventListener для кнопки upload",
@@ -46,7 +47,7 @@
 "Private key is incorrect!":"Ви ввели неправельный приватний ключ!",
 "Integration":"Інтеграція",
 "Cool!":"Круто!",
-"GolosImages - this microservice for storing images on the blockchain":"GolosImages - це микросервис для зберігання зображень на блокчейне",
+"- this microservice for storing images on the  blockchain":" - це микросервис для зберігання зображень на блокчейне",
 "Golos":"Golos",
 "and":"і",
 "This platform":" Ця платформа",
@@ -61,6 +62,6 @@
 "a collection of all country flags in SVG;":"колекція прапорів усіх країн в SVG;",
  "searches for regular expression matches in a given DOM node і replaces or wraps each match with a node or piece of text that you can specify;":"пошук збігів регулярних виразів даному сайті DOM замінює або обгортає кожне збіг вузлом або фрагментом тексту, який можна вказати;",
 " - is an internationalization-framework written in і for JavaScript;":" - є інтернаціоналізація-фреймворк написаний на JavaScript;",
-" - a client library for the  IPFS HTTP API, implemented in JavaScript;":" - є клієнтська бібліотека для IPFS HTTP API, реалізована в JavaScript;",
+" - library for the IPFS HTTP API, implemented in JavaScript;":" - бібліотека для IPFS HTTP API, реалізована в JavaScript;",
  " - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":" - гарна, чуйна, що настроюється, доступна заміна для спливаючих вікон Javascript."
 }
