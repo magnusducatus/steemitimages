@@ -9,8 +9,33 @@
     divSign.innerHTML = 'Sign Up';
     divMain.setAttribute('hidden','true')
     //document.getElementById('appender').appendChild(div1);
-   divMain.appendChild(div1);
-   divMain.appendChild(div2);
+    divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
+            Private key is incorrect!
+        </div>
+        <div id="auth-masterorlogin-error" hidden="true">
+            Master Key or password is incorrect!
+        </div>
+        <div id="auth-swal-log-html" hidden="true">
+            Your login is incorrect!
+        </div>
+        <div id="auth-swal-log-title" hidden="true">
+            Login
+        </div>
+        <div id="auth-html-keepLog" hidden="true">Keep me logged</div>
+        <div id="auth-html-postKey" hidden="true">
+        Please enter only your private posting key
+        </div>
+        <div id="auth-html-or" hidden="true">
+            OR
+        </div>
+        <div id="auth-title" hidden="true">
+            <h3>To continue, you need to login!</h3>
+        </div>
+        <div id="auth-html-logorpass" hidden="true">
+            <p><h5>Please enter your login and master password</h5></p>
+        </div>`;
+    divMain.appendChild(div1);
+    divMain.appendChild(div2);
     divMain.appendChild(div3);
     divMain.appendChild(divSign);
     document.getElementsByTagName('body')[0].appendChild(divMain);
