@@ -401,7 +401,7 @@ Dropzone.options.dropzone = {
     <br>2. Press <span id="step0"><kbd>Alt</kbd> + <kbd>Print Screen</kbd></span>.
     <br>3. Click back on this webpage.
     <br>4. Press <span id="step1"><kbd>Ctrl</kbd> + <kbd>V</kbd></span> to upload the image.
-    <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2">Mac</span></button></div>
+    <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2"><span class="icon-appleinc">Mac</span></span></button></div>
     </div>`,
     autoProcessQueue: false,
     init: function() {
@@ -450,8 +450,8 @@ Dropzone.options.dropzone = {
             e.stopPropagation();
             mark = !mark;
             let steps = {
-                true:['<kbd>Alt</kbd> + <kbd>Print Screen</kbd>','<kbd>Ctrl</kbd> + <kbd>V</kbd>','Mac'],
-                false:['<kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>3</kbd>','<kbd>Cmd</kbd> + <kbd>V</kbd>','Windows']
+                true:['<kbd>Alt</kbd> + <kbd>Print Screen</kbd>','<kbd>Ctrl</kbd> + <kbd>V</kbd>','<span class="icon-appleinc">Mac</span>'],
+                false:['<kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>3</kbd>','<kbd>Cmd</kbd> + <kbd>V</kbd>','<span class="icon-windows">Windows</span>']
             }
             for(let i = 0; i < 3; i++){
                 document.getElementById('step'+i).innerHTML = steps[mark][i];
