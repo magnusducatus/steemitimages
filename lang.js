@@ -1,4 +1,4 @@
-    let div1 = document.createElement('div'), div2 = document.createElement('div'), div3 = document.createElement('div'), divSign = document.createElement('div');
+    let div1 = document.createElement('div'), div2 = document.createElement('div'), div3 = document.createElement('div'), divSign = document.createElement('div'),divMain = document.createElement('div');
     div1.id = 'place-username';
     div2.id = 'place-masterpass';
     div3.id = 'place-wif';
@@ -7,10 +7,13 @@
     div2.innerHTML = 'Master password';
     div3.innerHTML = 'Private posting key';
     divSign.innerHTML = 'Sign Up';
-    document.getElementById('appender').appendChild(div1);
-    document.getElementById('appender').appendChild(div2);
-    document.getElementById('appender').appendChild(div3);
-    document.getElementById('appender').appendChild(divSign);
+    divMain.setAttribute('hidden','true')
+    //document.getElementById('appender').appendChild(div1);
+   divMain.appendChild(div1);
+   divMain.appendChild(div2);
+    divMain.appendChild(div3);
+    divMain.appendChild(divSign);
+    document.getElementsByTagName('body')[0].appendChild(divMain);
     let choosen = '', lngOption = {
                                   // order and from where user language should be detected
                                   order: ['localStorage', 'navigator'],
