@@ -135,6 +135,9 @@ footer {
   transform-origin: 40px;
   position:absolute;
 }
+hr{
+  background-color:#f8f9fa;
+}
 
 @keyframes octocat-wave{
   0%,100%{
