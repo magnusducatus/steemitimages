@@ -1,4 +1,12 @@
-
+let initConnection = connection => {
+		ipfs = window.IpfsApi({
+	        host: connection.api.address,
+	        port: connection.api.port,
+	        protocol: connection.api.protocol
+				 });
+		host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
+		console.log(ipfs);
+	};
 function uploadImageToIpfs(cb){
 	initConnection(connectionDefault)
 	window.cb = cb;
@@ -21,7 +29,7 @@ const connectionDefault = {
 }
 
 let len, arrIpfs,ipfs;
-localStorage.connectionCustoms ? initConnection(localStorage.connectionCustoms) : initConnection(connectionDefault);
+initConnection(connectionDefault);
 
 
 function handleFiles(files){
@@ -54,11 +62,12 @@ function sendToIpfs(data) {
         }
     })
 }
-function initConnection(connection){
-		ipfs = window.IpfsApi({
-	        host: connection.api.address,
-	        port: connection.api.port,
-	        protocol: connection.api.protocol
-				 });
-		host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
-	};
+// let initConnection = connection => {
+// 		ipfs = window.IpfsApi({
+// 	        host: connection.api.address,
+// 	        port: connection.api.port,
+// 	        protocol: connection.api.protocol
+// 				 });
+// 		host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
+// 		console.log(ipfs);
+// 	};

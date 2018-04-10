@@ -8,18 +8,20 @@
     });
 </script>
 <script>
+	let ChangeNode = {}
 function initCustomConnection(){
-	localStorage.connectionCustom = {
+	ChangeNode.connectionCustom = {
 	    api :{
 	        protocol:`http`,
-	        port:`5001`,
+	        port:`111`,
 	        address:`91.201.41.253`
 	    },
 	    gateway: {
 	        protocol:`http`,
-	        port:`7777`,
+	        port:`111`,
 	        address:`91.201.41.253`
 	    }
 	}
+	initConnection(ChangeNode.connectionCustom);
 }
 </script>
