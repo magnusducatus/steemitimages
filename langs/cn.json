@@ -1,4 +1,10 @@
 {
+	"Sign Up":"注册的",
+	"Ok":"确定",
+	"Cancel":"取消",
+	"Username":"用户名",
+	"Master password":"掌握密码",
+	"Private posting key":"私人发布关键的",
 	"searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify":"搜查经常表达的匹配在一定DOM节点和替换或包裹的每个匹配的一节或一段文字，你可以指定的；匹配规则表达在给DOM节点将取代或包裹的每个匹配的节点或一段文字，指定; 是一个国际化-一个框架，编写和JavaScript",
 	"This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare)":"没有后台(唯一的前端，并块链)直接在审查页(通过的)",
 	"the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web":"最受欢迎HTML，CSS和JavaScript框架对发展的响应，移动第一个项目上的网页",

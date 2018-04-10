@@ -33,13 +33,13 @@ const connectionDefault = {
         address:`91.201.41.253`
     }
 }
-
+console.log(document.getElementById('ok').innerHTML);
 initConnection(connectionDefault)
 swal.setDefaults({
     buttonsStyling: true,
-    confirmButtonText: '<span class="icon-checkmark"></span> Ok',
+    confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('ok').innerHTML}`,
     confirmButtonColor: '#5cb85c',
-    cancelButtonText: '<span class="icon-cross"></span> Cancel',
+    cancelButtonText: `<span class="icon-cross"></span> ${document.getElementById('cancel').innerHTML}`,
     cancelButtonColor: '#d9534f',
 });
 

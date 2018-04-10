@@ -9,15 +9,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="username" required>@</span>
                     </div>
-                    <input id="input-user"type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+                    <input id="input-user"type="text" class="form-control" placeholder=${document.getElementById('place-username').innerHTML} aria-label="username" aria-describedby="username" required>
                 </div></p>
                 <p><div>
-                        <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
+                        <input id="input-pass" type="password" class="form-control" placeholder=${document.getElementById('place-masterpass').innerHTML} aria-label="Password" aria-describedby="Password" required>
                    </div>
-                <p><hr class="bg-secondary">${document.getElementById('auth-html-or').innerHTML}<hr class="bg-secondary">
+                <p><hr>${document.getElementById('auth-html-or').innerHTML}<hr>
                 <p><h5>${document.getElementById('auth-html-postKey').innerHTML}</h5>
                 <p><div>
-                    <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
+                    <input id="input-private" type="password" class="form-control" placeholder=${document.getElementById('place-wif').innerHTML} aria-label="Private posting key" aria-describedby="Private posting key" required>
                 </div>
                 <br>
                 <div class="form-check">
@@ -34,7 +34,7 @@
                         ${document.getElementById('auth-html-or').innerHTML}<hr class="bg-light">
                     </div>
                     <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
-                        <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>
+                        <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> ${document.getElementById('sign').innerHTML}</button>
                     </a>
                 </div>`,
         preConfirm: async () => {

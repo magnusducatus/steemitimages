@@ -1,4 +1,9 @@
 {
+	"Sign Up":"Зарегистрироваться",
+	"Cancel":"Отмена",
+	"Username":"Имя пользователя",
+	"Master password":"Мастер-пароль",
+	"Private posting key":"Закрытый-ключ-проводки",
 	"About integration!":"Про интеграцию!",
 	"Add JavaScript in your HTML-page ":"Добавьте JavaScript на вашу HTML-страницу",
 	"Add button in your HTML-page":"Добавьте кнопку на вашу HTML-страницу",

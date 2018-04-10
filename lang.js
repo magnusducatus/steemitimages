@@ -1,4 +1,16 @@
-    
+    let div1 = document.createElement('div'), div2 = document.createElement('div'), div3 = document.createElement('div'), divSign = document.createElement('div');
+    div1.id = 'place-username';
+    div2.id = 'place-masterpass';
+    div3.id = 'place-wif';
+    divSign.id = 'sign';
+    div1.innerHTML = 'Username';
+    div2.innerHTML = 'Master password';
+    div3.innerHTML = 'Private posting key';
+    divSign.innerHTML = 'Sign Up';
+    document.getElementById('appender').appendChild(div1);
+    document.getElementById('appender').appendChild(div2);
+    document.getElementById('appender').appendChild(div3);
+    document.getElementById('appender').appendChild(divSign);
     let choosen = '', lngOption = {
                                   // order and from where user language should be detected
                                   order: ['localStorage', 'navigator'],
@@ -58,6 +70,7 @@
                             title: 'Select language',
                             input: 'radio',
                             inputOptions: inputOptions,
+                            inputValue: localStorage.lang,
                             showCancelButton: true,
                             showCloseButton: true,
                             confirmButtonText: `<div> <span class="icon-checkmark"></span> Ok </div>`,
@@ -82,6 +95,7 @@
     function updateContent() {
         let array = i18next.services.resourceStore.data[choosen].translation
         for (let i in array) {
+            //console.log('FIND'+i+'REPLACE'+array[i])
             findAndReplaceDOMText(document.body, {
                 find: i,
                 replace: array[i]
