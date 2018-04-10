@@ -70,7 +70,7 @@
                             title: 'Select language',
                             input: 'radio',
                             inputOptions: inputOptions,
-                            inputValue: localStorage.lang?localStorage.lang:'en',
+                            inputValue: localStorage.lang?localStorage.lang:navigator.language.split('-')[0],
                             showCancelButton: true,
                             showCloseButton: true,
                             confirmButtonText: `<div> <span class="icon-checkmark"></span> Ok </div>`,
