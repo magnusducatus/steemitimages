@@ -157,7 +157,11 @@ function sendToIpfs(data) {
     progressCalc();
     /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
     ipfs.files.add(files, function(err, file) {
-        if (err) swal('Error');
+        if (err) {
+            swal('Error');
+            document.getElementById('loaderDiv').style.display = 'none';
+
+        }
         else {
 
             arrProgress.push(file);
@@ -781,8 +785,7 @@ document.getElementById('change-port').addEventListener('click', async function(
             
             let ss = await swal({
                     title: document.getElementById('change-port-html-title').innerHTML,
-                    html: document.getElementById('change-port-html').innerHTML,
-                    footer: document.getElementById('default-div-node').innerHTML,    
+                    html: document.getElementById('change-port-html').innerHTML,  
                     type: 'info',
                     buttonsStyling: true,
                     position: 'top',
