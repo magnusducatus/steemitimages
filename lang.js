@@ -1,4 +1,8 @@
-    let div1 = document.createElement('div'), div2 = document.createElement('div'), div3 = document.createElement('div'), divSign = document.createElement('div'),divMain = document.createElement('div');
+    let div1 = document.createElement('div'),
+        div2 = document.createElement('div'),
+        div3 = document.createElement('div'),
+        divSign = document.createElement('div'),
+        divMain = document.createElement('div');
     div1.id = 'place-username';
     div2.id = 'place-masterpass';
     div3.id = 'place-wif';
@@ -7,7 +11,7 @@
     div2.innerHTML = 'Master password';
     div3.innerHTML = 'Private posting key';
     divSign.innerHTML = 'Sign Up';
-    divMain.setAttribute('hidden','true')
+    divMain.setAttribute('hidden', 'true')
     //document.getElementById('appender').appendChild(div1);
     divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
@@ -123,7 +127,6 @@
     function updateContent() {
         let array = i18next.services.resourceStore.data[choosen].translation
         for (let i in array) {
-            //console.log('FIND'+i+'REPLACE'+array[i])
             findAndReplaceDOMText(document.body, {
                 find: i,
                 replace: array[i]
