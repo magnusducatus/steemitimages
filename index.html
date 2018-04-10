@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
     <link rel="stylesheet" href="custom.css" />
     <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
+      href=" https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
     <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
     <!--Yandex.Metrika counter --><script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47877407 = new Ya.Metrika2({ id:47877407, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!--Yandex.Metrika counter -->
 </head>
@@ -120,7 +120,7 @@
         	</div>
         </div>
     </footer>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
@@ -192,6 +192,9 @@
 if (localStorage.theme || localStorage.themeMenu || localStorage.themeMenu2) changeTheme();
 
     </script>
+    <div id="select-language" hidden="true">
+        Select language
+    </div>
         <div id="aboutIntegration" hidden="true">
         About integration!
     </div>
@@ -278,7 +281,7 @@ Please enter only your private posting key
         </ul>
     </div>
     <div id="integration-html" hidden="true">
-        <div>
+        <div class="text-left">
                 1. Add JavaScript in your HTML-page 
                 <pre><code>&lt;script src=&quot;https://golosimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
                 2. Add button in your HTML-page
