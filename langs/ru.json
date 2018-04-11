@@ -1,9 +1,9 @@
 {
 	"Sign Up":"Зарегистрироваться",
 	"Cancel":"Отмена",
-	"Username":"Имя пользователя",
+	"Username":"Имя-пользователя",
 	"Master password":"Мастер-пароль",
-	"Private posting key":"Закрытый-ключ-проводки",
+	"Private posting key":"Приватный-постинг-ключ",
 	"About integration!":"Про интеграцию!",
 	"Add JavaScript in your HTML-page ":"Добавьте JavaScript на вашу HTML-страницу",
 	"Add button in your HTML-page":"Добавьте кнопку на вашу HTML-страницу",
@@ -12,7 +12,7 @@
 	"Save selected links to blockchain Golos": " Сохранить выбранные ссылки в блокчейн Golos",
 	"IPFS multihash":" IPFS мультихэш",
 	"Change":"Изменить",
-	"Keep me logged":"Оставить меня авторизованым",
+	"Keep me logged":"Запомнить",
 	"Please enter remote address for ipfs-api":"Пожалуйста введите удалённый адресс для ipfs-api",
 	"Please enter your node gateway remote address":"Пожалуйста введите удалённый адресс шлюза вашей ноды",
 	"Input node address!":"Введите адресса вашей ноды",
@@ -66,7 +66,7 @@
 	"is an open source library that provides drag’n’drop file uploads with image previews;":"является библиотекой с открытым исходным кодом, которая обеспечивает загрузку файлов drag'n'Drop с предварительным просмотром изображений;",
 	"a collection of all country flags in SVG;":"коллекция флагов всех стран в SVG;",
 	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify;":"поиск совпадений регулярных выражений в данном узле DOM заменяет или обертывает каждое совпадение узлом или фрагментом текста, который можно указать;",
-	"is an internationalization-framework written in и for JavaScript;":"является ли интернационализация-фреймворк написан на JavaScript;",
+	"is an internationalization-framework written in и for JavaScript;":"является фреймворком написанным на JavaScript;",
 	"library for the IPFS HTTP API, implemented in JavaScript;":"клиентская библиотека для IPFS HTTP API, реализованная в JavaScript;",
 	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"красивая, отзывчивая, настраиваемая, доступная замена для всплывающих окон Javascript."
 }

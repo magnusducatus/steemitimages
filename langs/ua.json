@@ -66,7 +66,7 @@
  " - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;":" - DropzoneJS бібліотекою з відкритим вихідним кодом, що забезпечує завантаження файлів drag'n'drop з попереднім переглядом зображень;",
 "a collection of all country flags in SVG;":"колекція прапорів усіх країн в SVG;",
  "searches for regular expression matches in a given DOM node і replaces or wraps each match with a node or piece of text that you can specify;":"пошук збігів регулярних виразів даному сайті DOM замінює або обгортає кожне збіг вузлом або фрагментом тексту, який можна вказати;",
-" - is an internationalization-framework written in і for JavaScript;":" - є інтернаціоналізація-фреймворк написаний на JavaScript;",
+" - is an internationalization-framework written in і for JavaScript;":" - є фреймворк написаный на JavaScript;",
 " - library for the IPFS HTTP API, implemented in JavaScript;":" - бібліотека для IPFS HTTP API, реалізована в JavaScript;",
  " - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":" - гарна, чуйна, що настроюється, доступна заміна для спливаючих вікон Javascript."
 }

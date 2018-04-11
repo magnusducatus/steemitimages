@@ -30,7 +30,7 @@
         closeOnConfirm: true,
         showCloseButton: true,
         footer:`<div class="d-flex flex-column  align-items-center">
-                    <div style="width:293%" class="text-center">
+                    <div style="width:182%" class="text-center">
                         ${document.getElementById('auth-html-or').innerHTML}<hr class="bg-light">
                     </div>
                     <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">

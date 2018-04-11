@@ -2,7 +2,8 @@ localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
 let ipfs;
 let host;
-function initConnection(connection){
+
+function initConnection(connection) {
     ipfs = window.IpfsApi({
         host: connection.api.address,
         port: connection.api.port,
@@ -11,28 +12,29 @@ function initConnection(connection){
     host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
 };
 const connectionDefault = {
-    api :{
-        protocol:`http`,
-        port:`5001`,
-        address:`91.201.41.253`
+        api: {
+            protocol: `http`,
+            port: `5001`,
+            address: `91.201.41.253`
+        },
+        gateway: {
+            protocol: `http`,
+            port: `7777`,
+            address: `91.201.41.253`
+        }
     },
-    gateway: {
-        protocol:`http`,
-        port:`7777`,
-        address:`91.201.41.253`
+    connectionNew = {
+        api: {
+            protocol: `http`,
+            port: `5001`,
+            address: `91.201.41.253`
+        },
+        gateway: {
+            protocol: `http`,
+            port: `7777`,
+            address: `91.201.41.253`
+        }
     }
-}, connectionNew = {
-    api :{
-        protocol:`http`,
-        port:`5001`,
-        address:`91.201.41.253`
-    },
-    gateway: {
-        protocol:`http`,
-        port:`7777`,
-        address:`91.201.41.253`
-    }
-}
 console.log(document.getElementById('ok').innerHTML);
 initConnection(connectionDefault)
 swal.setDefaults({
@@ -161,8 +163,7 @@ function sendToIpfs(data) {
             swal('Error');
             document.getElementById('loaderDiv').style.display = 'none';
 
-        }
-        else {
+        } else {
 
             arrProgress.push(file);
             progressCalc();
@@ -401,7 +402,7 @@ Dropzone.options.dropzone = {
     <br>2. Press <span id="step0"><kbd>Alt</kbd> + <kbd>Print Screen</kbd></span>.
     <br>3. Click back on this webpage.
     <br>4. Press <span id="step1"><kbd>Ctrl</kbd> + <kbd>V</kbd></span> to upload the image.
-    <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2"><span class="icon-appleinc">Mac</span></span></button></div>
+    <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2"><span class="icon-appleinc"> Mac</span></span></button></div>
     </div>`,
     autoProcessQueue: false,
     init: function() {
@@ -445,18 +446,18 @@ Dropzone.options.dropzone = {
             document.getElementById('dropzone').style.background = ' #FFFFFF';
             document.getElementById('dropzone').style.color = 'black';
         });
-        let mark=true;
-        document.getElementById('instruction-for').addEventListener('click',(e)=>{
+        let mark = true;
+        document.getElementById('instruction-for').addEventListener('click', (e) => {
             e.stopPropagation();
             mark = !mark;
             let steps = {
-                true:['<kbd>Alt</kbd> + <kbd>Print Screen</kbd>','<kbd>Ctrl</kbd> + <kbd>V</kbd>','<span class="icon-appleinc">Mac</span>'],
-                false:['<kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>3</kbd>','<kbd>Cmd</kbd> + <kbd>V</kbd>','<span class="icon-windows">Windows</span>']
+                true: ['<kbd>Alt</kbd> + <kbd>Print Screen</kbd>', '<kbd>Ctrl</kbd> + <kbd>V</kbd>', '<span class="icon-appleinc"> Mac</span>'],
+                false: ['<kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>3</kbd>', '<kbd>Cmd</kbd> + <kbd>V</kbd>', '<span class="icon-windows"> Windows</span>']
             }
-            for(let i = 0; i < 3; i++){
-                document.getElementById('step'+i).innerHTML = steps[mark][i];
+            for (let i = 0; i < 3; i++) {
+                document.getElementById('step' + i).innerHTML = steps[mark][i];
             }
-            
+
         })
         this.on("addedfile", function(file) {
             //second check for mime-type
@@ -608,7 +609,6 @@ function renderTableFromJson() {
         a1.target = '_blank';
         a1.className = "d-flex align-items-center flex-column";
         img.src = arrJson[i];
-        /*img.src = 'https://www.w3schools.com/images/w3schools_green.jpg';*/
         img.heigth = 100;
         img.width = 100;
 
@@ -676,17 +676,9 @@ function renderTableFromJson() {
         td4but1.id = arrJson[i];
         td4but1.onclick = copyLink;
 
-        /*let td4but2 = document.createElement('button');
-        td4but2.className = 'btn btn-outline-secondary';
-        td4but2.type = 'button';
-        td4but2.innerHTML = 'Select to save';
-        td4but2.id = file[i];
-        td4but2.onclick = copyToGolos;
-        */
         td4.appendChild(td4div1);
         td4div1.appendChild(td4but1);
-        /* td4div1.appendChild(td4but2);
-         */
+
         td1.appendChild(a1);
 
         tr.appendChild(td1);
@@ -782,74 +774,82 @@ document.getElementById('integration').addEventListener('click', function(e) {
 
 })
 document.getElementById('change-port').addEventListener('click', async function(e) {
-            
-            let ss = await swal({
-                    title: document.getElementById('change-port-html-title').innerHTML,
-                    html: document.getElementById('change-port-html').innerHTML,  
-                    type: 'info',
-                    buttonsStyling: true,
-                    position: 'top',
-                    showCloseButton: true,
-                    showCancelButton: true,
-                    preConfirm: async () => {
-                        let { obj:full, sendObj:result } = await getInputsFromChange(),
-                            good = {
-                                api : '',
-                                gateway : ''
-                            }
-                        for (let i in result) {
-                            result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
-                        }
-                        for (let i in full) {
-                            if(full[i].some((item) => {return item.value == '' && !good[i]})) {
-                                console.log(i, full[i], false);
-                                full[i].forEach((item) => {
-                                    if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
-                                    else item.setAttribute('class', 'form-control');
-                                });
-                            }
-                        }
-                        if ( good.api && good.gateway) {
-                            for(let i in full) {
-                                full[i].forEach((item) => {
-                                    let arr = item.id.split('-'), conn = connectionNew[arr[1]];
-                                    if(item.value!='') conn[arr[2]] = item.value;
-                                });
-                            }
-                            return true;
-                        } else {
-                            return new Promise(resolve => {
-                                swal.showValidationError(`Please enter full gateway or&and api inputs`);
-                                resolve();
-                            })
-                        }  
-                    }
-                });
-                initConnection(connectionNew)
-            })
 
-
-        async function getInputsFromChange() {
-            let obj = {
-                api: [],
-                gateway: [],
+    let ss = await swal({
+        title: document.getElementById('change-port-html-title').innerHTML,
+        html: document.getElementById('change-port-html').innerHTML,
+        type: 'info',
+        buttonsStyling: true,
+        position: 'top',
+        showCloseButton: true,
+        showCancelButton: true,
+        preConfirm: async () => {
+            let {
+                obj: full,
+                sendObj: result
+            } = await getInputsFromChange(),
+                good = {
+                    api: '',
+                    gateway: ''
+                }
+            for (let i in result) {
+                result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
             }
-            sendObj = {
-                api: [],
-                gateway: []
+            for (let i in full) {
+                if (full[i].some((item) => {
+                        return item.value == '' && !good[i]
+                    })) {
+                    console.log(i, full[i], false);
+                    full[i].forEach((item) => {
+                        if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
+                        else item.setAttribute('class', 'form-control');
+                    });
+                }
             }
-            let arr = [];
-            let ss = document.getElementById('change-port-html').getElementsByTagName('input');
-
-            for (let i = 0; i < ss.length; i++) {
-                obj[ss[i].id.split('-')[1]].push(ss[i]);
-
+            if (good.api && good.gateway) {
+                for (let i in full) {
+                    full[i].forEach((item) => {
+                        let arr = item.id.split('-'),
+                            conn = connectionNew[arr[1]];
+                        if (item.value != '') conn[arr[2]] = item.value;
+                    });
+                }
+                return true;
+            } else {
+                return new Promise(resolve => {
+                    swal.showValidationError(`Please enter full gateway or&and api inputs`);
+                    resolve();
+                })
             }
-            for (let i in sendObj) {
-                sendObj[i] = obj[i].filter((item) => {
-                    if (item.value != '') return item;
-                });
-            }
-            return {sendObj, obj};
         }
+    });
+    initConnection(connectionNew)
+})
 
+
+async function getInputsFromChange() {
+    let obj = {
+        api: [],
+        gateway: [],
+    }
+    sendObj = {
+        api: [],
+        gateway: []
+    }
+    let arr = [];
+    let ss = document.getElementById('change-port-html').getElementsByTagName('input');
+
+    for (let i = 0; i < ss.length; i++) {
+        obj[ss[i].id.split('-')[1]].push(ss[i]);
+
+    }
+    for (let i in sendObj) {
+        sendObj[i] = obj[i].filter((item) => {
+            if (item.value != '') return item;
+        });
+    }
+    return {
+        sendObj,
+        obj
+    };
+}
