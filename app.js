@@ -767,7 +767,7 @@ document.getElementById('integration').addEventListener('click', function(e) {
         type: 'info',
         buttonsStyling: false,
         confirmButtonClass: 'btn btn-success btn-lg',
-        confirmButtonText: '<span class="icon-checkmark"></span> Cool!',
+        confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('cool').innerHTML}`,
         position: 'top',
         showCloseButton: true
     })

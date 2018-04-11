@@ -1,4 +1,5 @@
 {
+	"Cool!":"Круто!",
 	"Sign Up":"Зарегистрироваться",
 	"Cancel":"Отмена",
 	"Username":"Имя-пользователя",
@@ -51,7 +52,6 @@
 	"Error":"Ошибка",
 	"Private key is incorrect!":"Вы ввели неправельный приватный ключ!",
 	"Integration":"Интеграция",
-	"Cool!":"Круто!",
 	"GolosImages - this microservice for storing images on the  blockchain":"GolosImages - это микросервис для хранения изображений на блокчейне",
 	"Golos":"Golos",
 	"and":"и",
