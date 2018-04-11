@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GolosImages</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
+    <link rel="stylesheet" href="custom.css" />
+    <link rel="stylesheet"
+      href=" https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
+    <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
+    <!--Yandex.Metrika counter --><script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47877407 = new Ya.Metrika2({ id:47877407, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!--Yandex.Metrika counter -->
+</head>
+<body>
+    <div id="loaderDiv">
+        <div id="loaderBar">
+            <div class="cssload-thecube" id="loader" style="display:none">
+                <div class="cssload-cube cssload-c1"></div>
+                <div class="cssload-cube cssload-c2"></div>
+                <div class="cssload-cube cssload-c4"></div>
+                <div class="cssload-cube cssload-c3"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="progressBar">
+            </div>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand"><img src="graphics/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""> GolosImages</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <button class="btn btn-success my-2 my-sm-0" id="golos-urls"><span class="icon-link"></span> Get my files</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-primary my-2 my-sm-0" id="aboutGolosImagesCallBtn"><span class="icon-info"></span> About</button>
+                        </li>
+
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0" id="navbar-right">
+                        <a class="github-corner" target="_blank" href="https://github.com/epexa/golosimages" tabindex="-1">
+                            <img src="graphics/github-arm.svg" xmlns="http://www.w3.org/2000/svg" class="octo-arm" type="image/svg+xml">
+                            </img>
+                            <img src="graphics/github-body.svg" xmlns="http://www.w3.org/2000/svg" type="image/svg+xml" >
+                            </img>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <article>
+        <main role="main" class="container">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <form action="/" class="dropzone form" id="dropzone">
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button id="upload-btn" class="btn btn-success btn-lg btn-block" type="button"><span class="icon-upload"></span> Upload to IPFS</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <table id="table" class="table table-striped table-bordered" hidden="true">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="text-center">Preview</th>
+                                <th class="text-center">Size (MB)</th>
+                                <th class="text-center">IPFS multihash</th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="upload-golos" class="btn btn-success btn-lg btn-block" type="button" hidden="true"><span class="icon-download"></span> Save selected links to blockchain Golos</button>
+                </div>
+            </div>
+            <br>
+        </main>
+    </article>
+    <footer class="footer">
+        <div class="container d-flex justify-content-between">
+        	<div>
+	            <span id="node" class="icon-sphere mx-1"></span> IPFS<span id="node-status" class="badge badge-danger  mx-1"> offline</span>
+	            <button class="btn btn-primary my-2 my-sm-0 btn-sm" id="change-port"><span class="icon-tab"></span> Change</button>
+	            <button class="btn btn-primary my-2 my-sm-0 btn-sm" id="integration"><span class="icon-new-tab"></span> Integration</button>
+            </div>
+            <div>
+            	<span class="text-muted">GolosImages @ 2018</span>
+        	</div>
+        </div>
+    </footer>
+    <div id="appender" hidden="true">
+        <div id="cancel">Cancel</div>
+        <div id="ok">Ok</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/golos-js@0.6.1/dist/golos.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/i18next@10.5.0/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/2.1.0/i18nextBrowserLanguageDetector.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js"></script>
+    <script src="https://thednp.github.io/bootstrap.native/dist/bootstrap-native-v4.min.js"></script>
+    <script src="lang.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    	function changeTheme() {
+	var themes = [ 'sandstone' , 'united','cosmo','yeti'];
+	var exceptionsThemes = [ 'litera','sketchy','cerulean','minty',  'journal',  'lux', 'pulse',  'cyborg', 'darkly', 'materia', 'solar', 'superhero',  'lumen', 'simplex', 'flatly'];
+	var menus = ['bg-light', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'bg-dark'];
+	var menus2 = ['navbar-light', 'navbar-dark'];
+	/*$.getJSON('https://bootswatch.com/api/4.json', function(data) {
+		var themes = data.themes;*/
+		var $controls = $('<form class="form-inline" style="position: fixed; bottom: 12px; right: 20px;"><select class="custom-select mb-2 mr-sm-2 mb-sm-0 input-sm" id="select-theme"></select><select class="custom-select mb-2 mr-sm-2 mb-sm-0 input-sm" id="select-menu"></select><select class="custom-select mb-2 mr-sm-2 mb-sm-0 input-sm" id="select-menu2"></select></form>');
+		$('footer > .container').append($controls);
+		var $theme = $('link[href$="bootstrap.min.css"]'),
+			$navBar = $('.navbar'),
+			$selectTheme = $controls.find('#select-theme'),
+			$selectMenu = $controls.find('#select-menu'),
+			$selectMenu2 = $controls.find('#select-menu2');
+		themes.forEach(function(value, index) {
+			//if (exceptionsThemes.indexOf(value.name) == -1) $selectTheme.append($('<option />').val(index).text(value.name));
+			$selectTheme.append($('<option />').val(index).text(value));
+		});
+		menus.forEach(function(value) {
+			$selectMenu.append($('<option />').val(value).text(value));
+		});
+		menus2.forEach(function(value) {
+			$selectMenu2.append($('<option />').val(value).text(value));
+		});
+		$selectTheme.change(function(){
+			var selectVal = $(this).val(),
+				theme = themes[selectVal];
+			//$theme.attr('href', theme.css);
+			$theme.attr('href', 'https://bootswatch.com/4/' + theme + '/bootstrap.min.css');
+			localStorage.theme = selectVal;
+		});
+		$selectMenu.change(function(){
+			var selectVal = $(this).val();
+			menus.forEach(function(value) {
+				$navBar.removeClass(value);
+			});
+			$navBar.addClass(selectVal);
+			localStorage.themeMenu = selectVal;
+		});
+		$selectMenu2.change(function(){
+			var selectVal = $(this).val();
+			menus2.forEach(function(value) {
+				$navBar.removeClass(value);
+			});
+			$navBar.addClass(selectVal);
+			localStorage.themeMenu2 = selectVal;
+		});
+		if (localStorage.theme) $selectTheme.val(localStorage.theme).change();
+		if (localStorage.themeMenu) $selectMenu.val(localStorage.themeMenu).change();
+		if (localStorage.themeMenu2) $selectMenu2.val(localStorage.themeMenu2).change();
+	//}, 'json');
+}
+
+if (localStorage.theme || localStorage.themeMenu || localStorage.themeMenu2) changeTheme();
+
+    </script>
+<div id="aboutIntegration" hidden="true">
+    About integration!
+</div>
+<div id="cool" hidden="true">
+    Cool!
+</div>
+<div id="change-port-html-title" hidden="true">
+    <h3>Input node address!</h3>
+</div>
+<div id="change-port-html" hidden="true">
+                        <p><h5>Please enter remote address for ipfs-api</h5></p>
+                        <p>
+                        <div class="input-group mb-3">
+                        <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                        <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
+                        <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                        </p>
+                        <p>
+                        <p><h5>Please enter your node gateway remote address</h5></p>
+                        <div class="input-group mb-3">
+                        <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                        <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
+                        <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                        </p>
+                        </div>
+    <div id="default-div-node" hidden="true">
+        <!-- <p>
+            <div class="d-flex flex-column  align-items-center swal2-actions">
+                <button type="button" id="default-node" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Default</button>
+            </div>
+        </p> -->
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modal" style="display:none">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <h3>Input node address!</h3>
+                    </h5>
+                    <button type="button" id= "change-node-close" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <h5>Please enter remote address for ipfs-api</h5>
+                    </p>
+                    <p>
+                        <div class="input-group mb-3">
+                            <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
+                            <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                    </p>
+                    <p>
+                        <p>
+                            <h5>Please enter your node gateway remote address</h5>
+                        </p>
+                        <div class="input-group mb-3">
+                            <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
+                            <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                    </p>
+                </div>
+                <div>
+                    <button type="button" id= "change-node-ok" class="btn btn-success">Ok</button>
+                    <button type="button" id= "change-node-cancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <div>
+                        <div class="modal-footer">
+                            <button type="button" id= "change-node-default" class="btn btn-primary" data-dismiss="modal">Default</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="image-added" hidden="true">
+        Images added
+    </div>
+    <div id="check-table-for-records" hidden="true">
+        Check table for records
+    </div>
+    <div id="no-records-IPFS" hidden="true">
+        You have not got records in IPFS
+    </div>
+    <div id="about-html-title" hidden="true">About!</div>
+    <div id="button-cool" hidden="true">
+        <span class="icon-checkmark"></span> Cool!
+    </div>
+    <div id="about-html" hidden="true">
+        <p class="float-left text-left">
+        GolosImages <span>- this microservice for storing images on the  blockchain</span> <a target="_blank" href="https://golos.io">Golos</a> and <a target="_blank" href="https://ipfs.io/">IPFS</a>. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
+        </p>
+        <ul class="float-left text-left">
+        We use:
+        <li><a target="_blank"  href="https://github.com/GolosChain/golos-js">Golos.js</a> - the JavaScript API for Golos blockchain;</li>
+        <li><a target="_blank" href="https://github.com/twbs/bootstrap">Bootstrap</a> - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;</li>
+        <li><a target="_blank" href="http://www.dropzonejs.com">Dropzone</a> - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews;</li>
+        <li><a target="_blank" href="https://github.com/lipis/flag-icon-css">Flag-icon-css</a> - a collection of all country flags in SVG;</li>
+        <li><a target="_blank" href="https://github.com/padolsey/findAndReplaceDOMText"><span>FindAndReplaceDOMText</span></a> - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;</li>
+        <li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
+        <li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - library for the IPFS HTTP API, implemented in JavaScript;</li>
+        <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
+        </ul>
+    </div>
+    <div id="integration-html" hidden="true">
+        <div class="text-left">
+                1. Add JavaScript in your HTML-page 
+                <pre><code>&lt;script src=&quot;https://golosimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
+                2. Add button in your HTML-page
+                <pre><code>&lt;button id=&quot;upload&quot; type=&quot;button&quot;&gt;Upload to IPFS&lt;/button&gt;</code></pre>
+                3. Add eventListener for upload button
+<div class="text-left"><pre><code>&lt;script&gt;
+document.getElementById('upload').addEventListener('click', function() {
+    uploadImageToIpfs(function(files) {
+        console.log(files);
+    })
+});
+&lt;/script&gt;</code></pre></div>
+                4. You can set remote addresses to your IPFS node
+                <div class="text-left"><pre><code>&lt;script&gt;
+function initCustomConnection() {
+    localStorage.connectionCustom = {
+        api : { protocol: 'http',port: '5001', address: '91.201.41.253' },
+        gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
+    }
+}
+&lt;/script&gt;</code></pre></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
