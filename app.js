@@ -291,13 +291,13 @@ let arrProgress = [];
 let progressLength = '';
 
 function iter() {
-    document.getElementsByTagName('body').style = `background: #fff;width: 100%;height: 100%;position: fixed;display: block;top: 0;opacity: 0.8;`
+    document.getElementsByTagName('body').style = `background: #fff;width: 100%;height: 100%;position: fixed;display: block;top: 0;opacity: 0.8;`;
     progressLength = arrIpfs.length;
     for (let i = 0; i < arrIpfs.length; i++) {
         sendToIpfs(arrIpfs[i]);
     }
     if (arrIpfs.length != 0) swal({
-        title: 'Added successfully! Check the table!',
+        title: document.getElementById('added-true').innerHTML,
         type: 'success',
         showConfirmButton: false,
         position: 'bottom-left',
@@ -573,7 +573,7 @@ function uploadToGolos() {
             swal({
                 type: 'success',
                 title: 'Success',
-                html: `Authorization was successful!`,
+                html: document.getElementById('auth-true').innerHTML,
                 preConfirm: async () => {
                     golos.api.getContent(username, constPermlik, function(err, result) {
                         result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
@@ -722,7 +722,7 @@ function getUrls() {
             swal({
                 type: 'success',
                 title: 'Success',
-                html: `Authorization was successful!`,
+                html: document.getElementById('auth-true').innerHTML,
                 preConfirm: async () => {
                     golos.api.getContent(username, constPermlik, function(err, result) {
                         result.id == 0 ? swal({
@@ -773,18 +773,20 @@ document.getElementById('integration').addEventListener('click', function(e) {
     })
 
 })
-document.getElementById('change-port').addEventListener('click', async function(e) {
-
-    let ss = await swal({
-        title: document.getElementById('change-port-html-title').innerHTML,
-        html: document.getElementById('change-port-html').innerHTML,
-        type: 'info',
-        buttonsStyling: true,
-        position: 'top',
-        showCloseButton: true,
-        showCancelButton: true,
-        preConfirm: async () => {
-            let {
+document.getElementById('change-port').addEventListener('click', function() {
+    document.getElementById('modal').style.display="block";
+    document.getElementById('change-node-cancel').addEventListener('click', function() {
+        document.getElementById('modal').style.display="none";
+    });
+    document.getElementById('change-node-close').addEventListener('click', function() {
+        document.getElementById('modal').style.display="none";
+    });
+    document.getElementById('change-node-default').addEventListener('click', function() {
+        initConnection(connectionDefault);
+        document.getElementById('modal').style.display="none";
+    });
+    document.getElementById('change-node-ok').addEventListener('click', async ()=>{
+          let {
                 obj: full,
                 sendObj: result
             } = await getInputsFromChange(),
@@ -814,17 +816,38 @@ document.getElementById('change-port').addEventListener('click', async function(
                         if (item.value != '') conn[arr[2]] = item.value;
                     });
                 }
-                return true;
+                initConnection(connectionNew);
+                document.getElementById('modal').style.display='none';
             } else {
-                return new Promise(resolve => {
-                    swal.showValidationError(`Please enter full gateway or&and api inputs`);
-                    resolve();
-                })
+                swal({
+                        title: `${document.getElementById('modal-error').innerHTML}`,
+                        type: 'error',
+                        showConfirmButton: false,
+                        position: 'center',
+                        timer: 3000,
+                        toast: true,
+                        animation: 'slide-from-top'
+                    });
             }
+    })
+});
+/*
+*/
+/*
+    let ss = await swal({
+        title: document.getElementById('change-port-html-title').innerHTML,
+        html: document.getElementById('change-port-html').innerHTML,
+        footer: document.getElementById('default-div-node').innerHTML,
+        type: 'info',
+        buttonsStyling: true,
+        position: 'top',
+        showCloseButton: true,
+        showCancelButton: true,
+        preConfirm: async () => {
+          
         }
     });
-    initConnection(connectionNew)
-})
+    */
 
 
 async function getInputsFromChange() {
@@ -837,7 +860,7 @@ async function getInputsFromChange() {
         gateway: []
     }
     let arr = [];
-    let ss = document.getElementById('change-port-html').getElementsByTagName('input');
+    let ss = document.getElementById('modal').getElementsByTagName('input');
 
     for (let i = 0; i < ss.length; i++) {
         obj[ss[i].id.split('-')[1]].push(ss[i]);

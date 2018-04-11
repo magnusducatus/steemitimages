@@ -1,4 +1,7 @@
 {
+	"Default":"Значение по умолчанию",
+	"Please enter full gateway or api inputs or both":"Пожалуйста, введите полностью шлюз или api или оба сразу",
+	"Added successfully! Check the table!":"Добавленно успешно! Проверьте таблицу!",
 	"Cool!":"Круто!",
 	"Sign Up":"Зарегистрироваться",
 	"Cancel":"Отмена",

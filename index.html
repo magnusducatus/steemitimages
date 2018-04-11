@@ -217,15 +217,71 @@ if (localStorage.theme || localStorage.themeMenu || localStorage.themeMenu2) cha
                         </p>
                         </div>
     <div id="default-div-node" hidden="true">
-        <p>
+        <!-- <p>
             <div class="d-flex flex-column  align-items-center swal2-actions">
                 <button type="button" id="default-node" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Default</button>
             </div>
-        </p>
+        </p> -->
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modal" style="display:none">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <h3>Input node address!</h3>
+                    </h5>
+                    <button type="button" id= "change-node-close" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>
+                        <h5>Please enter remote address for ipfs-api</h5>
+                    </p>
+                    <p>
+                        <div class="input-group mb-3">
+                            <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
+                            <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                    </p>
+                    <p>
+                        <p>
+                            <h5>Please enter your node gateway remote address</h5>
+                        </p>
+                        <div class="input-group mb-3">
+                            <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
+                            <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
+                        </div>
+                    </p>
+                </div>
+                <div class="d-flex flex-column">
+                    <p>
+                        <div class="swal2-actions align-self-center">
+                            <button type="button" id= "change-node-ok" class="btn btn-success"><span class="icon-checkmark"></span> Ok</button>
+                            <button type="button" id= "change-node-cancel" class="btn btn-danger" data-dismiss="modal" style=""><span class="icon-cross"></span> Cancel</button>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="modal-footer" id="modal-footer-id">
+                            <button type="button" id= "change-node-default" class="btn btn-primary" data-dismiss="modal">Default</button>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="image-added" hidden="true">
         Images added
     </div>
+    <div id="added-true" hidden="true">
+        Added successfully! Check the table!
+    </div>
+    <div id="auth-true" hidden="true">
+        Authorization was successful!
+    </div>
+    <div id="modal-error" hidden="true">Please enter full gateway or api inputs or both</div>
     <div id="check-table-for-records" hidden="true">
         Check table for records
     </div>
@@ -268,10 +324,10 @@ document.getElementById('upload').addEventListener('click', function() {
 &lt;/script&gt;</code></pre></div>
                 4. You can set remote addresses to your IPFS node
                 <div class="text-left"><pre><code>&lt;script&gt;
-function initCustomConnection(){
+function initCustomConnection() {
     localStorage.connectionCustom = {
-        api :{ protocol:'http',port:'5001',address:'91.201.41.253' },
-        gateway: { protocol:'http', port:'7777', address:'91.201.41.253'}
+        api : { protocol: 'http',port: '5001', address: '91.201.41.253' },
+        gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
     }
 }
 &lt;/script&gt;</code></pre></div>

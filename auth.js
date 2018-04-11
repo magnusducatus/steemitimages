@@ -29,14 +29,15 @@
         showCancelButton: true,
         closeOnConfirm: true,
         showCloseButton: true,
-        footer:`<div class="d-flex flex-column  align-items-center">
-                    <div style="width:182%" class="text-center">
-                        ${document.getElementById('auth-html-or').innerHTML}<hr class="bg-light">
+        footer:`<div class="d-flex flex-column" style="width:100%">
+                    <div class="text-center">
+                        ${document.getElementById('auth-html-or').innerHTML}
                     </div>
+                    <hr class="bg-light" style="width:100%">
                     <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
                         <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> ${document.getElementById('sign').innerHTML}</button>
-                    </a>
-                </div>`,
+                    </a></div>
+                `,
         preConfirm: async () => {
                 let login = document.getElementById('input-user').value,  
                 pass = document.getElementById('input-pass').value, 
