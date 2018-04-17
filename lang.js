@@ -15,7 +15,7 @@
     const lngDetector = new i18nextBrowserLanguageDetector(null, lngOption);
     function detectLang(){
         if(localStorage.lang) return localStorage.lang;
-        if(!localStorage.i18nextLng) return navigator.language.split('-')[0];
+        if( ! localStorage.i18nextLng ) return navigator.language.split('-')[0];
         else return localStorage.i18nextLng.split('-')[0];
     }
     function initLang(lang) {
@@ -35,14 +35,14 @@
                 let li = document.createElement('li');
                 li.className = `nav-item d-flex align-items-center`;
                 li.id = `li-lang`;
-                if (!document.getElementById('language')) {
-                    let button = document.createElement('button');
-                    button.className = `btn btn-info my-2 my-sm-0`;
-                    button.id = `language`;
-                    button.innerHTML = `<span class="icon-earth"></span> Language`;
+                if ( ! document.getElementById('language' )) {
+                    let button = document.createElement('button'), 
+                        button.className = `btn btn-info my-2 my-sm-0`, 
+                        button.id = `language`, 
+                        button.innerHTML = `<span class="icon-earth"></span> Language`;
                     li.appendChild(button);
                     button.addEventListener('click', async () => {
-                        var inputOptions = new Promise((resolve) => {
+                        var inputOptions = new Promise( (resolve) => {
                             resolve({
                                 'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em">',
                                 'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em">',
