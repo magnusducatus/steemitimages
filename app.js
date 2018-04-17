@@ -102,7 +102,7 @@ function copyToGolos(e) {
         elem = true;
 
     } else {}
-    if ( !elem ) {
+    if ( ! elem ) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
         this.className = 'btn btn-danger';
@@ -562,7 +562,7 @@ function sendRequest(wifPar, authorPar, status) {
     this.title = 'IPFS images'; // post title
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        if (!err) {
+        if ( ! err ) {
             arrGolos.clear();
 
             let uploadGolos = document.getElementById('upload-golos');
