@@ -15,7 +15,7 @@ function initConnection(connection) {
         port: connection.api.port,
         protocol: connection.api.protocol
     });
-    host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
+    host = `${ connection.gateway.protocol }://${ connection.gateway.address }:${ connection.gateway.port }/ipfs/`;
 };
 const connectionDefault = {
         api: {
@@ -55,9 +55,9 @@ localStorage.connectionOption == 'custom' ? initConnection({
     }) : initConnection(connectionDefault);
 swal.setDefaults({
     buttonsStyling: true,
-    confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('ok').innerHTML}`,
+    confirmButtonText: `<span class="icon-checkmark"></span> ${ document.getElementById('ok').innerHTML }`,
     confirmButtonColor: '#5cb85c',
-    cancelButtonText: `<span class="icon-cross"></span> ${document.getElementById('cancel').innerHTML}`,
+    cancelButtonText: `<span class="icon-cross"></span> ${ document.getElementById('cancel').innerHTML }`,
     cancelButtonColor: '#d9534f',
 });
 
@@ -128,14 +128,14 @@ function handleChange(e) {
         ['bbcode-embed-medium', '[url=' + host + this.id + '][img]' + host + this.id + '[/img][/url][url=' + host + this.id + ']загрузить[/url]'],
         ['github-embed-medium', '[!' + host + this.id + '](' + host + this.id + ')'],
     ]);
-    let link = map.get(e.target.value);
-    document.getElementsByClassName('td3-input' + this.id)[0].value = link;
+    let link = map.get(e.target.value), 
+        document.getElementsByClassName('td3-input' + this.id)[0].value = link;
 }
 
 function arrayBufToB64(buffer) {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
+    let binary = '', 
+        bytes = new Uint8Array(buffer), 
+        len = bytes.byteLength;
     for (let i = 0; i < len; i++) {
         binary += String.fromCharCode(bytes[i]);
     }
@@ -158,8 +158,8 @@ function progressCalc() {
     document.getElementById('loaderDiv').style.display = 'block';
     document.getElementById('loader').style.display = 'block';
     document.getElementById('progressBar').innerHTML = `<div class="progress">
-<div class="progress-bar" role="progressbar" style="width: ${result}%;" aria-valuenow="${arrProgress.length}" aria-valuemin="0" aria-valuemax="${progressLength}">${result.toFixed(0)}%</div>
-</div>`;
+        <div class="progress-bar" role="progressbar" style="width: ${ result }%;" aria-valuenow="${ arrProgress.length }" aria-valuemin="0" aria-valuemax="${ progressLength }">${ result.toFixed(0) }%</div>
+        </div>`;
 }
 //data sending to ipfs
 function sendToIpfs(data) {
@@ -170,23 +170,21 @@ function sendToIpfs(data) {
         content: data.body
     }];
     progressCalc();
-    /*ipfs.files.add(new node.types.Buffer(data.body), function(err, file) {*/
     ipfs.files.add(files, function(err, file) {
         if (err) {
             swal('Error');
             document.getElementById('loaderDiv').style.display = 'none';
 
         } else {
-
             arrProgress.push(file);
             progressCalc();
             for (let i = 0; i < file.length; i++) {
                 arrTablTd.push(file);
                 let tr = document.createElement('tr');
                 tr.id = 'tr' + file[i].hash + '';
-                let td1 = document.createElement('td');
-                let img = document.createElement('img');
-                let a1 = document.createElement('a');
+                let td1 = document.createElement('td'),
+                    img = document.createElement('img'), 
+                    a1 = document.createElement('a');
                 a1.href = host + file[i].hash;
                 a1.target = '_blank';
                 a1.className = "d-flex align-items-center flex-column";
@@ -200,7 +198,6 @@ function sendToIpfs(data) {
                 const result = file[i].size / 1000000;
                 td2.innerHTML = result.toFixed(2);
                 let td3 = document.createElement('td');
-
                 td3.className = "text-center";
 
 
@@ -255,22 +252,22 @@ function sendToIpfs(data) {
 
 
 
-                let td4 = document.createElement('td');
-                let td4div1 = document.createElement('div');
-                td4div1.className = 'd-flex d-flex flex-column-reverse';
-                let td4but1 = document.createElement('button');
-                td4but1.className = 'btn btn-info';
-                td4but1.type = 'button';
-                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link';
-                td4but1.id = file[i].hash;
-                td4but1.onclick = copyLink;
-                let td4br = document.createElement('br');
-                let td4but2 = document.createElement('button');
-                td4but2.className = 'btn btn-success', file[i].hash;
-                td4but2.type = 'button';
-                td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
-                td4but2.id = file[i].hash;
-                td4but2.onclick = copyToGolos;
+                let td4 = document.createElement('td'), 
+                    td4div1 = document.createElement('div'),
+                    td4div1.className = 'd-flex d-flex flex-column-reverse';
+                let td4but1 = document.createElement('button'), 
+                    td4but1.className = 'btn btn-info', 
+                    td4but1.type = 'button', 
+                    td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link', 
+                    td4but1.id = file[i].hash, 
+                    td4but1.onclick = copyLink;
+                let td4br = document.createElement('br'), 
+                    td4but2 = document.createElement('button'), 
+                    td4but2.className = 'btn btn-success', file[i].hash, 
+                    td4but2.type = 'button', 
+                    td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save', 
+                    td4but2.id = file[i].hash, 
+                    td4but2.onclick = copyToGolos;
                 td4.appendChild(td4div1);
                 td4div1.appendChild(td4but1);
                 td4div1.appendChild(td4br);
@@ -283,11 +280,9 @@ function sendToIpfs(data) {
                 tr.appendChild(td3);
                 tr.appendChild(td4);
 
-                //tr.appendChild(td3);
                 tb.appendChild(tr);
             }
             let tab = document.getElementById('table');
-            //arrTablTd.length > 0 ? tab.style.display = 'block' : tab.style.display = 'none';
             arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true')
             if (arrProgress.length == progressLength) {
                 document.getElementById('progressBar').removeChild(document.getElementsByClassName('progress')[0]);
@@ -345,8 +340,8 @@ function retrieveImageFromClipboardAsBase64(pasteEvent, callback, imageFormat) {
         let blob = items[i].getAsFile();
 
         // Create an abstract canvas and get context
-        let mycanvas = document.createElement("canvas");
-        let ctx = mycanvas.getContext('2d');
+        let mycanvas = document.createElement("canvas"),
+            ctx = mycanvas.getContext('2d');
 
         // Create an image
         let img = new Image();
@@ -540,7 +535,7 @@ function sendRequest(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
         app: 'golosimages/0.1',
-        canonical: `https://golosimages.com#${username}/${constPermlik}`,
+        canonical: `https://golosimages.com#${ username }/${ constPermlik }`,
         app_account: 'golosapps',
         data: []
     };
@@ -582,7 +577,7 @@ function sendRequest(wifPar, authorPar, status) {
 
 function uploadToGolos() {
     if (wif == '') {
-        auth(() => {
+        auth( () => {
             swal({
                 type: 'success',
                 title: 'Success',
@@ -609,15 +604,15 @@ function getComments() {
 }
 
 function renderTableFromJson() {
-    const tb = document.getElementById('tbody');
-    const tab = document.getElementById('table');
+    const tb = document.getElementById('tbody'),
+        tab = document.getElementById('table');
     arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
         let tr = document.createElement('tr');
         tr.className = ' ' + arrJson[i] + ' ';
-        let td1 = document.createElement('td');
-        let img = document.createElement('img');
-        let a1 = document.createElement('a');
+        let td1 = document.createElement('td'), 
+            img = document.createElement('img'), 
+            a1 = document.createElement('a');
         a1.href = arrJson[i];
         a1.target = '_blank';
         a1.className = "d-flex align-items-center flex-column";
@@ -628,13 +623,10 @@ function renderTableFromJson() {
 
         a1.appendChild(img);
         //img.onclick = handle;
-        let td2 = document.createElement('td');
-        td2.className = "text-center"
-        /*const result = arrJson[i] / 1000000;
-        td2.innerHTML = result.toFixed(2);*/
-        let td3 = document.createElement('td');
-        //td2.id = file[i].hash;
-        td3.className = "text-center";
+        let td2 = document.createElement('td'), 
+            td2.className = "text-center", 
+            td3 = document.createElement('td'),
+            td3.className = "text-center";
         //td2.onclick = handle; 
         let td3div2 = document.createElement('div');
         td3div2.className = 'form-group';
@@ -642,23 +634,23 @@ function renderTableFromJson() {
         td3.appendChild(td3div2);
         td3div2.appendChild(td3p1);
 
-        let td3select = document.createElement('select');
-        td3select.className = "form-control";
-        td3select.id = arrJson[i];
-        td3select.onchange = handleChange;
+        let td3select = document.createElement('select'), 
+            td3select.className = "form-control", 
+            td3select.id = arrJson[i], 
+            td3select.onchange = handleChange;
 
-        let td3opt1 = document.createElement('option');
-        td3opt1.value = 'viewer-links';
-        td3opt1.innerHTML = 'Links for view'
-        let td3opt2 = document.createElement('option');
-        td3opt2.value = 'html-embed-medium';
-        td3opt2.innerHTML = 'HTML-code fullsize with link';
-        let td3opt3 = document.createElement('option');
-        td3opt3.value = 'bbcode-embed-medium';
-        td3opt3.innerHTML = 'BB-code fullsize with link';
-        let td3opt4 = document.createElement('option');
-        td3opt4.value = 'github-embed-medium';
-        td3opt4.innerHTML = 'GitHub fullsize with link'
+        let td3opt1 = document.createElement('option'), 
+            td3opt1.value = 'viewer-links', 
+            td3opt1.innerHTML = 'Links for view'
+        let td3opt2 = document.createElement('option'), 
+            td3opt2.value = 'html-embed-medium', 
+            td3opt2.innerHTML = 'HTML-code fullsize with link';
+        let td3opt3 = document.createElement('option'), 
+            td3opt3.value = 'bbcode-embed-medium', 
+            td3opt3.innerHTML = 'BB-code fullsize with link';
+        let td3opt4 = document.createElement('option'), 
+            td3opt4.value = 'github-embed-medium', 
+            td3opt4.innerHTML = 'GitHub fullsize with link'
 
         td3p1.appendChild(td3select);
 
@@ -667,27 +659,27 @@ function renderTableFromJson() {
         td3select.appendChild(td3opt3);
         td3select.appendChild(td3opt4);
 
-        let input3div1 = document.createElement('div');
-        input3div1.className = 'input-group mb-3';
-        let input3input1 = document.createElement('input');
-        input3input1.className = 'form-control td3-input' + arrJson[i];
-        input3input1.value = arrJson[i];
-        input3input1.type = 'text';
-        input3input1.id = arrJson[i];
+        let input3div1 = document.createElement('div'), 
+            input3div1.className = 'input-group mb-3';
+        let input3input1 = document.createElement('input'),
+            input3input1.className = 'form-control td3-input' + arrJson[i], 
+            input3input1.value = arrJson[i],
+            input3input1.type = 'text', 
+            input3input1.id = arrJson[i];
 
         td3.appendChild(input3div1);
         input3div1.appendChild(input3input1);
 
 
-        let td4 = document.createElement('td');
-        let td4div1 = document.createElement('div');
-        td4div1.className = 'd-flex justify-content-around';
-        let td4but1 = document.createElement('button');
-        td4but1.className = 'btn btn-success';
-        td4but1.type = 'button';
-        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
-        td4but1.id = arrJson[i];
-        td4but1.onclick = copyLink;
+        let td4 = document.createElement('td'), 
+            td4div1 = document.createElement('div'), 
+            td4div1.className = 'd-flex justify-content-around';
+        let td4but1 = document.createElement('button'), 
+            td4but1.className = 'btn btn-success', 
+            td4but1.type = 'button', 
+            td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link', 
+            td4but1.id = arrJson[i], 
+            td4but1.onclick = copyLink;
 
         td4.appendChild(td4div1);
         td4div1.appendChild(td4but1);
@@ -780,24 +772,24 @@ document.getElementById('integration').addEventListener('click', function(e) {
         type: 'info',
         buttonsStyling: false,
         confirmButtonClass: 'btn btn-success btn-lg',
-        confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('cool').innerHTML}`,
+        confirmButtonText: `<span class="icon-checkmark"></span> ${ document.getElementById('cool').innerHTML }`,
         position: 'top',
         showCloseButton: true
     })
 
 })
 document.getElementById('change-port').addEventListener('click', function() {
-    document.getElementById('modal').style.display="block";
+    document.getElementById('modal').style.display = "block";
     document.getElementById('change-node-cancel').addEventListener('click', function() {
-        document.getElementById('modal').style.display="none";
+        document.getElementById('modal').style.display = "none";
     });
     document.getElementById('change-node-close').addEventListener('click', function() {
-        document.getElementById('modal').style.display="none";
+        document.getElementById('modal').style.display = "none";
     });
     document.getElementById('change-node-default').addEventListener('click', function() {
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
-        document.getElementById('modal').style.display="none";
+        document.getElementById('modal').style.display = "none";
     });
     document.getElementById('change-node-ok').addEventListener('click', async ()=>{
           let {
@@ -835,7 +827,7 @@ document.getElementById('change-port').addEventListener('click', function() {
                 document.getElementById('modal').style.display='none';
             } else {
                 swal({
-                        title: `${document.getElementById('modal-error').innerHTML}`,
+                        title: `${ document.getElementById('modal-error').innerHTML }`,
                         type: 'error',
                         showConfirmButton: false,
                         position: 'center',
@@ -874,8 +866,8 @@ async function getInputsFromChange() {
         api: [],
         gateway: []
     }
-    let arr = [];
-    let ss = document.getElementById('modal').getElementsByTagName('input');
+    let arr = [], 
+        ss = document.getElementById('modal').getElementsByTagName('input');
 
     for (let i = 0; i < ss.length; i++) {
         obj[ss[i].id.split('-')[1]].push(ss[i]);
