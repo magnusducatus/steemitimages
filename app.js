@@ -1,9 +1,12 @@
 localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
-let ipfs;
-let host;
+let ipfs, host;
 
 function initConnection(connection) {
+    
+    localStorage.connectionOption.api = connection.api;
+    localStorage.connectionOption.gateway =connection.gateway;
+    console.log(localStorage.connectionOption.api)
     ipfs = window.IpfsApi({
         host: connection.api.address,
         port: connection.api.port,
@@ -36,7 +39,7 @@ const connectionDefault = {
         }
     }
 console.log(document.getElementById('ok').innerHTML);
-initConnection(connectionDefault)
+localStorage.connectionOption ? initConnection(localStorage.connectionOption) : initConnection(connectionDefault)
 swal.setDefaults({
     buttonsStyling: true,
     confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('ok').innerHTML}`,
