@@ -400,7 +400,7 @@ Dropzone.options.dropzone = {
                             <div class="text-center">OR</div>
     1. Click on the window you want to capture.
     <br>2. Press <span id="step0"><kbd>Alt</kbd> + <kbd>Print Screen</kbd></span>.
-    <br>3. Click back on this webpage.
+    <br>3. Turn back to this page.
     <br>4. Press <span id="step1"><kbd>Ctrl</kbd> + <kbd>V</kbd></span> to upload the image.
     <br><button id="instruction-for"type="button" class="btn btn-link">instruction for <span id="step2"><span class="icon-appleinc"> Mac</span></span></button></div>
     </div>`,
