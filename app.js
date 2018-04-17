@@ -180,53 +180,53 @@ function sendToIpfs(data) {
             progressCalc();
             for (let i = 0; i < file.length; i++) {
                 arrTablTd.push(file);
-                let tr = document.createElement('tr');
-                tr.id = 'tr' + file[i].hash + '';
+                let tr = document.createElement('tr'), 
+                    tr.id = 'tr' + file[i].hash + '';
                 let td1 = document.createElement('td'),
                     img = document.createElement('img'), 
-                    a1 = document.createElement('a');
-                a1.href = host + file[i].hash;
-                a1.target = '_blank';
-                a1.className = "d-flex align-items-center flex-column";
-                img.src = 'data:image/jpeg;base64,' + arrayBufToB64(data.body);
-                img.heigth = 100;
-                img.width = 100;
-                a1.appendChild(img);
+                    a1 = document.createElement('a'), 
+                    a1.href = host + file[i].hash, 
+                    a1.target = '_blank', 
+                    a1.className = "d-flex align-items-center flex-column", 
+                    img.src = 'data:image/jpeg;base64,' + arrayBufToB64(data.body), 
+                    img.heigth = 100, 
+                    img.width = 100, 
+                    a1.appendChild(img);
 
-                let td2 = document.createElement('td');
-                td2.className = "text-center"
-                const result = file[i].size / 1000000;
-                td2.innerHTML = result.toFixed(2);
-                let td3 = document.createElement('td');
-                td3.className = "text-center";
-
-
+                let td2 = document.createElement('td'), 
+                    td2.className = "text-center"
+                const result = file[i].size / 1000000, 
+                    td2.innerHTML = result.toFixed(2);
+                let td3 = document.createElement('td'), 
+                    td3.className = "text-center";
 
 
-                let td3div2 = document.createElement('div');
-                td3div2.className = 'form-group';
-                let td3p1 = document.createElement('p');
-                td3.appendChild(td3div2);
-                td3div2.appendChild(td3p1);
-
-                let td3select = document.createElement('select');
-                td3select.className = "form-control";
-                td3select.id = file[i].hash;
-                td3select.onchange = handleChange;
 
 
-                let td3opt1 = document.createElement('option');
-                td3opt1.value = 'viewer-links';
-                td3opt1.innerHTML = 'Links for view'
-                let td3opt2 = document.createElement('option');
-                td3opt2.value = 'html-embed-medium';
-                td3opt2.innerHTML = 'HTML-code fullsize with link';
-                let td3opt3 = document.createElement('option');
-                td3opt3.value = 'bbcode-embed-medium';
-                td3opt3.innerHTML = 'BB-code fullsize with link';
-                let td3opt4 = document.createElement('option');
-                td3opt4.value = 'github-embed-medium';
-                td3opt4.innerHTML = 'GitHub fullsize with link'
+                let td3div2 = document.createElement('div'), 
+                    td3div2.className = 'form-group';
+                let td3p1 = document.createElement('p'), 
+                    td3.appendChild(td3div2), 
+                    td3div2.appendChild(td3p1);
+
+                let td3select = document.createElement('select'), 
+                    td3select.className = "form-control", 
+                    td3select.id = file[i].hash, 
+                    td3select.onchange = handleChange;
+
+
+                let td3opt1 = document.createElement('option'), 
+                    td3opt1.value = 'viewer-links', 
+                    td3opt1.innerHTML = 'Links for view'
+                let td3opt2 = document.createElement('option'), 
+                    td3opt2.value = 'html-embed-medium',
+                    td3opt2.innerHTML = 'HTML-code fullsize with link';
+                let td3opt3 = document.createElement('option'), 
+                    td3opt3.value = 'bbcode-embed-medium', 
+                    td3opt3.innerHTML = 'BB-code fullsize with link';
+                let td3opt4 = document.createElement('option'), 
+                    td3opt4.value = 'github-embed-medium', 
+                    td3opt4.innerHTML = 'GitHub fullsize with link'
 
                 td3p1.appendChild(td3select);
 
@@ -238,14 +238,14 @@ function sendToIpfs(data) {
 
 
 
-                let input3div1 = document.createElement('div');
-                input3div1.className = 'input-group mb-3';
-                let input3input1 = document.createElement('input');
-                input3input1.onclick = copyLink;
-                input3input1.className = 'form-control td3-input' + file[i].hash;
-                input3input1.value = host + file[i].hash;
-                input3input1.type = 'text';
-                input3input1.id = file[i].hash;
+                let input3div1 = document.createElement('div'), 
+                    input3div1.className = 'input-group mb-3';
+                let input3input1 = document.createElement('input'), 
+                    input3input1.onclick = copyLink,
+                    input3input1.className = 'form-control td3-input' + file[i].hash, 
+                    input3input1.value = host + file[i].hash, 
+                    input3input1.type = 'text', 
+                    input3input1.id = file[i].hash;
                 td3.appendChild(input3div1);
                 input3div1.appendChild(input3input1);
 
@@ -608,17 +608,17 @@ function renderTableFromJson() {
         tab = document.getElementById('table');
     arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
-        let tr = document.createElement('tr');
-        tr.className = ' ' + arrJson[i] + ' ';
+        let tr = document.createElement('tr'),
+            tr.className = ' ' + arrJson[i] + ' ';
         let td1 = document.createElement('td'), 
             img = document.createElement('img'), 
-            a1 = document.createElement('a');
-        a1.href = arrJson[i];
-        a1.target = '_blank';
-        a1.className = "d-flex align-items-center flex-column";
-        img.src = arrJson[i];
-        img.heigth = 100;
-        img.width = 100;
+            a1 = document.createElement('a'),
+            a1.href = arrJson[i],
+            a1.target = '_blank',
+            a1.className = "d-flex align-items-center flex-column",
+            img.src = arrJson[i],
+            img.heigth = 100,
+            img.width = 100;
 
 
         a1.appendChild(img);
@@ -628,11 +628,11 @@ function renderTableFromJson() {
             td3 = document.createElement('td'),
             td3.className = "text-center";
         //td2.onclick = handle; 
-        let td3div2 = document.createElement('div');
-        td3div2.className = 'form-group';
-        let td3p1 = document.createElement('p');
-        td3.appendChild(td3div2);
-        td3div2.appendChild(td3p1);
+        let td3div2 = document.createElement('div'),
+            td3div2.className = 'form-group';
+        let td3p1 = document.createElement('p'),
+            td3.appendChild(td3div2),
+            td3div2.appendChild(td3p1);
 
         let td3select = document.createElement('select'), 
             td3select.className = "form-control", 
