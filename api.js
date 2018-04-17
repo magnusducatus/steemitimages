@@ -47,7 +47,7 @@ function handleFiles(files) {
             obj.body = ipfs.Buffer(data.target.result);
             //obj.body = data.target.result;
             obj.name = fileList.name;
-            sendToIpfs(obj)
+            sendToIpfs(obj);
         };
         reader.readAsArrayBuffer(fileList[i]);
     }
@@ -57,7 +57,7 @@ function sendToIpfs(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error', err);
         else {
-            file[0].path = `${ host }`
+            file[0].path = `${ host }`;
             arrIpfs.push(file);
             if (arrIpfs.length == len) cb(arrIpfs);
         }

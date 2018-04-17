@@ -36,10 +36,10 @@
                 li.className = `nav-item d-flex align-items-center`;
                 li.id = `li-lang`;
                 if ( ! document.getElementById('language' )) {
-                    let button = document.createElement('button'), 
-                        button.className = `btn btn-info my-2 my-sm-0`, 
-                        button.id = `language`, 
-                        button.innerHTML = `<span class="icon-earth"></span> Language`;
+                    let button = document.createElement('button'); 
+                    button.className = `btn btn-info my-2 my-sm-0`; 
+                    button.id = `language`; 
+                    button.innerHTML = `<span class="icon-earth"></span> Language`;
                     li.appendChild(button);
                     button.addEventListener('click', async () => {
                         var inputOptions = new Promise( (resolve) => {
@@ -80,7 +80,7 @@
 
 
     function updateContent() {
-        let array = i18next.services.resourceStore.data[choosen].translation
+        let array = i18next.services.resourceStore.data[choosen].translation;
         for (let i in array) {
             findAndReplaceDOMText(document.body, {
                 find: i,
