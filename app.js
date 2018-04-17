@@ -91,7 +91,7 @@ function checkOnline() {
         })
 }
 
-function copyToGolos(e) {
+function copyToGolos() {
     let tr = document.getElementById('tr' + this.id), 
         but = document.getElementsByClassName(this.id), 
         elem;
@@ -765,7 +765,7 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
         showCloseButton: true
     });
 }, false);
-document.getElementById('integration').addEventListener('click', function(e) {
+document.getElementById('integration').addEventListener('click', function() {
     swal({
         title: '',
         html: document.getElementById('integration-html').innerHTML,

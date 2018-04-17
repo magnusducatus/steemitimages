@@ -174,7 +174,7 @@ function logOutProcc(){
         li.id = `li-log`; 
         li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
         document.getElementById('navbar-right').appendChild(li);
-        document.getElementById('logout').addEventListener('click', function(e){
+        document.getElementById('logout').addEventListener('click', function(){
             document.getElementById('navbar-right').removeChild( document.getElementById('li-log') );
             localStorage.removeItem('wif');
             localStorage.removeItem('username');
