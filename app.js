@@ -1,9 +1,9 @@
 localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
-let ipfs, host;
+let ipfs, 
+    host;
 
-function initConnection(connection) {
-    
+function initConnection(connection) { 
     localStorage.ApiProtocol = connection.api.address;
     localStorage.ApiPort = connection.api.port;
     localStorage.ApiAddress = connection.api.protocol;
@@ -41,7 +41,7 @@ const connectionDefault = {
             address: `91.201.41.253`
         }
     }
-localStorage.connectionOption == 'custom'? initConnection({ 
+localStorage.connectionOption == 'custom' ? initConnection({ 
     api: {
             protocol: localStorage.ApiProtocol,
             port: localStorage.ApiPort,
@@ -70,13 +70,10 @@ const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253
 
 
 
-let arrIpfs = [];
-
-let arrTablTd = [];
-
-let arrGolos = new Set();
-
-let arrJson = [];
+let arrIpfs = [], 
+    arrTablTd = [], 
+    arrGolos = new Set(), 
+    arrJson = [];
 
 setInterval(checkOnline, 3000);
 
@@ -84,28 +81,28 @@ function checkOnline() {
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
     fetch(host + hash)
         .then(res => {
-            let span = document.getElementById('node-status');
-            span.className = 'badge badge-success  mx-1';
-            span.innerHTML = ' online';
+            let span = document.getElementById('node-status'), 
+                span.className = 'badge badge-success  mx-1', 
+                span.innerHTML = ' online';
         }).catch((err) => {
-            let span = document.getElementById('node-status');
-            span.className = 'badge badge-danger  mx-1';
-            span.innerHTML = ' offline';
+            let span = document.getElementById('node-status'), 
+                span.className = 'badge badge-danger  mx-1', 
+                span.innerHTML = ' offline';
         })
 }
 
 function copyToGolos(e) {
-    let tr = document.getElementById('tr' + this.id);
-    let but = document.getElementsByClassName(this.id);
-    let elem;
-    if (arrGolos.delete(this.id)) {
+    let tr = document.getElementById('tr' + this.id), 
+        but = document.getElementsByClassName(this.id), 
+        elem;
+    if ( arrGolos.delete(this.id) ) {
         tr.setAttribute('class', '');
         this.className = 'btn btn-success';
         this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
     } else {}
-    if (!elem) {
+    if ( !elem ) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
         this.className = 'btn btn-danger';
