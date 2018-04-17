@@ -4,9 +4,12 @@ let ipfs, host;
 
 function initConnection(connection) {
     
-    localStorage.connectionOption.api = connection.api;
-    localStorage.connectionOption.gateway =connection.gateway;
-    console.log(localStorage.connectionOption.api)
+    localStorage.ApiProtocol = connection.api.address;
+    localStorage.ApiPort = connection.api.port;
+    localStorage.ApiAddress = connection.api.protocol;
+    localStorage.GateProtocol = connection.gateway.protocol;
+    localStorage.GatePort = connection.gateway.address;
+    localStorage.GateAddress = connection.gateway.port;
     ipfs = window.IpfsApi({
         host: connection.api.address,
         port: connection.api.port,
@@ -38,8 +41,18 @@ const connectionDefault = {
             address: `91.201.41.253`
         }
     }
-console.log(document.getElementById('ok').innerHTML);
-localStorage.connectionOption ? initConnection(localStorage.connectionOption) : initConnection(connectionDefault)
+localStorage.connectionOption == 'custom'? initConnection({ 
+    api: {
+            protocol: localStorage.ApiProtocol,
+            port: localStorage.ApiPort,
+            address: localStorage.ApiAddress
+        },
+        gateway: {
+            protocol: localStorage.GateProtocol,
+            port: localStorage.GatePort,
+            address: localStorage.GateAddress
+        }
+    }) : initConnection(connectionDefault);
 swal.setDefaults({
     buttonsStyling: true,
     confirmButtonText: `<span class="icon-checkmark"></span> ${document.getElementById('ok').innerHTML}`,
@@ -786,6 +799,7 @@ document.getElementById('change-port').addEventListener('click', function() {
     });
     document.getElementById('change-node-default').addEventListener('click', function() {
         initConnection(connectionDefault);
+        localStorage.connectionOption = 'default';
         document.getElementById('modal').style.display="none";
     });
     document.getElementById('change-node-ok').addEventListener('click', async ()=>{
@@ -820,6 +834,7 @@ document.getElementById('change-port').addEventListener('click', function() {
                     });
                 }
                 initConnection(connectionNew);
+                localStorage.connectionOption = 'custom';
                 document.getElementById('modal').style.display='none';
             } else {
                 swal({
