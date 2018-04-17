@@ -4,7 +4,7 @@ let initConnection = connection => {
         port: connection.api.port,
         protocol: connection.api.protocol
     });
-    host = `${connection.gateway.protocol}://${connection.gateway.address}:${connection.gateway.port}/ipfs/`;
+    host = `${ connection.gateway.protocol }://${ connection.gateway.address }:${ connection.gateway.port }/ipfs/`;
 };
 
 function uploadImageToIpfs(cb) {
@@ -57,7 +57,7 @@ function sendToIpfs(data) {
     ipfs.files.add(data.body, function(err, file) {
         if (err) console.log('Error', err);
         else {
-            file[0].path = `${host}`
+            file[0].path = `${ host }`
             arrIpfs.push(file);
             if (arrIpfs.length == len) cb(arrIpfs);
         }
