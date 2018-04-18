@@ -43,13 +43,12 @@
                     li.appendChild(button);
                     button.addEventListener('click', async () => {
                         var inputOptions = new Promise( (resolve) => {
-                            resolve({
-                                'en': '<img src="graphics/flags/en.svg" height="30" width="40" style="border-radius: 0.25em">',
-                                'ru': '<img src="graphics/flags/ru.svg" height="30" width="40" style="border-radius: 0.25em">',
-                                'ua': '<img src="graphics/flags/ua.svg" height="30" width="40" style="border-radius: 0.25em">',
-                                'by': '<img src="graphics/flags/by.svg" height="30" width="40" style="border-radius: 0.25em">',
-                                'cn': '<img src="graphics/flags/cn.svg" height="30" width="40" style="border-radius: 0.25em">'
-                            })
+                            const lang = {}
+                            const arrLangs = [ 'en', 'ru', 'ua', 'by', 'cn' ];
+                            arrLangs.forEach( item => {
+                                lang[item] = `<img src="graphics/flags/${ item }.svg" height="30" width="40" style="border-radius: 0.25em">`
+                            });
+                            resolve(lang)
                         })
                         const {
                             value: language
