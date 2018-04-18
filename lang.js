@@ -46,7 +46,7 @@
                             const lang = {}
                             const arrLangs = [ 'en', 'ru', 'ua', 'by', 'cn' ];
                             arrLangs.forEach( item => {
-                                lang[item] = `<img src="graphics/flags/${ item }.svg" height="30" width="40" style="border-radius: 0.25em">`
+                                lang[item] = `<img src="http://golosimages.com/graphics/flags/${ item }.svg" height="30" width="40" style="border-radius: 0.25em">`
                             });
                             resolve(lang)
                         })
