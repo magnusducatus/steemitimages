@@ -233,6 +233,13 @@ function logOutProcc(){
         document.getElementById('navbar-right').appendChild(li);
         document.getElementById('logout').addEventListener('click', function(){
             document.getElementById('navbar-right').removeChild( document.getElementById('li-log') );
+            swal({
+              position: 'top-end',
+              type: 'success',
+              title: document.getElementById('ok').innerHTML,
+              showConfirmButton: false,
+              timer: 1500
+            })
             localStorage.removeItem('wif');
             localStorage.removeItem('username');
             window.username = '';

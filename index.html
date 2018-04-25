@@ -124,7 +124,7 @@
     <h3>Input node address!</h3>
 </div>
     <div class="modal" tabindex="-1" role="dialog" id="modal" style="display:none">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" id="modal-dialog" style="max-width: 50%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
@@ -140,9 +140,18 @@
                     </p>
                     <p>
                         <div class="input-group mb-3">
-                            <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                            <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
-                            <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                            <div>
+                                <label for="input-api-protocol">Protocol</label>
+                                <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            </div>
+                            <div>
+                                <label for="input-api-address">Address</label>
+                                <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
+                            </div>
+                            <div>
+                                <label for="input-api-port">Port</label>
+                                <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                            </div>
                         </div>
                     </p>
                     <p>
@@ -150,9 +159,18 @@
                             <h5>Please enter your node gateway remote address</h5>
                         </p>
                         <div class="input-group mb-3">
-                            <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                            <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
-                            <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
+                            <div>
+                                <label for="input-gateway-protocol">Protocol</label>
+                                <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
+                            </div>
+                            <div>
+                                <label for="input-gateway-address">Address</label>
+                                <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
+                            </div>
+                            <div>
+                                <label for="input-gateway-port">Port</label>
+                                <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
+                            </div>
                         </div>
                     </p>
                 </div>
@@ -227,7 +245,7 @@ document.getElementById('upload').addEventListener('click', function() {
                 <div class="text-left"><pre><code>&lt;script&gt;
 function initCustomConnection() {
     localStorage.connectionCustom = {
-        api: { protocol: 'http',port: '5001', address: '91.201.41.253' },
+        api: { protocol: 'http', port: '5001', address: '91.201.41.253' },
         gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
     }
 }
@@ -253,7 +271,8 @@ function initCustomConnection() {
                         <h5>Please enter your login and master password</h5>
                     </p>
                     <p>
-                        <div class="input-group mb-3">
+                        <label for="teset">Username</label>
+                        <div class="input-group mb-3" id="teset">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="username" required>@</span>
                             </div>
@@ -262,6 +281,7 @@ function initCustomConnection() {
                     </p>
                     <p>
                         <div>
+                            <label for="input-pass">Master password</label>
                             <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
                             <br>
                             <div class="form-check">
@@ -283,6 +303,7 @@ function initCustomConnection() {
                                 <h5>Please enter only your private posting key</h5>
                                 <p>
                                     <div>
+                                        <label for="input-private">Private posting key</label>
                                         <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
                                     </div>
                                     <br>

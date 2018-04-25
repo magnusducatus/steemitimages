@@ -4,12 +4,12 @@ let ipfs,
     host;
 
 function initConnection(connection) { 
-    localStorage.ApiProtocol = connection.api.address;
+    localStorage.ApiProtocol = connection.api.protocol;
     localStorage.ApiPort = connection.api.port;
-    localStorage.ApiAddress = connection.api.protocol;
+    localStorage.ApiAddress = connection.api.address;
     localStorage.GateProtocol = connection.gateway.protocol;
-    localStorage.GatePort = connection.gateway.address;
-    localStorage.GateAddress = connection.gateway.port;
+    localStorage.GatePort = connection.gateway.port;
+    localStorage.GateAddress = connection.gateway.address;
     ipfs = window.IpfsApi({
         host: connection.api.address,
         port: connection.api.port,
@@ -69,6 +69,16 @@ golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099
 const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253:7777/ipfs/');
 
 
+
+function setPlaceholderIPFS(){
+    document.getElementById('input-api-protocol').placeholder = localStorage.ApiProtocol;
+    document.getElementById('input-api-address').placeholder = localStorage.ApiAddress;
+    document.getElementById('input-api-port').placeholder = localStorage.ApiPort;
+    document.getElementById('input-gateway-protocol').placeholder = localStorage.GateProtocol;
+    document.getElementById('input-gateway-address').placeholder = localStorage.GateAddress;
+    document.getElementById('input-gateway-port').placeholder = localStorage.GatePort;
+}
+setPlaceholderIPFS();
 
 let arrIpfs = [], 
     arrTablTd = [], 
@@ -789,6 +799,7 @@ document.getElementById('change-port').addEventListener('click', function() {
     document.getElementById('change-node-default').addEventListener('click', function() {
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
+        setPlaceholderIPFS();
         document.getElementById('modal').style.display = "none";
     });
     document.getElementById('change-node-ok').addEventListener('click', async ()=>{
