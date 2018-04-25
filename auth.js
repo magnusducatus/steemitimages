@@ -1,4 +1,4 @@
-let div1 = document.createElement('div'),
+/*let div1 = document.createElement('div'),
     div2 = document.createElement('div'),
     div3 = document.createElement('div'),
     divSign = document.createElement('div'),
@@ -44,10 +44,10 @@ let div1 = document.createElement('div'),
     divMain.appendChild(div2);
     divMain.appendChild(div3);
     divMain.appendChild(divSign);
-    document.getElementsByTagName('body')[0].appendChild(divMain);
+    document.getElementsByTagName('body')[0].appendChild(divMain);*/
     localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
     localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
-    async function auth(cb = function(){}){
+    /*async function auth(cb = function(){}){
         const {value} = await swal({
         title:  document.getElementById('auth-title').innerHTML,
         html: `${ document.getElementById('auth-html-logorpass').innerHTML }
@@ -85,33 +85,88 @@ let div1 = document.createElement('div'),
                     </a></div>
                 `,
         preConfirm: async () => {
-                let login = document.getElementById('input-user').value,  
-                    pass = document.getElementById('input-pass').value, 
-                    priv = document.getElementById('input-private').value,
-                    log = document.getElementById('logged').checked;
-                if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
-                     return new Promise( resolve => {
-                            let login = document.getElementById('input-user'), 
-                                pass = document.getElementById('input-pass'), 
-                                priv = document.getElementById('input-private'); 
-                         swal.showValidationError(
-                                `Please enter your login and master password or only your private posting key`
-                            );
-                         login.setAttribute('class','form-control is-invalid');
-                         pass.setAttribute('class','form-control is-invalid');
-                         priv.setAttribute('class','form-control is-invalid');
-                         resolve('hel');
-                        });
-                } else {
-                    return { login, pass, priv, log }; 
-                } 
+                
             }
         })
-        await checker(value.login, value.pass, value.priv, value.log, cb);
+
     }
 
-    async function checker(username, pass, priv, log, cb) {
-        this.check, 
+    
+
+  
+*/
+function privateFunc(cb){
+    
+}
+function logpassFunc(cb){
+
+}
+async function auth(cb = function(){}){
+    document.getElementById('auth').style.display = 'block';
+    document.getElementById('log-private').addEventListener('click', async ()=>{
+        let login = document.getElementById('input-user').value,  
+                    pass = document.getElementById('input-pass').value, 
+                    priv = document.getElementById('input-private').value;
+        if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
+                     console.log('insert log or pass or priv');
+                     document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+        }
+        else if( login.length > 0 || pass.length > 0) {
+                     console.log('Only priv || Log&pass')
+                    document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+                    document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+                    document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+                }
+        else if(priv.length <= 0 && login.length > 0 || pass.length > 0) {
+            console.log(priv)
+            console.log('Priv need');  
+            document.getElementById('input-user').setAttribute('class','form-control');
+            document.getElementById('input-pass').setAttribute('class','form-control');
+            document.getElementById('input-private').setAttribute('class','form-control is-invalid'); 
+        }
+        else{
+            await checker(login, pass, priv, cb)
+        }
+    });
+    document.getElementById('log-pass-log').addEventListener('click', async ()=>{
+        let login = document.getElementById('input-user').value,  
+                    pass = document.getElementById('input-pass').value, 
+                    priv = document.getElementById('input-private').value;
+        if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
+             document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+        }
+        else if(login.length <= 0 && pass.length > 0){
+            console.log('insert log to')
+            document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+            document.getElementById('input-pass').setAttribute('class','form-control is-valid');
+            document.getElementById('input-private').setAttribute('class','form-control');
+        }
+        else if(login.length > 0 && pass.length <= 0){
+            console.log('insert pass to')
+             document.getElementById('input-user').setAttribute('class','form-control is-valid');
+             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-private').setAttribute('class','form-control');
+        }
+        else if(login.length > 0 && pass.length <= 0 && priv.length > 0 || login.length >= 0 && pass.length > 0 && priv.length > 0){
+            console.log('only priv or only log&pass');
+            document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+        }
+         else {
+            await checker(login, pass, priv, cb, 'true');
+            //return { login, pass, priv, log }; 
+        } 
+    });
+    //await checker(value.login, value.pass, value.priv, value.log, cb);
+}
+async function checker(username, pass, priv, cb, log) {
+        console.log(cb);
+        this.log = log;
         this.user = username,
         this.pass = pass, 
         this.private = priv;
@@ -132,8 +187,11 @@ let div1 = document.createElement('div'),
         } else {
             const roles = ['posting'];
             try {
+                console.log(this.user)
                 let keys = await golos.auth.getPrivateKeys(this.user, this.pass, roles);
+                console.log(keys)
                 if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
+                    
                     wif = keys.posting;
                     getPublicKey(log, cb);
                 } else throw Error();;  
@@ -146,8 +204,8 @@ let div1 = document.createElement('div'),
             }
         }
     }
-
-    async function getPublicKey(log, cb){
+  async function getPublicKey(log, cb){
+        console.log(cb)
         try {
             let resultWifToPublic = await golos.auth.wifToPublic(wif);
             log ? localStorage.wif = wif : '';
@@ -167,7 +225,6 @@ let div1 = document.createElement('div'),
                 })
         }
     }
-
 function logOutProcc(){
         let li = document.createElement('li'); 
         li.className = `nav-item d-flex align-items-center`; 

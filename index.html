@@ -140,31 +140,6 @@
 <div id="change-port-html-title" hidden="true">
     <h3>Input node address!</h3>
 </div>
-<div id="change-port-html" hidden="true">
-                        <p><h5>Please enter remote address for ipfs-api</h5></p>
-                        <p>
-                        <div class="input-group mb-3">
-                        <input id="input-api-protocol"  aria-label="api protocol for node" type="text" class="form-control text-center" placeholder="protocol">
-                        <input id="input-api-address" aria-label="api remote address for node" type="text" class="form-control text-center" placeholder="address">
-                        <input id="input-api-port" aria-label="api remote port for node" type="text" class="form-control text-center" placeholder="port">
-                        </div>
-                        </p>
-                        <p>
-                        <p><h5>Please enter your node gateway remote address</h5></p>
-                        <div class="input-group mb-3">
-                        <input id="input-gateway-protocol" aria-label="gateway protocol for node" type="text" class="form-control text-center" placeholder="protocol">
-                        <input id="input-gateway-address" aria-label="gateway address for node" type="text" class="form-control text-center" placeholder="address">
-                        <input id="input-gateway-port" aria-label="gateway port for node" type="text" class="form-control text-center" placeholder="port">
-                        </div>
-                        </p>
-                        </div>
-    <div id="default-div-node" hidden="true">
-        <!-- <p>
-            <div class="d-flex flex-column  align-items-center swal2-actions">
-                <button type="button" id="default-node" class="swal2-cancel swal2-styled" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Default</button>
-            </div>
-        </p> -->
-    </div>
     <div class="modal" tabindex="-1" role="dialog" id="modal" style="display:none">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -276,6 +251,86 @@ function initCustomConnection() {
         </div>
     </div>
 
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="auth" style="display:none; ">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <h3>To continue, you need to login!</h3>
+                    </h5>
+                    <button type="button" id="change-node-close" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>
+                        <h5>Please enter your login and master password</h5>
+                    </p>
+                    <p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="username" required>@</span>
+                            </div>
+                            <input id="input-user" type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
+                            <br>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                          <input id="logged" class="form-check-input" type="checkbox" value="">
+                         Keep me logged
+                        </label>
+                            </div>
+                            <p>
+                                <div class="align-self-center">
+                                    <button type="button" id="log-pass-log" class="btn btn-primary"><span class="icon-checkmark"></span> Log in</button>
+                                </div>
+                            </p>
+                        </div>
+                        <p>
+                            <hr>OR
+                            <hr>
+                            <p>
+                                <h5>Please enter only your private posting key</h5>
+                                <p>
+                                    <div>
+                                        <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
+                                    </div>
+                                    <br>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                          <input id="logged-private" class="form-check-input" type="checkbox" value="">
+                         Keep me logged
+                        </label>
+                                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <p>
+                        <div class="swal2-actions align-self-center">
+                            <button type="button" id="log-private" class="btn btn-primary"><span class="icon-checkmark"></span> Log in</button>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="modal-footer" id="modal-footer-id">
+                            <div class="d-flex flex-column" style="width:100%">
+                                <div class="text-center">
+                                    OR
+                                </div>
+                                <hr class="bg-light" style="width:100%">
+                                <a class="swal2-actions" target="_blank" href="https://golos.io/create_account">
+                            <button type="button" class="btn btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>
+                        </a></div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
