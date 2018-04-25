@@ -236,7 +236,7 @@ function logOutProcc(){
             swal({
               position: 'top-end',
               type: 'success',
-              title: document.getElementById('ok').innerHTML,
+              title: 'Вы вышли',
               showConfirmButton: false,
               timer: 1500
             })
