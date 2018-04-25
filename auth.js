@@ -229,7 +229,7 @@ function logOutProcc(){
         let li = document.createElement('li'); 
         li.className = `nav-item d-flex align-items-center`; 
         li.id = `li-log`; 
-        li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> LogOut</button>`;
+        li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> Logout</button>`;
         document.getElementById('navbar-right').appendChild(li);
         document.getElementById('logout').addEventListener('click', function(){
             document.getElementById('navbar-right').removeChild( document.getElementById('li-log') );

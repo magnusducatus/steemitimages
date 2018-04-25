@@ -43,12 +43,9 @@
                         <li class="nav-item">
                             <button class="btn btn-success my-2 my-sm-0" id="golos-urls"><span class="icon-link"></span> Get my files</button>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-primary my-2 my-sm-0" id="aboutGolosImagesCallBtn"><span class="icon-info"></span> About</button>
-                        </li>
-
                     </ul>
                     <div class="form-inline my-2 my-lg-0" id="navbar-right">
+                        <button class="btn btn-primary my-2 my-sm-0" id="aboutGolosImagesCallBtn"><span class="icon-info"></span> About</button>
                         <a class="github-corner" target="_blank" href="https://github.com/epexa/golosimages" tabindex="-1">
                             <img src="graphics/github-arm.svg" xmlns="http://www.w3.org/2000/svg" class="octo-arm" type="image/svg+xml">
                             </img>
@@ -117,20 +114,6 @@
         <div id="cancel">Cancel</div>
         <div id="ok">Ok</div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
-    <script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/golos-js@0.6.1/dist/golos.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/i18next@10.5.0/i18next.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/2.1.0/i18nextBrowserLanguageDetector.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js"></script>
-    <script src="https://thednp.github.io/bootstrap.native/dist/bootstrap-native-v4.min.js"></script>
-    <script src="auth.js"></script>
-    <script src="lang.js"></script>
-    <script src="app.js"></script>
 <div id="aboutIntegration" hidden="true">
     About integration!
 </div>
@@ -222,6 +205,7 @@
         <li><a target="_blank" href="https://github.com/padolsey/findAndReplaceDOMText"><span>FindAndReplaceDOMText</span></a> - searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;</li>
         <li><a target="_blank" href="https://www.i18next.com">I18next</a> - is an internationalization-framework written in and for JavaScript;</li>
         <li><a target="_blank" href="https://github.com/ipfs/js-ipfs-api">Js-ipfs-api</a> - library for the IPFS HTTP API, implemented in JavaScript;</li>
+        <li><a target="_blank" href="https://github.com/isagalaev/highlight.js">Highlight.js</a> - is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection;</li>
         <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
         </ul>
     </div>
@@ -243,7 +227,7 @@ document.getElementById('upload').addEventListener('click', function() {
                 <div class="text-left"><pre><code>&lt;script&gt;
 function initCustomConnection() {
     localStorage.connectionCustom = {
-        api : { protocol: 'http',port: '5001', address: '91.201.41.253' },
+        api: { protocol: 'http',port: '5001', address: '91.201.41.253' },
         gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
     }
 }
@@ -331,6 +315,20 @@ function initCustomConnection() {
             </div>
         </div>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/golos-js@0.6.1/dist/golos.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/i18next@10.5.0/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/2.1.0/i18nextBrowserLanguageDetector.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js"></script>
+<script src="https://thednp.github.io/bootstrap.native/dist/bootstrap-native-v4.min.js"></script>
+<script src="auth.js"></script>
+<script src="lang.js"></script>
+<script src="app.js"></script>
 </body>
 
 </html>
