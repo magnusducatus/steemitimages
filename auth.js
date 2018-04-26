@@ -18,6 +18,9 @@ let div1 = document.createElement('div'),
     divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
         </div>
+        <div id="logout-text">
+            Logout
+        </div>
         <div id="auth-masterorlogin-error" hidden="true">
             Master Key or password is incorrect!
         </div>
@@ -97,10 +100,10 @@ let div1 = document.createElement('div'),
 */
 
  document.getElementById('form-login-pass').addEventListener('submit', async (e) => {
-             e.preventDefault();
-             let log = document.getElementById('logged').checked, 
-                user = document.getElementById('input-user').value,
-                pass = document.getElementById('input-pass').value;
+     e.preventDefault();
+     let log = document.getElementById('logged').checked, 
+        user = document.getElementById('input-user').value,
+        pass = document.getElementById('input-pass').value;
         try {
             response = await golos.api.getAccounts([user]);
         } catch(e){
@@ -217,48 +220,25 @@ async function auth(bc = function(){}){
     */
     //await checker(value.login, value.pass, value.priv, value.log, cb);
 }
-async function checker(username, pass, priv, cb, log) {
-   
-    }
-  /*async function getPublicKey(log, cb){
-        try {
-            let resultWifToPublic = await golos.auth.wifToPublic(wif);
-            log ? localStorage.wif = wif : '';
-            let result = golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
-                if ( ! err ) {
-                    result.forEach(function(item) {
-                        username = item[0];
-                        log ? localStorage.username = username : '';
-                    });
-                    cb();
-                } else swal(err);
-            });
-        } catch(e){
-            swal({
-                  type: 'error',
-                  html: document.getElementById('privKey-incorrect').innerHTML
-                })
-        }
-    }*/
 function logOutProcc(){
-        let li = document.createElement('li'); 
-        li.className = `nav-item d-flex align-items-center`; 
-        li.id = `li-log`; 
-        li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> Logout</button>`;
-        document.getElementById('navbar-right').appendChild(li);
-        document.getElementById('logout').addEventListener('click', function(){
-            document.getElementById('navbar-right').removeChild( document.getElementById('li-log') );
-            swal({
-              position: 'top-end',
-              type: 'success',
-              title: 'Вы вышли',
-              showConfirmButton: false,
-              timer: 1500
-            })
-            localStorage.removeItem('wif');
-            localStorage.removeItem('username');
-            window.username = '';
-            window.wif = '';
-            //location.reload();
+    let li = document.createElement('li'); 
+    li.className = `nav-item d-flex align-items-center`; 
+    li.id = `li-log`; 
+    li.innerHTML = `<button class="btn btn-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> ${ document.getElementById('logout-text').innerHTML }</button>`;
+    document.getElementById('navbar-right').appendChild(li);
+    document.getElementById('logout').addEventListener('click', function(){
+        document.getElementById('navbar-right').removeChild( document.getElementById('li-log') );
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Вы вышли',
+          showConfirmButton: false,
+          timer: 1500
         })
-    }
+        localStorage.removeItem('wif');
+        localStorage.removeItem('username');
+        window.username = '';
+        window.wif = '';
+        //location.reload();
+    })
+}
