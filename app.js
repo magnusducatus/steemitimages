@@ -2,7 +2,7 @@ localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
 let ipfs, 
     host;
-
+let modalAuth = new Modal(document.getElementById('auth')), modalChange = new Modal(document.getElementById('modalChange'));
 function initConnection(connection) { 
     localStorage.ApiProtocol = connection.api.protocol;
     localStorage.ApiPort = connection.api.port;
@@ -587,7 +587,9 @@ function sendRequest(wifPar, authorPar, status) {
 
 function uploadToGolos() {
     if (wif == '') {
+        modalAuth.show();
         auth( () => {
+            modalAuth.hide();
             swal({
                 type: 'success',
                 title: 'Success',
@@ -733,7 +735,9 @@ function getPostJson(authorPar, permlinkPar, result) {
 
 function getUrls() {
     if (wif == '') {
+        modalAuth.show();
         auth(() => {
+            modalAuth.hide();
             swal({
                 type: 'success',
                 title: 'Success',
@@ -789,18 +793,18 @@ document.getElementById('integration').addEventListener('click', function() {
 
 })
 document.getElementById('change-port').addEventListener('click', function() {
-    document.getElementById('modal').style.display = "block";
+    modalChange.show();
     document.getElementById('change-node-cancel').addEventListener('click', function() {
-        document.getElementById('modal').style.display = "none";
+        modalChange.hide();
     });
     document.getElementById('change-node-close').addEventListener('click', function() {
-        document.getElementById('modal').style.display = "none";
+        modalChange.hide();
     });
     document.getElementById('change-node-default').addEventListener('click', function() {
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
         setPlaceholderIPFS();
-        document.getElementById('modal').style.display = "none";
+        modalChange.hide();
     });
     document.getElementById('change-node-ok').addEventListener('click', async ()=>{
           let {
@@ -835,7 +839,7 @@ document.getElementById('change-port').addEventListener('click', function() {
                 }
                 initConnection(connectionNew);
                 localStorage.connectionOption = 'custom';
-                document.getElementById('modal').style.display='none';
+                modalChange.hide();
             } else {
                 swal({
                         title: `${ document.getElementById('modal-error').innerHTML }`,

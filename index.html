@@ -123,7 +123,7 @@
 <div id="change-port-html-title" hidden="true">
     <h3>Input node address!</h3>
 </div>
-    <div class="modal" tabindex="-1" role="dialog" id="modal" style="display:none">
+    <div class="modal" tabindex="-1" role="dialog" id="modalChange" style="display:none">
         <div class="modal-dialog" role="document" id="modal-dialog" style="max-width: 50%;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -255,7 +255,7 @@ function initCustomConnection() {
 
 
 
-    <div class="modal" tabindex="-1" role="dialog" id="auth" style="display:none; ">
+    <div class="modal" tabindex="-1" role="dialog" id="auth">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -271,13 +271,13 @@ function initCustomConnection() {
                         <h5>Please enter your login and master password</h5>
                     </p>
                     <p>
-                        <label for="teset">Username</label>
-                        <div class="input-group mb-3" id="teset">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="username" required>@</span>
-                            </div>
-                            <input id="input-user" type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="username" required>
+                      <label for="input-user">Username</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">@</div>
                         </div>
+                        <input type="text" class="form-control" id="input-user" placeholder="Username">
+                      </div>
                     </p>
                     <p>
                         <div>
@@ -346,7 +346,7 @@ function initCustomConnection() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/2.1.0/i18nextBrowserLanguageDetector.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/findAndReplaceDOMText/0.4.6/findAndReplaceDOMText.min.js"></script>
-<script src="https://thednp.github.io/bootstrap.native/dist/bootstrap-native-v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.22/bootstrap-native-v4.min.js"></script>
 <script src="auth.js"></script>
 <script src="lang.js"></script>
 <script src="app.js"></script>

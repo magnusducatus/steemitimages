@@ -1,4 +1,4 @@
-/*let div1 = document.createElement('div'),
+let div1 = document.createElement('div'),
     div2 = document.createElement('div'),
     div3 = document.createElement('div'),
     divSign = document.createElement('div'),
@@ -44,7 +44,7 @@
     divMain.appendChild(div2);
     divMain.appendChild(div3);
     divMain.appendChild(divSign);
-    document.getElementsByTagName('body')[0].appendChild(divMain);*/
+    document.getElementsByTagName('body')[0].appendChild(divMain);
     localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
     localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
     /*async function auth(cb = function(){}){
@@ -95,18 +95,13 @@
 
   
 */
-function privateFunc(cb){
-    
-}
-function logpassFunc(cb){
 
-}
 async function auth(cb = function(){}){
-    document.getElementById('auth').style.display = 'block';
     document.getElementById('log-private').addEventListener('click', async ()=>{
         let login = document.getElementById('input-user').value,  
                     pass = document.getElementById('input-pass').value, 
-                    priv = document.getElementById('input-private').value;
+                    priv = document.getElementById('input-private').value,
+                    log = document.getElementById('logged-private').checked;
         if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
                      console.log('insert log or pass or priv');
                      document.getElementById('input-user').setAttribute('class','form-control is-invalid');
@@ -127,13 +122,14 @@ async function auth(cb = function(){}){
             document.getElementById('input-private').setAttribute('class','form-control is-invalid'); 
         }
         else{
-            await checker(login, pass, priv, cb)
+            await checker(login, pass, priv, cb, log)
         }
     });
     document.getElementById('log-pass-log').addEventListener('click', async ()=>{
         let login = document.getElementById('input-user').value,  
                     pass = document.getElementById('input-pass').value, 
-                    priv = document.getElementById('input-private').value;
+                    priv = document.getElementById('input-private').value,
+                    log = document.getElementById('logged').checked;
         if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
              document.getElementById('input-user').setAttribute('class','form-control is-invalid');
              document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
@@ -158,7 +154,7 @@ async function auth(cb = function(){}){
              document.getElementById('input-private').setAttribute('class','form-control is-invalid');
         }
          else {
-            await checker(login, pass, priv, cb, 'true');
+            await checker(login, pass, priv, cb, log);
             //return { login, pass, priv, log }; 
         } 
     });
