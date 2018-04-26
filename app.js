@@ -1,4 +1,4 @@
-localStorage.wif && localStorage.username ? logOutProcc() : '';
+localStorage.wif && localStorage.username ? logOutProcc('begin') : '';
 initLang('en');
 let ipfs, 
     host;
@@ -601,7 +601,7 @@ function uploadToGolos() {
                     });
                 }
             });
-            logOutProcc();
+            logOutProcc('upload');
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
@@ -751,7 +751,7 @@ function getUrls() {
                     });
                 }
             });
-            logOutProcc();
+            logOutProcc('urls');
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {

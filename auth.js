@@ -96,36 +96,66 @@ let div1 = document.createElement('div'),
   
 */
 
-async function auth(cb = function(){}){
-    document.getElementById('log-private').addEventListener('click', async ()=>{
-        let login = document.getElementById('input-user').value,  
-                    pass = document.getElementById('input-pass').value, 
-                    priv = document.getElementById('input-private').value,
-                    log = document.getElementById('logged-private').checked;
-        if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
-                     console.log('insert log or pass or priv');
-                     document.getElementById('input-user').setAttribute('class','form-control is-invalid');
-             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
-             document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+ document.getElementById('form-login-pass').addEventListener('submit', async (e) => {
+             e.preventDefault();
+             let log = document.getElementById('logged').checked, 
+                user = document.getElementById('input-user').value,
+                pass = document.getElementById('input-pass').value;
+        try {
+            response = await golos.api.getAccounts([user]);
+        } catch(e){
+            swal({
+              type: 'error',
+              title: `${ document.getElementById('auth-swal-log-title').innerHTML }`,
+              html: `${ document.getElementById('auth-swal-log-html').innerHTML }`,
+            })
         }
-        else if( login.length > 0 || pass.length > 0) {
-                     console.log('Only priv || Log&pass')
-                    document.getElementById('input-user').setAttribute('class','form-control is-invalid');
-                    document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
-                    document.getElementById('input-private').setAttribute('class','form-control is-invalid');
-                }
-        else if(priv.length <= 0 && login.length > 0 || pass.length > 0) {
-            console.log(priv)
-            console.log('Priv need');  
-            document.getElementById('input-user').setAttribute('class','form-control');
-            document.getElementById('input-pass').setAttribute('class','form-control');
-            document.getElementById('input-private').setAttribute('class','form-control is-invalid'); 
+        const roles = ['posting'];
+        try {
+            let keys = await golos.auth.getPrivateKeys(user, pass, roles);
+            if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
+                username = user
+                wif = keys.posting;
+                log ? localStorage.username = username : '';
+                log ? localStorage.wif = wif : '';
+                cb();
+            } else throw Error();;  
+        } catch(e){
+            swal({
+              type: 'error',
+              html: `${ document.getElementById('auth-masterorlogin-error').innerHTML }`
+            })
+
         }
-        else{
-            await checker(login, pass, priv, cb, log)
+    })
+ document.getElementById('form-priv').addEventListener('submit', async (e) => {
+             e.preventDefault();
+             let log = document.getElementById('log-private').checked, 
+                priv = document.getElementById('input-private').value;
+        try {
+            let resultWifToPublic = await golos.auth.wifToPublic(priv);
+            wif = priv;
+            log ? localStorage.wif = wif : '';
+            let result = golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+                if ( ! err ) {
+                    result.forEach(function(item) {
+                        username = item[0];
+                        log ? localStorage.username = username : '';
+                    });
+                    cb();
+                } else swal(err);
+            });
+        } catch(e){
+            swal({
+                  type: 'error',
+                  html: document.getElementById('privKey-incorrect').innerHTML
+                })
         }
-    });
-    document.getElementById('log-pass-log').addEventListener('click', async ()=>{
+    })
+    window.cb;
+async function auth(bc = function(){}){
+    cb = bc;
+    /*document.getElementById('log-pass-log').addEventListener('click', async ()=>{
         let login = document.getElementById('input-user').value,  
                     pass = document.getElementById('input-pass').value, 
                     priv = document.getElementById('input-private').value,
@@ -136,7 +166,7 @@ async function auth(cb = function(){}){
              document.getElementById('input-private').setAttribute('class','form-control is-invalid');
         }
         else if(login.length <= 0 && pass.length > 0){
-            console.log('insert log to')
+            console.log('insert log to');
             document.getElementById('input-user').setAttribute('class','form-control is-invalid');
             document.getElementById('input-pass').setAttribute('class','form-control is-valid');
             document.getElementById('input-private').setAttribute('class','form-control');
@@ -157,51 +187,41 @@ async function auth(cb = function(){}){
             await checker(login, pass, priv, cb, log);
             //return { login, pass, priv, log }; 
         } 
-    });
+    },{once:true});
+    document.getElementById('log-private').addEventListener('click', async ()=>{
+        console.log('private');
+        let login = document.getElementById('input-user').value,  
+                    pass = document.getElementById('input-pass').value, 
+                    priv = document.getElementById('input-private').value,
+                    log = document.getElementById('logged-private').checked;
+        if( login.length <= 0 && pass.length <= 0 && priv.length <= 0) {
+                     console.log('insert log or pass or priv');
+                     document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+             document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+        }
+        else if( login.length > 0 || pass.length > 0) {
+                     console.log('Only priv || Log&pass')
+                    document.getElementById('input-user').setAttribute('class','form-control is-invalid');
+                    document.getElementById('input-pass').setAttribute('class','form-control is-invalid');
+                    document.getElementById('input-private').setAttribute('class','form-control is-invalid');
+                }
+        else if(priv.length <= 0 && login.length > 0 || pass.length > 0) {
+            document.getElementById('input-user').setAttribute('class','form-control');
+            document.getElementById('input-pass').setAttribute('class','form-control');
+            document.getElementById('input-private').setAttribute('class','form-control is-invalid'); 
+        }
+        else{
+            await checker(login, pass, priv, cb, log)
+        }
+    },{once:true});    
+    */
     //await checker(value.login, value.pass, value.priv, value.log, cb);
 }
 async function checker(username, pass, priv, cb, log) {
-        console.log(cb);
-        this.log = log;
-        this.user = username,
-        this.pass = pass, 
-        this.private = priv;
-        try {
-            this.private.length == 51 && this.private.match(/5[A-Z]/) ? wif = this.private 
-                                                                  : this.response = await golos.api.getAccounts([this.user]);
-                                                              } catch(e){
-                                                                swal({
-                                                                  type: 'error',
-                                                                  title: `${ document.getElementById('auth-swal-log-title').innerHTML }`,
-                                                                  html: `${ document.getElementById('auth-swal-log-html').innerHTML }`,
-                                                                })
-                                                              }
-        
-        
-        if( wif != '' ){
-            getPublicKey(log, cb);
-        } else {
-            const roles = ['posting'];
-            try {
-                console.log(this.user)
-                let keys = await golos.auth.getPrivateKeys(this.user, this.pass, roles);
-                console.log(keys)
-                if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
-                    
-                    wif = keys.posting;
-                    getPublicKey(log, cb);
-                } else throw Error();;  
-            } catch(e){
-                swal({
-                  type: 'error',
-                  html: `${ document.getElementById('auth-masterorlogin-error').innerHTML }`
-                })
-
-            }
-        }
+   
     }
-  async function getPublicKey(log, cb){
-        console.log(cb)
+  /*async function getPublicKey(log, cb){
         try {
             let resultWifToPublic = await golos.auth.wifToPublic(wif);
             log ? localStorage.wif = wif : '';
@@ -220,7 +240,7 @@ async function checker(username, pass, priv, cb, log) {
                   html: document.getElementById('privKey-incorrect').innerHTML
                 })
         }
-    }
+    }*/
 function logOutProcc(){
         let li = document.createElement('li'); 
         li.className = `nav-item d-flex align-items-center`; 
