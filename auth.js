@@ -130,12 +130,11 @@ let div1 = document.createElement('div'),
     })
  document.getElementById('form-priv').addEventListener('submit', async (e) => {
              e.preventDefault();
-             let log = document.getElementById('log-private').checked, 
+             let log = document.getElementById('logged-private').checked, 
                 priv = document.getElementById('input-private').value;
         try {
             let resultWifToPublic = await golos.auth.wifToPublic(priv);
-            wif = priv;
-            log ? localStorage.wif = wif : '';
+            log ? localStorage.wif = priv : '';
             let result = golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
                 if ( ! err ) {
                     result.forEach(function(item) {
