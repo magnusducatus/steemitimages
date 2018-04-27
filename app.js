@@ -1,9 +1,11 @@
 localStorage.wif && localStorage.username ? logOutProcc('begin') : '';
 initLang('en');
-let ipfs, 
+let ipfs,
     host;
-let modalAuth = new Modal(document.getElementById('auth')), modalChange = new Modal(document.getElementById('modalChange'));
-function initConnection(connection) { 
+let modalAuth = new Modal(document.getElementById('auth')),
+    modalChange = new Modal(document.getElementById('modalChange'));
+
+function initConnection(connection) {
     localStorage.ApiProtocol = connection.api.protocol;
     localStorage.ApiPort = connection.api.port;
     localStorage.ApiAddress = connection.api.address;
@@ -41,18 +43,18 @@ const connectionDefault = {
             address: `91.201.41.253`
         }
     }
-localStorage.connectionOption == 'custom' ? initConnection({ 
+localStorage.connectionOption == 'custom' ? initConnection({
     api: {
-            protocol: localStorage.ApiProtocol,
-            port: localStorage.ApiPort,
-            address: localStorage.ApiAddress
-        },
-        gateway: {
-            protocol: localStorage.GateProtocol,
-            port: localStorage.GatePort,
-            address: localStorage.GateAddress
-        }
-    }) : initConnection(connectionDefault);
+        protocol: localStorage.ApiProtocol,
+        port: localStorage.ApiPort,
+        address: localStorage.ApiAddress
+    },
+    gateway: {
+        protocol: localStorage.GateProtocol,
+        port: localStorage.GatePort,
+        address: localStorage.GateAddress
+    }
+}) : initConnection(connectionDefault);
 swal.setDefaults({
     buttonsStyling: true,
     confirmButtonText: `<span class="icon-checkmark"></span> ${ document.getElementById('ok').innerHTML }`,
@@ -70,7 +72,7 @@ const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253
 
 
 
-function setPlaceholderIPFS(){
+function setPlaceholderIPFS() {
     document.getElementById('input-api-protocol').placeholder = localStorage.ApiProtocol;
     document.getElementById('input-api-address').placeholder = localStorage.ApiAddress;
     document.getElementById('input-api-port').placeholder = localStorage.ApiPort;
@@ -80,9 +82,9 @@ function setPlaceholderIPFS(){
 }
 setPlaceholderIPFS();
 
-let arrIpfs = [], 
-    arrTablTd = [], 
-    arrGolos = new Set(), 
+let arrIpfs = [],
+    arrTablTd = [],
+    arrGolos = new Set(),
     arrJson = [];
 
 setInterval(checkOnline, 3000);
@@ -91,7 +93,7 @@ function checkOnline() {
     const hash = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
     fetch(host + hash)
         .then(res => {
-            let span = document.getElementById('node-status'); 
+            let span = document.getElementById('node-status');
             span.className = 'badge badge-success  mx-1';
             span.innerHTML = ' online';
         }).catch((err) => {
@@ -102,17 +104,17 @@ function checkOnline() {
 }
 
 function copyToGolos() {
-    let tr = document.getElementById('tr' + this.id), 
-        but = document.getElementsByClassName(this.id), 
+    let tr = document.getElementById('tr' + this.id),
+        but = document.getElementsByClassName(this.id),
         elem;
-    if ( arrGolos.delete(this.id) ) {
+    if (arrGolos.delete(this.id)) {
         tr.setAttribute('class', '');
         this.className = 'btn btn-success';
         this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
         elem = true;
 
     } else {}
-    if ( ! elem ) {
+    if (!elem) {
         arrGolos.add(this.id);
         tr.setAttribute('class', 'table-success');
         this.className = 'btn btn-danger';
@@ -143,8 +145,8 @@ function handleChange(e) {
 }
 
 function arrayBufToB64(buffer) {
-    let binary = '', 
-        bytes = new Uint8Array(buffer), 
+    let binary = '',
+        bytes = new Uint8Array(buffer),
         len = bytes.byteLength;
     for (let i = 0; i < len; i++) {
         binary += String.fromCharCode(bytes[i]);
@@ -228,10 +230,10 @@ function sendToIpfs(data) {
                 let td3opt1 = document.createElement('option');
                 td3opt1.value = 'viewer-links';
                 td3opt1.innerHTML = 'Links for view';
-                let td3opt2 = document.createElement('option'); 
+                let td3opt2 = document.createElement('option');
                 td3opt2.value = 'html-embed-medium';
                 td3opt2.innerHTML = 'HTML-code fullsize with link';
-                let td3opt3 = document.createElement('option'); 
+                let td3opt3 = document.createElement('option');
                 td3opt3.value = 'bbcode-embed-medium';
                 td3opt3.innerHTML = 'BB-code fullsize with link';
                 let td3opt4 = document.createElement('option');
@@ -250,7 +252,7 @@ function sendToIpfs(data) {
 
                 let input3div1 = document.createElement('div');
                 input3div1.className = 'input-group mb-3';
-                let input3input1 = document.createElement('input'); 
+                let input3input1 = document.createElement('input');
                 input3input1.onclick = copyLink;
                 input3input1.className = 'form-control td3-input' + file[i].hash;
                 input3input1.value = host + file[i].hash;
@@ -262,18 +264,18 @@ function sendToIpfs(data) {
 
 
 
-                let td4 = document.createElement('td'); 
+                let td4 = document.createElement('td');
                 td4div1 = document.createElement('div');
                 td4div1.className = 'd-flex d-flex flex-column-reverse';
-                let td4but1 = document.createElement('button'); 
-                td4but1.className = 'btn btn-info'; 
+                let td4but1 = document.createElement('button');
+                td4but1.className = 'btn btn-info';
                 td4but1.type = 'button';
-                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link'; 
+                td4but1.innerHTML = '<span class="icon-new-tab"></span> Copy link';
                 td4but1.id = file[i].hash;
                 td4but1.onclick = copyLink;
                 let td4br = document.createElement('br');
-                td4but2 = document.createElement('button'); 
-                td4but2.className = 'btn btn-success', file[i].hash; 
+                td4but2 = document.createElement('button');
+                td4but2.className = 'btn btn-success', file[i].hash;
                 td4but2.type = 'button';
                 td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
                 td4but2.id = file[i].hash;
@@ -572,7 +574,7 @@ function sendRequest(wifPar, authorPar, status) {
     this.title = 'IPFS images'; // post title
 
     golos.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
-        if ( ! err ) {
+        if (!err) {
             arrGolos.clear();
 
             let uploadGolos = document.getElementById('upload-golos');
@@ -588,7 +590,7 @@ function sendRequest(wifPar, authorPar, status) {
 function uploadToGolos() {
     if (wif == '') {
         modalAuth.show();
-        auth( () => {
+        auth(() => {
             modalAuth.hide();
             swal({
                 type: 'success',
@@ -623,7 +625,7 @@ function renderTableFromJson() {
         let tr = document.createElement('tr');
         tr.className = ' ' + arrJson[i] + ' ';
         let td1 = document.createElement('td');
-        img = document.createElement('img'); 
+        img = document.createElement('img');
         a1 = document.createElement('a');
         a1.href = arrJson[i];
         a1.target = '_blank';
@@ -635,7 +637,7 @@ function renderTableFromJson() {
 
         a1.appendChild(img);
         //img.onclick = handle;
-        let td2 = document.createElement('td'); 
+        let td2 = document.createElement('td');
         td2.className = "text-center";
         td3 = document.createElement('td');
         td3.className = "text-center";
@@ -646,7 +648,7 @@ function renderTableFromJson() {
         td3.appendChild(td3div2);
         td3div2.appendChild(td3p1);
 
-        let td3select = document.createElement('select'); 
+        let td3select = document.createElement('select');
         td3select.className = "form-control";
         td3select.id = arrJson[i];
         td3select.onchange = handleChange;
@@ -657,10 +659,10 @@ function renderTableFromJson() {
         let td3opt2 = document.createElement('option');
         td3opt2.value = 'html-embed-medium';
         td3opt2.innerHTML = 'HTML-code fullsize with link';
-        let td3opt3 = document.createElement('option'); 
+        let td3opt3 = document.createElement('option');
         td3opt3.value = 'bbcode-embed-medium';
         td3opt3.innerHTML = 'BB-code fullsize with link';
-        let td3opt4 = document.createElement('option'); 
+        let td3opt4 = document.createElement('option');
         td3opt4.value = 'github-embed-medium';
         td3opt4.innerHTML = 'GitHub fullsize with link';
 
@@ -671,7 +673,7 @@ function renderTableFromJson() {
         td3select.appendChild(td3opt3);
         td3select.appendChild(td3opt4);
 
-        let input3div1 = document.createElement('div'); 
+        let input3div1 = document.createElement('div');
         input3div1.className = 'input-group mb-3';
         let input3input1 = document.createElement('input');
         input3input1.className = 'form-control td3-input' + arrJson[i];
@@ -686,11 +688,11 @@ function renderTableFromJson() {
         let td4 = document.createElement('td');
         td4div1 = document.createElement('div');
         td4div1.className = 'd-flex justify-content-around';
-        let td4but1 = document.createElement('button'); 
-        td4but1.className = 'btn btn-success'; 
+        let td4but1 = document.createElement('button');
+        td4but1.className = 'btn btn-success';
         td4but1.type = 'button';
-        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link'; 
-        td4but1.id = arrJson[i]; 
+        td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
+        td4but1.id = arrJson[i];
         td4but1.onclick = copyLink;
 
         td4.appendChild(td4div1);
@@ -806,72 +808,53 @@ document.getElementById('change-port').addEventListener('click', function() {
         setPlaceholderIPFS();
         modalChange.hide();
     });
-    document.getElementById('change-node-ok').addEventListener('click', async ()=>{
-          let {
-                obj: full,
-                sendObj: result
-            } = await getInputsFromChange(),
-                good = {
-                    api: '',
-                    gateway: ''
-                }
-            for (let i in result) {
-                result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
+    document.getElementById('change-node-ok').addEventListener('click', async () => {
+        let {
+            obj: full,
+            sendObj: result
+        } = await getInputsFromChange(),
+            good = {
+                api: '',
+                gateway: ''
             }
+        for (let i in result) {
+            result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
+        }
+        for (let i in full) {
+            if (full[i].some((item) => {
+                    return item.value == '' && !good[i]
+                })) {
+                console.log(i, full[i], false);
+                full[i].forEach((item) => {
+                    if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
+                    else item.setAttribute('class', 'form-control');
+                });
+            }
+        }
+        if (good.api && good.gateway) {
             for (let i in full) {
-                if (full[i].some((item) => {
-                        return item.value == '' && !good[i]
-                    })) {
-                    console.log(i, full[i], false);
-                    full[i].forEach((item) => {
-                        if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
-                        else item.setAttribute('class', 'form-control');
-                    });
-                }
+                full[i].forEach((item) => {
+                    let arr = item.id.split('-'),
+                        conn = connectionNew[arr[1]];
+                    if (item.value != '') conn[arr[2]] = item.value;
+                });
             }
-            if (good.api && good.gateway) {
-                for (let i in full) {
-                    full[i].forEach((item) => {
-                        let arr = item.id.split('-'),
-                            conn = connectionNew[arr[1]];
-                        if (item.value != '') conn[arr[2]] = item.value;
-                    });
-                }
-                initConnection(connectionNew);
-                localStorage.connectionOption = 'custom';
-                modalChange.hide();
-            } else {
-                swal({
-                        title: `${ document.getElementById('modal-error').innerHTML }`,
-                        type: 'error',
-                        showConfirmButton: false,
-                        position: 'center',
-                        timer: 3000,
-                        toast: true,
-                        animation: 'slide-from-top'
-                    });
-            }
+            initConnection(connectionNew);
+            localStorage.connectionOption = 'custom';
+            modalChange.hide();
+        } else {
+            swal({
+                title: `${ document.getElementById('modal-error').innerHTML }`,
+                type: 'error',
+                showConfirmButton: false,
+                position: 'center',
+                timer: 3000,
+                toast: true,
+                animation: 'slide-from-top'
+            });
+        }
     })
 });
-/*
-*/
-/*
-    let ss = await swal({
-        title: document.getElementById('change-port-html-title').innerHTML,
-        html: document.getElementById('change-port-html').innerHTML,
-        footer: document.getElementById('default-div-node').innerHTML,
-        type: 'info',
-        buttonsStyling: true,
-        position: 'top',
-        showCloseButton: true,
-        showCancelButton: true,
-        preConfirm: async () => {
-          
-        }
-    });
-    */
-
-
 async function getInputsFromChange() {
     let obj = {
         api: [],
@@ -881,7 +864,7 @@ async function getInputsFromChange() {
         api: [],
         gateway: []
     }
-    let arr = [], 
+    let arr = [],
         ss = document.getElementById('modal').getElementsByTagName('input');
 
     for (let i = 0; i < ss.length; i++) {
