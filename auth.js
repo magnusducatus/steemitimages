@@ -4,19 +4,13 @@ let div1 = document.createElement('div'),
     divSign = document.createElement('div'),
     divMain = document.createElement('div');
 
-div1.id = 'place-username',
-    div2.id = 'place-masterpass',
-    div3.id = 'place-wif',
-    divSign.id = 'sign',
-    div1.innerHTML = 'Username',
-    div2.innerHTML = 'Master password',
-    div3.innerHTML = 'Private posting key';
+div1.id = 'madal-auth',
+    divSign.id = 'sign';
 
 divSign.innerHTML = 'Sign Up',
     divMain.setAttribute('hidden', 'true');
 //document.getElementById('appender').appendChild(div1);
-divMain.innerHTML = `
-
+div1.innerHTML = `
 <div class="modal" tabindex="-1" role="dialog" id="auth">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -84,6 +78,8 @@ divMain.innerHTML = `
         </div>
     </div>
 </div>
+`;
+divMain.innerHTML = `
 <div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
         </div>
@@ -115,11 +111,12 @@ divMain.innerHTML = `
         <div id="auth-html-logorpass" hidden="true">
             <p><h5>Please enter your login and master password</h5></p>
         </div>`;
-divMain.appendChild(div1);
+//divMain.appendChild(div1);
 divMain.appendChild(div2);
 divMain.appendChild(div3);
 divMain.appendChild(divSign);
 document.getElementsByTagName('body')[0].appendChild(divMain);
+document.getElementsByTagName('body')[0].appendChild(div1);
 let modalAuth = new Modal(document.getElementById('auth'));
 localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
@@ -146,6 +143,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
             wif = keys.posting;
             log ? localStorage.username = username : '';
             log ? localStorage.wif = wif : '';
+            modalAuth.hide();
             cb();
         } else throw Error();;
     } catch (e) {
@@ -169,6 +167,7 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
                     username = item[0];
                     log ? localStorage.username = username : '';
                 });
+                modalAuth.hide();
                 cb();
             } else swal(err);
         });
@@ -184,6 +183,7 @@ window.cb;
 
 async function auth(bc = function() {}) {
     cb = bc;
+    modalAuth.show();
 }
 
 function logOutProcc() {

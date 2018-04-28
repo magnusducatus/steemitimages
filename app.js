@@ -737,9 +737,9 @@ function getPostJson(authorPar, permlinkPar, result) {
 
 function getUrls() {
     if (wif == '') {
-        modalAuth.show();
+        
         auth(() => {
-            modalAuth.hide();
+            
             swal({
                 type: 'success',
                 title: 'Success',
@@ -765,8 +765,8 @@ function getUrls() {
     }
 }
 
-document.getElementById('golos-urls').addEventListener('click', (e)=>{
-   getUrls; 
+document.getElementById('golos-urls').addEventListener('click', function(e){
+   getUrls(); 
 }) 
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
