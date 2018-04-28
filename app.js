@@ -1,4 +1,4 @@
-localStorage.wif && localStorage.username ? logOutProcc('begin') : '';
+localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
 let ipfs,
     host;
@@ -589,9 +589,7 @@ function sendRequest(wifPar, authorPar, status) {
 
 function uploadToGolos() {
     if (wif == '') {
-        modalAuth.show();
         auth(() => {
-            modalAuth.hide();
             swal({
                 type: 'success',
                 title: 'Success',
@@ -603,7 +601,7 @@ function uploadToGolos() {
                     });
                 }
             });
-            logOutProcc('upload');
+            logOutProcc();
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
@@ -737,9 +735,7 @@ function getPostJson(authorPar, permlinkPar, result) {
 
 function getUrls() {
     if (wif == '') {
-        
         auth(() => {
-            
             swal({
                 type: 'success',
                 title: 'Success',
@@ -753,7 +749,7 @@ function getUrls() {
                     });
                 }
             });
-            logOutProcc('urls');
+            logOutProcc();
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
