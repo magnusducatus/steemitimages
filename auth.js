@@ -120,7 +120,7 @@ divMain.appendChild(div2);
 divMain.appendChild(div3);
 divMain.appendChild(divSign);
 document.getElementsByTagName('body')[0].appendChild(divMain);
-let modalAuth = new Modal(document.getElementById('auth')),
+let modalAuth = new Modal(document.getElementById('auth'));
 localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
 
