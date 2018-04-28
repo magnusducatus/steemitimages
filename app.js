@@ -2,8 +2,8 @@ localStorage.wif && localStorage.username ? logOutProcc('begin') : '';
 initLang('en');
 let ipfs,
     host;
-let modalAuth = new Modal(document.getElementById('auth')),
-    modalChange = new Modal(document.getElementById('modalChange'));
+
+let modalChange = new Modal(document.getElementById('modalChange'));
 
 function initConnection(connection) {
     localStorage.ApiProtocol = connection.api.protocol;
@@ -765,7 +765,9 @@ function getUrls() {
     }
 }
 
-document.getElementById('golos-urls').onclick = getUrls;
+document.getElementById('golos-urls').addEventListener('click', (e)=>{
+   getUrls; 
+}) 
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
