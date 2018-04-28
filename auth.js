@@ -4,7 +4,7 @@ let div1 = document.createElement('div'),
     divSign = document.createElement('div'),
     divMain = document.createElement('div');
 
-div1.id = 'madal-auth',
+div1.id = 'modal-auth',
     divSign.id = 'sign';
 
 divSign.innerHTML = 'Sign Up',
