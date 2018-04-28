@@ -71,16 +71,18 @@ golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099
 const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253:7777/ipfs/');
 
 
-
-function setPlaceholderIPFS() {
-    document.getElementById('input-api-protocol').placeholder = localStorage.ApiProtocol;
-    document.getElementById('input-api-address').placeholder = localStorage.ApiAddress;
-    document.getElementById('input-api-port').placeholder = localStorage.ApiPort;
-    document.getElementById('input-gateway-protocol').placeholder = localStorage.GateProtocol;
-    document.getElementById('input-gateway-address').placeholder = localStorage.GateAddress;
-    document.getElementById('input-gateway-port').placeholder = localStorage.GatePort;
+function setPlaceholderIPFS(status) {
+    console.log('IPFS',status);
+    let con;
+    con == 'default'? con = connectionDefault : con = connectionNew;
+    document.getElementById('input-api-protocol').placeholder = con.api.protocol;
+    document.getElementById('input-api-address').placeholder = con.api.address;
+    document.getElementById('input-api-port').placeholder = con.api.port;
+    document.getElementById('input-gateway-protocol').placeholder = con.gateway.protocol;
+    document.getElementById('input-gateway-address').placeholder = con.gateway.address;
+    document.getElementById('input-gateway-port').placeholder = con.gateway.port;
 }
-setPlaceholderIPFS();
+setPlaceholderIPFS(localStorage.connectionOption);
 
 let arrIpfs = [],
     arrTablTd = [],
@@ -801,9 +803,10 @@ document.getElementById('change-port').addEventListener('click', function() {
         modalChange.hide();
     });
     document.getElementById('change-node-default').addEventListener('click', function() {
+        console.log(connectionDefault);
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
-        setPlaceholderIPFS();
+        setPlaceholderIPFS(localStorage.connectionOption);
         modalChange.hide();
     });
     document.getElementById('change-node-ok').addEventListener('click', async () => {
@@ -863,7 +866,7 @@ async function getInputsFromChange() {
         gateway: []
     }
     let arr = [],
-        ss = document.getElementById('modal').getElementsByTagName('input');
+        ss = document.getElementById('modalChange').getElementsByTagName('input');
 
     for (let i = 0; i < ss.length; i++) {
         obj[ss[i].id.split('-')[1]].push(ss[i]);

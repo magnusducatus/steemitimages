@@ -46,7 +46,9 @@ div1.innerHTML = `
                 </form>
                 <div>
                 <hr>
+                <div class="d-flex justify-content-center">
                 OR
+                </div>
                 <hr>
                 </div>
                 <h5>Please enter only your private posting key</h5>
@@ -63,18 +65,21 @@ div1.innerHTML = `
                         <button type="submit" id="log-private" class="btn btn-success"><span class="icon-enter"></span> Log in</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer" id="modal-footer-id">
                 <div class="d-flex flex-column" style="width:100%">
+                    <hr>
+                    <div>
+                    <hr class="bg-light">
                     <div class="text-center">
                         OR
                     </div>
-                    <hr class="bg-light" style="width:100%">
+                    <hr class="bg-light">
+                    </div>
                     <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
                     <button type="button" class="btn btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
                     </a>
                 </div>
             </div>
+                
         </div>
     </div>
 </div>
