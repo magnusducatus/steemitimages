@@ -42,7 +42,7 @@ div1.innerHTML = `
                         <input id="logged" class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label">Keep me logged</label>
                     </div>
-                    <button type="submit" id="log-pass-log" class="btn btn-primary align-self-center" ><span class="icon-checkmark"></span> Log in</button>
+                    <button type="submit" id="log-pass-log" class="btn btn-success align-self-center" ><span class="icon-enter"></span> Log in</button>
                 </form>
                 <div>
                 <hr>
@@ -60,7 +60,7 @@ div1.innerHTML = `
                         <label for="logged-private" class="form-check-label">Keep me logged</label>
                     </div>
                     <div class="align-self-center">
-                        <button type="submit" id="log-private" class="btn btn-primary"><span class="icon-checkmark"></span> Log in</button>
+                        <button type="submit" id="log-private" class="btn btn-success"><span class="icon-enter"></span> Log in</button>
                     </div>
                 </form>
             </div>
@@ -71,7 +71,7 @@ div1.innerHTML = `
                     </div>
                     <hr class="bg-light" style="width:100%">
                     <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
-                    <button type="button" class="btn btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-info"></span> Sign Up</button>
+                    <button type="button" class="btn btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
                     </a>
                 </div>
             </div>
