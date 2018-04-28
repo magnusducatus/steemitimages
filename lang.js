@@ -70,7 +70,7 @@
                             initLang(language);
                         }
                     }, false);
-                    navbar.appendChild(li);
+                    navbar ? navbar.appendChild(li) : '';
                 }
                 updateContent(choosen);
             });
