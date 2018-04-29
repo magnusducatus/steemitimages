@@ -72,15 +72,27 @@ const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253
 
 
 function setPlaceholderIPFS(status) {
-    console.log('IPFS',status);
+    console.log('IPFS', status);
     let con;
-    con == 'default'? con = connectionDefault : con = connectionNew;
-    document.getElementById('input-api-protocol').placeholder = con.api.protocol;
-    document.getElementById('input-api-address').placeholder = con.api.address;
-    document.getElementById('input-api-port').placeholder = con.api.port;
-    document.getElementById('input-gateway-protocol').placeholder = con.gateway.protocol;
-    document.getElementById('input-gateway-address').placeholder = con.gateway.address;
-    document.getElementById('input-gateway-port').placeholder = con.gateway.port;
+    status == 'default' ? con = connectionDefault : con = {
+        api: {
+            protocol: localStorage.ApiProtocol,
+            port: localStorage.ApiPort,
+            address: localStorage.ApiAddress
+        },
+        gateway: {
+            protocol: localStorage.GateProtocol,
+            port: localStorage.GatePort,
+            address: localStorage.GateAddress
+        }
+    }
+    console.log(con.api.protocol)
+    document.getElementById('input-api-protocol').setAttribute('placeholder', con.api.protocol);
+    document.getElementById('input-api-address').setAttribute('placeholder', con.api.address);
+    document.getElementById('input-api-port').setAttribute('placeholder', con.api.port);
+    document.getElementById('input-gateway-protocol').setAttribute('placeholder', con.gateway.protocol);
+    document.getElementById('input-gateway-address').setAttribute('placeholder', con.gateway.address);
+    document.getElementById('input-gateway-port').setAttribute('placeholder', con.gateway.port);
 }
 setPlaceholderIPFS(localStorage.connectionOption);
 
@@ -763,9 +775,9 @@ function getUrls() {
     }
 }
 
-document.getElementById('golos-urls').addEventListener('click', function(e){
-   getUrls(); 
-}) 
+document.getElementById('golos-urls').addEventListener('click', function(e) {
+    getUrls();
+})
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
@@ -807,6 +819,10 @@ document.getElementById('change-port').addEventListener('click', function() {
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
         setPlaceholderIPFS(localStorage.connectionOption);
+        let elem = document.getElementById('modalChange').getElementsByTagName('input');
+        for (let i in elem) {
+            elem[i].value = '';
+        }
         modalChange.hide();
     });
     document.getElementById('change-node-ok').addEventListener('click', async () => {
@@ -842,6 +858,11 @@ document.getElementById('change-port').addEventListener('click', function() {
             }
             initConnection(connectionNew);
             localStorage.connectionOption = 'custom';
+            let elem = document.getElementById('modalChange').getElementsByTagName('input');
+            for (let i in elem) {
+                elem[i].value = '';
+            }
+            setPlaceholderIPFS(localStorage.connectionOption);
             modalChange.hide();
         } else {
             swal({
