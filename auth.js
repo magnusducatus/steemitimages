@@ -66,7 +66,6 @@ div1.innerHTML = `
                     </div>
                 </form>
                 <div class="d-flex flex-column" style="width:100%">
-                    <hr>
                     <div>
                     <hr class="bg-light">
                     <div class="text-center">
