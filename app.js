@@ -775,7 +775,7 @@ function getUrls() {
     }
 }
 
-document.getElementById('golos-urls').addEventListener('click', function(e) {
+document.getElementById('golos-urls').addEventListener('click', function() {
     getUrls();
 })
 

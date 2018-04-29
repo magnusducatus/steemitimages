@@ -1,6 +1,6 @@
 # Golos Images
 
-## [golosimages.com](https://golosimages.com/) - this microservice for storing images on the blockchain Golos and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
+## [Golosimages.com](https://golosimages.com/) - this microservice for storing images on the blockchain Golos and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
 
 We use:
 * [Golos.js](https://github.com/GolosChain/golos-js) - the JavaScript API for Golos blockchain;
