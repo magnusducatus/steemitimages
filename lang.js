@@ -1,3 +1,4 @@
+let modalLang = new Modal(document.getElementById('modalLang'));
 let choosen = '',
     lngOption = {
         // order and from where user language should be detected
@@ -45,11 +46,57 @@ function initLang(lang) {
                 button.innerHTML = `<span class="icon-earth"></span> Language`;
                 li.appendChild(button);
                 button.addEventListener('click', async () => {
-                    var inputOptions = new Promise((resolve) => {
+                    modalLang.show();
+                    const lang = {};
+                    const arrLangs = [
+                        {lang:'en', name:'English'}, 
+                        {lang: 'ru', name: 'Русский'}, 
+                        {lang: 'ua', name: 'України'}, 
+                        {lang: 'by', name: 'Беларускі'}, 
+                        {lang: 'cn', name: '中国'}, 
+                        {lang: 'kr', name: '한국어'}, 
+                        {lang: 'es', name: 'Español'}, 
+                        {lang: 'fr', name: 'Français'}, 
+                        {lang: 'it', name: 'Italiano'}, 
+                        {lang: 'jp', name: '日本語'}, 
+                        {lang: 'pl', name: 'Polski'}
+                    ];
+                    document.getElementById('modal-lang-form').innerHTML = '';
+                    arrLangs.forEach(item => {
+                        let div = document.createElement('div');
+                        
+                        let checked, 
+                            langCheck;
+                        localStorage.lang ? langCheck = localStorage.lang : langCheck = navigator.language.split('-')[0];
+                        langCheck == item.lang ? checked = 'checked' : checked = '';
+                        
+                        div.className = `form-check`;
+                        div.innerHTML = `
+                            <input class="form-check-input" type="radio" id=${item.lang} name="language" value=${item.lang} ${checked}>
+                            <label class="form-check-label" for=${item.lang}><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40" style="border-radius: 0.25em"> ${ item.name }</label>
+                        `;
+                        
+                        document.getElementById('modal-lang-form').appendChild(div); 
+
+                    });
+                    //document.getElementById('modalLang').getElementsByClassName('modal-body')[0].appendChild(lang[i]); 
+                    /*var inputOptions = new Promise((resolve) => {
                         const lang = {}
-                        const arrLangs = ['en', 'ru', 'ua', 'by', 'cn','kr', 'es', 'fr', 'it', 'jp', 'pl'];
+                        const arrLangs = [
+                            {lang:'en', name:'English'}, 
+                            {lang: 'ru', name: 'Русский'}, 
+                            {lang: 'ua', name: 'України'}, 
+                            {lang: 'by', name: 'Беларускі'}, 
+                            {lang: 'cn', name: '中国'}, 
+                            {lang: 'kr', name: '한국어'}, 
+                            {lang: 'es', name: 'Español'}, 
+                            {lang: 'fr', name: 'Français'}, 
+                            {lang: 'it', name: 'Italiano'}, 
+                            {lang: 'jp', name: '日本語'}, 
+                            {lang: 'pl', name: 'Polski'}
+                        ];
                         arrLangs.forEach(item => {
-                            lang[item] = `<img src="http://golosimages.com/graphics/flags/${ item }.svg" height="30" width="40" style="border-radius: 0.25em">`
+                            lang[item.lang] = `<div><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40" style="border-radius: 0.25em">${ item.name }</div>`;
                         });
                         resolve(lang)
                     })
@@ -57,6 +104,7 @@ function initLang(lang) {
                         value: language
                     } = await swal({
                         title: 'Select language',
+                        width: 600,
                         input: 'radio',
                         inputOptions: inputOptions,
                         inputValue: localStorage.lang ? localStorage.lang : navigator.language.split('-')[0],
@@ -69,10 +117,10 @@ function initLang(lang) {
                     })
                     if (language) {
                         localStorage.lang = language;
-                        location.reload();
+                        language = 'en'? location.reload() : '';
                         initLang(language);
                     }
-                }, false);
+                */}, false);
                 navbar ? navbar.appendChild(li) : '';
             }
             updateContent(choosen);
@@ -80,6 +128,16 @@ function initLang(lang) {
 
 }
 
+document.getElementById('btn-lang-success').addEventListener('click', (e) => {
+    let ss = document.getElementsByName('language'), 
+        val;
+    for(let i in ss) ss[i].checked ? val = ss[i].value : '';
+        console.log(val)
+    localStorage.lang = val;
+    language = 'en'? location.reload() : '';
+    initLang(language);
+    modalLang.hide();
+})
 
 function updateContent() {
     let array = i18next.services.resourceStore.data[choosen].translation;
