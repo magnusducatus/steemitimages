@@ -1,10 +1,10 @@
 let divLang = document.createElement('div');
-div1.innerHTML = `
+divLang.innerHTML = `
     <div class="modal" tabindex="-1" role="dialog" id="modalLang">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="width: 150%;">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Choose language</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

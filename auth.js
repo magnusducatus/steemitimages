@@ -9,9 +9,7 @@ div1.id = 'modal-auth',
 
 divSign.innerHTML = 'Sign Up',
     divMain.setAttribute('hidden', 'true');
-//document.getElementById('appender').appendChild(div1);
-div1.innerHTML = `
-<div class="modal" tabindex="-1" role="dialog" id="auth">
+div1.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -83,8 +81,7 @@ div1.innerHTML = `
     </div>
 </div>
 `;
-divMain.innerHTML = `
-<div id="privKey-incorrect" hidden="true">
+divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
         </div>
         <div id="logout-swal">
