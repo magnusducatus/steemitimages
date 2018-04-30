@@ -47,7 +47,7 @@ function initLang(lang) {
                 button.addEventListener('click', async () => {
                     var inputOptions = new Promise((resolve) => {
                         const lang = {}
-                        const arrLangs = ['en', 'ru', 'ua', 'by', 'cn'];
+                        const arrLangs = ['en', 'ru', 'ua', 'by', 'cn','kr', 'es', 'fr', 'it', 'jp', 'pl'];
                         arrLangs.forEach(item => {
                             lang[item] = `<img src="http://golosimages.com/graphics/flags/${ item }.svg" height="30" width="40" style="border-radius: 0.25em">`
                         });

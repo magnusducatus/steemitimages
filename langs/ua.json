@@ -3,6 +3,7 @@
 "Logout" : "Вихід",
 "Log in":"Увійти",
 "You're logged out":"Ви вийшли",
+"Integration of the service into your website":"Інтеграція сервісу на ваш сайт",
 " це підсвічування синтаксису на JavaScript. Він працює в браузері, і на сервері. Він працює з практично будь розмітки, не залежить від яких-небудь фреймворків та автоматичне визначення мовиis a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection" : "це підсвічування синтаксису на JavaScript. Він працює в браузері, і на сервері. Він працює з практично будь розмітки, не залежить від яких-небудь фреймворків та автоматичне визначення мови",
 "Please enter full gateway or api inputs or both":"Будь ласка, введіть повний шлюз або API входи або як",
 "Added successfully! Check the table!":"Успішно доданий! Перевірте таблицю!",
