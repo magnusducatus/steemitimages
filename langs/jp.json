@@ -77,5 +77,5 @@
 	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify;":"指定されたDOMノードの正規表現の一致を検索するиは、各一致を指定できるノードまたはテキストで置換またはラップします;",
 	"is an internationalization-framework written in и for JavaScript;":"JavaScript用に書かれた国際化フレームワークです。",
 	"library for the IPFS HTTP API, implemented in JavaScript;":"JavaScriptで実装されたIPFS HTTP API用のライブラリ",
-	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"JavaScriptのポップアップボックスのための、美しく、応答性が高く、カスタマイズ可能で、アクセス可能な代替品です。",
+	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"JavaScriptのポップアップボックスのための、美しく、応答性が高く、カスタマイズ可能で、アクセス可能な代替品です。"
 }
