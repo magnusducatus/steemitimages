@@ -1,3 +1,32 @@
+let divLang = document.createElement('div');
+div1.innerHTML = `
+    <div class="modal" tabindex="-1" role="dialog" id="modalLang">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 150%;">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form id="modal-lang-form" style="
+                    display:  flex;
+                    flex-flow: row wrap;
+                    align-content: space-around;
+                    height: 300px;
+                    justify-content: space-around;
+                ">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btn-lang-success"><span class="icon-checkmark"></span> Ok</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="icon-cross"></span> Cancel</button>
+            </div>
+            </div>
+        </div>
+    </div>`;
+document.getElementsByTagName('body')[0].appendChild(divLang);
 let modalLang = new Modal(document.getElementById('modalLang'));
 let choosen = '',
     lngOption = {
