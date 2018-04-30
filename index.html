@@ -5,12 +5,21 @@
     <title>GolosImages</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Tesla is accelerating the world&#039;s transition to sustainable energy, offering the safest, quickest electric cars on the road and integrated energy solutions. Tesla products work together to power your home and charge your electric car with clean energy, day and night." />
+    <meta name="keywords" content="Tesla, Motors, Electric, EV, Tesla Motors, Roadster, Roadster Sport, Model S, Model X, Model 3, Supercharger, All Wheel Drive, Dual Motor, Vehicle, Car, SUV, Sedan, P85, P85D, News, Updates, Elon Musk, Price, Careers, Jobs, Charging, Battery, Gigafactory, Autopilot" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Electric Cars, Solar Panels &amp; Clean Energy Storage | Tesla" />
+    <meta property="og:url" content="https://www.tesla.com/" />
+    <meta property="og:description" content="Tesla is accelerating the world&#039;s transition to sustainable energy, offering the safest, quickest electric cars on the road and integrated energy solutions." />
+    <meta property="og:image" content="https://www.tesla.com/sites/default/files/images/software_update.jpg" />
+    <meta property="og:image:url" content="https://www.tesla.com/sites/default/files/images/software_update.jpg" />
+    <meta property="og:image:secure_url" content="https://www.tesla.com/sites/default/files/images/software_update.jpg" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.0/dist/yeti/bootstrap.min.css">
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.css">
     <link rel="stylesheet" href="custom.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css">
-    <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
     <!--Yandex.Metrika counter --><script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47877407 = new Ya.Metrika2({ id:47877407, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47877407" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!--Yandex.Metrika counter -->
 </head>
 <body>
@@ -226,30 +235,30 @@
         <li><a target="_blank" href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.</li>
         </ul>
     </div>
-    <div id="integration-html-title">
+    <div id="integration-html-title" hidden="true">
         Integration of the service into your website:
     </div>
     <div id="integration-html" hidden="true">
         <div class="text-left">
-                1. Add JavaScript in your HTML-page 
+                1. Add JavaScript in your HTML-page: 
                 <pre><code>&lt;script src=&quot;https://golosimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
-                2. Add button in your HTML-page
-                <pre><code>&lt;button id=&quot;upload&quot; type=&quot;button&quot;&gt;Upload to IPFS&lt;/button&gt;</code></pre>
-                3. Add eventListener for upload button
+                2. Add button in your HTML-page:
+                <pre><code>&lt;button id=&quot;upload&quot;&gt;Upload to IPFS&lt;/button&gt;</code></pre>
+                3. Add eventListener for upload button:
 <div class="text-left"><pre><code>&lt;script&gt;
 document.getElementById('upload').addEventListener('click', function() {
     uploadImageToIpfs(function(files) {
         console.log(files);
-    })
+    });
 });
 &lt;/script&gt;</code></pre></div>
-                4. You can set remote addresses to your IPFS node
+                4. You can set remote addresses to your IPFS node:
                 <div class="text-left"><pre><code>&lt;script&gt;
 function initCustomConnection() {
     localStorage.connectionCustom = {
         api: { protocol: 'http', port: '5001', address: '91.201.41.253' },
         gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
-    }
+    };
 }
 &lt;/script&gt;</code></pre></div>
         </div>
