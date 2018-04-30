@@ -4,8 +4,7 @@
 	"Log in":"ログイン",
 	"Integration of the service into your website":"あなたのウェブサイトへのサービスの統合",
 	"You're logged out":"あなたはログアウトしました",
-	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"はJavaScriptで書かれたシンタックスハイライターです。これはブラウザとサーバーで動作します。ほとんどのマークアップで動作し、フレームワークに依存せず、自動言語検出機能を備えています。
-"完全なゲートウェイまたはAPI入力を入力してください。",
+	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"はJavaScriptで書かれたシンタックスハイライターです。これはブラウザとサーバーで動作します。ほとんどのマークアップで動作し、フレームワークに依存せず、自動言語検出機能を備えています。完全なゲートウェイまたはAPI入力を入力してください。",
 	"Please enter full gateway or api inputs or both":"完全なゲートウェイまたはAPI入力を入力してください。",
 	"Added successfully! Check the table!":"正常に追加されました！テーブルをチェック！",
 	"Cool!":"クール！",
@@ -42,7 +41,7 @@
 	"Оk":"します",
 	"Upload to IPFS":"IPFS へのアップロード",
 	"Cancel":"キャンセル",
-	"Added successfully!":,
+	"Added successfully!":"追加に成功しました!",
 	"Check the table!":"正常に追加されました！",
 	"Images added":"「画像が追加されました",
 	"Check table for records":"レコードのテーブルを確認する",
