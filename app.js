@@ -1,3 +1,4 @@
+hljs.initHighlightingOnLoad();
 localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
 let ipfs,
