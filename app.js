@@ -42,7 +42,7 @@ const connectionDefault = {
             port: `7777`,
             address: `91.201.41.253`
         }
-    }
+    };
 localStorage.connectionOption == 'custom' ? initConnection({
     api: {
         protocol: localStorage.ApiProtocol,
@@ -349,7 +349,7 @@ function retrieveImageFromClipboardAsBase64(pasteEvent, callback, imageFormat) {
         if (typeof(callback) == "function") {
             callback(undefined);
         }
-    };
+    }
 
     let items = pasteEvent.clipboardData.items;
 
@@ -357,7 +357,7 @@ function retrieveImageFromClipboardAsBase64(pasteEvent, callback, imageFormat) {
         if (typeof(callback) == "function") {
             callback(undefined);
         }
-    };
+    }
 
     for (let i = 0; i < items.length; i++) {
         // Skip content if not image
@@ -403,7 +403,7 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
         if (typeof(callback) == "function") {
             callback(undefined);
         }
-    };
+    }
 
     let items = pasteEvent.clipboardData.items;
 
@@ -411,7 +411,7 @@ function retrieveImageFromClipboardAsBlob(pasteEvent, callback) {
         if (typeof(callback) == "function") {
             callback(undefined);
         }
-    };
+    }
 
     for (let i = 0; i < items.length; i++) {
         // Skip content if not image
@@ -777,7 +777,7 @@ function getUrls() {
 
 document.getElementById('golos-urls').addEventListener('click', function() {
     getUrls();
-})
+});
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
 
@@ -795,7 +795,7 @@ document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () 
 }, false);
 document.getElementById('integration').addEventListener('click', function() {
     swal({
-        title: '',
+        title: document.getElementById('integration-html-title').innerHTML,
         html: document.getElementById('integration-html').innerHTML,
         type: 'info',
         buttonsStyling: false,
@@ -803,9 +803,17 @@ document.getElementById('integration').addEventListener('click', function() {
         confirmButtonText: `<span class="icon-checkmark"></span> ${ document.getElementById('cool').innerHTML }`,
         position: 'top',
         showCloseButton: true
-    })
+    });
 
-})
+});
+//inputs[i].addEventListener('onchange',()=>{alert(2)})
+
+let inputs = document.getElementById('modalChange').getElementsByTagName('input');
+//for(let i in inputs) inputs[i].addEventListener('click',()=>{console.log(2)});
+for(let i = 0; i < inputs.length; i++) inputs[i].addEventListener('input',(e)=>{
+    console.log(e.target)
+    e.target.setAttribute('class','form-control');
+});
 document.getElementById('change-port').addEventListener('click', function() {
     modalChange.show();
     document.getElementById('change-node-cancel').addEventListener('click', function() {
@@ -833,7 +841,7 @@ document.getElementById('change-port').addEventListener('click', function() {
             good = {
                 api: '',
                 gateway: ''
-            }
+            };
         for (let i in result) {
             result[i].length != 3 && result[i].length > 0 ? good[i] = false : good[i] = true;
         }
@@ -875,17 +883,17 @@ document.getElementById('change-port').addEventListener('click', function() {
                 animation: 'slide-from-top'
             });
         }
-    })
+    });
 });
 async function getInputsFromChange() {
     let obj = {
         api: [],
         gateway: [],
-    }
+    };
     sendObj = {
         api: [],
         gateway: []
-    }
+    };
     let arr = [],
         ss = document.getElementById('modalChange').getElementsByTagName('input');
 
