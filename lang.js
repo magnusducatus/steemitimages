@@ -2,7 +2,7 @@ let divLang = document.createElement('div');
 divLang.innerHTML = `
     <div class="modal" tabindex="-1" role="dialog" id="modalLang">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width: 150%;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Choose language</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,13 +10,7 @@ divLang.innerHTML = `
                     </button>
                 </div>
             <div class="modal-body">
-                <form id="modal-lang-form" style="
-                    display:  flex;
-                    flex-flow: row wrap;
-                    align-content: space-around;
-                    height: 300px;
-                    justify-content: space-around;
-                ">
+                <form  class="container" id="modal-lang-form">
                 </form>
             </div>
             <div class="modal-footer">
@@ -91,21 +85,30 @@ function initLang(lang) {
                         {lang: 'pl', name: 'Polski'}
                     ];
                     document.getElementById('modal-lang-form').innerHTML = '';
+                    let i = 2,rowId = 0;
                     arrLangs.forEach(item => {
+                        i++;
+                        let divR = document.createElement('div');
                         let div = document.createElement('div');
                         
                         let checked, 
                             langCheck;
                         localStorage.lang ? langCheck = localStorage.lang : langCheck = navigator.language.split('-')[0];
                         langCheck == item.lang ? checked = 'checked' : checked = '';
-                        
-                        div.className = `form-check`;
+                        div.className = `form-check col-4`;
                         div.innerHTML = `
                             <input class="form-check-input" type="radio" id=${item.lang} name="language" value=${item.lang} ${checked}>
-                            <label class="form-check-label" for=${item.lang}><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40" style="border-radius: 0.25em"> ${ item.name }</label>
+                            <label class="form-check-label" for=${item.lang}><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40"> ${ item.name }</label>
                         `;
-                        
-                        document.getElementById('modal-lang-form').appendChild(div); 
+                        if(i == 3) {
+                            i=0;
+                            rowId++;
+                            divR.id = 'row'+rowId;
+                            divR.className = 'row  m tb-2';
+                            divR.appendChild(div);
+                            document.getElementById('modal-lang-form').appendChild(divR);
+                        } else document.getElementById('row'+rowId).appendChild(div);
+                         
 
                     });
                     //document.getElementById('modalLang').getElementsByClassName('modal-body')[0].appendChild(lang[i]); 
