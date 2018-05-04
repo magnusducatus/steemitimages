@@ -146,41 +146,37 @@
                     <p>
                         <h5>Please enter remote address for ipfs-api</h5>
                     </p>
-                    <p>
-                        <div class="input-group mb-3">
-                            <div>
-                                <label for="input-api-protocol">Protocol</label>
-                                <input id="input-api-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                            </div>
-                            <div>
-                                <label for="input-api-address">Address</label>
-                                <input id="input-api-address" type="text" class="form-control text-center" placeholder="address">
-                            </div>
-                            <div>
-                                <label for="input-api-port">Port</label>
-                                <input id="input-api-port" type="text" class="form-control text-center" placeholder="port">
+                    <form>
+                        <div class="row">
+                            <label for="input-api-protocol" class="col-4">Protocol</label>
+                            <label for="input-api-address" class="col-4">Address</label>
+                            <label for="input-api-port" class="col-4">Port</label>
+                        </div>
+                        <div class="row">
+                            <div class="input-group mb-3">
+                                <input id="input-api-protocol" type="text" class="form-control text-center col-4" placeholder="protocol">
+                                <input id="input-api-address" type="text" class="form-control text-center col-4" placeholder="address">
+                                <input id="input-api-port" type="text" class="form-control text-center col-4" placeholder="port">
                             </div>
                         </div>
-                    </p>
+                    </form>
                     <p>
-                        <p>
-                            <h5>Please enter your node gateway remote address</h5>
-                        </p>
-                        <div class="input-group mb-3">
-                            <div>
-                                <label for="input-gateway-protocol">Protocol</label>
+                        <h5>Please enter your node gateway remote address</h5>
+                    </p>
+                    <form>
+                        <div class="row">
+                            <label class="col-4" for="input-gateway-protocol">Protocol</label>
+                            <label class="col-4" for="input-gateway-address">Address</label>
+                            <label class="col-4" for="input-gateway-port">Port</label>
+                        </div>
+                        <div class="row">
+                            <div class="input-group mb-3">
                                 <input id="input-gateway-protocol" type="text" class="form-control text-center" placeholder="protocol">
-                            </div>
-                            <div>
-                                <label for="input-gateway-address">Address</label>
                                 <input id="input-gateway-address" type="text" class="form-control text-center" placeholder="address">
-                            </div>
-                            <div>
-                                <label for="input-gateway-port">Port</label>
                                 <input id="input-gateway-port" type="text" class="form-control text-center" placeholder="port">
                             </div>
                         </div>
-                    </p>
+                    </form>
                 </div>
                 <div class="d-flex flex-column">
                     <p>
