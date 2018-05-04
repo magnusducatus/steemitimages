@@ -120,6 +120,10 @@ body {
  #li-lang {
      display:none;
 }
+
+ #modal-lang-form .row {
+  margin-bottom: 2rem;
+}
  .github-corner {
      position: fixed;
      top: 0;

@@ -98,13 +98,13 @@ function initLang(lang) {
                         div.className = `form-check col-4`;
                         div.innerHTML = `
                             <input class="form-check-input" type="radio" id=${item.lang} name="language" value=${item.lang} ${checked}>
-                            <label class="form-check-label" for=${item.lang}><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40"> ${ item.name }</label>
+                            <label class="form-check-label" for=${item.lang}><img class="img-thumbnail" src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40"> ${ item.name }</label>
                         `;
                         if(i == 3) {
                             i=0;
                             rowId++;
                             divR.id = 'row'+rowId;
-                            divR.className = 'row  m tb-2';
+                            divR.className = 'row';
                             divR.appendChild(div);
                             document.getElementById('modal-lang-form').appendChild(divR);
                         } else document.getElementById('row'+rowId).appendChild(div);
