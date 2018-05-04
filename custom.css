@@ -101,6 +101,9 @@ body {
      font-size: 150%;
      color:black;
 }
+ #loader {
+    display:none;
+ }
  #loaderDiv {
      z-index:1;
      background: white;
@@ -120,14 +123,20 @@ body {
  #li-lang {
      display:none;
 }
-
+ #modalChange {
+  display:none;
+}
  #modal-lang-form .row {
   margin-bottom: 2rem;
+}
+ #modal-dialog {
+  max-width: 50%;
 }
  .github-corner {
      position: fixed;
      top: 0;
      right: 0;
+}
 }
  .github-corner:hover .octo-arm {
      animation:octocat-wave 560ms ease-in-out 
