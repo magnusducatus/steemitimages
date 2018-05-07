@@ -1,20 +1,18 @@
-let div1 = document.createElement('div'),
-    div2 = document.createElement('div'),
-    div3 = document.createElement('div'),
-    divSign = document.createElement('div'),
-    divMain = document.createElement('div');
+let $modalAuth = document.createElement('div'),
+    $divSign = document.createElement('div'),
+    $divMain = document.createElement('div');
 
-div1.id = 'modal-auth',
-    divSign.id = 'sign';
+$modalAuth.id = 'modal-auth',
+    $divSign.id = 'sign';
 
-divSign.innerHTML = 'Sign Up',
-    divMain.setAttribute('hidden', 'true');
-div1.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth">
+$divSign.innerHTML = 'Sign Up',
+    $divMain.setAttribute('hidden', 'true');
+$modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <h3>To continue, you need to login!</h3>
+                    To continue, you need to login!
                 </h5>
                 <button type="button" id="change-node-close" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -81,7 +79,7 @@ div1.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth">
     </div>
 </div>
 `;
-divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
+$divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
         </div>
         <div id="logout-swal">
@@ -112,12 +110,9 @@ divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
         <div id="auth-html-logorpass" hidden="true">
             <p><h5>Please enter your login and master password</h5></p>
         </div>`;
-//divMain.appendChild(div1);
-divMain.appendChild(div2);
-divMain.appendChild(div3);
-divMain.appendChild(divSign);
-document.getElementsByTagName('body')[0].appendChild(divMain);
-document.getElementsByTagName('body')[0].appendChild(div1);
+$divMain.appendChild($divSign);
+document.getElementsByTagName('body')[0].appendChild($divMain);
+document.getElementsByTagName('body')[0].appendChild($modalAuth);
 let modalAuth = new Modal(document.getElementById('auth'));
 localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
