@@ -117,6 +117,8 @@ let modalAuth = new Modal(document.getElementById('auth'));
 localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
 
+localStorage.wif && localStorage.username ? logOutProcc() : '';
+
 document.getElementById('form-login-pass').addEventListener('submit', async (e) => {
     e.preventDefault();
     let log = document.getElementById('logged').checked,
@@ -140,6 +142,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
             log ? localStorage.username = username : '';
             log ? localStorage.wif = wif : '';
             modalAuth.hide();
+            logOutProcc();
             cb();
         } else throw Error();;
     } catch (e) {
@@ -164,6 +167,7 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
                     log ? localStorage.username = username : '';
                 });
                 modalAuth.hide();
+                logOutProcc();
                 cb();
             } else swal(err);
         });

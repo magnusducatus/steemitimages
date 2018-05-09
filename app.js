@@ -1,5 +1,4 @@
 hljs.initHighlightingOnLoad();
-localStorage.wif && localStorage.username ? logOutProcc() : '';
 initLang('en');
 let ipfs,
     host;
@@ -616,7 +615,6 @@ function uploadToGolos() {
                     });
                 }
             });
-            logOutProcc();
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
@@ -764,7 +762,6 @@ function getUrls() {
                     });
                 }
             });
-            logOutProcc();
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
