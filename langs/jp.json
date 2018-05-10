@@ -1,4 +1,11 @@
 {
+	"the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;":"最も一般的なHTML、CSS、およびウェブ上の反応性の高いモバイルの最初のプロジェクトを開発するためのJavaScriptフレームワーク",
+	"is an open source library that provides drag’n’drop file uploads with image previews;":"は、画像プレビュー付きのドラッグアンドドロップファイルのアップロードを提供するオープンソースライブラリです",
+	"a collection of all country flags in SVG;":"SVGのすべての国旗のコレクション;",
+	"searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;":"指定されたDOMノードの正規表現の一致を検索するиは、各一致を指定できるノードまたはテキストで置換またはラップします;",
+	"is an internationalization-framework written in and for JavaScript;":"JavaScript用に書かれた国際化フレームワークです。",
+	"library for the IPFS HTTP API, implemented in JavaScript;":"JavaScriptで実装されたIPFS HTTP API用のライブラリ",
+	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"JavaScriptのポップアップボックスのための、美しく、応答性が高く、カスタマイズ可能で、アクセス可能な代替品です。",
 	"Default":"デフォルト",
 	"Logout":"ログアウト",
 	"Log in":"ログイン",
@@ -14,7 +21,7 @@
 	"Master password":"マスターパスワード",
 	"Private posting key":"プライベート投稿キー",
 	"About integration!":"「統合について!",
-	"Add JavaScript in your HTML-page ":"あなたのHTMLページにJavaScriptを追加",
+	"Add JavaScript in your HTML-page":"あなたのHTMLページにJavaScriptを追加",
 	"Add button in your HTML-page":"あなたのHTMLページにボタンを追加",
 	"Add eventListener for upload button":"「アップロードボタンのeventListenerを追加する」",
 	"You can set remote addresses to your IPFS node":"あなたはIPFSノードにリモートアドレスを設定できます",
@@ -66,15 +73,8 @@
 	"This platform":"このプラットフォーム",
 	"is a thin":"薄い",
 	"client":"クライアント",
-	"that works without a backend (only frontend и blockchain) directly on the GitHub Pages (through CloudFlare).":"これはGitHubページ（CloudFlare経由）に直接バックエンド（フロントエンドとブロックチェーンのみ）なしで動作します。",
+	"that works without a backend (only frontend そして blockchain) directly on the GitHub Pages (through CloudFlare).":"これはGitHubページ（CloudFlare経由）に直接バックエンド（フロントエンドとブロックチェーンのみ）なしで動作します。",
 	"We use:":"を使用しております",
 	" Upload to ":"直接バック",
-	"the JavaScript API for Golos blockchain;":"Golosブロックチェーン用のJavaScript API",
-	"the most popular HTML, CSS, и JavaScript framework for developing responsive, mobile first projects on the web;":"最も一般的なHTML、CSS、およびウェブ上の反応性の高いモバイルの最初のプロジェクトを開発するためのJavaScriptフレームワーク",
-	"is an open source library that provides drag’n’drop file uploads with image previews;":"は、画像プレビュー付きのドラッグアンドドロップファイルのアップロードを提供するオープンソースライブラリです",
-	"a collection of all country flags in SVG;":"SVGのすべての国旗のコレクション;",
-	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify;":"指定されたDOMノードの正規表現の一致を検索するиは、各一致を指定できるノードまたはテキストで置換またはラップします;",
-	"is an internationalization-framework written in и for JavaScript;":"JavaScript用に書かれた国際化フレームワークです。",
-	"library for the IPFS HTTP API, implemented in JavaScript;":"JavaScriptで実装されたIPFS HTTP API用のライブラリ",
-	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"JavaScriptのポップアップボックスのための、美しく、応答性が高く、カスタマイズ可能で、アクセス可能な代替品です。"
+	"the JavaScript API for Golos blockchain;":"Golosブロックチェーン用のJavaScript API"
 }

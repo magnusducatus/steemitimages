@@ -1,5 +1,8 @@
 {
-"Default":"Defecto",
+	" is an internationalization-framework written in and for JavaScript;":"es un marco de internacionalización escrito en è para JavaScript;",
+	"Add JavaScript in your HTML-page":"Agregue JavaScript en su página HTML",
+	"Default":"Defecto",
+	" searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;":"busca coincidencias de expresiones regulares en un nodo de DOM dado y reemplaza o ajusta cada coincidencia con un nodo o pedazo de texto que puede especificar; ",
 	"Logout":"Cerrar sesión",
 	"Log in":"Iniciar sesión",
 	"Integration of the service into your website":"Integración del servicio en su sitio web",
@@ -14,7 +17,6 @@
 	"Master password":"Contraseña maestra",
 	"Private posting key":"Clave de publicación privada",
 	"About integration!":"Acerca de la integración!",
-	"Add JavaScript in your HTML-page ":"Agregue JavaScript en su página HTML",
 	"Add button in your HTML-page":"Agregar botón en tu página HTML",
 	"Add eventListener for upload button":"Agregar eventListener para cargar el botón" ,
 	"You can set remote addresses to your IPFS node":"Puede establecer direcciones remotas a su nodo IPFS",
@@ -73,8 +75,6 @@
 	"the most popular HTML, CSS, и JavaScript framework for developing responsive, mobile first projects on the web;":"el marco HTML, CSS y JavaScript más popular para desarrollar primeros proyectos receptivos y móviles en la web;",
 	"is an open source library that provides drag’n’drop file uploads with image previews;":"es una biblioteca de código abierto que proporciona cargas de archivos arrastrados y soltados con previsualizaciones de imágenes;",
 	"a collection of all country flags in SVG;":"una colección de banderas de todos los países en SVG;",
-	"searches for regular expression matches in a given DOM node и replaces or wraps each match with a node or piece of text that you can specify;":"busca coincidencias de expresiones regulares en un nodo de DOM dado y reemplaza o ajusta cada coincidencia con un nodo o pedazo de texto que puede especificar; ",
-	"is an internationalization-framework written in и for JavaScript;":"es un marco de internacionalización escrito en è para JavaScript;",
 	"library for the IPFS HTTP API, implemented in JavaScript;":"biblioteca para IPFS HTTP API, implementada en JavaScript;",
 	"a beautiful, responsive, customizable, accessible replacement for JavaScript's popup boxes.":"un reemplazo hermoso, receptivo, personalizable y accesible para los cuadros emergentes de JavaScript"
 }
