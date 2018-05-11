@@ -331,10 +331,10 @@ function iter() {
         sendToIpfs(arrIpfs[i]);
     }
     if (arrIpfs.length != 0) swal({
+        position: 'top-end',
         title: document.getElementById('added-true').innerHTML,
         type: 'success',
         showConfirmButton: false,
-        position: 'bottom-left',
         timer: 3000,
         toast: true,
         animation: 'slide-from-top'
@@ -751,17 +751,20 @@ function getUrls() {
         auth(() => {
             swal({
                 type: 'success',
+                position: 'top-end',
                 title: 'Success',
                 html: document.getElementById('auth-true').innerHTML,
-                preConfirm: async () => {
-                    golos.api.getContent(username, constPermlik, function(err, result) {
-                        result.id == 0 ? swal({
-                            html: document.getElementById('no-records-IPFS').innerHTML
-                        }) : getPostJson(username, constPermlik, result);
-                        if (err) swal(err);
-                    });
-                }
+                timer:'1000',
+                showConfirmButton: false
             });
+            setTimeout(()=>{
+                golos.api.getContent(username, constPermlik, function(err, result) {
+                    result.id == 0 ? swal({
+                        html: document.getElementById('no-records-IPFS').innerHTML
+                    }) : getPostJson(username, constPermlik, result);
+                    if (err) swal(err);
+                });
+            },1500);
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
