@@ -220,7 +220,7 @@ function sendToIpfs(data) {
                 a1.appendChild(img);
 
                 let td2 = document.createElement('td');
-                td2.className = "text-center"
+                td2.className = "text-center table-size-cell"
                 const result = file[i].size / 1000000;
                 td2.innerHTML = result.toFixed(2);
                 let td3 = document.createElement('td');
@@ -658,7 +658,7 @@ function renderTableFromJson() {
         a1.appendChild(img);
         //img.onclick = handle;
         let td2 = document.createElement('td');
-        td2.className = "text-center";
+        td2.className = "text-center table-size-cell";
         td3 = document.createElement('td');
         td3.className = "text-center";
         //td2.onclick = handle; 
