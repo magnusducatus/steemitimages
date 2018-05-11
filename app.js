@@ -632,8 +632,13 @@ function getComments() {
 }
 
 function renderTableFromJson() {
-    const tb = document.getElementById('tbody'),
-        tab = document.getElementById('table');
+    const tb = document.getElementById('tbody_golos'),
+        tab = document.getElementById('table_golos');
+    document.getElementById('thead_golos').innerHTML = `
+                                <th class="text-center">${document.getElementById('table-preview').innerHTML}</th>
+                                <th class="text-center">${document.getElementById('table-size').innerHTML}</th>
+                                <th class="text-center">${document.getElementById('table-hash').innerHTML}</th>
+                                <th class="text-center"></th>`;
     tb.innerHTML = '';
     arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
@@ -704,7 +709,7 @@ function renderTableFromJson() {
         td4div1 = document.createElement('div');
         td4div1.className = 'd-flex justify-content-around';
         let td4but1 = document.createElement('button');
-        td4but1.className = 'btn btn-success';
+        td4but1.className = 'btn btn-info';
         td4but1.type = 'button';
         td4but1.innerHTML = '<span class="icon-checkmark"></span> Copy link';
         td4but1.id = arrJson[i];
@@ -767,23 +772,28 @@ function getUrls() {
             });
             setTimeout(()=>{
                 golos.api.getContent(username, constPermlik, function(err, result) {
-                    result.id == 0 ? swal({
-                        html: document.getElementById('no-records-IPFS').innerHTML
-                    }) : getPostJson(username, constPermlik, result);
+                    result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
                     if (err) swal(err);
                 });
             },1500);
         });
     } else {
         golos.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? swal({
-                html: document.getElementById('no-records-IPFS').innerHTML
-            }) : getPostJson(username, constPermlik, result);
+            result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
             if (err) swal(err);
         });
     }
 }
-
+function noRecordsIpfs(){
+    document.getElementById('thead_golos').innerHTML = `<tr><th class="text-center"> ${document.getElementById('table-preview').innerHTML} </th></tr>`
+    document.getElementById('table_golos').removeAttribute('hidden');
+    let tb = document.getElementById('tbody_golos');
+    tb.innerHTML = '';
+    tb.innerHTML = `<tr><td class="text-center">${document.getElementById('no-records-IPFS').innerHTML}</td></tr>`;
+  /*  swal({
+        html: document.getElementById('no-records-IPFS').innerHTML
+    })*/
+}
 document.getElementById('golos-urls').addEventListener('click', function() {
     getUrls();
 });

@@ -145,8 +145,13 @@ body {
      transform-origin: 40px;
      position:absolute;
 }
+.img-thumbnail {
+    height: 30px;
+    width: 40px;
+}
  hr{
      background-color:#f8f9fa;
+}
 }
  @keyframes octocat-wave{
      0%,100%{
