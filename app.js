@@ -336,7 +336,6 @@ function iter() {
         type: 'success',
         showConfirmButton: false,
         timer: 3000,
-        toast: true,
         animation: 'slide-from-top'
     });
     arrIpfs = [];
@@ -595,7 +594,11 @@ function sendRequest(wifPar, authorPar, status) {
             arrGolos.size > 0 ? uploadGolos.removeAttribute('hidden') : uploadGolos.setAttribute('hidden', 'true')
 
             swal({
-                html: document.getElementById('image-added').innerHTML
+                position: 'top-end',
+                html: document.getElementById('image-added').innerHTML,
+                showConfirmButton: false,
+                timer: 1000
+
             })
         } else console.error(err);
     }); // add post
@@ -631,6 +634,7 @@ function getComments() {
 function renderTableFromJson() {
     const tb = document.getElementById('tbody'),
         tab = document.getElementById('table');
+    tb.innerHTML = '';
     arrTablTd.length > 0 || arrJson.length > 0 ? tab.removeAttribute('hidden') : tab.setAttribute('hidden', 'true');
     for (let i = 0; i < arrJson.length; i++) {
         let tr = document.createElement('tr');
@@ -729,7 +733,11 @@ function getPostJson(authorPar, permlinkPar, result) {
     for (let i in this.postJ.data) arrJson.push(this.postJ.data[i]);
     if (result.children == 0) {
         swal({
-            html: document.getElementById('check-table-for-records').innerHTML
+            type: 'success',
+            position: 'top-end',
+            html: document.getElementById('check-table-for-records').innerHTML,
+            showConfirmButton: false,
+            timer: 1000
         });
         renderTableFromJson();
     } else {
