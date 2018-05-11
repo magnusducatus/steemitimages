@@ -34,11 +34,11 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
                         <label for="input-pass">Master password</label>
                         <input id="input-pass" type="password" class="form-control" placeholder="Master password" aria-label="Password" aria-describedby="Password" required>
                     </div>
-                    <div class="form-group form-check align-self-center">
+                    <div class="form-group form-check">
                         <input id="logged" class="form-check-input" type="checkbox" value="">
                         <label class="form-check-label">Keep me logged</label>
                     </div>
-                    <button type="submit" id="log-pass-log" class="btn btn-success align-self-center" ><span class="icon-enter"></span> Log in</button>
+                    <button type="submit" id="log-pass-log" class="btn btn-success align-self-start" ><span class="icon-enter"></span> Log in</button>
                 </form>
                 <div>
                 <hr>
@@ -53,11 +53,11 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
                         <label for="input-private">Private posting key</label>
                         <input id="input-private" type="password" class="form-control" placeholder="Private posting key" aria-label="Private posting key" aria-describedby="Private posting key" required>
                     </div>
-                    <div class="form-group form-check align-self-center">
+                    <div class="form-group form-check">
                         <input id="logged-private" class="form-check-input" type="checkbox" value="">
                         <label for="logged-private" class="form-check-label">Keep me logged</label>
                     </div>
-                    <div class="align-self-center">
+                    <div class="align-self-start">
                         <button type="submit" id="log-private" class="btn btn-success"><span class="icon-enter"></span> Log in</button>
                     </div>
                 </form>
@@ -69,9 +69,11 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
                     </div>
                     <hr class="bg-light">
                     </div>
-                    <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
-                    <button type="button" class="btn btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
-                    </a>
+                    <div>
+                        <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
+                        <button type="button" class="btn btn-lg btn-block btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
+                        </a>
+                    </div>
                 </div>
             </div>
                 
@@ -190,7 +192,7 @@ function logOutProcc() {
     let li = document.createElement('li');
     li.className = `nav-item d-flex align-items-center`;
     li.id = `li-log`;
-    li.innerHTML = `<button class="btn btn-danger my-2 my-sm-0" id="logout"><span class="icon-exit"></span> ${ document.getElementById('logout-text').innerHTML }</button>`;
+    li.innerHTML = `<button class="btn btn-outline-primary my-2 my-sm-0" id="logout"><span class="icon-exit"></span> ${ document.getElementById('logout-text').innerHTML }</button>`;
     document.getElementById('navbar-right').appendChild(li);
     document.getElementById('logout').addEventListener('click', function() {
         document.getElementById('navbar-right').removeChild(document.getElementById('li-log'));
@@ -199,6 +201,7 @@ function logOutProcc() {
             type: 'success',
             title: `${document.getElementById('logout-swal').innerHTML}`,
             showConfirmButton: false,
+            toast: true,
             timer: 1500
         })
         localStorage.removeItem('wif');

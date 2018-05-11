@@ -117,7 +117,7 @@ footer {
 }
 
 .navbar li {
-    margin: 0 20px;
+    margin-left: 20px;
 }
 
 .dropzone {
@@ -186,6 +186,7 @@ footer {
     position: absolute;
 }
 #modal-lang-form .img-thumbnail {
+    padding: 0px;
     height: 30px;
     width: 40px;
 }
