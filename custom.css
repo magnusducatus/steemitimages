@@ -108,10 +108,6 @@ footer {
     text-align: center;
 }
 
-#modal-lang-form .img-thumbnail {
-    height: inherit;
-}
-
 .table-size-cell {
     font-size: 1.20rem;
 }
@@ -189,7 +185,7 @@ footer {
     transform-origin: 40px;
     position: absolute;
 }
-.img-thumbnail {
+#modal-lang-form .img-thumbnail {
     height: 30px;
     width: 40px;
 }
