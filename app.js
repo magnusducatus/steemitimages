@@ -335,7 +335,7 @@ function iter() {
         title: document.getElementById('added-true').innerHTML,
         type: 'success',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1000,
         animation: 'slide-from-top'
     });
     arrIpfs = [];
@@ -767,7 +767,7 @@ function getUrls() {
                 position: 'top-end',
                 title: 'Success',
                 html: document.getElementById('auth-true').innerHTML,
-                timer:'1000',
+                timer: 1000,
                 showConfirmButton: false
             });
             setTimeout(()=>{
@@ -897,7 +897,7 @@ document.getElementById('change-port').addEventListener('click', function() {
                 type: 'error',
                 showConfirmButton: false,
                 position: 'center',
-                timer: 3000,
+                timer: 1000,
                 toast: true,
                 animation: 'slide-from-top'
             });
