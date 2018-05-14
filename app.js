@@ -237,7 +237,7 @@ function sendToIpfs(data) {
                 img.heigth = 100;
                 img.width = 100;
                 a1.appendChild(img);
-
+                console.log(file);
                 let td2 = document.createElement('td');
                 td2.className = "text-center table-size-cell"
                 const result = file[i].size / 1000000;
