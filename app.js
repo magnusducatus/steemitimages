@@ -142,6 +142,15 @@ function copyLink(e) {
     document.getElementsByClassName('td3-input' + e.target.id)[0].select();
     try {
         document.execCommand('copy');
+        swal({
+	        position: 'top-end',
+	        title: document.getElementById('link-buffer').innerHTML,
+	        type: 'success',
+	        showConfirmButton: false,
+	        timer: 1500,
+	        toast:true,
+	        animation: 'slide-from-top'
+    	});
     } catch (err) {
         swal('Links not correctly works', err);
     }
@@ -174,6 +183,15 @@ function copyLinkGolos(e) {
     document.getElementById(this.id).select();
     try {
         document.execCommand('copy');
+        swal({
+	        position: 'top-end',
+	        title: document.getElementById('link-buffer').innerHTML,
+	        type: 'success',
+	        showConfirmButton: false,
+	        timer: 1500,
+	        toast:true,
+	        animation: 'slide-from-top'
+    	});
     } catch (err) {
         swal('Links not correctly works', err);
     }
@@ -198,6 +216,7 @@ function sendToIpfs(data) {
     progressCalc();
     ipfs.files.add(files, function(err, file) {
         if (err) {
+            console.log(err);
             swal('Error');
             document.getElementById('loaderDiv').style.display = 'none';
 
@@ -335,7 +354,8 @@ function iter() {
         title: document.getElementById('added-true').innerHTML,
         type: 'success',
         showConfirmButton: false,
-        timer: 1000,
+        timer: 1500,
+        toast:true,
         animation: 'slide-from-top'
     });
     arrIpfs = [];
@@ -597,7 +617,8 @@ function sendRequest(wifPar, authorPar, status) {
                 position: 'top-end',
                 html: document.getElementById('image-added').innerHTML,
                 showConfirmButton: false,
-                timer: 1000
+                toast: true,
+                timer: 1500
 
             })
         } else console.error(err);
@@ -741,8 +762,9 @@ function getPostJson(authorPar, permlinkPar, result) {
             type: 'success',
             position: 'top-end',
             html: document.getElementById('check-table-for-records').innerHTML,
+            toast: true,
             showConfirmButton: false,
-            timer: 1000
+            timer: 1500
         });
         renderTableFromJson();
     } else {
@@ -767,7 +789,8 @@ function getUrls() {
                 position: 'top-end',
                 title: 'Success',
                 html: document.getElementById('auth-true').innerHTML,
-                timer: 1000,
+                toast: true,
+                timer: 1500,
                 showConfirmButton: false
             });
             setTimeout(()=>{
@@ -897,8 +920,7 @@ document.getElementById('change-port').addEventListener('click', function() {
                 type: 'error',
                 showConfirmButton: false,
                 position: 'center',
-                timer: 1000,
-                toast: true,
+                timer: 2000,
                 animation: 'slide-from-top'
             });
         }

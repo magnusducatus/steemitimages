@@ -22,6 +22,7 @@
 	"Save selected links to blockchain Golos": " Сохранить выбранные ссылки в блокчейн Golos",
 	"IPFS multihash":" IPFS мультихэш",
 	"Change":"Изменить",
+	"Link copied to clipboard":"Ссылка скопирована в буфер обмена",
 	"Keep me logged":"Запомнить",
 	"Please enter remote address for ipfs-api":"Пожалуйста введите удалённый адресс для ipfs-api",
 	"Please enter your node gateway remote address":"Пожалуйста введите удалённый адресс шлюза вашей ноды",
