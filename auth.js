@@ -81,7 +81,11 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
     </div>
 </div>
 `;
-$divMain.innerHTML = `<div id="privKey-incorrect" hidden="true">
+$divMain.innerHTML = `
+        <div id="auth-true" hidden="true">
+            Authorization was successful!
+        </div>
+        <div id="privKey-incorrect" hidden="true">
             Private key is incorrect!
         </div>
         <div id="logout-swal">
@@ -135,15 +139,28 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
             html: `${ document.getElementById('auth-swal-log-html').innerHTML }`,
         })
     }
-    const roles = ['posting'];
+    
     try {
         let keys = await golos.auth.getPrivateKeys(user, pass, roles);
+        console.log(keys)
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
-            username = user
-            wif = keys.posting;
-            log ? localStorage.username = username : '';
-            log ? localStorage.wif = wif : '';
+            let txt = JSON.stringify(keys);
+            username = user;
+            wif = txt;
+            if(log) {
+                localStorage.wif = txt; 
+                localStorage.username = username;
+            }
             modalAuth.hide();
+            swal({
+                type: 'success',
+                position: 'top-end',
+                title: 'Success',
+                html: document.getElementById('auth-true').innerHTML,
+                toast: true,
+                timer: 1500,
+                showConfirmButton: false
+            });
             logOutProcc();
             cb();
         } else throw Error();;
@@ -162,14 +179,25 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
     try {
         let resultWifToPublic = await golos.auth.wifToPublic(priv);
         log ? localStorage.wif = priv : '';
-        let result = golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+        console.log('resultWifToPublic',resultWifToPublic);
+        golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {
                 result.forEach(function(item) {
+                    console.log('item',item)
                     username = item[0];
                     log ? localStorage.username = username : '';
                 });
                 modalAuth.hide();
                 logOutProcc();
+                swal({
+                    type: 'success',
+                    position: 'top-end',
+                    title: 'Success',
+                    html: document.getElementById('auth-true').innerHTML,
+                    toast: true,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
                 cb();
             } else swal(err);
         });
@@ -182,10 +210,14 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
 })
 
 window.cb;
+window.roles;
 
-async function auth(bc = function() {}) {
+async function auth(bc = function() {}, role = ['posting']) {
     cb = bc;
-    modalAuth.show();
+    roles = role;
+    if(wif == '') modalAuth.show();
+    else cb();
+    
 }
 
 function logOutProcc() {

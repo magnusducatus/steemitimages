@@ -68,11 +68,10 @@ golos.config.set('websocket', 'wss://ws.testnet.golos.io');
 golos.config.set('chain_id', '5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679');
 
 
-const hosts = new Array('http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253:7777/ipfs/');
+const hosts = ['http://91.201.41.253:5001/ipfs/', 'http://91.201.41.253:7777/ipfs/'];
 
 
 function setPlaceholderIPFS(status) {
-    console.log('IPFS', status);
     let con;
     status == 'default' ? con = connectionDefault : con = {
         api: {
@@ -85,8 +84,7 @@ function setPlaceholderIPFS(status) {
             port: localStorage.GatePort,
             address: localStorage.GateAddress
         }
-    }
-    console.log(con.api.protocol)
+    };
     document.getElementById('input-api-protocol').setAttribute('placeholder', con.api.protocol);
     document.getElementById('input-api-address').setAttribute('placeholder', con.api.address);
     document.getElementById('input-api-port').setAttribute('placeholder', con.api.port);
@@ -216,7 +214,6 @@ function sendToIpfs(data) {
     progressCalc();
     ipfs.files.add(files, function(err, file) {
         if (err) {
-            console.log(err);
             swal('Error');
             document.getElementById('loaderDiv').style.display = 'none';
 
@@ -237,7 +234,7 @@ function sendToIpfs(data) {
                 img.heigth = 100;
                 img.width = 100;
                 a1.appendChild(img);
-                console.log(file);
+                
                 let td2 = document.createElement('td');
                 td2.className = "text-center table-size-cell"
                 const result = file[i].size / 1000000;
@@ -477,14 +474,12 @@ Dropzone.options.dropzone = {
 
         }, false);
         this.on('dragenter', function(event) {
-            console.log('enter');
             document.getElementById('dropzone').style.border = '5px dashed #80A6FF';
             document.getElementById('dropzone').style.background = '#696969'
             document.getElementById('dropzone').style.color = 'white';
 
         });
         this.on('dragover', function(event) {
-            console.log('over');
             document.getElementById('dropzone').style.border = '5px dashed #80A6FF';
             document.getElementById('dropzone').style.background = '#696969';
             document.getElementById('dropzone').style.color = 'white';
@@ -626,26 +621,12 @@ function sendRequest(wifPar, authorPar, status) {
 }
 
 function uploadToGolos() {
-    if (wif == '') {
-        auth(() => {
-            swal({
-                type: 'success',
-                title: 'Success',
-                html: document.getElementById('auth-true').innerHTML,
-                preConfirm: async () => {
-                    golos.api.getContent(username, constPermlik, function(err, result) {
-                        result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
-                        if (err) swal(err);
-                    });
-                }
-            });
-        });
-    } else {
+    auth(() => {
         golos.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif, username, 'comment');
+            result.id == 0 ? sendRequest(JSON.parse(wif)['posting'], username, 'post') : sendRequest(JSON.parse(wif)['posting'], username, 'comment');
             if (err) swal(err);
         });
-    }
+    });
 }
 //get comments
 function getComments() {
@@ -780,33 +761,6 @@ function getPostJson(authorPar, permlinkPar, result) {
     }
 }
 
-
-function getUrls() {
-    if (wif == '') {
-        auth(() => {
-            swal({
-                type: 'success',
-                position: 'top-end',
-                title: 'Success',
-                html: document.getElementById('auth-true').innerHTML,
-                toast: true,
-                timer: 1500,
-                showConfirmButton: false
-            });
-            setTimeout(()=>{
-                golos.api.getContent(username, constPermlik, function(err, result) {
-                    result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
-                    if (err) swal(err);
-                });
-            },1500);
-        });
-    } else {
-        golos.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
-            if (err) swal(err);
-        });
-    }
-}
 function noRecordsIpfs(){
     document.getElementById('thead_golos').innerHTML = `<tr><th class="text-center"> ${document.getElementById('table-preview').innerHTML} </th></tr>`
     document.getElementById('table_golos').removeAttribute('hidden');
@@ -818,7 +772,12 @@ function noRecordsIpfs(){
     })*/
 }
 document.getElementById('golos-urls').addEventListener('click', function() {
-    getUrls();
+    auth(() => {
+        golos.api.getContent(username, constPermlik, function(err, result) {
+            result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
+            if (err) swal(err);
+        });
+    }, ['posting', 'active']);
 });
 
 document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
@@ -853,7 +812,6 @@ document.getElementById('integration').addEventListener('click', function() {
 let inputs = document.getElementById('modalChange').getElementsByTagName('input');
 //for(let i in inputs) inputs[i].addEventListener('click',()=>{console.log(2)});
 for(let i = 0; i < inputs.length; i++) inputs[i].addEventListener('input',(e)=>{
-    console.log(e.target)
     e.target.setAttribute('class','form-control');
 });
 document.getElementById('change-port').addEventListener('click', function() {
@@ -865,7 +823,6 @@ document.getElementById('change-port').addEventListener('click', function() {
         modalChange.hide();
     });
     document.getElementById('change-node-default').addEventListener('click', function() {
-        console.log(connectionDefault);
         initConnection(connectionDefault);
         localStorage.connectionOption = 'default';
         setPlaceholderIPFS(localStorage.connectionOption);
@@ -891,7 +848,6 @@ document.getElementById('change-port').addEventListener('click', function() {
             if (full[i].some((item) => {
                     return item.value == '' && !good[i]
                 })) {
-                console.log(i, full[i], false);
                 full[i].forEach((item) => {
                     if (item.value == '') item.setAttribute('class', 'form-control is-invalid');
                     else item.setAttribute('class', 'form-control');
