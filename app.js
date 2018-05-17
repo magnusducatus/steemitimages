@@ -23,24 +23,24 @@ const connectionDefault = {
         api: {
             protocol: `http`,
             port: `5001`,
-            address: `91.201.41.253`
+            address: `13.59.234.79`
         },
         gateway: {
             protocol: `http`,
             port: `7777`,
-            address: `91.201.41.253`
+            address: `13.59.234.79`
         }
     },
     connectionNew = {
         api: {
             protocol: `http`,
             port: `5001`,
-            address: `91.201.41.253`
+            address: `13.59.234.79`
         },
         gateway: {
             protocol: `http`,
             port: `7777`,
-            address: `91.201.41.253`
+            address: `13.59.234.79`
         }
     };
 localStorage.connectionOption == 'custom' ? initConnection({
@@ -623,7 +623,7 @@ function sendRequest(wifPar, authorPar, status) {
 function uploadToGolos() {
     auth(() => {
         golos.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? sendRequest(JSON.parse(wif)['posting'], username, 'post') : sendRequest(JSON.parse(wif)['posting'], username, 'comment');
+            result.id == 0 ? sendRequest(wif['posting'], username, 'post') : sendRequest(wif['posting'], username, 'comment');
             if (err) swal(err);
         });
     });

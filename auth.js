@@ -120,7 +120,7 @@ $divMain.appendChild($divSign);
 document.getElementsByTagName('body')[0].appendChild($divMain);
 document.getElementsByTagName('body')[0].appendChild($modalAuth);
 let modalAuth = new Modal(document.getElementById('auth'));
-localStorage && localStorage.wif ? window.wif = localStorage.wif : window.wif = '';
+localStorage && localStorage.wif ? window.wif = JSON.parse(localStorage.wif) : window.wif = '';
 localStorage && localStorage.username ? window.username = localStorage.username : window.username = '';
 
 localStorage.wif && localStorage.username ? logOutProcc() : '';
@@ -142,11 +142,10 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
     
     try {
         let keys = await golos.auth.getPrivateKeys(user, pass, roles);
-        console.log(keys)
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
-            let txt = JSON.stringify(keys);
             username = user;
-            wif = txt;
+            wif = keys;
+            let txt = JSON.stringify(keys);
             if(log) {
                 localStorage.wif = txt; 
                 localStorage.username = username;
