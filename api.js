@@ -19,12 +19,12 @@ const connectionDefault = {
     api: {
         protocol: `http`,
         port: `5001`,
-        address: `91.201.41.253`
+        address: `13.59.234.79`
     },
     gateway: {
         protocol: `http`,
         port: `7777`,
-        address: `91.201.41.253`
+        address: `13.59.234.79`
     }
 }
 
