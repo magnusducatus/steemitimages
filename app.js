@@ -97,7 +97,7 @@ setPlaceholderIPFS(localStorage.connectionOption);
 
 let arrIpfs = [],
     arrTablTd = [],
-    arrGolos = new Set(),
+    arrSteemit = new Set(),
     arrJson = [];
 
 setInterval(checkOnline, 3000);
@@ -116,7 +116,7 @@ function checkOnline() {
         })
 }
 
-function copyToGolos() {
+function copyToSteemit() {
     let tr = document.getElementById('tr' + this.id),
         but = document.getElementsByClassName(this.id),
         elem;
@@ -133,7 +133,7 @@ function copyToGolos() {
         this.className = 'btn btn-danger';
         this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
     }
-    let uploadGolos = document.getElementById('upload-golos');
+    let uploadSteemit = document.getElementById('upload-Steemit');
     arrsteem.size > 0 ? uploadsteem.removeAttribute('hidden') : uploadsteem.setAttribute('hidden', 'true')
 }
 
@@ -176,7 +176,7 @@ function arrayBufToB64(buffer) {
     return window.btoa(binary);
 }
 
-function copyLinkGolos(e) {
+function copyLinkSteemit(e) {
     this.id = e.target.id;
     document.getElementById(this.id).value = this.id;
     document.getElementById(this.id).select();
@@ -310,7 +310,7 @@ function sendToIpfs(data) {
                 td4but2.type = 'button';
                 td4but2.innerHTML = '<span class="icon-checkmark"></span> Select to save';
                 td4but2.id = file[i].hash;
-                td4but2.onclick = copyToGolos;
+                td4but2.onclick = copyToSteemit;
                 td4.appendChild(td4div1);
                 td4div1.appendChild(td4but1);
                 td4div1.appendChild(td4br);
@@ -569,15 +569,15 @@ Dropzone.options.dropzone = {
     }
 
 };
-let constPermlik = 'golos-save-url-test1';
+let constPermlik = 'Steemit-save-url-test1';
 // if permlink NOW be equal to BEFORE, before will change 
 // if parentPerm == perm - ok
 function sendRequest(wifPar, authorPar, status) {
     this.body = ''; // post text
     this.jsonMetadata = {
-        app: 'golosimages/0.1',
-        canonical: `https://golosimages.com#${ username }/${ constPermlik }`,
-        app_account: 'golosapps',
+        app: 'Steemitimages/0.1',
+        canonical: `https://Steemitimages.com#${ username }/${ constPermlik }`,
+        app_account: 'Steemitapps',
         data: []
     };
     arrsteem.forEach((value) => {
@@ -589,7 +589,7 @@ function sendRequest(wifPar, authorPar, status) {
     this.wif = wifPar; // // private posting key
     //this.permlink = 'testphotook'; // post url-adress
     //this.parentPermlink = 'photo'; // main tag
-    constPermlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'golos';
+    constPermlik != this.permlink ? this.parentAuthor = '' : this.parentAuthor = 'Steemit';
     constPermlik != this.permlink ? this.parentPermlink = 'post' : this.parentPermlink = this.permlink;
     if (status == 'comment') {
         this.parentAuthor = this.author;
@@ -606,7 +606,7 @@ function sendRequest(wifPar, authorPar, status) {
         if (!err) {
             arrsteem.clear();
 
-            let uploadGolos = document.getElementById('upload-golos');
+            let uploadSteemit = document.getElementById('upload-Steemit');
             arrsteem.size > 0 ? uploadsteem.removeAttribute('hidden') : uploadsteem.setAttribute('hidden', 'true')
 
             swal({
@@ -621,7 +621,7 @@ function sendRequest(wifPar, authorPar, status) {
     }); // add post
 }
 
-function uploadToGolos() {
+function uploadToSteemit() {
     auth(() => {
         steem.api.getContent(username, constPermlik, function(err, result) {
             result.id == 0 ? sendRequest(wif['posting'], username, 'post') : sendRequest(wif['posting'], username, 'comment');
@@ -631,13 +631,13 @@ function uploadToGolos() {
 }
 //get comments
 function getComments() {
-    steem.api.getContentReplies('golos', constPermlik, function(err, result) {});
+    steem.api.getContentReplies('Steemit', constPermlik, function(err, result) {});
 }
 
 function renderTableFromJson() {
-    const tb = document.getElementById('tbody_golos'),
-        tab = document.getElementById('table_golos');
-    document.getElementById('thead_golos').innerHTML = `
+    const tb = document.getElementById('tbody_Steemit'),
+        tab = document.getElementById('table_Steemit');
+    document.getElementById('thead_Steemit').innerHTML = `
                                 <th class="text-center">${document.getElementById('table-preview').innerHTML}</th>
                                 <th class="text-center">${document.getElementById('table-size').innerHTML}</th>
                                 <th class="text-center">${document.getElementById('table-hash').innerHTML}</th>
@@ -763,16 +763,16 @@ function getPostJson(authorPar, permlinkPar, result) {
 }
 
 function noRecordsIpfs(){
-    document.getElementById('thead_golos').innerHTML = `<tr><th class="text-center"> ${document.getElementById('table-preview').innerHTML} </th></tr>`
-    document.getElementById('table_golos').removeAttribute('hidden');
-    let tb = document.getElementById('tbody_golos');
+    document.getElementById('thead_Steemit').innerHTML = `<tr><th class="text-center"> ${document.getElementById('table-preview').innerHTML} </th></tr>`
+    document.getElementById('table_Steemit').removeAttribute('hidden');
+    let tb = document.getElementById('tbody_Steemit');
     tb.innerHTML = '';
     tb.innerHTML = `<tr><td class="text-center">${document.getElementById('no-records-IPFS').innerHTML}</td></tr>`;
   /*  swal({
         html: document.getElementById('no-records-IPFS').innerHTML
     })*/
 }
-document.getElementById('golos-urls').addEventListener('click', function() {
+document.getElementById('Steemit-urls').addEventListener('click', function() {
     auth(() => {
         steem.api.getContent(username, constPermlik, function(err, result) {
             result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
@@ -781,9 +781,9 @@ document.getElementById('golos-urls').addEventListener('click', function() {
     }, ['posting', 'active']);
 });
 
-document.getElementById('upload-golos').addEventListener('click', uploadToGolos, false);
+document.getElementById('upload-Steemit').addEventListener('click', uploadToSteemit, false);
 
-document.getElementById('aboutGolosImagesCallBtn').addEventListener('click', () => {
+document.getElementById('aboutSteemitImagesCallBtn').addEventListener('click', () => {
     swal({
         title: document.getElementById('about-html-title').innerHTML,
         html: document.getElementById('about-html').innerHTML,

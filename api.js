@@ -11,9 +11,9 @@ function uploadImageToIpfs(cb) {
     initConnection(connectionDefault);
     window.cb = cb;
     let div = document.createElement('div');
-    div.innerHTML = '<input id="golosimagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onchange="handleFiles(this.files)" hidden="true"/>';
+    div.innerHTML = '<input id="steemitimagesSelector" type="file" multiple accept=".png,.jpg,.jpeg" onchange="handleFiles(this.files)" hidden="true"/>';
     (document.head || document.documentElement).appendChild(div);
-    document.getElementById('golosimagesSelector').click();
+    document.getElementById('steemitimagesSelector').click();
 }
 const connectionDefault = {
     api: {

@@ -70,7 +70,7 @@ $modalAuth.innerHTML = `<div class="modal" tabindex="-1" role="dialog" id="auth"
                     <hr class="bg-light">
                     </div>
                     <div>
-                        <a class="align-self-center" target="_blank" href="https://golos.io/create_account">
+                        <a class="align-self-center" target="_blank" href="https://signup.steemit.com/">
                         <button type="button" class="btn btn-lg btn-block btn-primary" aria-label="" style="display: inline-block; background-color: #297dce;"><span class="icon-clipboard"></span> Sign Up</button>
                         </a>
                     </div>
@@ -131,7 +131,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
         user = document.getElementById('input-user').value,
         pass = document.getElementById('input-pass').value;
     try {
-        response = await golos.api.getAccounts([user]);
+        response = await steem.api.getAccounts([user]);
     } catch (e) {
         swal({
             type: 'error',
@@ -141,7 +141,7 @@ document.getElementById('form-login-pass').addEventListener('submit', async (e) 
     }
     
     try {
-        let keys = await golos.auth.getPrivateKeys(user, pass, roles);
+        let keys = await steem.auth.getPrivateKeys(user, pass, roles);
         if (response[0].posting.key_auths[0][0] == keys.postingPubkey) {
             username = user;
             wif = keys;
@@ -176,10 +176,10 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
     let log = document.getElementById('logged-private').checked,
         priv = document.getElementById('input-private').value;
     try {
-        let resultWifToPublic = await golos.auth.wifToPublic(priv);
+        let resultWifToPublic = await steem.auth.wifToPublic(priv);
         log ? localStorage.wif = priv : '';
         console.log('resultWifToPublic',resultWifToPublic);
-        golos.api.getKeyReferences([resultWifToPublic], function(err, result) {
+        steem.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {
                 result.forEach(function(item) {
                     console.log('item',item)

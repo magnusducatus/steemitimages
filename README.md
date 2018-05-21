@@ -1,9 +1,9 @@
-# Golos Images
+# Steemit Images
 
-## [Golosimages.com](https://golosimages.com/) - this microservice for storing images on the blockchain Golos and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
+## [Steemitimages.com](https://steemitimages.com/) - this microservice for storing images on the blockchain Steemit and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare).
 
 We use:
-* [Golos.js](https://github.com/GolosChain/golos-js) - the JavaScript API for Golos blockchain;
+* [Steem.js](https://github.com/steemit/steem-js) - the JavaScript API for Steemit blockchain;
 * [Bootstrap](https://github.com/twbs/bootstrap) - the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web;
 * [DropzoneJS](http://www.dropzonejs.com) - is an open source library that provides drag’n’drop file uploads with image previews;
 * [Flag-icon-css](https://github.com/lipis/flag-icon-css) -  A collection of all country flags in SVG;

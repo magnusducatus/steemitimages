@@ -98,7 +98,7 @@ function initLang(lang) {
                         div.className = `form-check col-4`;
                         div.innerHTML = `
                             <input class="form-check-input" type="radio" id=${item.lang} name="language" value=${item.lang} ${checked}>
-                            <label class="form-check-label" for=${item.lang}><img class="img-thumbnail" src="http://golosimages.com/graphics/flags/${ item.lang }.svg"> ${ item.name }</label>
+                            <label class="form-check-label" for=${item.lang}><img class="img-thumbnail" src="http://steemitimages.com/graphics/flags/${ item.lang }.svg"> ${ item.name }</label>
                         `;
                         if(i == 3) {
                             i=0;
@@ -128,7 +128,7 @@ function initLang(lang) {
                             {lang: 'pl', name: 'Polski'}
                         ];
                         arrLangs.forEach(item => {
-                            lang[item.lang] = `<div><img src="http://golosimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40" style="border-radius: 0.25em">${ item.name }</div>`;
+                            lang[item.lang] = `<div><img src="http://steemitimages.com/graphics/flags/${ item.lang }.svg" height="30" width="40" style="border-radius: 0.25em">${ item.name }</div>`;
                         });
                         resolve(lang)
                     })
