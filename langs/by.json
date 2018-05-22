@@ -3,6 +3,8 @@
 "Logout":"Выхад",
 "Log in":"Увайсці",
 "You're logged out":"Вы выйшлi",
+"Support":"Падтрымка",
+"If you have any ideas/problems / questions, you can report it":"Калі ў вас ёсць якія-небудзь ідэі/праблемы / пытанні, то вы можаце паведаміць нам аб гэтым",
 "Integration of the service into your website":"Інтэграцыя сэрвісу на ваш сайт",
 "is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"гэта падсвятлення сінтаксісу на JavaScript. Ён працуе ў браўзэры, і на серверы. Ён працуе практычна з любой разметкі, не залежыць ад якіх-небудзь фреймворков і аўтаматычнае вызначэнне мовы",
 "Please enter full gateway or api inputs or both":"Калі ласка, увядзіце поўны шлюз або API ўваходы або ўсё",

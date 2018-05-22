@@ -3,6 +3,8 @@
 	"Logout" : "注销",
 	"Log in":"登录在",
 	"You're logged out":"你退出",
+	"Support":"支持",
+	"If you have any ideas/problems / questions, you can report it":"如果你有任何意见/问题/问题，可以在它的报告",
 	"Integration of the service into your website":"一体化的服务到你的网站",
 	" is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"一语法荧光笔写在JavaScript。 它的工作原理在浏览器以及在服务器上。 它的工作的几乎任何标记，不依赖于任何框架和具有自动语言测的",
 	"Please enter full gateway or api inputs or both":"请输入全网关或api输入或两者的",

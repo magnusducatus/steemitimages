@@ -883,6 +883,13 @@ document.getElementById('change-port').addEventListener('click', function() {
         }
     });
 });
+document.getElementById('support').addEventListener('click', () => {
+    swal({
+        html: document.getElementById('support-body').innerHTML,
+        showCloseButton: true,
+        showCancelButton: true
+    })
+});
 async function getInputsFromChange() {
     let obj = {
         api: [],

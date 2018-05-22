@@ -4,6 +4,8 @@
  "Default":"la Valeur par défaut",
  "Logout" : "Sortir",
  "Log in":"Entrer",
+ "Support":"Soutien",
+ "If you have any ideas/problems / questions, you can report it":"Si vous avez des idées/problèmes / questions, vous pouvez le signaler",
  "Integration of the service into your website":"l'Intégration du service dans votre site web",
  "You're logged out":"Vous venez",
  " is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection" : "c'est la coloration syntaxique, écrit en JavaScript. Fonctionne à la fois sur le navigateur et sur le serveur. Il fonctionne avec presque n'importe quel jeu de tir, ne dépend pas de n'importe quel cadre et dispose d'une détection automatique de la langue",

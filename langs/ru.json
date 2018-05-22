@@ -2,6 +2,8 @@
 	"Default":"Значение по умолчанию",
 	"Logout" : "Выйти",
 	"Log in":"Войти",
+	"Support":"Поддержка",
+	"If you have any ideas/problems / questions, you can report it":"Если у вас возникли идеи/проблемы/вопросы то вы можете сообщить об этом",
 	"Integration of the service into your website":"Интеграция сервиса в ваш сайт",
 	"You're logged out":"Вы вышли",
 	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection" : "это подсветка синтаксиса, написанная на JavaScript. Работает как в браузере, так и на сервере. Он работает практически с любой разметкой, не зависит от каких-либо рамок и имеет автоматическое определение языка",

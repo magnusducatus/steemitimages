@@ -5,6 +5,8 @@
 	" searches for regular expression matches in a given DOM node and replaces or wraps each match with a node or piece of text that you can specify;":"busca coincidencias de expresiones regulares en un nodo de DOM dado y reemplaza o ajusta cada coincidencia con un nodo o pedazo de texto que puede especificar; ",
 	"Logout":"Cerrar sesión",
 	"Log in":"Iniciar sesión",
+	"Support":"Apoyo",
+	"If you have any ideas/problems / questions, you can report it":"Si usted tiene alguna idea/problemas / preguntas, usted puede reportar",
 	"Integration of the service into your website":"Integración del servicio en su sitio web",
 	"You're logged out":"Has cerrado la sesión",
 	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"es un resaltador de sintaxis escrito en JavaScript. Funciona tanto en el navegador como en el servidor. Funciona prácticamente con cualquier marcado, no depende de ningún marco y tiene detección automática de idioma",

@@ -21,6 +21,15 @@
     <meta name="twitter:description" content="Steemitimaes this microservice for storage images on the blockchain Steemit and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare)." />
     <meta name="twitter:image" content="https://Steemitimages.com/graphics/logo.png" />
     
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119683133-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119683133-1');
+    </script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.0/dist/yeti/bootstrap.min.css">
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     <link rel="icon" href="graphics/favicon.ico" type="image/x-icon" />
@@ -129,12 +138,22 @@
 	            <span id="node" class="icon-sphere mx-1"></span> IPFS node is<span id="node-status" class="badge badge-danger  mx-1"> offline</span>
 	            <button class="btn btn-primary my-2 my-sm-0 btn-sm" id="change-port"><span class="icon-tab"></span> Change node</button>
 	            <button class="btn btn-primary my-2 my-sm-0 btn-sm" id="integration"><span class="icon-new-tab"></span> Integration</button>
+                <button class="btn btn-primary my-2 my-sm-0 btn-sm" id="support"><span class="icon-wrench"></span> Support</button>
             </div>
             <div>
             	<span class="text-muted">SteemitImages @ 2018</span>
         	</div>
         </div>
     </footer>
+    <div hidden="true">
+        <div id="support-body">
+            <div class="text-center"><br>If you have any ideas/problems / questions, you can report it:</div>
+            <div class="text-left">
+                <br>1. GitHub в Issues: <strong><a href="https://github.com/magnusducatuslt/golosimages/issues" target="_blank">https://github.com/magnusducatuslt/steemitimages/issues</a></strong>
+                <br>2. Email:<strong><a href="info@golosimages.com" target="_blank">info@steemitimages.com</a></strong>
+            </div>
+        </div>
+    </div>
     <div id="appender" hidden="true">
         <div id="cancel">Cancel</div>
         <div id="ok">Ok</div>

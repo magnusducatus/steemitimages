@@ -9,6 +9,8 @@
 	"Default":"デフォルト",
 	"Logout":"ログアウト",
 	"Log in":"ログイン",
+	"Support":"支援",
+	"If you have any ideas/problems / questions, you can report it":"場合はそのアイデア/問題/ご不明な点がございましたら、ご報告することができるものとす",
 	"Integration of the service into your website":"あなたのウェブサイトへのサービスの統合",
 	"You're logged out":"あなたはログアウトしました",
 	"is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection":"はJavaScriptで書かれたシンタックスハイライターです。これはブラウザとサーバーで動作します。ほとんどのマークアップで動作し、フレームワークに依存せず、自動言語検出機能を備えています。完全なゲートウェイまたはAPI入力を入力してください。",
