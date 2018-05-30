@@ -3,6 +3,11 @@ initLang('en');
 let ipfs,
     host;
 
+/*steem.api.setOptions({
+    url: 'wss://testnet.steem.vc',
+    chain_id: '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'
+});
+*/
 let modalChange = new Modal(document.getElementById('modalChange'));
 
 function initConnection(connection) {
@@ -92,7 +97,7 @@ setPlaceholderIPFS(localStorage.connectionOption);
 
 let arrIpfs = [],
     arrTablTd = [],
-    arrSteemit = new Set(),
+    arrSteem = new Set(),
     arrJson = [];
 
 setInterval(checkOnline, 3000);
@@ -115,7 +120,7 @@ function copyToSteemit() {
     let tr = document.getElementById('tr' + this.id),
         but = document.getElementsByClassName(this.id),
         elem;
-    if (arrsteem.delete(this.id)) {
+    if (arrSteem.delete(this.id)) {
         tr.setAttribute('class', '');
         this.className = 'btn btn-success';
         this.innerHTML = '<span class="icon-checkmark"></span> Select to save';
@@ -123,13 +128,13 @@ function copyToSteemit() {
 
     } else {}
     if (!elem) {
-        arrsteem.add(this.id);
+        arrSteem.add(this.id);
         tr.setAttribute('class', 'table-success');
         this.className = 'btn btn-danger';
         this.innerHTML = '<span class="icon-cross"></span> Select to unsave';
     }
-    let uploadSteemit = document.getElementById('upload-Steemit');
-    arrsteem.size > 0 ? uploadsteem.removeAttribute('hidden') : uploadsteem.setAttribute('hidden', 'true')
+    let uploadSteem = document.getElementById('upload-steemit');
+    arrSteem.size > 0 ? uploadSteem.removeAttribute('hidden') : uploadSteem.setAttribute('hidden', 'true')
 }
 
 function copyLink(e) {
@@ -564,7 +569,7 @@ Dropzone.options.dropzone = {
     }
 
 };
-let constPermlik = 'Steemit-save-url-test1';
+let constPermlik = 'steemit-save-url-test1';
 // if permlink NOW be equal to BEFORE, before will change 
 // if parentPerm == perm - ok
 function sendRequest(wifPar, authorPar, status) {
@@ -575,7 +580,7 @@ function sendRequest(wifPar, authorPar, status) {
         app_account: 'Steemitapps',
         data: []
     };
-    arrsteem.forEach((value) => {
+    arrSteem.forEach((value) => {
         this.jsonMetadata.data.push(host + value);
         this.body += '<p><img src="' + host + value + '"></img>';
     });
@@ -599,10 +604,10 @@ function sendRequest(wifPar, authorPar, status) {
 
     steem.broadcast.comment(this.wif, this.parentAuthor, this.parentPermlink, this.author, this.permlink, this.title, this.body, this.jsonMetadata, function(err, result) {
         if (!err) {
-            arrsteem.clear();
+            arrSteem.clear();
 
-            let uploadSteemit = document.getElementById('upload-Steemit');
-            arrsteem.size > 0 ? uploadsteem.removeAttribute('hidden') : uploadsteem.setAttribute('hidden', 'true')
+            let uploadSteem = document.getElementById('upload-steemit');
+            arrSteem.size > 0 ? uploadSteem.removeAttribute('hidden') : uploadSteem.setAttribute('hidden', 'true')
 
             swal({
                 position: 'top-end',
@@ -612,14 +617,28 @@ function sendRequest(wifPar, authorPar, status) {
                 timer: 1500
 
             })
-        } else console.error(err);
+        } else {
+            let intervalPost = err['message'].match(/STEEM_MIN_ROOT_COMMENT/g)
+            if( intervalPost.length > 0 )swal({
+                                            type: 'error',
+                                            html: document.getElementById('interval-error-post-body').innerHTML,
+                                            showConfirmButton: true
+                                        });
+            else swal({
+                    type: 'error',
+                    html: document.getElementById('blockchain-error').innerHTML,
+                    showConfirmButton: true
+                });
+
+        }
     }); // add post
 }
 
 function uploadToSteemit() {
     auth(() => {
         steem.api.getContent(username, constPermlik, function(err, result) {
-            result.id == 0 ? sendRequest(wif['posting'], username, 'post') : sendRequest(wif['posting'], username, 'comment');
+            console.log(wif)
+            result.id == 0 ? sendRequest(wif, username, 'post') : sendRequest(wif['posting'], username, 'comment');
             if (err) swal(err);
         });
     });
@@ -767,7 +786,7 @@ function noRecordsIpfs(){
         html: document.getElementById('no-records-IPFS').innerHTML
     })*/
 }
-document.getElementById('Steemit-urls').addEventListener('click', function() {
+document.getElementById('steemit-urls').addEventListener('click', function() {
     auth(() => {
         steem.api.getContent(username, constPermlik, function(err, result) {
             result.id == 0 ? noRecordsIpfs() : getPostJson(username, constPermlik, result);
@@ -776,7 +795,7 @@ document.getElementById('Steemit-urls').addEventListener('click', function() {
     }, ['posting', 'active']);
 });
 
-document.getElementById('upload-Steemit').addEventListener('click', uploadToSteemit, false);
+document.getElementById('upload-steemit').addEventListener('click', uploadToSteemit, false);
 
 document.getElementById('aboutSteemitImagesCallBtn').addEventListener('click', () => {
     swal({

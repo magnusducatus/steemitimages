@@ -177,7 +177,8 @@ document.getElementById('form-priv').addEventListener('submit', async (e) => {
         priv = document.getElementById('input-private').value;
     try {
         let resultWifToPublic = await steem.auth.wifToPublic(priv);
-        log ? localStorage.wif = priv : '';
+        log ? localStorage.wif = `{'posting': "${priv}"}` : '';
+        wif =  priv;
         console.log('resultWifToPublic',resultWifToPublic);
         steem.api.getKeyReferences([resultWifToPublic], function(err, result) {
             if (!err) {
