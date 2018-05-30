@@ -9,17 +9,17 @@
     <meta name="keywords" content="Steemit, Images, Service, GI, Steemit Images, Service, Steemitimages service, IPFS, Load, Load images, where store my images" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Service, Load images &amp; Store images on the blockchain Steemit | IPFS" />
-    <meta property="og:url" content="https://www.Steemitimages.com" />
+    <meta property="og:url" content="https://www.steeimages.com" />
     <meta property="og:description" content="Steemitimaes this microservice for storage images on the blockchain Steemit and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare)." />
-    <meta property="og:image" content="https://Steemitimages.com/graphics/logo.png" />
+    <meta property="og:image" content="https://steeimages.com/graphics/logo.png" />
     <meta property="og:image:url" content="https://Steemitimages.com/graphics/logo.png" />
     <meta property="og:image:secure_url" content="https://Steemitimages.com/graphics/logo.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://Steemitimages.com/" />
+    <meta name="twitter:url" content="https://steeimages.com/" />
     <meta name="twitter:title" content="Service, Load images &amp; Store images on the blockchain Steemit | IPFS" />
     <meta name="twitter:description" content="Steemitimaes this microservice for storage images on the blockchain Steemit and IPFS. This platform is a thin client, that works without a backend (only frontend and blockchain) directly on the GitHub Pages (through CloudFlare)." />
-    <meta name="twitter:image" content="https://Steemitimages.com/graphics/logo.png" />
+    <meta name="twitter:image" content="https://steeimages.com/graphics/logo.png" />
     
      <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119683133-1"></script>
@@ -150,7 +150,7 @@
             <div class="text-center"><br>If you have any ideas/problems / questions, you can report it:</div>
             <div class="text-left">
                 <br>1. GitHub в Issues: <strong><a href="https://github.com/magnusducatuslt/golosimages/issues" target="_blank">https://github.com/magnusducatuslt/steemitimages/issues</a></strong>
-                <br>2. Email:<strong><a href="info@golosimages.com" target="_blank">info@steemitimages.com</a></strong>
+                <br>2. Email:<strong><a href="info@golosimages.com" target="_blank">info@steeimages.com</a></strong>
             </div>
         </div>
     </div>
@@ -278,24 +278,35 @@
     <div id="integration-html" hidden="true">
         <div class="text-left">
                 1. Add JavaScript in your HTML-page: 
-                <pre><code>&lt;script src=&quot;https://Steemitimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
+                <pre><code>&lt;script src=&quot;https://steeimages.com/inject.js&quot;&gt;&lt;/script&gt;</pre></code>
                 2. Add button in your HTML-page:
                 <pre><code>&lt;button id=&quot;upload&quot;&gt;Upload to IPFS&lt;/button&gt;</code></pre>
                 3. Add eventListener for upload button:
 <div class="text-left"><pre><code>&lt;script&gt;
 document.getElementById('upload').addEventListener('click', function() {
-    uploadImageToIpfs(function(files) {
-        console.log(files);
-    });
+    uploadImageToIpfs(function( err, files ) {
+        if (err) console.error(`IPFS error: ${err}`)
+        else console.log(files[0][0])
+    })
 });
 &lt;/script&gt;</code></pre></div>
                 4. You can set remote addresses to your IPFS node:
                 <div class="text-left"><pre><code>&lt;script&gt;
+let ChangeNode = {}
 function initCustomConnection() {
-    localStorage.connectionCustom = {
-        api: { protocol: 'http', port: '5001', address: '91.201.41.253' },
-        gateway: { protocol: 'http', port: '7777', address: '91.201.41.253' }
-    };
+    ChangeNode.connectionCustom = {
+        api : {
+            protocol: `http`,
+            port: `5001`,
+            address: `13.59.234.79`
+        },
+        gateway: {
+            protocol: `http`,
+            port: `7777`,
+            address: `13.59.234.79`
+        }
+    }
+    initConnection(ChangeNode.connectionCustom);
 }
 &lt;/script&gt;</code></pre></div>
         </div>
@@ -304,9 +315,9 @@ function initCustomConnection() {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/ipfs-api@20.0.1/dist/index.min.js"></script>
 <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@2.2.0/i18nextBrowserLanguageDetector.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/findandreplacedomtext@0.4.6/src/findAndReplaceDOMText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.22/dist/bootstrap-native-v4.min.js"></script>

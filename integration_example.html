@@ -2,8 +2,9 @@
 <script src="inject.js"></script>
 <script>
     document.getElementById('upload').addEventListener('click', function() {
-        uploadImageToIpfs(function(files) {
-            console.log(files);
+        uploadImageToIpfs(function( err, files ) {
+            if (err) console.error(`IPFS ERROR: ${err}`)
+            else console.log(files[0][0])
         })
     });
 </script>
