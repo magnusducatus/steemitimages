@@ -80,9 +80,7 @@
                         <button class="btn btn-primary my-2 my-sm-0" id="aboutSteemImagesCallBtn"><span class="icon-info"></span> About</button>
                         <a class="github-corner" target="_blank" href="https://github.com/magnusducatuslt/steemitimages" tabindex="-1">
                             <img src="graphics/github-arm.svg" xmlns="http://www.w3.org/2000/svg" class="octo-arm" type="image/svg+xml">
-                            </img>
-                            <img src="graphics/github-body.svg" xmlns="http://www.w3.org/2000/svg" type="image/svg+xml" >
-                            </img>
+                            <img src="graphics/github-body.svg" xmlns="http://www.w3.org/2000/svg" type="image/svg+xml">
                         </a>
                     </div>
                 </div>
@@ -157,8 +155,8 @@
         <div id="support-body">
             <div class="text-center"><br>If you have any ideas/problems / questions, you can report it:</div>
             <div class="text-left">
-                <br>1. GitHub в Issues: <strong><a href="https://github.com/magnusducatuslt/golosimages/issues" target="_blank">https://github.com/magnusducatuslt/steemitimages/issues</a></strong>
-                <br>2. Email:<strong><a href="info@steeimages.com" target="_blank">info@steeimages.com</a></strong>
+                <br>1. GitHub в Issues: <strong><a href="https://github.com/magnusducatus/steemitimages/issues" target="_blank">https://github.com/magnusducatus/steemitimages/issues</a></strong>
+                <br>2. Email: <strong><a href="mailto:info@steeimages.com" target="_blank">info@steeimages.com</a></strong>
             </div>
         </div>
     </div>
@@ -298,28 +296,28 @@
                 3. Add eventListener for upload button:
 <div class="text-left"><pre><code>&lt;script&gt;
 document.getElementById('upload').addEventListener('click', function() {
-    uploadImageToIpfs(function( err, files ) {
-        if (err) console.error(`IPFS error: ${err}`)
-        else console.log(files[0][0])
-    })
+    uploadImageToIpfs(function(err, files) {
+        if (err) console.error('IPFS error:', err);
+        else console.log(files[0][0]);
+    });
 });
 &lt;/script&gt;</code></pre></div>
                 4. You can set remote addresses to your IPFS node:
                 <div class="text-left"><pre><code>&lt;script&gt;
-let ChangeNode = {}
+let ChangeNode = {};
 function initCustomConnection() {
     ChangeNode.connectionCustom = {
-        api : {
-            protocol: `http`,
-            port: `5001`,
-            address: `13.59.234.79`
+        api: {
+            protocol: 'http',
+            port: '5001',
+            address: '13.59.234.79'
         },
         gateway: {
-            protocol: `http`,
-            port: `7777`,
-            address: `13.59.234.79`
+            protocol: 'http',
+            port: '7777',
+            address: '13.59.234.79'
         }
-    }
+    };
     initConnection(ChangeNode.connectionCustom);
 }
 &lt;/script&gt;</code></pre></div>
@@ -328,7 +326,7 @@ function initCustomConnection() {
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.13.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/ipfs-api@20.0.1/dist/index.min.js"></script>
-<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/steem@0.7.1/dist/steem.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next@11.2.3/i18next.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/i18next-xhr-backend@1.5.1/i18nextXHRBackend.min.js"></script>
